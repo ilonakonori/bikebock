@@ -10,4 +10,8 @@ class User < ApplicationRecord
   validates :about_me, presence: true, length: { in: 20..600 }
   validates :photo, presence: true
   # validates :date_of_birth, presence: true # wip
+
+  def age
+    ((Date.today - date_of_birth).to_i / 365.242199).floor
+  end
 end
