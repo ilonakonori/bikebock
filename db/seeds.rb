@@ -8,11 +8,11 @@
 
 User.destroy_all
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Luis",
     email: "luis7villasmil1+@gmail.com",
-    password: "luisvillasmil",
+    password: "123456",
     date_of_birth: "1987-02-15",
     about_me: "To me it doesn’t matter whether it’s raining or the sun is shining or whatever: as long as I’m riding a bike, I know I’m the luckiest guy in the world. Cycling is my passion."
     )
@@ -23,11 +23,11 @@ User.destroy_all
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Fiona",
     email: "fiona3schlender2+@gmail.com",
-    password: "fionaschlender",
+    password: "123456",
     date_of_birth: "1990-12-23",
     about_me: "I am a deltiologist or simply, a person who collects postcard and I absolutely love cooking. I can merrily state that my kitchen is my playground in every sense! "
     )
@@ -38,11 +38,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Eden",
     email: "eden9ooms8+@gmail.com",
-    password: "edenooms",
+    password: "123456",
     date_of_birth: "1993-10-01",
     about_me: "I love learning new languages. I am a fluent speaker of 4 languages and I want to learn a few more. At present, I am learning Spanish and German. I have a tutor to learn German. And I enjoy cycling and swimming."
     )
@@ -53,11 +53,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Panitan",
     email: "panitan4punpuang0+@gmail.com",
-    password: "panitanpunpuang",
+    password: "123456",
     date_of_birth: "1982-03-08",
     about_me: "I take pleasure in listening to music. I listen to music every morning before I leave for work and when I return home every night. I also take pleasure in reading and travelling to new places."
     )
@@ -68,11 +68,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Ronan",
     email: "ronant6kruithof3+@gmail.com",
-    password: "ronankruithof",
+    password: "123456",
     date_of_birth: "1988-08-20",
     about_me: "I am a bird-watching enthusiast. I love the outdoors and enjoy going for hikes during weekends. Also, I often spend time reading nature books and also keep digging information on the internet about birds in this region."
     )
@@ -83,11 +83,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Martina",
     email: "martina5guido9+@gmail.com",
-    password: "martinaguido",
+    password: "123456",
     date_of_birth: "1993-11-30",
     about_me: "I enjoyed travelling the most. Yes, I am a wandering soul. Visiting new places, traveling new roads, trying new cuisines and learning about new cultures excites me! My dream is to cover all the countries, both small and big, before I turn 50!"
     )
@@ -98,11 +98,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "JC",
     email: "jc1gellidon2+@gmail.com",
-    password: "jcgellidon",
+    password: "123456",
     date_of_birth: "1985-05-11",
     about_me: "I love to write in my free time. I have tons of notebooks filled with plots, character sketches, and obviously some random doodles. I take delight in writing short stories about the experiences I encounter every day."
     )
@@ -113,11 +113,11 @@ end
   puts "User photo added!"
 end
 
-1.times do 
+1.times do
   new_user = User.new(
     name: "Joy",
     email: "joy0aragon6+@gmail.com",
-    password: "joyaragon",
+    password: "123456",
     date_of_birth: "1994-01-18",
     about_me: "I am fond of dancing, it is both my hobby and passion. Sometimes even during the day, I play music on my phone and dance my heart out, even if its for just 5 minutes! Dance helps me relax as it invigorates my soul. I am a trained Bharatnatyam dancer."
     )
