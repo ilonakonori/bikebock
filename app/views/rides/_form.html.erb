@@ -1,0 +1,17 @@
+<%= simple_form_for(ride) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :short_description %>
+  <%= f.input :difficulty, collection: %w(leisure easy intermediate advanced), as: :radio_buttons %>
+  <%= f.input :start_location%>
+  <%= f.input :end_location %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :number_of_people, collection: ["1-2", "3-4", "5 and more"], as: :radio_buttons %>
+  <%= f.input :available_dates %> <!-- wip -->
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <% if ride.persisted? %>
+    <%= f.submit value="Save", class: "button button-text" %>
+  <% else %>
+    <%= f.submit value="Add", class: "button button-text" %>
+  <% end %>
+<% end %>

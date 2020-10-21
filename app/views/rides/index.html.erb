@@ -1,0 +1,11 @@
+<% @rides.each do |ride| %>
+  <%= ride.title %>
+  <%= ride.difficulty %>
+  <%= ride.short_description %>
+  <%= ride.start_location %>
+  <%= ride.end_location %>
+  <%= ride.start_time %>
+  <%= ride.end_time %>
+  <%#= ride.duration %>
+  <!-- duration => method -->
+<% end %>
