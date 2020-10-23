@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validate :date_of_birth_validation
 
   def date_of_birth_validation # mmaybe? min & max => JS datepicker or smtng?
-    if date_of_birth.present? && date_of_birth > (Date.today.year - 16)
+    if date_of_birth.present? && date_of_birth > (Date.today - 5843.87518)
       errors.add(:date_of_birth, "You have to be at least 16 years old")
     end
   end
