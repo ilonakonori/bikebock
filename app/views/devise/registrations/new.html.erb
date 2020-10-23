@@ -10,7 +10,9 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
     <%= f.input :about_me, required: true, autofocus: true %>
-    <%= f.input :date_of_birth, required: false %>
+    <%= f.input :date_of_birth, required: true, as: :date, start_year: Date.today.year - 100,
+                                end_year: Date.today.year - 16,
+                                order: [:day, :month, :year] %>
     <%= f.input :photo,
                 as: :file,
                 required: true,
