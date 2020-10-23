@@ -1,12 +1,30 @@
-<% @rides.each do |ride| %>
-  <%= ride.title %>
-  <%= ride.difficulty %>
-  <%= ride.short_description %>
-  <%= ride.start_location %>
-  <%= ride.end_location %>
-  <%= ride.start_time %>
-  <%= ride.end_time %>
+<p><%= link_to "Add Ride", new_ride_path, class: "" %> </p>
+<% if @rides.empty? %>
+  <p class="text-secondary"> You still don't have any gardens</p>
+<% else %>
+  <% @rides.each do |ride| %>
+  <!-- photos -->
+    <% ride.photos.each do |photo| %>
+      <div>
+        <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
+      </div>
+    <% end %>
+    <h3><%= ride.title %></h3>
+    <p><%= ride.difficulty %></p>
+    <p><%= ride.short_description %></p>
+    <p><%= ride.start_location %></p>
+    <p><%= ride.end_location %></p>
+    <p><%= ride.start_time.strftime("%H:%M") %></p>
+    <p><%= ride.end_time.strftime("%H:%M") %></p>
+    <p><%= ride.number_of_people %></p>
+    <p><%= ride.duration %> h</p>
 
-  <%#= ride.duration %>
-  <!-- duration => method -->
+    <% if policy(ride).edit? %>
+      <h6><%= link_to 'Edit', edit_ride_path(ride), class: "" %></h6>
+    <% end %>
+    <% if policy(ride).destroy? %>
+      <h6><%= link_to "Delete", ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
+    <% end %>
+
+  <% end %>
 <% end %>

@@ -8,10 +8,10 @@
   <%= f.input :end_time %>
   <%= f.input :number_of_people, collection: ["1-2", "3-4", "5 and more"], as: :radio_buttons %>
   <%= f.input :available_dates %> <!-- wip -->
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %> <!-- wtf? -->
   <% if ride.persisted? %>
-    <%= f.submit value="Save", class: "button button-text" %>
+    <%= f.submit value="Save", class: "" %>
   <% else %>
-    <%= f.submit value="Add", class: "button button-text" %>
+    <%= f.submit value="Add", class: "" %>
   <% end %>
 <% end %>
