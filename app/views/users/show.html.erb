@@ -6,6 +6,7 @@
     </div>
     <p><%= @user.about_me %></p>
     <p>Age: <%= @user.age %></p>
+    <p>Bike: <%= @user.bike_type %></p>
     <% if @user == current_user %>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
       <br> <!-- some another links...wip --->
