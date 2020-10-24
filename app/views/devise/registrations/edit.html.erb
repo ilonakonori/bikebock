@@ -27,6 +27,10 @@
                 as: :file,
                 required: false,
                 hint: "leave it blank if you don't want to change it" %>
+     <%= f.input :bike_type,
+                required: false,
+                collection: %w(city mountain road other),
+                as: :radio_buttons %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
