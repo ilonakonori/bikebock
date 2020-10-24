@@ -14,13 +14,17 @@
                 required: false,
                 hint: "leave it blank if you don't want to change it",
                 input_html: { autocomplete: "new-name" } %>
-    <%#= f.input :email, required: false, hint: "leave it blank if you don't want to change it" %>
+    <%= f.input :email, required: false, hint: "leave it blank if you don't want to change it" %>
     <%= f.input :about_me,
                 required: false,
                 hint: "leave it blank if you don't want to change it",
                 input_html: { autocomplete: "new-about-me" } %>
     <%= f.input :date_of_birth,
                 required: false,
+                as: :date,
+                start_year: Date.today.year - 100,
+                end_year: Date.today.year - 16,
+                order: [:day, :month, :year],
                 hint: "leave it blank if you don't want to change it",
                 input_html: { autocomplete: "new-date-of-birth" } %>
      <%= f.input :photo,

@@ -11,7 +11,7 @@ class Ride < ApplicationRecord
   validates :start_location, presence: true
   validates :end_location, presence: true
   validates :difficulty, presence: true, inclusion: { in: %w(leisure easy intermediate advanced) }
-  validates :available_dates, presence: true # wip
+  validates :available_dates, presence: true # wip js multiple-dates-picker
   validates :photos, presence: true # wtf?
 
   # validate time => custom method
