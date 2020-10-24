@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
   validates :about_me, presence: true, length: { in: 20..600 }
   validates :photo, presence: true
+  validates :bike_type, presence: true, inclusion: { in: %w(city mountain road other) }
   validates :date_of_birth, presence: true
 
   # validate date => custom method
