@@ -18,7 +18,7 @@ class RidesController < ApplicationController
     @ride = current_user.rides.new(ride_params)
     authorize @ride
     if @ride.save
-      redirect_to rides_path
+      redirect_to ride_path(@ride)
     else
       render :new
     end
