@@ -12,6 +12,7 @@
     <p><%= @ride.end_location %></p>
     <p><%= @ride.start_time.strftime("%H:%M") %></p>
     <p><%= @ride.end_time.strftime("%H:%M")%></p>
+    <p><%= @ride.available_dates %></p>
     <p><%= @ride.number_of_people %></p>
     <p><%= @ride.duration %> h</p>
 
@@ -19,7 +20,7 @@
       <h6><%= link_to 'Edit', edit_ride_path(@ride), class: "" %></h6>
     <% end %>
     <% if policy(@ride).destroy? %>
-      <h6><%= link_to "Delete", ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
+      <h6><%= link_to "Delete", @ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
     <% end %>
   </div>
 </div>
