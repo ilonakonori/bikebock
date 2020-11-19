@@ -37,6 +37,6 @@ document.addEventListener('turbolinks:load', () => {
     mode: "multiple",
     dateFormat: "d.m.Y",
     minDate: new Date().fp_incr(1),
-    maxdate: new Date().fp_incr(28)
+    maxdate: new Date().fp_incr(200)
   })
 });

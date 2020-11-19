@@ -5,7 +5,7 @@ class Ride < ApplicationRecord
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }
   validates :short_description, presence: true, length: { in: 20..600 }
-  validates :number_of_people, presence: true, inclusion: { in: ["1-2", "3-4", "5 and more"] }
+  validates :number_of_people, presence: true, inclusion: { in: ["1-2", "3-4", "5 or more"] }
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :start_location, presence: true
