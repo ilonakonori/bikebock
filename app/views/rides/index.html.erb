@@ -1,18 +1,7 @@
-<% @rides.each do |ride| %>
-  <!-- photos -->
-  <% ride.photos.each do |photo| %>
-    <div>
-      <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
-    </div>
+<div class="container">
+  <% @rides.each do |ride| %>
+    <%= link_to ride_path(ride) do %>
+      <%= render 'rides/ride', ride: ride %>
+    <% end %>
   <% end %>
-  <h3><%= ride.title %></h3>
-  <p><%= ride.difficulty %></p>
-  <p><%= ride.short_description %></p>
-  <p><%= ride.start_location %></p>
-  <p><%= ride.end_location %></p>
-  <p><%= ride.start_time.strftime("%H:%M") %></p>
-  <p><%= ride.end_time.strftime("%H:%M") %></p>
-  <p><%= ride.available_dates %></p>
-  <p><%= ride.number_of_people %></p>
-  <p><%= ride.duration %> h</p>
-<% end %>
+</div>
