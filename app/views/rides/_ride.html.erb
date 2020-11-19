@@ -1,0 +1,26 @@
+<div class="card card-ride">
+  <!-- photos -->
+  <% ride.photos.each do |photo| %>
+    <div>
+      <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
+    </div>
+  <% end %>
+  <h3><%= ride.title %></h3>
+  <p><%= link_to ride.user.name, user_path(ride.user) %></p>
+  <p>Difficulty: <%= ride.difficulty.upcase %></p>
+  <p>Description: <%= ride.short_description %></p>
+  <p>Start location: <%= ride.start_location %></p>
+  <p>End location: <%= ride.end_location %></p>
+  <p>Start time: <%= ride.start_time.strftime("%H:%M") %></p>
+  <p>End time: <%= ride.end_time.strftime("%H:%M") %></p>
+  <p>Available dates: <%= ride.available_dates %></p>
+  <p>Number of people: <%= ride.number_of_people %></p>
+  <p>Duration: <%= ride.duration %> h</p>
+
+  <% if policy(ride).edit? %>
+    <h6><%= link_to 'Edit', edit_ride_path(ride), class: "" %></h6>
+  <% end %>
+  <% if policy(ride).destroy? %>
+    <h6><%= link_to "Delete", ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
+  <% end %>
+</div>

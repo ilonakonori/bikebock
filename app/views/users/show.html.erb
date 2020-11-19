@@ -10,7 +10,7 @@
     <% if @user == current_user %>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
       <br> <!-- some another links...wip --->
-      <%= link_to "My Bike Rides", my_rides_rides_path(@user) %> |
+      <%= link_to "My Bike Rides", my_rides_rides_path(@user) %>
       <%= link_to "My Messages" %>
     <% else %>
       <%= link_to "Send Message Request" %>
