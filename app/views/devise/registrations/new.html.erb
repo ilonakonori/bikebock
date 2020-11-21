@@ -1,5 +1,3 @@
-<div class="container">
-
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -12,9 +10,8 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
     <%= f.input :about_me, required: true, autofocus: true %>
-    <%= f.input :date_of_birth, required: true, as: :date, start_year: Date.today.year - 100,
-                                end_year: Date.today.year - 16,
-                                order: [:day, :month, :year] %>
+    <%= f.input :date_of_birth,  as: :string,
+                input_html: { class: 'flatpickr-s' }%>
     <%= f.input :photo,
                 as: :file,
                 required: true,
@@ -40,4 +37,3 @@
 
 <%= render "devise/shared/links" %>
 
-</div>
