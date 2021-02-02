@@ -14,6 +14,8 @@ class Ride < ApplicationRecord
   validates :available_dates, presence: true
   validates :photos, presence: true
 
+  acts_as_favoritable
+
   # validate time => custom method
   validate :start_time_cannot_be_greater_than_end_time
 

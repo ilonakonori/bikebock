@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates :bike_type, presence: true, inclusion: { in: %w(city mountain road other) }
   validates :date_of_birth, presence: true
 
+  acts_as_favoritor
+
   # validate date => custom method
   validate :date_of_birth_validation
 

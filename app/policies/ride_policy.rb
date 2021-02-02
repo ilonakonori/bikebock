@@ -25,6 +25,14 @@ class RidePolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def fav?
+    record.user != user && record.user != user.favorited?(record)
+  end
+
+  def unfav?
+    record.user == user.favorited?(record)
+  end
+
   private
 
   def user_is_owner?
