@@ -19,18 +19,18 @@
                 required: false,
                 hint: "leave it blank if you don't want to change it",
                 input_html: { autocomplete: "new-about-me" } %>
-    <%= f.input :date_of_birth,
+    <%= f.input :interests,
                 required: false,
-                as: :string,
-                input_html: { class: 'flatpickr-s' } %>
-     <%= f.input :photo,
+                hint: "leave it blank if you don't want to change it",
+                input_html: { autocomplete: "new-interests" } %>
+    <%= f.input :profile_photo,
                 as: :file,
                 required: false,
                 hint: "leave it blank if you don't want to change it" %>
-     <%= f.input :bike_type,
+    <%= f.input :bike_photo,
+                as: :file,
                 required: false,
-                collection: %w(city mountain road other),
-                as: :radio_buttons %>
+                hint: "leave it blank if you don't want to change it" %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
