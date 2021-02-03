@@ -1,16 +1,16 @@
 class Ride < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos
+  has_many_attached :photos, :maximum => 3
 
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }
-  validates :short_description, presence: true, length: { in: 20..600 }
-  validates :number_of_people, presence: true, inclusion: { in: ["1-2", "3-4", "5 or more"] }
+  validates :short_description, presence: true, length: { in: 50..900 }
+  validates :number_of_people, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :start_location, presence: true
   validates :end_location, presence: true
-  validates :difficulty, presence: true, inclusion: { in: %w(leisure easy intermediate advanced) }
+  validates :difficulty, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :available_dates, presence: true
   validates :photos, presence: true
 
