@@ -24,23 +24,24 @@
     <h6><%= link_to "Delete", ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
   <% end %>
 
-  <% if policy(ride).fav? %>
-    <p>
-      <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-        <i onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
-      <% end %>
-    </p>
-   <% elsif policy(ride).unfav? %>
+  <% if policy(ride).unfav? %>
     <p>
       <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
         <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-heart" style="font-size:16px;" ></i>
       <% end %>
      </p>
-     <p id='num'><%= ride.favoritors.size %></p>
+  <% elsif policy(ride).fav?  %>
+    <p>
+      <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+        <i onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
+      <% end %>
+    </p>
   <% else %>
     <i title='Favorites' class="fas fa-heart" style="font-size:16px;"></i>
   <% end %>
+
   <p id='num'><%= ride.favoritors.size %></p> <!-- do some ajax magic here -->
+
 </div>
 
 <script>
