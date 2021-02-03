@@ -1,6 +1,6 @@
 class Ride < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos, :maximum => 3
+  has_many_attached :photos #maximum: 3
 
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }

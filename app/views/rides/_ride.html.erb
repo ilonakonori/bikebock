@@ -7,7 +7,7 @@
   <% end %>
   <h3><%= ride.title %></h3>
   <p><%= link_to ride.user.name, user_path(ride.user) %></p>
-  <p>Difficulty: <%= ride.difficulty.upcase %></p>
+  <p>Difficulty: <%= ride.difficulty %></p>
   <p>Description: <%= ride.short_description %></p>
   <p>Start location: <%= ride.start_location %></p>
   <p>End location: <%= ride.end_location %></p>

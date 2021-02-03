@@ -10,17 +10,17 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
     <%= f.input :about_me, required: true, autofocus: true %>
-    <%= f.input :date_of_birth,  as: :string,
-                input_html: { class: 'flatpickr-s' }%>
-    <%= f.input :photo,
+    <%= f.input :interests,
+                required: true,
+                autofocus: true %>
+    <%= f.input :profile_photo,
                 as: :file,
                 required: true,
                 autofocus: true %>
-    <%= f.input :bike_type,
+    <%= f.input :bike_photo,
+                as: :file,
                 required: true,
-                autofocus: true,
-                collection: %w(city mountain road other),
-                as: :radio_buttons %>
+                autofocus: true  %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
