@@ -1,4 +1,6 @@
-<%= render 'rides/filter_input' %>
+<div class='row'>
+  <%= render 'rides/search_input' %>
+</div>
 <% @rides.each do |ride| %>
   <%= link_to ride_path(ride) do %>
     <%= render 'rides/ride', ride: ride %>

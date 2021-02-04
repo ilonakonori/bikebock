@@ -2,12 +2,15 @@ class RidesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
 
-  def index # filter & search here
-    if params[:select].present?
+  def index # filter & search here  # wip
+    if params[:query].present?
       user_select = params[:select]
-      filter(user_select)
+      rides = policy_scope(Ride).search_rides(params[:query])
+      filter(user_select, rides)  # select not working :/
     else
-      @rides = policy_scope(Ride).order(created_at: :desc)
+      user_select = params[:select]
+      rides = policy_scope(Ride)
+      filter(user_select, rides)
     end
   end
 
@@ -53,20 +56,20 @@ class RidesController < ApplicationController
 
   private
 
-  def filter(user_select) # add available dates (order earliest)
+  def filter(user_select, rides) # add available dates (order earliest)
     case user_select
       when '2' # ratings # we don't have this atm!
-        @rides = policy_scope(Ride).order(ratings: :desc)
+        @rides = rides.order(ratings: :desc)
       when '3' # difficulty asc
-        @rides = policy_scope(Ride).order(difficulty: :asc)
+        @rides = rides.order(difficulty: :asc)
       when '4' # difficulty desc
-        @rides = policy_scope(Ride).order(difficulty: :desc)
+        @rides = rides.order(difficulty: :desc)
       when '5' # num of people asc
-        @rides = policy_scope(Ride).order(number_of_people: :asc)
+        @rides = rides.order(number_of_people: :asc)
       when '6' # num of people desc
-        @rides = policy_scope(Ride).order(number_of_people: :desc)
-    else
-      @rides = policy_scope(Ride).order(created_at: :desc)
+        @rides = rides.order(number_of_people: :desc)
+    else # '1' ie. default
+      @rides = rides.order(created_at: :desc)
     end
   end
 
