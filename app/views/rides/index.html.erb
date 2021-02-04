@@ -1,3 +1,4 @@
+<%= render 'rides/filter_input' %>
 <% @rides.each do |ride| %>
   <%= link_to ride_path(ride) do %>
     <%= render 'rides/ride', ride: ride %>
