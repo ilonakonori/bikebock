@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
   validates :about_me, presence: true, length: { in: 20..600 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates: email, presence: true, uniqueness { case_sensitive: false }, length { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
+  validates: email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
   #validates :interests, presence: true, length: { in: 20..100 }
   validates :profile_photo, presence: true
   #validates :bike_photo, presence: true
