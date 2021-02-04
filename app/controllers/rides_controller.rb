@@ -52,18 +52,20 @@ class RidesController < ApplicationController
 
   private
 
-  def filter # add available dates (order earliest)
+  def filter # ratings!
     case params[:select]
       when '2' # ratings # we don't have this atm!
         @rides = policy_scope(Ride).order(ratings: :desc)
       when '3' # difficulty asc
-        @rides = policy_scope(Ride).order(difficulty: :asc)
+        @rides = policy_scope(Ride).order(:difficulty)
       when '4' # difficulty desc
         @rides = policy_scope(Ride).order(difficulty: :desc)
       when '5' # num of people asc
-        @rides = policy_scope(Ride).order(number_of_people: :asc)
+        @rides = policy_scope(Ride).order(:number_of_people)
       when '6' # num of people desc
         @rides = policy_scope(Ride).order(number_of_people: :desc)
+      when '7' # available_dates: :asc  => earliest
+        @rides = policy_scope(Ride).order(:slug)
     else # '1' ie. default
       @rides = policy_scope(Ride).order(created_at: :desc)
     end
