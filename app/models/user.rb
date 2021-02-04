@@ -4,9 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_save { self.email = email.downcase }
+
   has_one_attached :profile_photo
   has_one_attached :bike_photo
   has_many :rides, dependent: :destroy
+
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
   validates :about_me, presence: true, length: { in: 20..600 }
