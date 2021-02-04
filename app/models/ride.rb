@@ -14,6 +14,17 @@ class Ride < ApplicationRecord
   validates :available_dates, presence: true
   validates :photos, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_rides, against: [
+    [:title, 'A',
+    :start_location,'B',
+    :end_location, 'C',
+    :short_description, 'D']
+  ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   # validate time => custom method
   validate :start_time_cannot_be_greater_than_end_time
 
