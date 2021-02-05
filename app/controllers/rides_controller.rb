@@ -2,8 +2,12 @@ class RidesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_ride, only: [:show, :edit, :update, :destroy]
 
-  def index # search here
-    @rides = policy_scope(Ride).order(created_at: :desc)
+  def index # filter & search here
+    if params[:query].present?
+      @rides = filter.search_rides(params[:query])
+    else
+      filter
+    end
   end
 
   def show
@@ -47,6 +51,25 @@ class RidesController < ApplicationController
   end
 
   private
+
+  def filter # ratings!
+    case params[:select]
+      when '2' # ratings # we don't have this atm!
+        @rides = policy_scope(Ride).order(ratings: :desc)
+      when '3' # difficulty asc
+        @rides = policy_scope(Ride).order(:difficulty)
+      when '4' # difficulty desc
+        @rides = policy_scope(Ride).order(difficulty: :desc)
+      when '5' # num of people asc
+        @rides = policy_scope(Ride).order(:number_of_people)
+      when '6' # num of people desc
+        @rides = policy_scope(Ride).order(number_of_people: :desc)
+      when '7' # available_dates: :asc  => earliest
+        @rides = policy_scope(Ride).order(:slug)
+    else # '1' ie. default
+      @rides = policy_scope(Ride).order(created_at: :desc)
+    end
+  end
 
   def ride_params
     params.require(:ride).permit(:title, :short_description, :start_location, :start_time, :end_location, :end_time, :difficulty, :number_of_people, :available_dates, :user_id, photos: [])
