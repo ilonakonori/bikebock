@@ -1,9 +1,29 @@
-<div class="card card-profile">
-  <h1><%= @user.name %></h1>
-  <div>
-    <%= cl_image_tag @user.profile_photo.key, height: 300, width: 300, crop: :fill %>
+
+<div style='display: flex; justify-content: space-around;'>
+  <div class='row'>
+    <div class='col-6'>
+      <%= cl_image_tag @user.profile_photo.key, height: 140, width: 140, crop: :fill, style: 'border-radius: 50%;' %>
+    </div>
+    <div class='col-6'>
+      <h4><%= @user.name %></h4>
+      <p><%= @user.about_me %></p>
+    </div>
   </div>
-  <p><%= @user.about_me %></p>
+</div>
+
+<div> <!-- don't have it atm -->
+  <%#= cl_image_tag @user.bike_photo.key, height: 140, width: 140, crop: :fill, style: 'border-radius: 16px;' %>
+</div>
+
+<!-- don't have it atm
+<div class="container" style="padding-bottom: 20px; padding-top: 142px; min-height: 100vh;">
+  <div style="display:flex; flex-wrap: wrap;">
+    <#% @user.interests.split(' ').each do |i| %>
+     <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 15px; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; margin-left: 1vh; opacity: 70%; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);"><#%= i %></p>
+    <#% end %>
+  </div>
+</div> -->
+
 
 
   <% if @user == current_user %>
@@ -14,4 +34,4 @@
   <% else %>
     <%= link_to "Send Message Request" %>
   <% end %>
-</div>
+
