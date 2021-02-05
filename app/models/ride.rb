@@ -1,6 +1,8 @@
 class Ride < ApplicationRecord
   belongs_to :user
   has_many_attached :photos #maximum: 3
+  before_save :build_slug
+  before_update :build_slug
 
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }
@@ -24,6 +26,10 @@ class Ride < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def build_slug
+    self.slug = available_dates.split(', ').map { |el| DateTime.parse(el) }.sort.first
+  end
 
   # validate time => custom method
   validate :start_time_cannot_be_greater_than_end_time
