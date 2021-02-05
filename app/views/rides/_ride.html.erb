@@ -1,10 +1,10 @@
-<div class="card card-ride">
+<div class="card card-ride-index">
   <!-- photos -->
-  <% ride.photos.each do |photo| %>
+
     <div>
-      <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
+      <%= cl_image_tag ride.photos.first.key, height: 300, width: 300, crop: :fill %>
     </div>
-  <% end %>
+
   <h3><%= ride.title %></h3>
   <p><%= link_to ride.user.name, user_path(ride.user) %></p>
   <p>Difficulty: <%= ride.difficulty %></p>

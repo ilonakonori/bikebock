@@ -1,0 +1,44 @@
+#carouselExampleIndicators,
+#carouselExampleIndicators > div > div.carousel-item > img.d-block.w-100.rounded,
+#content-wrap > div.container > div {
+  border-radius: 16px !important;
+}
+
+#carouselExampleIndicators > a.carousel-control-prev > span.carousel-control-prev-icon,
+#carouselExampleIndicators > a.carousel-control-next > span.carousel-control-next-icon {
+  transform: scale(2);
+}
+
+.card.card-ride {
+  background-color: transparent;
+  border: 0px transparent;
+}
+
+
+.box {
+  position: relative;
+  padding: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.line {
+  border-bottom: 1vw solid #ccc;
+  position: absolute;
+  width: 94%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin-right: 15px;
+}
+
+.dot {
+  width: 4vw;
+  height: 4vw;
+  background-color: #ccc;
+  border-radius: 50%;
+  z-index: 2;
+}
