@@ -1,25 +1,4 @@
-<div class="card-ride-index">
-  <!-- photos -->
 
-  <div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
-    <div>
-      <%= link_to user_path(ride.user) do %>
-      <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
-      <% end %>
-    </div>
-    <p><%= link_to ride.user.name, user_path(ride.user) %></p>
-  </div>
-
-<div style='padding: 8px;'>
-  <%= link_to ride_path(ride) do %>
-    <div>
-      <%= cl_image_tag ride.photos.first.key, height: 180, width: 320, crop: :fill, style: 'position: relative; left: 50%; transform: translateX(-50%);' %>
-    </div>
-    <h3><%= ride.title %></h3>
-  <% end %>
-
-  <p><%= ride.short_description[0..100] %>...</p>
-</div>
 <!--
   <p>Difficulty: <#%= ride.difficulty %></p>
   <p>Start location: <#%= ride.start_location %></p>
@@ -30,13 +9,33 @@
   <p>Number of people: <#%= ride.number_of_people %></p>
   <p>Duration: <#%= ride.duration %> h</p>
 -->
+<!--
 <div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
-  <% if policy(ride).edit? %>
-    <h6><%= link_to 'Edit', edit_ride_path(ride), class: "", style: 'margin: 0 4px;' %></h6>
-  <% end %>
-  <% if policy(ride).destroy? %>
-    <h6><%= link_to "Delete", ride, class: "",  style: 'margin: 0 4px;', method: :delete, data: {confirm: "Are you sure?"} %></h6>
-  <% end %>
+  <#% if policy(ride).edit? %>
+    <h6><#%= link_to 'Edit', edit_ride_path(ride), class: "", style: 'margin: 0 4px;' %></h6>
+  <#% end %>
+  <#% if policy(ride).destroy? %>
+    <h6><#%= link_to "Delete", ride, class: "",  style: 'margin: 0 4px;', method: :delete, data: {confirm: "Are you sure?"} %></h6>
+  <#% end %>
 </div>
+-->
+<div style='padding: 16px; background-color: #fde8cd8f;'>
+  <div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
+    <div>
+      <%= link_to user_path(ride.user) do %>
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+      <% end %>
+    </div>
+    <p><%= link_to ride.user.name, user_path(ride.user) %></p>
+  </div>
+  <%= link_to ride_path(ride) do %>
+    <div class="card" style="">
+      <%= cl_image_tag ride.photos.first.key, class: "card-img-top" %>
+      <div class="card-body">
+        <h3><%= ride.title %></h3>
+        <p class="card-text"><%= ride.short_description[0..100] %>...</p>
+      </div>
+    </div>
+  <% end %>
 </div>
 <br>
