@@ -42,3 +42,20 @@
   border-radius: 50%;
   z-index: 2;
 }
+
+
+/* ride index */
+
+.card-ride-index {
+  background-color: #fde8cd8f;
+  border: 0px transparent;
+  padding: 8px;
+}
+
+
+/* form */
+#new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty,
+#new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people {
+  display: flex;
+  justify-content: space-between;
+}
