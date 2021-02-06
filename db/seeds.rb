@@ -17,14 +17,18 @@ Ride.destroy_all
     name: "Luis",
     email: "luis7villasmil1+@gmail.com",
     password: "123456",
-    about_me: "To me it doesn’t matter whether it’s raining or the sun is shining or whatever: as long as I’m riding a bike, I know I’m the luckiest guy in the world. Cycling is my passion."
+    about_me: "To me it doesn’t matter whether it’s raining or the sun is shining or whatever: as long as I’m riding a bike, I know I’m the luckiest guy in the world. Cycling is my passion.",
+    interests: "Learning languages. Playing piano. Snow boarding. Climbing. Hiking. Cooking."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
-
-    puts "User photo added!"
+  puts "User photo added!"
+  
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_1.jpeg'), filename: 'bike_1.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -41,8 +45,7 @@ Ride.destroy_all
       end_location: "Kraftwerk Berlin",
       difficulty: '2',
       available_dates: "13.03.2021, 14.03.2021")
-
-    puts "New ride not saved!"
+  puts "New ride not saved!"
 
     # photos
     image1 = File.open('app/assets/images/deutsches_technik_museum.png')
@@ -54,8 +57,8 @@ Ride.destroy_all
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -66,13 +69,18 @@ end
     name: "Fiona",
     email: "fiona3schlender2+@gmail.com",
     password: "123456",
-    about_me: "I am a deltiologist or simply, a person who collects postcard and I absolutely love cooking. I can merrily state that my kitchen is my playground in every sense! "
+    about_me: "I am a deltiologist or simply, a person who collects postcard and I absolutely love cooking. I can merrily state that my kitchen is my playground in every sense!",
+    interests: "Science. Politics. Literature. Concerts. Theatres. Exhibitions."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1600207438283-a5de6d9df13e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_2.jpeg'), filename: 'bike_2.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -87,7 +95,6 @@ end
       end_location: "Wannsee S-Bahn",
       difficulty: "1",
       available_dates: "27.04.2021, 28.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -100,8 +107,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -112,13 +119,18 @@ end
     name: "Eden",
     email: "eden9ooms8+@gmail.com",
     password: "123456",
-    about_me: "I love learning new languages. I am a fluent speaker of 4 languages and I want to learn a few more. At present, I am learning Spanish and German. I have a tutor to learn German. And I enjoy cycling and swimming."
+    about_me: "I love learning new languages. I am a fluent speaker of 4 languages and I want to learn a few more. At present, I am learning Spanish and German. I have a tutor to learn German. And I enjoy cycling and swimming.",
+    interests: "Literature. Travel. Music. Culture. Arts. Skateboring."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1508511267-5a04ee04ca95?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_3.jpeg'), filename: 'bike_3.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -133,7 +145,6 @@ end
       end_location: "Kulturforum",
       difficulty: "1",
       available_dates: "28.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -146,8 +157,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -158,13 +169,18 @@ end
     name: "Panitan",
     email: "panitan4punpuang0+@gmail.com",
     password: "123456",
-    about_me: "I take pleasure in listening to music. I listen to music every morning before I leave for work and when I return home every night. I also take pleasure in reading and travelling to new places."
+    about_me: "I take pleasure in listening to music. I listen to music every morning before I leave for work and when I return home every night. I also take pleasure in reading and travelling to new places.",
+    interests: "Philosophy. Science. Startups. Tree climbing. Board games. Yoga."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1600481176431-47ad2ab2745d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_4.jpeg'), filename: 'bike_4.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -180,7 +196,6 @@ end
       end_location: "Akademie Berlin-Schmöckwitz",
       difficulty: "1",
       available_dates: "17.04.2021, 18.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -193,8 +208,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -205,13 +220,18 @@ end
     name: "Ronan",
     email: "ronant6kruithof3+@gmail.com",
     password: "123456",
-    about_me: "I am a bird-watching enthusiast. I love the outdoors and enjoy going for hikes during weekends. Also, I often spend time reading nature books and also keep digging information on the internet about birds in this region."
+    about_me: "I am a bird-watching enthusiast. I love the outdoors and enjoy going for hikes during weekends. Also, I often spend time reading nature books and also keep digging information on the internet about birds in this region.",
+    interests: "Art. Architecture. Design. Music. Media. Tech."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1570632267781-46f97c2a4f76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_5.jpeg'), filename: 'bike_5.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -227,7 +247,6 @@ end
       end_location: "Glienicker Bridge",
       difficulty: "1",
       available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -239,9 +258,9 @@ end
     new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
-    new_ride.save!
+    new_ride.save! 
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -252,13 +271,18 @@ end
     name: "Martina",
     email: "martina5guido9+@gmail.com",
     password: "123456",
-    about_me: "I enjoyed travelling the most. Yes, I am a wandering soul. Visiting new places, traveling new roads, trying new cuisines and learning about new cultures excites me! My dream is to cover all the countries, both small and big, before I turn 50!"
+    about_me: "I enjoyed travelling the most. Yes, I am a wandering soul. Visiting new places, traveling new roads, trying new cuisines and learning about new cultures excites me! My dream is to cover all the countries, both small and big, before I turn 50!",
+    interests: "Sustainability. Politics. Economy. Clubing. Board games. Ice dipping."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1588453383063-37ea0b78f30f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_6.jpeg'), filename: 'bike_6.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -273,7 +297,6 @@ end
       end_location: "U-Bahnhof Wittenau",
       difficulty: "3",
       available_dates: "11.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -286,8 +309,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -298,13 +321,18 @@ end
     name: "JC",
     email: "jc1gellidon2+@gmail.com",
     password: "123456",
-    about_me: "I love to write in my free time. I have tons of notebooks filled with plots, character sketches, and obviously some random doodles. I take delight in writing short stories about the experiences I encounter every day."
+    about_me: "I love to write in my free time. I have tons of notebooks filled with plots, character sketches, and obviously some random doodles. I take delight in writing short stories about the experiences I encounter every day.",
+    interests: "Traveling. Cooking. Languages. Fitness. Meditation. Yoga."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1601062138836-c90756d8dce9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_7.jpeg'), filename: 'bike_7.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -319,7 +347,6 @@ end
       end_location: "Café am neuen See",
       difficulty: "4",
       available_dates: "20.03.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -332,8 +359,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -344,13 +371,18 @@ end
     name: "Joy",
     email: "joy0aragon6+@gmail.com",
     password: "123456",
-    about_me: "I am fond of dancing, it is both my hobby and passion. Sometimes even during the day, I play music on my phone and dance my heart out, even if its for just 5 minutes! Dance helps me relax as it invigorates my soul. I am a trained Bharatnatyam dancer."
+    about_me: "I am fond of dancing, it is both my hobby and passion. Sometimes even during the day, I play music on my phone and dance my heart out, even if its for just 5 minutes! Dance helps me relax as it invigorates my soul. I am a trained Bharatnatyam dancer.",
+    interests: "Coffee. Travel. Vintage. Nature. Chess. Windsurfing."
     )
   puts "User not saved!"
     image = URI.open("https://images.unsplash.com/photo-1592755219588-d4ff92a0d4de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
   puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_8.jpeg'), filename: 'bike_8.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -368,7 +400,6 @@ end
       end_location: "S-Bahn Erkner",
       difficulty: "1",
       available_dates: "01.05.2021, 02.05.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -381,7 +412,7 @@ end
 
     new_ride.user = new_user
     new_ride.save!
-
-    puts "Added 3 images!"
+  puts "Added 3 images!"
+  
   end
 end
