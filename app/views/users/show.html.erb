@@ -1,14 +1,29 @@
-<div class="card card-profile">
-  <h1><%= @user.name %></h1>
-  <div>
-    <%= cl_image_tag @user.profile_photo.key, height: 300, width: 300, crop: :fill %>
-  </div>
-  <p>About me: <%= @user.about_me %></p>
-  <p>Inetrests: <%= @user.interests %></p>
-  <div> 
-    <p>Bike photo:</p><%= cl_image_tag @user.bike_photo.key, height: 300, width: 300, crop: :fill %>
+
+<div class="my-card">
+  <div class="my-row" style="display: flex; justify-content: space-around; padding: 16px 0;">
+     <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: 'border-radius: 50%;' %>
+      <div class="my-card-body" style='padding: 0 16px;'>
+        <h6><%= @user.name %></h6>
+        <p style='font-size: 12px;'><%= @user.about_me[0..140] %></p>
+      </div>
+    </div>
+</div>
+
+<div class='card' style='border-radius: 16px;'> <!-- don't have it atm -->
+  <img src='https://pearl-cycles.com/wp-content/uploads/2019/12/IMG_3189.jpg' class="card-img-top"  style='height: 42vw; border-radius: 16px;'/>
+  <%#= cl_image_tag @user.bike_photo.key, height: 140, width: 140, crop: :fill, style: 'border-radius: 16px;' %>
+</div>
+
+<!-- don't have it atm -->
+<div class="my-container" style="padding: 24px 0;">
+  <div style="display: flex; flex-wrap: wrap;">
+  <!--  <#% @user.interests.split(' ').each do |i| %> -->
+    <% 'eat sleep reading cats travel dancing cooking coding ruby<3'.split(' ').each do |i| %>
+     <p style="border-style: solid; border-width: 0; border-radius: 12px; font-size: 12px; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; margin-left: 1vh; opacity: 70%; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);"><%= i %></p>
+    <% end %>
   </div>
 
+<div style='position: absolute; top: 96%; left: 62%;' >
   <% if @user == current_user %>
     <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
     <br> <!-- some another links...wip --->
