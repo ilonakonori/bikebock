@@ -9,16 +9,14 @@
     </div>
 </div>
 
-<div class='card' style='border-radius: 16px;'> <!-- don't have it atm -->
-  <img src='https://pearl-cycles.com/wp-content/uploads/2019/12/IMG_3189.jpg' class="card-img-top"  style='height: 42vw; border-radius: 16px;'/>
-  <%#= cl_image_tag @user.bike_photo.key, height: 140, width: 140, crop: :fill, style: 'border-radius: 16px;' %>
+<div class='card' style='border-radius: 16px;'>
+  <%= cl_image_tag @user.bike_photo.key, height: 380, width: 1140, crop: :fill, style: 'border-radius: 16px;' %>
 </div>
 
 <!-- don't have it atm -->
 <div class="my-container" style="padding: 24px 0;">
   <div style="display: flex; flex-wrap: wrap;">
-  <!--  <#% @user.interests.split(' ').each do |i| %> -->
-    <% 'eat sleep reading cats travel dancing cooking coding ruby<3'.split(' ').each do |i| %>
+    <% @user.interests.split(' ').each do |i| %>
      <p style="border-style: solid; border-width: 0; border-radius: 12px; font-size: 12px; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; margin-left: 1vh; opacity: 70%; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);"><%= i %></p>
     <% end %>
   </div>
