@@ -3,7 +3,8 @@
   <div>
     <%= cl_image_tag @user.profile_photo.key, height: 300, width: 300, crop: :fill %>
   </div>
-  <p><%= @user.about_me %></p>
+  <p>About me: <%= @user.about_me %></p>
+  <p>Inetrests: <%= @user.interests %></p>
 
 
   <% if @user == current_user %>
