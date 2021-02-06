@@ -24,8 +24,11 @@ Ride.destroy_all
     image = URI.open("https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
     new_user.save!
-
-    puts "User photo added!"
+  puts "User photo added!"
+  
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_1.jpeg'), filename: 'bike_1.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -42,8 +45,7 @@ Ride.destroy_all
       end_location: "Kraftwerk Berlin",
       difficulty: '2',
       available_dates: "13.03.2021, 14.03.2021")
-
-    puts "New ride not saved!"
+  puts "New ride not saved!"
 
     # photos
     image1 = File.open('app/assets/images/deutsches_technik_museum.png')
@@ -55,8 +57,8 @@ Ride.destroy_all
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -76,6 +78,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_2.jpeg'), filename: 'bike_2.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Nikolassee Route",
@@ -89,7 +95,6 @@ end
       end_location: "Wannsee S-Bahn",
       difficulty: "1",
       available_dates: "27.04.2021, 28.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -102,8 +107,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -123,6 +128,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_3.jpeg'), filename: 'bike_3.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Along the River Spree",
@@ -136,7 +145,6 @@ end
       end_location: "Kulturforum",
       difficulty: "1",
       available_dates: "28.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -149,8 +157,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -170,6 +178,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_4.jpeg'), filename: 'bike_4.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Always follow the water",
@@ -184,7 +196,6 @@ end
       end_location: "Akademie Berlin-Schmöckwitz",
       difficulty: "1",
       available_dates: "17.04.2021, 18.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -197,8 +208,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -218,6 +229,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_5.jpeg'), filename: 'bike_5.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Wannsee cycle route",
@@ -232,7 +247,6 @@ end
       end_location: "Glienicker Bridge",
       difficulty: "1",
       available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -244,9 +258,9 @@ end
     new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
-    new_ride.save!
+    new_ride.save! 
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -266,6 +280,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_6.jpeg'), filename: 'bike_6.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Bicycle ride through Reinickendorf",
@@ -279,7 +297,6 @@ end
       end_location: "U-Bahnhof Wittenau",
       difficulty: "3",
       available_dates: "11.04.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -292,8 +309,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -313,6 +330,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_7.jpeg'), filename: 'bike_7.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Cycling Tour at Tiergarten",
@@ -326,7 +347,6 @@ end
       end_location: "Café am neuen See",
       difficulty: "4",
       available_dates: "20.03.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -339,8 +359,8 @@ end
 
     new_ride.user = new_user
     new_ride.save!
+  puts "Added 3 images!"
 
-    puts "Added 3 images!"
   end
 end
 
@@ -360,6 +380,10 @@ end
     new_user.save!
   puts "User photo added!"
 
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_8.jpeg'), filename: 'bike_8.jpeg', content_type: 'image/jpeg')
+  puts "Bike not saved!"
+
   1.times do
     new_ride = Ride.new(
       title: "Bike ride through Treptow-Köpenick",
@@ -376,7 +400,6 @@ end
       end_location: "S-Bahn Erkner",
       difficulty: "1",
       available_dates: "01.05.2021, 02.05.2021")
-
     puts "New ride not saved!"
 
     # photos
@@ -389,7 +412,7 @@ end
 
     new_ride.user = new_user
     new_ride.save!
-
-    puts "Added 3 images!"
+  puts "Added 3 images!"
+  
   end
 end

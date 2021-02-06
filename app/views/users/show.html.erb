@@ -5,7 +5,9 @@
   </div>
   <p>About me: <%= @user.about_me %></p>
   <p>Inetrests: <%= @user.interests %></p>
-
+  <div> 
+    <p>Bike photo:</p><%= cl_image_tag @user.bike_photo.key, height: 300, width: 300, crop: :fill %>
+  </div>
 
   <% if @user == current_user %>
     <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
