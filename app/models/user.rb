@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :about_me, presence: true, length: { in: 20..600 }
+  validates :about_me, presence: true, length: { in: 20..205 }
   validates :interests, presence: true, length: { in: 10..200 }
   validates :profile_photo, presence: true
-  #validates :bike_photo, presence: true
+  validates :bike_photo, presence: true
 end
