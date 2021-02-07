@@ -26,14 +26,14 @@
         <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
       <% end %>
     </div>
-    <p><%= link_to ride.user.name, user_path(ride.user) %></p>
+    <p style='font-size: 12px;'><%= link_to ride.user.name, user_path(ride.user) %></p>
   </div>
   <%= link_to ride_path(ride) do %>
     <div class="card" style="">
       <%= cl_image_tag ride.photos.first.key, class: "card-img-top" %>
       <div class="card-body">
         <h3><%= ride.title %></h3>
-        <p class="card-text"><%= ride.short_description[0..100] %>...</p>
+        <p style='font-size: 12px;'><%= ride.short_description[0..100] %>...</p>
       </div>
     </div>
   <% end %>
