@@ -1,13 +1,13 @@
 
   <!-- carousel -->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active ">
-        <%= cl_image_tag ride.photos.first.key, class: "d-block w-100 rounded" %>
+    <div class="carousel-inner" style='border-radius: 16px; height: 44vw; box-shadow: 0px 2px 8px 4px rgba(8, 13, 60, 0.3);'>
+      <div class="carousel-item active">
+        <%= cl_image_tag ride.photos.first.key, class: "d-block w-100" %>
       </div>
       <% ride.photos[1..-1].each do |photo| %>
         <div class="carousel-item">
-          <%= cl_image_tag photo.key, class: "d-block w-100 rounded" %>
+          <%= cl_image_tag photo.key, class: "d-block w-100" %>
         </div>
       <% end %>
      </div>
