@@ -26,7 +26,7 @@
 }
 
 .line {
-  border-bottom: 1vw solid #ccc;
+  border-bottom: .4vw solid rgba(67, 53, 32, 0.7);
   position: absolute;
   width: 94%;
   top: 50%;
@@ -54,8 +54,23 @@
 
 
 /* form */
-#new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty,
-#new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people {
+fieldset.form-group.radio_buttons.required.ride_difficulty,
+fieldset.form-group.radio_buttons.required.ride_number_of_people {
   display: flex;
   justify-content: space-between;
+}
+
+/* btn 'I want to go' */
+#content-wrap > div.container > div.card.card-ride > div.btn-box > a {
+  background-color: rgba(67, 53, 32, 0.9);
+  padding: 8px 32px;
+  border-radius: 16px;
+  color: #000;
+  font-weight: bolder;
+  margin: 4px;
+}
+
+#content-wrap > div.container > div.card.card-ride > div.btn-box > a:hover {
+  background-color: rgba(67, 53, 32, 0.7);
+  text-decoration: none;
 }
