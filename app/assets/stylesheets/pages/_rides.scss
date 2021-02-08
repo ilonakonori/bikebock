@@ -26,7 +26,7 @@
 }
 
 .line {
-  border-bottom: .4vw solid rgba(67, 53, 32, 0.7);
+  border-bottom: .4vw solid #433520;
   position: absolute;
   width: 94%;
   top: 50%;
@@ -62,7 +62,7 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 /* btn 'I want to go' */
 #content-wrap > div.container > div.card.card-ride > div.btn-box > a {
-  background-color: rgba(67, 53, 32, 0.9);
+  background-color: #433520;
   padding: 8px 32px;
   border-radius: 16px;
   color: #000;
@@ -71,6 +71,6 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 }
 
 #content-wrap > div.container > div.card.card-ride > div.btn-box > a:hover {
-  background-color: rgba(67, 53, 32, 0.7);
+  background-color: #433520;
   text-decoration: none;
 }

@@ -29,13 +29,13 @@
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
       <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
-        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.start_location %>
         </p>
       </div>
       <p style= 'font-size: 12px;'>route</p>
       <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
-        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.end_location %>
         </p>
       </div>
@@ -45,10 +45,10 @@
   <div class='box'>
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.start_time.strftime("%H:%M") %></p>
       <p style='font-size: 12px;'><%= ride.duration %> h</p>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.end_time.strftime("%H:%M") %>
       </p>
     </div>
@@ -83,7 +83,7 @@
   <div class="my-container" style="padding: 0">
     <div style="display: flex; flex-wrap: wrap;">
       <% ride.available_dates.split(', ').map { |el| el.to_date }.sort.each do |d| %>
-        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; margin-right: 1vh; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; margin-right: 1vh; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= d.strftime('%e %B %Y') %>
         </p>
       <% end %>
@@ -108,7 +108,7 @@
   function changeColor(class_name, i) {
     const dots = document.getElementsByClassName(class_name);
     while (i > 0) {
-      dots[i-1].style.backgroundColor = '#23a194';
+      dots[i-1].style.backgroundColor = '#00917C';
       i -= 1;
     }
   }
