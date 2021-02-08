@@ -4,27 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :photo
+  has_one_attached :profile_photo
+  has_one_attached :bike_photo
   has_many :rides, dependent: :destroy
+
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :about_me, presence: true, length: { in: 20..600 }
-  validates :photo, presence: true
-  validates :bike_type, presence: true, inclusion: { in: %w(city mountain road other) }
-  validates :date_of_birth, presence: true
+  validates :about_me, presence: true, length: { in: 20..205 }
+  validates :interests, presence: true, length: { in: 10..200 }
+  validates :profile_photo, presence: true
+  validates :bike_photo, presence: true
 
   acts_as_favoritor
-
-  # validate date => custom method
-  validate :date_of_birth_validation
-
-  def date_of_birth_validation # mmaybe? min & max => JS datepicker or smtng?
-    if date_of_birth.present? && date_of_birth > (Date.today - 5843.87518)
-      errors.add(:date_of_birth, "You have to be at least 16 years old")
-    end
-  end
-
-  def age
-    ((Date.today - date_of_birth).to_i / 365.242199).floor
-  end
 end

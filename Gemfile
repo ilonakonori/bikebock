@@ -30,7 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'cloudinary', '~> 1.16.0'
 gem 'pundit'
-#gem 'acts_as_favoritor' #bc of master
+gem 'acts_as_favoritor'
+gem 'pg_search', '~> 2.3.0'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

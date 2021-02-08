@@ -1,27 +1,41 @@
-<div class="card card-ride">
-  <!-- photos -->
-  <% ride.photos.each do |photo| %>
-    <div>
-      <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill %>
-    </div>
-  <% end %>
-  <h3><%= ride.title %></h3>
-  <p><%= link_to ride.user.name, user_path(ride.user) %></p>
-  <p>Difficulty: <%= ride.difficulty.upcase %></p>
-  <p>Description: <%= ride.short_description %></p>
-  <p>Start location: <%= ride.start_location %></p>
-  <p>End location: <%= ride.end_location %></p>
-  <p>Start time: <%= ride.start_time.strftime("%H:%M") %></p>
-  <p>End time: <%= ride.end_time.strftime("%H:%M") %></p>
-  <p>Available dates: <%= ride.available_dates %></p>
-  <p>Number of people: <%= ride.number_of_people %></p>
-  <p>Duration: <%= ride.duration %> h</p>
 
-  <% if policy(ride).edit? %>
-    <h6><%= link_to 'Edit', edit_ride_path(ride), class: "" %></h6>
-  <% end %>
-  <% if policy(ride).destroy? %>
-    <h6><%= link_to "Delete", ride, class: "", method: :delete, data: {confirm: "Are you sure?"} %></h6>
+<!--
+  <p>Difficulty: <#%= ride.difficulty %></p>
+  <p>Start location: <#%= ride.start_location %></p>
+  <p>End location: <#%= ride.end_location %></p>
+  <p>Start time: <#%= ride.start_time.strftime("%H:%M") %></p>
+  <p>End time: <#%= ride.end_time.strftime("%H:%M") %></p>
+  <p>Available dates: <#%= ride.available_dates %></p>
+  <p>Number of people: <#%= ride.number_of_people %></p>
+  <p>Duration: <#%= ride.duration %> h</p>
+-->
+<!--
+<div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
+  <#% if policy(ride).edit? %>
+    <h6><#%= link_to 'Edit', edit_ride_path(ride), class: "", style: 'margin: 0 4px;' %></h6>
+  <#% end %>
+  <#% if policy(ride).destroy? %>
+    <h6><#%= link_to "Delete", ride, class: "",  style: 'margin: 0 4px;', method: :delete, data: {confirm: "Are you sure?"} %></h6>
+  <#% end %>
+</div>
+-->
+<div style='padding: 16px; background-color: #fde8cd8f;'>
+  <div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
+    <div>
+      <%= link_to user_path(ride.user) do %>
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+      <% end %>
+    </div>
+    <p style='font-size: 12px;'><%= link_to ride.user.name, user_path(ride.user) %></p>
+  </div>
+  <%= link_to ride_path(ride) do %>
+    <div class="card" style="">
+      <%= cl_image_tag ride.photos.first.key, class: "card-img-top" %>
+      <div class="card-body">
+        <h3><%= ride.title %></h3>
+        <p style='font-size: 12px;'><%= ride.short_description[0..100] %>...</p>
+      </div>
+    </div>
   <% end %>
 
   <% if policy(ride).unfav? %>
@@ -43,6 +57,8 @@
   <p id='num'><%= ride.favoritors.size %></p> <!-- do some ajax magic here -->
 
 </div>
+<br>
+<<<<<<< HEAD
 
 <script>
  function changeHeart(_this) {

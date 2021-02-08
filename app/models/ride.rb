@@ -1,20 +1,37 @@
 class Ride < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos
+  has_many_attached :photos #maximum: 3
+  before_save :build_slug
+  before_update :build_slug
 
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }
-  validates :short_description, presence: true, length: { in: 20..600 }
-  validates :number_of_people, presence: true, inclusion: { in: ["1-2", "3-4", "5 or more"] }
+  validates :short_description, presence: true, length: { in: 50..900 }
+  validates :number_of_people, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :start_location, presence: true
   validates :end_location, presence: true
-  validates :difficulty, presence: true, inclusion: { in: %w(leisure easy intermediate advanced) }
+  validates :difficulty, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :available_dates, presence: true
   validates :photos, presence: true
 
   acts_as_favoritable
+
+  include PgSearch::Model
+  pg_search_scope :search_rides, against: [
+    [:title, 'A',
+    :start_location,'B',
+    :end_location, 'C',
+    :short_description, 'D']
+  ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  def build_slug
+    self.slug = available_dates.split(', ').map { |el| DateTime.parse(el) }.sort.first
+  end
 
   # validate time => custom method
   validate :start_time_cannot_be_greater_than_end_time

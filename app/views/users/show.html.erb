@@ -1,11 +1,29 @@
-<div class="card card-profile">
-  <h1><%= @user.name %></h1>
-  <div>
-    <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill %>
+
+<div class="my-card">
+  <div class="my-row" style="display: flex; justify-content: space-around; padding: 16px 0;">
+     <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: 'border-radius: 50%; box-shadow: 0px 2px 6px 4px rgba(8, 13, 40, 0.2);' %>
+      <div class="my-card-body" style='padding: 0 16px;'>
+        <h6 style='font-size: 3vw;'><%= @user.name %></h6>
+        <p style='font-size: 3vw;'><%= @user.about_me %></p>
+      </div>
+    </div>
+</div>
+
+<div class='card' style='border-radius: 16px; box-shadow: 0px 2px 8px 4px rgba(8, 13, 40, 0.2);'>
+  <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: 'border-radius: 16px; height: 48vw;' %>
+</div>
+
+<!-- don't have it atm -->
+<div class="my-container" style="padding: 24px 0;">
+  <div style="display: flex; flex-wrap: wrap;">
+    <% @user.interests.split(/\W+/).each do |i| %>
+     <p style="border-style: solid; border-width: 0; border-radius: 12px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #23a194; font-weight: bolder; margin-left: 1vh; opacity: 70%; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <%= i.upcase %>
+     </p>
+    <% end %>
   </div>
-  <p><%= @user.about_me %></p>
-  <p>Age: <%= @user.age %></p>
-  <p>Bike: <%= @user.bike_type %></p>
+
+<div style='position: absolute; top: 96%; left: 62%;' >
   <% if @user == current_user %>
     <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
     <br> <!-- some another links...wip --->

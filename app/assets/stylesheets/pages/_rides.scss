@@ -1,0 +1,76 @@
+#carouselExampleIndicators,
+#carouselExampleIndicators > div > div.carousel-item > img.d-block.w-100.rounded,
+#content-wrap > div.container > div {
+  border-radius: 16px !important;
+}
+
+#carouselExampleIndicators > a.carousel-control-prev > span.carousel-control-prev-icon,
+#carouselExampleIndicators > a.carousel-control-next > span.carousel-control-next-icon {
+  transform: scale(2);
+}
+
+.card.card-ride {
+  background-color: transparent;
+  border: 0px transparent;
+}
+
+
+.box {
+  position: relative;
+  padding: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.line {
+  border-bottom: .4vw solid rgba(67, 53, 32, 0.7);
+  position: absolute;
+  width: 94%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin-right: 15px;
+}
+
+.dot {
+  width: 4vw;
+  height: 4vw;
+  background-color: #ccc;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+
+/* ride index */
+
+.card-ride-index {
+  background-color: #fde8cd8f;
+  border: 0px transparent;
+  padding: 8px;
+}
+
+
+/* form */
+fieldset.form-group.radio_buttons.required.ride_difficulty,
+fieldset.form-group.radio_buttons.required.ride_number_of_people {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* btn 'I want to go' */
+#content-wrap > div.container > div.card.card-ride > div.btn-box > a {
+  background-color: rgba(67, 53, 32, 0.9);
+  padding: 8px 32px;
+  border-radius: 16px;
+  color: #000;
+  font-weight: bolder;
+  margin: 4px;
+}
+
+#content-wrap > div.container > div.card.card-ride > div.btn-box > a:hover {
+  background-color: rgba(67, 53, 32, 0.7);
+  text-decoration: none;
+}

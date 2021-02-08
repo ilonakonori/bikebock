@@ -33,12 +33,7 @@ import "flatpickr/dist/flatpickr.min.css";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  flatpickr(".flatpickr-s", {
-    mode: "single",
-    dateFormat: "d.m.Y",
-    minDate: new Date().fp_incr(-36524), // 100 years
-    maxDate: new Date().fp_incr(-5844) // 16 years
-  })
+
   flatpickr(".flatpickr", {
     mode: "multiple",
     dateFormat: "d.m.Y",
