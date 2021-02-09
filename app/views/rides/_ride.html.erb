@@ -38,38 +38,51 @@
     </div>
   <% end %>
 
+  <i title='Favorites' class="fab fa-gratipay" style="font-size:16px;"></i>
+  <span  class='favs' id="<%= ride.id %>" ><%= ride.favoritors.size %> </span>
+
   <% if policy(ride).unfav? %>
     <p>
       <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-        <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-heart" style="font-size:16px;" ></i>
+        <i  id="u-<%= ride.id %>" onclick=changeHeart(this) title='Unfavorite' class="fas fa-heart" style="font-size:16px;" ></i>
       <% end %>
      </p>
   <% elsif policy(ride).fav?  %>
     <p>
       <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-        <i onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
+        <i id="f-<%= ride.id %>" onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
       <% end %>
     </p>
-  <% else %>
-    <i title='Favorites' class="fas fa-heart" style="font-size:16px;"></i>
   <% end %>
-
-  <p id='num'><%= ride.favoritors.size %></p> <!-- do some ajax magic here -->
-
 </div>
 <br>
 
 <script>
  function changeHeart(_this) {
     if (_this.classList.contains('far')) {
+      //document.getElementById("fav-" + _this.id.replace('f-', '')).innerHTML= '<%= ride.favoritors.size %>';
       _this.classList.remove('far');
       _this.classList.add('fas');
       _this.title = 'Unfavorite';
     } else {
+      //document.getElementById("fav-" + _this.id.replace('u-', '')).innerHTML= '<%= ride.favoritors.size %>';
       _this.classList.remove('fas');
       _this.classList.add('far');
       _this.title = 'Favorite';
     }
   }
+
+// stimulus
+  function updateF() {
+    const rf = document.getElementsByClassName("favs");
+    const ids = Array.prototype.map.call(rf, function(i) { return i.id });
+    console.log(ids);
+    for (let i = 0; i < ids.length; i++) {
+      let id = parseInt(ids[i]);
+      console.log(id);
+      document.getElementById(ids[i]).innerHTML = 'hi'
+    }
+  }
+  window.onload = setInterval(updateF(), 800);
 </script>
 <!-- smtng is wrong -->
