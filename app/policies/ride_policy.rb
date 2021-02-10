@@ -26,11 +26,14 @@ class RidePolicy < ApplicationPolicy
   end
 
   def fav?
-    record.user != user && !user.favorited?(record)
+    #record.user != user &&
+    #!user.favorited?(record)
+    true
   end
 
   def unfav?
-    user.favorited?(record)
+    #user.favorited?(record)
+    true
   end
 
   private
