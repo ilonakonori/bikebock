@@ -44,13 +44,17 @@
         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
       </div>
     </div>  
-    <hr style="width: 100%; text-align: left; margin-left: 0;"/>
-    <!-- don't have it atm -->  
-    <%= link_to "My Messages" %>
-    <hr style="width: 100%; text-align: left; margin-left: 0;"/>  
-    <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
-    <hr style="width: 100%; text-align: left; margin-left: 0;"/>  
-  <% else %>
-    <%= link_to "Send Message Request" %>
-  <% end %>
+    <br>
+    <br>
+    <br>
+    <div>
+      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
+      <!-- don't have it atm -->  
+      <%= link_to "My Messages" %>
+      <hr style="width: 100%; text-align: left; margin-left: 0;"/>  
+      <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
+    <% else %>
+      <%= link_to "Send Message Request" %>
+    <% end %>
+  </div>
 </div>
