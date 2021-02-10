@@ -1,6 +1,6 @@
 class RidesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_ride, only: [:show, :edit, :update, :destroy]
+  # skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_ride, only: [:show, :edit, :update, :destroy, :fav, :unfav]
 
   def index # filter & search here
     if params[:query].present?
@@ -48,6 +48,14 @@ class RidesController < ApplicationController
   def destroy
     @ride.destroy
     redirect_to my_rides_rides_path, notice: 'Ride was succsesfully removed!'
+  end
+
+  def fav
+    current_user.favorite(@ride)
+  end
+
+  def unfav
+    current_user.unfavorite(@ride)
   end
 
   private

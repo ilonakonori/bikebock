@@ -16,6 +16,8 @@ class Ride < ApplicationRecord
   validates :available_dates, presence: true
   validates :photos, presence: true
 
+  acts_as_favoritable
+
   include PgSearch::Model
   pg_search_scope :search_rides, against: [
     [:title, 'A',
