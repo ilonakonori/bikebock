@@ -19,13 +19,37 @@
       <p class="interests"><%= i.upcase %></p>
     <% end %>
   </div>
+</div>
 
-<div style='position: absolute; top: 96%; left: 62%;' >
+<div>
   <% if @user == current_user %>
-    <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
-    <br> <!-- some another links...wip --->
-    <%= link_to "My Bike Rides", my_rides_rides_path(@user) %>
+    <div class="card" style="height: 80vw; background-color: #FDE8CD;">
+      <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
+        <h6 style="font-size: 3vw; padding-right: 4px; padding-top: 9px;"><%= @user.name %></h6>
+        <%= cl_image_tag @user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      </div>
+      <div class="card" style="width: 95%; margin-top: 12px; margin-left: 9px; height: 15vh;">
+        <%= link_to "My Bike Rides", my_rides_rides_path(@user) %>
+      </div>
+      <div style="padding: 12px 12px;">
+        <!-- back end code here -->  
+        <h4 style='font-size: 12px;'>Title</h4>
+        <h4 style='font-size: 12px;'>Short description</h4>
+      </div>
+      <div style="display: flex; justify-content: flex-end; padding-right: 8px;">
+        <!-- back end code here -->  
+        <h4 style='font-size: 12px;'>Date, time</h4> 
+      </div>
+      <div style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 8px; font-size: 15px;">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+    </div>  
+    <hr style="width: 100%; text-align: left; margin-left: 0;"/>
+    <!-- don't have it atm -->  
     <%= link_to "My Messages" %>
+    <hr style="width: 100%; text-align: left; margin-left: 0;"/>  
+    <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
+    <hr style="width: 100%; text-align: left; margin-left: 0;"/>  
   <% else %>
     <%= link_to "Send Message Request" %>
   <% end %>
