@@ -40,11 +40,6 @@ class RidesController < ApplicationController
     end
   end
 
-  def my_rides
-    @rides = current_user.rides
-    authorize @rides
-  end
-
   def destroy
     @ride.destroy
     redirect_to my_rides_rides_path, notice: 'Ride was succsesfully removed!'

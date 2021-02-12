@@ -12,8 +12,5 @@ Rails.application.routes.draw do
       get :unfav
       put :unfav
     end
-    collection do
-      get :my_rides
-    end
   end
 end
