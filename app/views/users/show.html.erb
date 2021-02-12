@@ -22,45 +22,45 @@
 </div>
 
 <div>
-  <% if @user == current_user %>
-    <% if @user.rides.empty? %>
-      <p class="text-secondary"> You still don't have any bike rides</p>
-    <% else %>
-      <% @user.rides.each do |ride| %>
-        <%= link_to ride_path(ride) do %>
-          <div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
-          <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
-            <h6 style="font-size: 3vw; padding-right: 4px; padding-top: 9px;"><%= @user.name %></h6>
-            <%= cl_image_tag @user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+  <% if @user.rides.empty? %>
+    <p class="text-secondary"> You still don't have any bike rides</p>
+  <% else %>
+    <% @user.rides.each do |ride| %>
+      <%= link_to ride_path(ride) do %>
+        <div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+        <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
+          <h6 style="font-size: 3vw; padding-right: 4px; padding-top: 9px;"><%= @user.name %></h6>
+          <%= cl_image_tag @user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+        </div>
+          <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;"%>
+        <br>
+          <h5 style="font-size: 4vw; padding-left: 4px;"><%= ride.title %></h5>
+          <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
+          <div style="display: flex; justify-content: flex-end; padding-right: 8px;">
+            <h4 style='font-size: 12px;'></h4> <!-- display all dates or the closest one? => or not display it here at all?-->
           </div>
-            <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;"%>
+          <!-- fake ratings atm -->
+          <div style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 8px; font-size: 15px;">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             <br>
-            <h5 style="font-size: 4vw; padding-left: 4px;"><%= ride.title %></h5>
-            <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
-            <div style="display: flex; justify-content: flex-end; padding-right: 8px;">
-              <h4 style='font-size: 12px;'></h4> <!-- display all dates or the closest one? => or not display it here at all?-->
-            </div>
-              <!-- fake ratings atm -->
-            <div style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 8px; font-size: 15px;">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              <br>
-            </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-      <br>
-      <br>
-      <div>
-      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
-      <%= link_to "Add Ride", new_ride_path, class: "" %>
+    <% end %>
+  <% end %>
+  <br>
+  <br>
+  <div>
+    <% if @user == current_user %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <!-- don't have it atm -->
       <%= link_to "My Messages" %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
+      <%= link_to "Add Ride", new_ride_path, class: "" %>
+      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
+    <% else %>
+      <%= link_to "Send Message Request" %>
     <% end %>
-  <% else %>
-    <%= link_to "Send Message Request" %>
-  <% end %>
   </div>
 </div>
