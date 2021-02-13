@@ -19,53 +19,53 @@
   <#% end %>
 </div>
 -->
-<div style='padding: 16px; background-color: #fde8cd8f;'>
-  <div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
-    <div>
+<div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+  <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
+    <p style="font-size: 3vw; padding-right: 4px; padding-top: 9px; "><%= link_to ride.user.name, user_path(ride.user) %></p>
       <%= link_to user_path(ride.user) do %>
-        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
-      <% end %>
-    </div>
-    <p style='font-size: 12px;'><%= link_to ride.user.name, user_path(ride.user) %></p>
+      <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+    <% end %>
   </div>
-  <%= link_to ride_path(ride) do %>
-    <div class="card" style="">
-      <%= cl_image_tag ride.photos.first.key, class: "card-img-top" %>
-      <div class="card-body">
-        <h3><%= ride.title %></h3>
-        <p style='font-size: 12px;'><%= ride.short_description[0..100] %>...</p>
+    <%= link_to ride_path(ride) do %>
+  <div class="card">
+    <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;" %>
+  </div>
+  <br>
+    <h5 style="font-size: 4vw; padding-left: 4px;"><%= ride.title %></h5>
+    <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
+    <div style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 8px; font-size: 15px;">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+    </div>
+    <!-- update somehow this info in real time -->
+    <i title='Favorites' class="fab fa-gratipay" style="font-size:16px;"></i>
+    <% if ride.favoritors.size == 1 %>
+      <span><small><%= ride.favoritors.first.name %> likes this route</small></span>
+    <% elsif ride.favoritors.size > 1 %>
+      <span><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %> more like this route</small></span>
+      <!--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>-->
+    <% else %>
+      <span><small></small></span>
+    <% end %>
+
+    <!-- <#% if policy(ride).unfav? %>-->
+      <% if current_user.favorited?(ride) %>
+        <p>
+          <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
+            <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-heart" style="font-size:16px;" ></i>
+          <% end %>
+        </p>
+      <% else %>
+      <!-- <#% if policy(ride).fav?  %> -->
+        <p>
+          <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+            <i onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
+          <% end %>
+        </p>
+        <% end %>
       </div>
+      <br>
     </div>
   <% end %>
-
- <!-- update somehow this info in real time -->
-  <i title='Favorites' class="fab fa-gratipay" style="font-size:16px;"></i>
-  <% if ride.favoritors.size == 1 %>
-    <span><small><%= ride.favoritors.first.name %> likes this route</small></span>
-  <% elsif ride.favoritors.size > 1 %>
-    <span><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %> more like this route</small></span>
-    <!--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>-->
-  <% else %>
-    <span><small></small></span>
-  <% end %>
-
-  <!-- <#% if policy(ride).unfav? %>-->
-  <% if current_user.favorited?(ride) %>
-    <p>
-      <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-        <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-heart" style="font-size:16px;" ></i>
-      <% end %>
-     </p>
-  <% else %>
-  <!-- <#% if policy(ride).fav?  %> -->
-    <p>
-      <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-        <i onclick=changeHeart(this) title='Favorite' class="far fa-heart" style="font-size:16px;"></i>
-      <% end %>
-    </p>
-  <% end %>
-</div>
-<br>
 
 <script>
  function changeHeart(_this) {
