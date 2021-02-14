@@ -40,9 +40,9 @@
     
     <!-- update somehow this info in real time -->
       <% if ride.favoritors.size == 1 %>
-        <span><small><%= ride.favoritors.first.name %></small></span>
+        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %></small></span>
       <% elsif ride.favoritors.size > 1 %>
-        <span><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %></small></span>
+        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %><small></>
         <!--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>-->
       <% else %>
         <span><small></small></span>
@@ -52,14 +52,14 @@
       <% if current_user.favorited?(ride) %>
         <p>
           <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-thumbs-up" style="font-size:16px;" ></i>
+            <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-thumbs-up" style="font-size:16px; padding-left: 4px;" ></i>
           <% end %>
         </p>
       <% else %>
       <!-- <#% if policy(ride).fav?  %> -->
         <p>
           <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeHeart(this) title='Favorite' class="far fa-thumbs-up" style="font-size:16px;"></i>
+            <i onclick=changeHeart(this) title='Favorite' class="far fa-thumbs-up" style="font-size:16px; padding-left: 4px;"></i>
           <% end %>
         </p>
         <% end %>
