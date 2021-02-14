@@ -34,16 +34,13 @@
         </div>
           <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;"%>
         <br>
-          <h5 style="font-size: 4vw; padding-left: 4px;"><%= ride.title %></h5>
+          <div style="display: flex; justify-content: space-between;">
+            <h5 style="font-size: 4vw; padding-left: 4px; color: #333333;"><%= ride.title %></h5>
+            <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
+            <!-- fake ratings atm -->
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+          </div> 
           <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
-          <div style="display: flex; justify-content: flex-end; padding-right: 8px;">
-            <h4 style='font-size: 12px;'></h4> <!-- display all dates or the closest one? => or not display it here at all?-->
-          </div>
-          <!-- fake ratings atm -->
-          <div style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 8px; font-size: 15px;">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <br>
-          </div>
         </div>
       <% end %>
     <% end %>
