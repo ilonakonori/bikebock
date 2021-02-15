@@ -27,7 +27,7 @@
     <% end %>
   </div>
     <%= link_to ride_path(ride) do %>
-  <div class="card">
+  <div class="card" style="border-radius: 16px; border: 0;">
     <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;" %>
   </div>
   <br>
@@ -35,14 +35,14 @@
       <h5 style="font-size: 4vw; padding-left: 4px; color: #333333;"><%= ride.title %></h5>
       <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
       <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-    </div>    
+    </div>
       <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
-    
+
     <!-- update somehow this info in real time -->
       <% if ride.favoritors.size == 1 %>
         <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %></small></span>
       <% elsif ride.favoritors.size > 1 %>
-        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %><small></>
+        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %></small></span>
         <!--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>-->
       <% else %>
         <span><small></small></span>
@@ -63,10 +63,9 @@
           <% end %>
         </p>
         <% end %>
-      </div>
-      <br>
-    </div>
+     </div>
   <% end %>
+<br>
 
 <script>
  function changeHeart(_this) {
