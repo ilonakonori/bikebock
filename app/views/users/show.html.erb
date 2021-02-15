@@ -29,13 +29,12 @@
       <%= link_to ride_path(ride) do %>
         <div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
         <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
-          <h6 style="font-size: 3vw; padding-right: 4px; padding-top: 9px;"><%= @user.name %></h6>
-          <%= cl_image_tag @user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+          <%= cl_image_tag @user.profile_photo.key, height: 30, width: 30, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>
-          <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;"%>
+          <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px;"%>
         <br>
-          <div style="display: flex; justify-content: space-between;">
-            <h5 style="font-size: 4vw; padding-left: 4px; color: #333333;"><%= ride.title %></h5>
+          <div style="display: flex; justify-content: start;">
+            <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
             <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
             <!-- fake ratings atm -->
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
