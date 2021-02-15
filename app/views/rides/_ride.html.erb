@@ -27,7 +27,7 @@
     <% end %>
   </div>
     <%= link_to ride_path(ride) do %>
-  <div class="card">
+  <div class="card" style="border-radius: 16px; border: 0;">
     <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px; border: 0px;" %>
   </div>
   <br>
@@ -63,10 +63,9 @@
           <% end %>
         </p>
         <% end %>
-      </div>
-      <br>
-    </div>
+     </div>
   <% end %>
+<br>
 
 <script>
  function changeHeart(_this) {
