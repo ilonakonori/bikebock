@@ -31,7 +31,7 @@
         <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
           <%= cl_image_tag @user.profile_photo.key, height: 30, width: 30, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>
-          <%= cl_image_tag ride.photos.first.key, style: "border-radius: 16px;"%>
+          <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
         <br>
           <div style="display: flex; justify-content: start;">
             <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
