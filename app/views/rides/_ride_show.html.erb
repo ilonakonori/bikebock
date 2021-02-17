@@ -1,6 +1,6 @@
 <!-- carousel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" style='border-radius: 16px; height: 44vw; box-shadow: 0px 2px 8px 4px rgba(8, 13, 60, 0.3);'>
+  <div class="carousel-inner" style='border-radius: 16px; height: 37vw; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
     <div class="carousel-item active">
       <%= cl_image_tag ride.photos.first.key, class: "d-block w-100" %>
     </div>
@@ -22,19 +22,18 @@
 <br>
 <!-- ride details -->
 <div class="card card-ride">
-  <h4 style='font-size: 12px;'><%= ride.title %></h4>
-  <p style='font-size: 12px;'><%= ride.short_description %></p>
+ <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
+  <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description %></p>
   <!-- location -->
   <div class='box'>
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
-      <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
+      <div style='max-width: 45%; z-index: 2; display: flex; vertical-align: middle; padding-left: 4px;'>
         <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.start_location %>
         </p>
       </div>
-      <p style= 'font-size: 12px;'>route</p>
-      <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
+      <div style='max-width: 45%; z-index: 2; display: flex; vertical-align: middle; padding-right: 4px;'>
         <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.end_location %>
         </p>
@@ -45,19 +44,18 @@
   <div class='box'>
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 3vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.start_time.strftime("%H:%M") %></p>
-      <p style='font-size: 12px;'><%= ride.duration %> h</p>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 2vw; padding: 1vh 3vh; margin-right: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.end_time.strftime("%H:%M") %>
       </p>
     </div>
   </div>
   <!-- difficulty -->
-  <p style='margin: 0; padding: 0; font-size: 12px;'>Difficulty: <%#= ride.difficulty %></p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Difficulty: <%#= ride.difficulty %></p>
   <div class='box'>
-    <div class='line'></div>
-    <div class='row'>
+    <div class='line' style="padding-left: 4px; padding-right: 4px;"></div>
+    <div class='row' style="padding-left: 4px; padding-right: 4px;">
       <div class='dot d'></div>
       <div class='dot d'></div>
       <div class='dot d'></div>
@@ -67,10 +65,10 @@
   </div>
   <!-- number of people -->
   <br>
-  <p style='margin: 0; padding: 0; font-size: 12px;'>Number of people: <%#= ride.number_of_people %></p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Number of people: <%#= ride.number_of_people %></p>
   <div class='box'>
-    <div class='line'></div>
-    <div class='row'>
+    <div class='line' ></div>
+    <div class='row' style="padding-left: 4px; padding-right: 4px;">
       <div class='dot n'></div>
       <div class='dot n'></div>
       <div class='dot n'></div>
@@ -79,11 +77,11 @@
     </div>
   </div>
   <!-- available dates -->
-  <p style='margin: 0; padding: 12px 0; font-size: 12px;'>Dates:</p>
-  <div class="my-container" style="padding: 0">
+  <p style='margin: 0; padding: 12px 0; font-size: 12px; padding-left: 4px;'>Dates:</p>
+  <div class="my-container" style="padding: 0;">
     <div style="display: flex; flex-wrap: wrap;">
       <% ride.available_dates.split(', ').map { |el| el.to_date }.sort.each do |d| %>
-        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; margin-right: 1vh; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= d.strftime('%e %B %Y') %>
         </p>
       <% end %>
