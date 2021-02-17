@@ -28,13 +28,12 @@
   <div class='box'>
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
-      <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
+      <div style='max-width: 45%; z-index: 2; display: flex; vertical-align: middle; padding-left: 4px;'>
         <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.start_location %>
         </p>
       </div>
-      <p style= 'font-size: 12px;'>route</p>
-      <div style='max-width: 25%; z-index: 2; display: flex; vertical-align: middle;'>
+      <div style='max-width: 45%; z-index: 2; display: flex; vertical-align: middle; padding-right: 4px;'>
         <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.end_location %>
         </p>
@@ -45,10 +44,9 @@
   <div class='box'>
     <div class='line' style='top: 40%;'></div>
     <div class='row'>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 3vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.start_time.strftime("%H:%M") %></p>
-      <p style='font-size: 12px;'><%= ride.duration %> h</p>
-      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+      <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 2vw; padding: 1vh 3vh; margin-right: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
         <%= ride.end_time.strftime("%H:%M") %>
       </p>
     </div>
