@@ -58,7 +58,7 @@
       <!-- <#% if policy(ride).fav?  %> -->
         <p>
           <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeHeart(this) title='Favorite' class="far fa-thumbs-up" style="font-size:16px; padding-left: 4px;"></i>
+            <i onclick=changeHeart(this) title='Favorite' class="like" style="font-size:16px; padding-left: 4px;">Like</i>
           <% end %>
         </p>
         <% end %>
@@ -68,13 +68,17 @@
 
 <script>
  function changeHeart(_this) {
-    if (_this.classList.contains('far')) {
-      _this.classList.remove('far');
+    if (_this.classList.contains('like')) {
+      _this.classList.remove('like');
       _this.classList.add('fas');
+      _this.classList.add('fa-thumbs-up');
+      _this.innerText = '';
       _this.title = 'Unfavorite';
     } else {
       _this.classList.remove('fas');
-      _this.classList.add('far');
+      _this.classList.remove('fa-thumbs-up');
+      _this.classList.add('like');
+      _this.innerText ='Like';
       _this.title = 'Favorite';
     }
   }
