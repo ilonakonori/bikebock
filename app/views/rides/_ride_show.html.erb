@@ -77,11 +77,11 @@
     </div>
   </div>
   <!-- available dates -->
-  <p style='margin: 0; padding: 12px 0; font-size: 12px;'>Dates:</p>
-  <div class="my-container" style="padding: 0">
+  <p style='margin: 0; padding: 12px 0; font-size: 12px; padding-left: 4px;'>Dates:</p>
+  <div class="my-container" style="padding: 0;">
     <div style="display: flex; flex-wrap: wrap;">
       <% ride.available_dates.split(', ').map { |el| el.to_date }.sort.each do |d| %>
-        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; color: white; background-color: #00917C; font-weight: bolder; margin-right: 1vh; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= d.strftime('%e %B %Y') %>
         </p>
       <% end %>
