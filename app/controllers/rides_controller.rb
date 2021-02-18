@@ -42,7 +42,7 @@ class RidesController < ApplicationController
 
   def destroy
     @ride.destroy
-    redirect_to my_rides_rides_path, notice: 'Ride was succsesfully removed!'
+    redirect_to user_path(current_user), notice: 'Ride was succsesfully removed!'
   end
 
   def fav

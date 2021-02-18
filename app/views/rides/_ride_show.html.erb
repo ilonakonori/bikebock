@@ -52,7 +52,7 @@
     </div>
   </div>
   <!-- difficulty -->
-  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Difficulty: <%#= ride.difficulty %></p>
+  <p id='noD' data-diff-id='<%= ride.difficulty %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Difficulty: <%#= ride.difficulty %></p>
   <div class='box'>
     <div class='line' style="padding-left: 4px; padding-right: 4px;"></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
@@ -65,7 +65,7 @@
   </div>
   <!-- number of people -->
   <br>
-  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Number of people: <%#= ride.number_of_people %></p>
+  <p id='noP' data-people-id='<%= ride.number_of_people %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px;'>Number of people: </p>
   <div class='box'>
     <div class='line' ></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
@@ -103,13 +103,5 @@
 </div>
 
 <script>
-  function changeColor(class_name, i) {
-    const dots = document.getElementsByClassName(class_name);
-    while (i > 0) {
-      dots[i-1].style.backgroundColor = '#00917C';
-      i -= 1;
-    }
-  }
-  window.onload = changeColor("dot d", parseInt('<%= ride.difficulty %>'));
-  window.onload = changeColor("dot n", parseInt('<%= ride.number_of_people %>'));
+
 </script>
