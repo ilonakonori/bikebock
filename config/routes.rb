@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :requests, only: [:new, :create]
+  resources :requests, only: [:new, :create, :show] do
+    member do
+      get :accept
+      put :accept
+    end
+  end
 end

@@ -1,0 +1,9 @@
+<h3><%= User.find(@request.sender_id).name %></h3>
+<small><%= @request.created_at %></small>
+<p><%= @request.first_message %></p>
+<% if !@request.accepted %>
+  <%= link_to 'Accept', accept_request_path(@request) %>
+<% end %>
+<%= link_to 'Decline' %> <!-- wip ->
+
+
