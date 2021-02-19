@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       put :unfav
     end
   end
+
+  resources :requests, only: [:new, :create]
 end

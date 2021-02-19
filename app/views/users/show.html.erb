@@ -38,7 +38,7 @@
             <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
             <!-- fake ratings atm -->
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-          </div> 
+          </div>
           <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
         </div>
       <% end %>
@@ -56,7 +56,7 @@
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
     <% else %>
-      <%= link_to "Send Message Request" %>
+      <%= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
   </div>
 </div>
