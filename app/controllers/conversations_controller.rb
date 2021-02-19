@@ -11,7 +11,7 @@ class ConversationsController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
     @conversation = Conversation.new(conversation_params)
-    @request.update(accepted: true)
+    @request.update(accepted: true, friend: true)
     authorize @conversation
     if @conversation.save
       redirect_to conversation_path(@conversation), notice: "Request accepted, start conversation :)"
