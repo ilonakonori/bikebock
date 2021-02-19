@@ -1,3 +1,3 @@
 <% @conversations.each do |c| %>
-  <%= c.id %>
+  <%= c.opposed_user(current_user) %>
 <% end %>

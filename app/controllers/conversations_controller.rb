@@ -1,8 +1,6 @@
 class ConversationsController < ApplicationController
   def index # wip
-    conv_rec = policy_scope(Conversation).where(recipient_id: current_user)
-    conv_started = policy_scope(Conversation).where(sender_id: current_user)
-    @conversations = conv_started + conv_rec
+    @conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
   end
 
   def show
