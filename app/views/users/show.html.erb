@@ -63,17 +63,22 @@
 
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <!-- don't have it atm -->
-      <%= link_to "My Messages" %>
+      <%= link_to "My Messages", conversations_path %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Add Ride", new_ride_path, class: "" %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 
-    <% elsif Request.where(accepted: false, sender_id: current_user, recipient_id: @user).present? %> <!--check if already present-->
-      <p> Request already sent, status: pending </p>
-    <% elsif Request.where(accepted: false, sender_id: @user, recipient_id: current_user).present? %>
-      <p> Check your request </p> <!-- put link here -->
-    <% else %> <!-- add: if no chatroom -->
+
+      <% if Request.where(accepted: false, sender_id: current_user, recipient_id: @user).present? %> <!--check if already present-->
+        <p> Request already sent, status: pending </p>
+      <% elsif Request.where(accepted: false, sender_id: @user, recipient_id: current_user).present? %>
+        <p> Check your request </p> <!-- put link here -->
+      <% end %>
+
+    <% elsif Conversation.where(sender_id: current_user, recipient_id: @user).present? || Conversation.where(sender_id: @user, recipient_id: current_user).present? %>
+      <%= link_to 'Chat'%>  <!-- build this link -->
+    <% else %>
       <%= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
   </div>

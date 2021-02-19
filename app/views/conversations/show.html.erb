@@ -1,0 +1,3 @@
+<h3><%= @conversation.id %></h3>
+<p>sender: <%= User.find(@conversation.sender_id).name %></p>
+<p>recipient: <%= User.find(@conversation.recipient_id).name %></p>

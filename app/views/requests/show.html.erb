@@ -2,8 +2,6 @@
 <small><%= @request.created_at %></small>
 <p><%= @request.first_message %></p>
 <% if !@request.accepted %>
-  <%= link_to 'Accept', accept_request_path(@request) %>
+  <%= render 'conversations/new' %>
 <% end %>
 <%= link_to 'Decline' %> <!-- wip ->
-
-

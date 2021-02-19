@@ -7,6 +7,7 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @conversation = Conversation.new
   end
 
   def create
@@ -17,13 +18,6 @@ class RequestsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def accept
-    @request.update!(accepted: true) #create chatroom on accept
-    authorize @request
-    flash[:notice] = 'Request was succesfully accepted'
-    redirect_back(fallback_location: 'rides#index')
   end
 
   private

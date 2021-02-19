@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   end
 
   resources :requests, only: [:new, :create, :show] do
-    member do
-      get :accept
-      put :accept
-    end
+    resources :conversations, only: [:new, :create]
+  end
+
+  resources :conversations, only: [:show, :index] do
+    resources :messages, only: :create
   end
 end
