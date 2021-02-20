@@ -1,3 +1,14 @@
-<h3><%= @conversation.opposed_user(current_user) %></h3>
-<p>sender: <%= User.find(@conversation.sender_id).name %></p>
-<p>recipient: <%= User.find(@conversation.recipient_id).name %></p>
+<h3><%= @conversation.opposed_user(current_user).name %></h3>
+
+<div class="message" id="messages" data-conversation-id="<%= @conversation.id %>">
+  <% @conversation.messages.each do |message| %>
+    <%= render 'messages/message', message: message %>
+  <% end %>
+</div>
+
+<div class="message-input">
+  <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Send message to: ##{@conversation.opposed_user(current_user).name }" %>
+    <%= f.submit 'Send' %>
+  <% end %>
+</div>
