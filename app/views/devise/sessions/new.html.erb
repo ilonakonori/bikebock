@@ -1,6 +1,6 @@
-<div class="container" style="background-color: #00917C; margin-top: 5vw;">
-  <h2 style="text-align: center; color: #FFFFFF;">Welcome!</h2>
-    <p style="text-align: center; color: #FFFFFF;">Lorem ipsum dolor sit amet, consectetur.</p>
+<div class="container" style="background-color: #00917C; margin-top: 3vw;">
+  <h2 style="text-align: center; color: #fff;">Welcome!</h2>
+    <p style="text-align: center; color: #fff;">Lorem ipsum dolor sit amet, consectetur.</p>
     <br>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
@@ -17,19 +17,20 @@
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
         <br>
-        <div>
+        <div style="color: #fff; margin-left: 16px; display: flex; justify-content: space-around;">
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-            <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-          <% end %>
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+            <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
           <% end %>
         </div>
         <br>
         <div class="form-actions" style="text-align: center;">
           <%= f.button :submit, "Log me in!", style: "background-color: #FDE8CD; padding: 8px 32px; border-radius: 16px; color: #000;" %>
         </div>
+        <br>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <p style="text-align: center; color: #fff;">Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %><br />
+        <% end %>
         <br>
         <br>
       <% end %>
