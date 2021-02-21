@@ -9,10 +9,6 @@ class RequestPolicy < ApplicationPolicy
     true
   end
 
-  def accept?
-    true
-  end
-
   def create?
     true
   end
