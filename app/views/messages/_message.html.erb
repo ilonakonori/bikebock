@@ -1,4 +1,4 @@
-<div id="message-<%= message.id %>" class="<%= current_user.id == message.sender_id ? 'message-container msg message-sent' : 'message-container msg message-received' %>">
+<div id="message-<%= message.id %>" class="<%= current_user.id == message.sender_id ? 'message-container message-sent' : 'message-container message-received' %>">
   <div class="<%= current_user.id == message.sender_id ? 'msg-sent' : 'msg-received' %>">
     <!--<small><#%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>-->
     <%= message.content %>
