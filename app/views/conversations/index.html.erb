@@ -2,5 +2,5 @@
 <%= render 'requests/index' %>
 <h3>Conversations</h3>
 <% @conversations.each do |c| %>
-  <%= c.opposed_user(current_user).name %>
+  <p><%= link_to c.opposed_user(current_user).name, conversation_path(c) %></p>
 <% end %>

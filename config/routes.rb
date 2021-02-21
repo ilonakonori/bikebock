@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :requests, only: [:create, :show] do
+  resources :requests, only: [:new, :create, :show] do
     resources :conversations, only: [:new, :create]
   end
 
