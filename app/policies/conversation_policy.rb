@@ -6,7 +6,7 @@ class ConversationPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.recipient_id == user.id || record.sender_id == user.id
   end
 
   def create?

@@ -10,4 +10,8 @@ class Request < ApplicationRecord
       where(sender_id: recipient_id, recipient_id: sender_id)
     )
   end
+
+  def opposed_user(user)
+    user.id == recipient_id ? User.find(sender_id) : User.find(recipient_id)
+  end
 end
