@@ -1,7 +1,7 @@
 class Request < ApplicationRecord
   belongs_to :sender, foreign_key: :sender_id, class_name: 'User'
   belongs_to :recipient, foreign_key: :recipient_id, class_name: 'User'
-  has_one :conversation
+  has_one :conversation, dependent: :destroy
 
   validates :sender_id, uniqueness: { scope: :recipient_id }
 
