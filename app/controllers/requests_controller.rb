@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :accept]
+  before_action :set_request, only: :show
 
   def new
     @request = Request.new

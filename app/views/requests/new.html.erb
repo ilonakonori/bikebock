@@ -1,5 +1,5 @@
 <%= simple_form_for(@request) do |f| %>
-  <%= f.input :first_message %>
+  <%= f.input :first_message, placeholder: "Send message to ##{User.find(params[:recipient_id]).name }" %>
   <%= f.hidden_field :sender_id, :value => params[:sender_id] %>
   <%= f.hidden_field :recipient_id, :value => params[:recipient_id] %>
   <%= f.submit value="Send", class: "" %>

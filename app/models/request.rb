@@ -3,6 +3,9 @@ class Request < ApplicationRecord
   belongs_to :recipient, foreign_key: :recipient_id, class_name: 'User'
   has_one :conversation, dependent: :destroy
 
+  # validation not working?
+  validates :first_message, presence: true
+
   validates :sender_id, uniqueness: { scope: :recipient_id }
 
   scope :between, -> (sender_id, recipient_id) do
