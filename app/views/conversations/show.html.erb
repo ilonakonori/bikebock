@@ -1,12 +1,11 @@
 <h3><%= @conversation.opposed_user(current_user).name %></h3>
 
 <div class='chatbox'>
-  <div class='msg-box'>
-    <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>">
-      <% @conversation.messages.each do |message| %>
-        <%= render 'messages/message', message: message %>
-      <% end %>
-    </div>
+
+  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>">
+    <% @conversation.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
   </div>
 
   <div class="message-input">
