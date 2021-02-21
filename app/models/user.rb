@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_one_attached :profile_photo
   has_one_attached :bike_photo
   has_many :rides, dependent: :destroy
+  has_many :requests, dependent: :destroy
+
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }

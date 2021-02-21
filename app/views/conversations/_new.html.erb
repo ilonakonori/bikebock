@@ -1,0 +1,6 @@
+<%= simple_form_for [@request, @conversation] do |f| %>
+  <%= f.hidden_field :request_id, :value => @request.id %>
+  <%= f.hidden_field :sender_id, :value => @request.sender_id %>
+  <%= f.hidden_field :recipient_id, :value => @request.recipient_id %>
+  <%= f.submit value="Accept", class: "" %>
+<% end %>

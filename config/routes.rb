@@ -13,4 +13,12 @@ Rails.application.routes.draw do
       put :unfav
     end
   end
+
+  resources :requests, only: [:new, :create, :show] do
+    resources :conversations, only: [:new, :create]
+  end
+
+  resources :conversations, only: [:show, :index] do
+    resources :messages, only: :create
+  end
 end

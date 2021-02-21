@@ -38,7 +38,7 @@
             <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
             <!-- fake ratings atm -->
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
-          </div> 
+          </div>
           <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
         </div>
       <% end %>
@@ -48,15 +48,26 @@
   <br>
   <div>
     <% if @user == current_user %>
+
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
-      <!-- don't have it atm -->
-      <%= link_to "My Messages" %>
+
+      <%= link_to "My Messages", conversations_path %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Add Ride", new_ride_path, class: "" %>
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
+
+    <% elsif Request.where(accepted: false, sender_id: current_user, recipient_id: @user).present? %>
+      <% request = Request.where(accepted: false, sender_id: current_user, recipient_id: @user).first %>
+      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
+    <% elsif Request.where(accepted: false, sender_id: @user, recipient_id: current_user).present? %>
+      <% request = Request.where(accepted: false, sender_id: @user, recipient_id: current_user).first %>
+      <%= link_to 'Check your request', request_path(request.id) %>
+    <% elsif Conversation.where(sender_id: current_user, recipient_id: @user).present? || Conversation.where(sender_id: @user, recipient_id: current_user).present? %>
+      <% room = Conversation.where(sender_id: current_user, recipient_id: @user).or(Conversation.where(sender_id: @user, recipient_id: current_user)).first %>
+      <%= link_to 'Chat', conversation_path(room.id)%>
     <% else %>
-      <%= link_to "Send Message Request" %>
+      <%= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
   </div>
 </div>

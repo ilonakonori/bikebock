@@ -1,0 +1,67 @@
+#messages {
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+// msg input > wip
+#new_message {
+  display: flex;
+  justify-content:flex-start;
+  margin: 4vw;
+}
+#message_content {
+  width: 70vw;
+  height: 10.3vw;
+}
+
+#new_message > input[type=submit].myBtn {
+  padding: 0 16px !important;
+  height: 10.3vw;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 145, 124, .8);
+  border: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+// end of msg input
+
+#messages.message-container {
+  display: inline-block;
+}
+
+.message-container {
+  margin: 8px;
+}
+
+.message-container.message-sent {
+  text-align: right;
+  margin-right: 4vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-container.message-received {
+  text-align: left;
+  margin-left: 4vw;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.msg-sent {
+  background-color: rgba(0, 145, 124, .4);
+  padding: 4px 16px 4px 8px;
+  border-radius: 12px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 22px;
+  max-width: 60%;
+}
+
+.msg-received {
+  background-color: rgba(0, 145, 124, .2);
+  padding: 4px 8px 4px 16px;
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 22px;
+  max-width: 60%;
+}

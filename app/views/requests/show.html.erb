@@ -1,0 +1,9 @@
+<h3><%= @request.opposed_user(current_user).name %></h3>
+<small><%= @request.created_at %></small>
+<p><%= @request.first_message %></p>
+<% if @request.recipient_id == current_user.id %>
+  <% if !@request.accepted %>
+    <%= render 'conversations/new' %>
+  <% end %>
+  <%= link_to 'Decline' %> <!-- wip -->
+<% end %>

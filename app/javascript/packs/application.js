@@ -30,6 +30,8 @@ import "flatpickr/dist/flatpickr.min.css";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initDots } from '../channels/init_dots';
+import { initConversationCable } from '../channels/conversation_channel';
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -37,6 +39,8 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
 
   initDots();
+
+  initConversationCable();
 
   flatpickr(".flatpickr", {
     mode: "multiple",

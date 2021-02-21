@@ -1,0 +1,17 @@
+<h3><%= @conversation.opposed_user(current_user).name %></h3>
+
+<div class='chatbox'>
+
+  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>">
+    <% @conversation.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
+      <%= f.input :content, label: false, placeholder: "Send message to ##{@conversation.opposed_user(current_user).name }" %>
+      <%= f.submit '>>', class: 'myBtn' %>
+    <% end %>
+  </div>
+</div>
