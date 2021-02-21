@@ -7,7 +7,7 @@ const initDots = () => {
     }
   }
 
-  const diff = document.getElementById('noD'); //.dataset.diffId;
+  const diff = document.getElementById('noD');
   let difficulty = 0;
   if (diff) {
     difficulty += diff.dataset.diffId;
