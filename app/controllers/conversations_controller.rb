@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
   def index
+    @requests_received = policy_scope(Request).where(accepted: false, recipient_id: current_user.id)
+    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
     @conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
   end
 

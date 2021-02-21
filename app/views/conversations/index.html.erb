@@ -1,3 +1,6 @@
+
+<%= render 'requests/index' %>
+<h3>Conversations</h3>
 <% @conversations.each do |c| %>
   <%= c.opposed_user(current_user).name %>
 <% end %>
