@@ -49,18 +49,6 @@
   <div>
     <% if @user == current_user %>
 
-      <!-- new page for this-->
-      <h3>Pending requests</h3>
-      <h6>Received requests: <%= @requests_received.size %></h6>
-      <% @requests_received.each do |r| %>
-        <p><%= link_to User.find(r.sender_id).name, request_path(r) %></p>
-      <% end %>
-      <h6>Sent requests: <%= @requests_sent.size %></h6>
-       <% @requests_sent.each do |r| %>
-        <p><%= User.find(r.recipient_id).name %></p>
-      <% end %>
-      <!--end -->
-
       <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <!-- don't have it atm -->
       <%= link_to "My Messages", conversations_path %>
@@ -70,10 +58,11 @@
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
 
     <% elsif Request.where(accepted: false, sender_id: current_user, recipient_id: @user).present? %> <!--check if already present-->
-      <p> Request already sent, status: pending </p>
+      <% request = Request.where(accepted: false, sender_id: current_user, recipient_id: @user).first %>
+      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
     <% elsif Request.where(accepted: false, sender_id: @user, recipient_id: current_user).present? %>
       <% request = Request.where(accepted: false, sender_id: @user, recipient_id: current_user).first %>
-      <%= link_to 'Check your request', request_path(request.id) %> <!-- put link here -->
+      <%= link_to 'Check your request', request_path(request.id) %>
     <% elsif Conversation.where(sender_id: current_user, recipient_id: @user).present? || Conversation.where(sender_id: @user, recipient_id: current_user).present? %>
       <% room = Conversation.where(sender_id: current_user, recipient_id: @user).or(Conversation.where(sender_id: @user, recipient_id: current_user)).first %>
       <%= link_to 'Chat', conversation_path(room.id)%>  <!-- build this link -->

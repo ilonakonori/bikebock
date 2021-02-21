@@ -1,6 +1,11 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :accept]
 
+  def index
+    @requests_received = policy_scope(Request).where(accepted: false, recipient_id: current_user.id)
+    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
+  end
+
   def new
     @request = Request.new
     authorize @request
