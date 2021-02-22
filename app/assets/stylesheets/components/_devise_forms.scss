@@ -5,3 +5,33 @@
 a:-webkit-any-link {
   text-decoration: none;
 }
+
+input[type="checkbox"] {
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: .8em;
+  height: .8em;
+  background: #00917C;
+  border-radius: 3em !important;
+
+  cursor: pointer;
+  outline: none;
+  border: 2px solid #fff;
+}
+
+input[type="checkbox"]:after {
+  position: absolute;
+  content: "";
+  width: .8em;
+  transform: scale(.7);
+}
+
+input[type="checkbox"]:checked {
+  background: #fff;
+}
+
+input[type="checkbox"]:checked:after {
+  background: #fff;
+}
