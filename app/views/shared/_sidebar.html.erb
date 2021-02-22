@@ -1,7 +1,7 @@
 <div id='sidebar' class='sidebar-nav'>
   <i id='sidebar-toggler' class="fa fa-bars"></i>
   <ul>
-  <% if user_signed_in? %>
+
     <%= cl_image_tag current_user.profile_photo.key, height: 40, width: 40, crop: :fill, class: "avatar"%>
     <br>
     <!-- dropdown -->
@@ -22,11 +22,7 @@
     <li class="nav-item">
       <%= link_to "Messages", conversations_path, class: "sidenav-link" %>
     </li>
-  <% else %>
-      <li class="nav-item">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-      </li>
-  <% end %>
+
   </ul>
 </div>
 

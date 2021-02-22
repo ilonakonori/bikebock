@@ -35,7 +35,6 @@ import { initSidebar } from '../channels/init_sidebar';
 
 
 
-
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
@@ -44,7 +43,11 @@ document.addEventListener('turbolinks:load', () => {
 
   initConversationCable();
 
-  initSidebar();
+  const sidebar = document.getElementById('sidebar');
+
+  if(sidebar) {
+    initSidebar();
+  }
 
   flatpickr(".flatpickr", {
     mode: "multiple",
