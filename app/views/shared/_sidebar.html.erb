@@ -1,0 +1,28 @@
+<div id='sidebar' class='sidebar-nav'>
+  <i id='sidebar-toggler' class="fa fa-bars"></i>
+  <ul>
+
+    <%= cl_image_tag current_user.profile_photo.key, height: 40, width: 40, crop: :fill, class: "avatar"%>
+    <br>
+    <!-- dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+        My account
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
+        <li><%= link_to "Another action", "#", class: "dropdown-item" %></li>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+      </ul>
+    </div>
+
+    <li class="nav-item active">
+      <%= link_to "Home", rides_path, class: "sidenav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Messages", conversations_path, class: "sidenav-link" %>
+    </li>
+
+  </ul>
+</div>
+

@@ -31,6 +31,7 @@ import "flatpickr/dist/flatpickr.min.css";
 // import { initSelect2 } from '../components/init_select2';
 import { initDots } from '../channels/init_dots';
 import { initConversationCable } from '../channels/conversation_channel';
+import { initSidebar } from '../channels/init_sidebar';
 
 
 
@@ -41,6 +42,12 @@ document.addEventListener('turbolinks:load', () => {
   initDots();
 
   initConversationCable();
+
+  const sidebar = document.getElementById('sidebar');
+
+  if(sidebar) {
+    initSidebar();
+  }
 
   flatpickr(".flatpickr", {
     mode: "multiple",
