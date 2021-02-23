@@ -13,12 +13,12 @@
 
   <body>
     <div id="page-container" style="position: relative; min-height: 100vh;">
-      <div id="content-wrap" style="padding-bottom: 0.5rem;">
+      <div id="content-wrap">
         <% if user_signed_in? %>
           <%= render 'shared/sidebar' %>
         <% end %>
         <%= render 'shared/flashes' %>
-        <div class="container" style='padding: 32px;'>
+        <div class="container" style='padding: 20px 32px 0 32px;'>
           <%= yield %>
         </div>
       </div>
