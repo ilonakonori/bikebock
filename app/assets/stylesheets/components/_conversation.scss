@@ -10,8 +10,10 @@
   margin: 4vw;
 }
 #message_content {
-  width: 70vw;
+  width: 75vw;
   height: 10.3vw;
+  padding-left: 16px;
+  
 }
 
 #new_message > input[type=submit].myBtn {
@@ -69,10 +71,10 @@
   border-bottom-left-radius: 0px;
   max-width: 80%;
   font-size: smaller;
-  font-size: bold;
 }
 
 //links > wip
 #content-wrap > div.container > div:nth-child(4) > div > a {
   color: red;
 }
+
