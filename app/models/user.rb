@@ -28,13 +28,13 @@ class User < ApplicationRecord
     mins, secs = elapsed.divmod 60.0
     if mins.to_i > (60 * 24)
       day = "%3d"%[mins.to_i / (60 * 24), secs]
-      day + ' day'.pluralize(day) + ' ago'
+      day + ' day'.pluralize(day.to_i) + ' ago'
     elsif mins.to_i > 59
       hour = "%3d"%[mins.to_i / 60, secs]
-      hour + ' hour'.pluralize(hour) + ' ago'
+      hour + ' hour'.pluralize(hour.to_i) + ' ago'
     else
       min = "%3d"%[mins.to_i, secs]
-      min + ' minute'.pluralize(min) + ' ago'
+      min + ' minute'.pluralize(min.to_i) + ' ago'
     end
   end
 end
