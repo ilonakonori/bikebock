@@ -8,4 +8,8 @@ class UserPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def presence?
+    true
+  end
 end

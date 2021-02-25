@@ -1,5 +1,5 @@
 #messages {
-  height: 70vh;
+  height: 68vh;
   overflow-y: scroll;
 }
 
@@ -9,11 +9,12 @@
   justify-content:flex-start;
   margin: 4vw;
 }
+
 #message_content {
   width: 75vw;
   height: 10.3vw;
   padding-left: 16px;
-  
+
 }
 
 #new_message > input[type=submit].myBtn {
@@ -59,7 +60,8 @@
   border-bottom-left-radius: 32px;
   border-bottom-right-radius: 0px;
   max-width: 80%;
-  font-size: smaller;
+  font-size: 12px;
+  word-break: break-word;
 }
 
 .msg-received {
@@ -70,7 +72,8 @@
   border-bottom-right-radius: 32px;
   border-bottom-left-radius: 0px;
   max-width: 80%;
-  font-size: smaller;
+  font-size: 12px;
+  word-break: break-word;
 }
 
 //links > wip

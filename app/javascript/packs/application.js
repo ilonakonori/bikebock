@@ -32,7 +32,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import { initDots } from '../channels/init_dots';
 import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../channels/init_sidebar';
-
+import { initPresence } from '../channels/init_presence';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -47,6 +47,11 @@ document.addEventListener('turbolinks:load', () => {
 
   if(sidebar) {
     initSidebar();
+  }
+
+  const user = document.getElementById('user');
+  if(user) {
+    initPresence();
   }
 
   flatpickr(".flatpickr", {

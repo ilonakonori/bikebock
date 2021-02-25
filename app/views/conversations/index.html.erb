@@ -1,5 +1,18 @@
 <%= render 'requests/index' %>
 <h3>Conversations</h3>
 <% @conversations.each do |c| %>
-  <p><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+   <div style='display:flex; justify-content: flex-start;'>
+    <%
+      if c.opposed_user(current_user).online?
+        present_color = '#00917C;'
+      else
+        present_color = '#aaa;'
+      end
+    %>
+
+    <span id='last-online-<%= c.opposed_user(current_user).id %>'>
+      <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+    </span>
+  <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+</div>
 <% end %>
