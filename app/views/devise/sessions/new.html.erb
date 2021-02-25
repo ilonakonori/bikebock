@@ -1,14 +1,14 @@
 <div class="container" style="background-color: #00917C; margin-top: 3vw;">
-  <h2 style="text-align: center; color: #fff;">Welcome!</h2>
-    <p style="text-align: center; color: #fff;">Lorem ipsum dolor sit amet, consectetur.</p>
+  <h2 style="text-align: center; color: #fff;">Bike Bock!</h2>
+    <p style="text-align: center; color: #fff; font-weight: 600; line-height: 1.5;">And you shall never cycle alone.</p>
     <br>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs fa">
+      <div class="form-inputs">
         <%= f.input :email,
                     required: false,
                     autofocus: true,
                     label: false,
-                    placeholder: raw("Email &#xf0e0;"),
+                    placeholder: "Email",
                     input_html: { autocomplete: "email" }
                     %>
 
@@ -18,22 +18,24 @@
                     label: false,
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
-        <br>
-        <div style="color: #fff; margin-left: 16px; display: flex; justify-content: space-around;">
+        <!--<div style="color: #fff; margin-left: 4px; display: flex; justify-content: space-around;">
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
-          <% end %>
-        </div>
+        </div> -->
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <p style="text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
+        <% end %>
         <br>
         <div class="form-actions" style="text-align: center;">
-          <%= f.button :submit, "Log me in!", style: "background-color: #FDE8CD; padding: 8px 32px; border-radius: 16px; color: #000;" %>
+          <%= f.button :submit, "Log me in!", style: "background-color: #FDE8CD; padding: 8px 55px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>
         <br>
+        <br>
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <p style="text-align: center; color: #fff !important;">Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name) %><br />
+          <p style="text-align: center; color: #fff !important;">Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name), style:"font-weight: 600;" %><br />
         <% end %>
         <br>
         <br>
       <% end %>
 </div>
+
+<!-- placeholder: raw("Email &#xf0e0;"), !>
