@@ -2,8 +2,22 @@
   <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
 </div>
 <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
+
+  <div style=''>
+    <%
+      if @conversation.opposed_user(current_user).online?
+        present_color = '#00917C;'
+      else
+        present_color = '#aaa;'
+      end
+    %>
+
+    <span id='last-online-<%= @conversation.opposed_user(current_user).id %>'>
+      <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+    </span>
+
     <%= @conversation.opposed_user(current_user).name %>
-    <p style="font-size: 2vw; font-weight: 300;">Online ● 12 minutes ago</p>
+    <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 2vw; font-weight: 300;">Online ● 12 minutes ago</p>
 </div>
 
 
@@ -18,7 +32,7 @@
   <!-- icon in the placeholder wip -->
   <div>
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }..." %>
+      <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
     <% end %>
   </div>
 </div>

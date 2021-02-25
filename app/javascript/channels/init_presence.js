@@ -1,7 +1,6 @@
 const initPresence = () => {
   const id = document.getElementById('user').dataset.onlineId;
   console.log(id)
-  const user = document.getElementById('last-online-' + id);
 
   setInterval(function() {
     $.ajax({
