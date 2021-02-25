@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def presence
     @user = User.find(params[:id])
     if @user.id == current_user.id
-      @user.update(last_seen:DateTime.now)
+      @user.update(last_seen: DateTime.now)
     end
     authorize @user
   end
