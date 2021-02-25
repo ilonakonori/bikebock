@@ -18,6 +18,10 @@
           </span>
           <h6 style="font-size: 4vw;"><%= @user.name %></h6>
         </div>
+        <!-- wip -->
+        <% if !@user.online? %>
+          <p style="font-size: 12px;">last online <%= @user.last_online %></p>
+        <% end %>
 
           <hr style="width: 95%; text-align: left; margin-left: 0;">
         <p style="font-size: 3vw;"><%= @user.about_me %></p>

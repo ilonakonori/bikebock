@@ -1,23 +1,28 @@
 <div style="text-align: center;">
   <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
 </div>
+
 <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
-
-  <div style=''>
-    <%
-      if @conversation.opposed_user(current_user).online?
-        present_color = '#00917C;'
-      else
-        present_color = '#aaa;'
-      end
-    %>
-
-    <span id='last-online-<%= @conversation.opposed_user(current_user).id %>'>
-      <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-    </span>
-
+  <% if !@conversation.opposed_user(current_user).online? %>
     <%= @conversation.opposed_user(current_user).name %>
-    <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 2vw; font-weight: 300;">Online ● 12 minutes ago</p>
+    <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 11px;font-weight: 300;">
+      Online
+
+      <%
+        if @conversation.opposed_user(current_user).online?
+          present_color = '#00917C;'
+        else
+          present_color = '#aaa;'
+        end
+      %>
+
+      <span id='last-online-<%= @conversation.opposed_user(current_user).id %>'>
+        <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+      </span>
+
+    <span style="font-size: 11px;"> <%= @conversation.opposed_user(current_user).last_online %></span>
+    </p>
+  <% end %>
 </div>
 
 

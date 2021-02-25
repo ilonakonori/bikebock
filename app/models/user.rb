@@ -20,6 +20,21 @@ class User < ApplicationRecord
   acts_as_favoritor
 
   def online?
-    last_seen > 1.minutes.ago
+    last_seen > 2.minutes.ago
+  end
+
+  def last_online
+    elapsed = (Time.now - last_seen)
+    mins, secs = elapsed.divmod 60.0
+    if mins.to_i > (60 * 24)
+      day = "%3d"%[mins.to_i / (60 * 24), secs]
+      day + ' day'.pluralize(day) + ' ago'
+    elsif mins.to_i > 59
+      hour = "%3d"%[mins.to_i / 60, secs]
+      hour + ' hour'.pluralize(hour) + ' ago'
+    else
+      min = "%3d"%[mins.to_i, secs]
+      min + ' minute'.pluralize(min) + ' ago'
+    end
   end
 end
