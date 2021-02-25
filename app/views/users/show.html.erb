@@ -1,13 +1,23 @@
-<div class="my-card">
+<div class="my-card" id='user' data-online-id="<%= @user.id %>">
   <div class="my-row" style="display: flex; justify-content: space-around; padding: 16px 0;">
      <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
       <div class="my-card-body" style="padding: 0 16px;">
 
-        <h6 style="font-size: 4vw;"><%= @user.name %>
+        <div style='display:flex; justify-content: flex-start;'>
           <!--build here dot-->
-          <span id='last-online' data-online-id="<%= @user.id %>" style="font-size: 4vw;"><%= @user.online? %>
+          <%
+            if @user.online?
+              present_color = '#00917C;'
+            else
+              present_color = '#aaa;'
+            end
+          %>
+
+          <span id='last-online-<%= @user.id %>'>
+            <i class='fas fa-circle' style="color:<%= present_color %>"></i>
           </span>
-        </h6>
+          <h6 style="font-size: 4vw;"><%= @user.name %></h6>
+        </div>
 
           <hr style="width: 95%; text-align: left; margin-left: 0;">
         <p style="font-size: 3vw;"><%= @user.about_me %></p>
@@ -78,25 +88,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-//make js file + make it for chat
-function updatePresence() {
-  const user = document.getElementById('last-online');
-  const id = user.dataset.onlineId;
-
-  setInterval(function() {
-
-     $.ajax({
-    url:  `/users/${id}/presence`,
-    type: 'GET'
-    })
-    .done(function(response){
-      //console.log(response);
-    })
-    //console.log(`${id} sent`);
-  }, 5000);
-}
-window.onload = updatePresence();
-</script>
-

@@ -1,2 +1,10 @@
-<span><%= @user.online? %></span>
-<!-- build dot + 2 diff class: offline + online-->
+<%
+  if @user.online?
+    present_color = '#00917C;'
+  else
+    present_color = '#aaa;'
+  end
+%>
+<span id='last-online-<%= @user.id %>'>
+  <i class="fas fa-circle" style="color:<%= present_color %>" ></i>
+</span>

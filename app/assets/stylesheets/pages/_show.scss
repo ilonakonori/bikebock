@@ -7,15 +7,20 @@ hr {
 }
 
 .interests {
-  border-style: solid; 
-  border-width: 0; 
-  border-radius: 16px; 
-  font-size: 2vw; 
-  padding: 1vh 2vh; 
-  color: white; 
-  background-color: #00917C; 
-  font-weight: bold; 
-  margin-left: 1vh; 
-  opacity: 70%; 
+  border-style: solid;
+  border-width: 0;
+  border-radius: 16px;
+  font-size: 2vw;
+  padding: 1vh 2vh;
+  color: white;
+  background-color: #00917C;
+  font-weight: bold;
+  margin-left: 1vh;
+  opacity: 70%;
   box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);
 }
+
+.fas.fa-circle {
+  font-size: 8px;
+}
+
