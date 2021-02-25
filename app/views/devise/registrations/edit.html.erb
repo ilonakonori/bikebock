@@ -42,6 +42,8 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.hidden_field :last_seen,
+                :value => DateTime.now %>
   </div>
 
   <div class="form-actions">
