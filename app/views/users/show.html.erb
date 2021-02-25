@@ -1,10 +1,12 @@
 <div class="my-card" id='user' data-online-id="<%= @user.id %>">
   <div class="my-row" style="display: flex; justify-content: space-around; padding: 16px 0;">
-     <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
-      <div class="my-card-body" style="padding: 0 16px;">
-
-        <div style='display:flex; justify-content: flex-start;'>
-          <!--build here dot-->
+    <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+    <div class="my-card-body" style="padding: 0 16px;">
+      <h6 style="font-size: 4vw;"><%= @user.name %></h6>
+      <!-- render part -->
+      <div id='online-<%= @user.id %>'>
+        <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px;font-weight: 300;">
+          Online
           <%
             if @user.online?
               present_color = '#00917C;'
@@ -12,21 +14,19 @@
               present_color = '#aaa;'
             end
           %>
-
-          <span id='last-online-<%= @user.id %>'>
+          <span>
             <i class='fas fa-circle' style="color:<%= present_color %>"></i>
           </span>
-          <h6 style="font-size: 4vw;"><%= @user.name %></h6>
-        </div>
-        <!-- wip -->
-        <% if !@user.online? %>
-          <p style="font-size: 12px;">last online <%= @user.last_online %></p>
-        <% end %>
-
-          <hr style="width: 95%; text-align: left; margin-left: 0;">
-        <p style="font-size: 3vw;"><%= @user.about_me %></p>
+          <% if !@user.online? %>
+            <span style="font-size: 11px;"> <%= @user.last_online %></span>
+          <% end %>
+        </p>
       </div>
+      <!-- end of render part -->
+      <hr style="width: 95%; text-align: left; margin-left: 0;">
+      <p style="font-size: 3vw;"><%= @user.about_me %></p>
     </div>
+  </div>
 </div>
 
 <div class="card" style="box-shadow: inset 0 0 4vmin 3vmin rgba(0,0,0,0.5);">

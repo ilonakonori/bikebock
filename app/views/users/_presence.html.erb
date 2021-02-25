@@ -1,10 +1,18 @@
-<%
-  if @user.online?
-    present_color = '#00917C;'
-  else
-    present_color = '#aaa;'
-  end
-%>
-<span id='last-online-<%= @user.id %>'>
-  <i class="fas fa-circle" style="color:<%= present_color %>" ></i>
-</span>
+<div id='online-<%= @user.id %>'>
+  <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px;font-weight: 300;">
+    Online
+    <%
+      if @user.online?
+        present_color = '#00917C;'
+      else
+        present_color = '#aaa;'
+      end
+    %>
+    <span>
+      <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+    </span>
+    <% if !@user.online? %>
+      <span style="font-size: 11px;"> <%= @user.last_online %></span>
+    <% end %>
+  </p>
+</div>
