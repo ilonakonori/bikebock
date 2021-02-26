@@ -14,6 +14,21 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     authorize @request
     if @request.save
+
+      r = Request.find(@request.id)
+      sender_name = User.find(r.sender_id).name
+      recipient = User.find(r.recipient_id)
+
+      Notification.create!(
+        user: recipient,
+        sender_name: sender_name,
+        action: 'Request',
+        action_id: r.id,
+        action_time: Time.now,
+        read: false,
+        content: "#{sender_name} sent you message request"
+      )
+
       redirect_to user_path(@request.recipient_id), notice: 'Request was succesfully sent'
     else
       render :new
@@ -22,6 +37,20 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
+
+    sender_name = User.find(@request.recipient_id).name
+    recipient = User.find(@request.sender_id)
+
+    Notification.create!(
+        user: recipient,
+        sender_name: sender_name,
+        action: 'Request declined',
+        action_id: @request.id,
+        action_time: Time.now,
+        read: false,
+        content: "#{sender_name} declined your message request :("
+      )
+
     redirect_to conversations_path(current_user), notice: 'You declined this message request!'
   end
 

@@ -18,7 +18,21 @@ class ConversationsController < ApplicationController
     authorize @conversation
     if @conversation.save
       c = Conversation.find(@conversation.id)
-      message = Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
+
+      sender_name = User.find(c.recipient_id).name
+      recipient = User.find(c.sender_id)
+
+      Notification.create!(
+        user: recipient,
+        sender_name: sender_name,
+        action: 'Request',
+        action_id: @request.id,
+        action_time: Time.now,
+        read: false,
+        content: "#{sender_name} accepted your message request :)"
+      )
+
+      Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
 
       #ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
       #redirect_to conversation_path(@conversation) #, anchor: "message-#{@message.id}")

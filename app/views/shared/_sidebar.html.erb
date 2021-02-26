@@ -1,5 +1,13 @@
 <div id='sidebar' class='sidebar-nav'>
+
+  <!-- wip => render part -->
+  <% if current_user.notifications.where(read: false).present? %>
+    <i class="fas fa-bell"></i>
+  <% end %>
+  <!-- end -->
+
   <i id='sidebar-toggler' class="fa fa-bars"></i>
+
   <ul>
 
     <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
