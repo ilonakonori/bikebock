@@ -1,7 +1,6 @@
 <div id='sidebar' class='sidebar-nav'>
   <i id='sidebar-toggler' class="fa fa-bars"></i>
       <%= cl_image_tag current_user.profile_photo.key, height: 40, width: 40, crop: :fill, class: "avatar"%>
-  <ul>    
     <!-- dropdown not needed 
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -13,23 +12,22 @@
         <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
       </ul>
     </div> -->
-
-    <li class="nav-item active">
-      <%= link_to "Home", rides_path, class: "sidenav-link" %>
+  <div style="list-style-type: none; padding-left: 30px; padding-top: 20px;">
+    <li class="nav-item active" style="margin-bottom: 24px;">
+      <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-    <li class="nav-item active">
-      <%= link_to "My Profile", user_path(current_user), class: "sidenav-link" %>
+    <li class="nav-item active" style="margin-bottom: 24px;">
+      <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-    <li class="nav-item">
-      <%= link_to "Messages", conversations_path, class: "sidenav-link" %>
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-     <li class="nav-item">
-      <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link" %>
+     <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-    <li class="nav-item">
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "sidenav-link" %>
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-
-  </ul>
+  </div>
 </div>
 
