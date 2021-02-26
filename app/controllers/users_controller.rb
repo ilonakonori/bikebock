@@ -1,16 +1,27 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :presence]
+
   def show
-    @user = User.find(params[:id])
     @requests_received = Request.where(accepted: false, recipient_id: @user.id)
     @requests_sent = Request.where(accepted: false, sender_id: @user.id)
-    authorize @user
   end
 
   def presence
-    @user = User.find(params[:id])
     if @user.id == current_user.id
       @user.update(last_seen: DateTime.now)
     end
+  end
+
+  def bookmarks
+    @user = current_user
+    @bookmarks = @user.favorites.order('created_at desc')
+    authorize @user
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
     authorize @user
   end
 end

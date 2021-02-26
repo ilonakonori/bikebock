@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     member do
       get :presence
     end
+    collection do
+      get :bookmarks
+    end
   end
 
   resources :rides do
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
       get :unfav
       put :unfav
     end
+
   end
 
   resources :requests, only: [:new, :create, :show] do
