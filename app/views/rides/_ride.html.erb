@@ -1,30 +1,25 @@
 
-<!--
-  <p>Difficulty: <#%= ride.difficulty %></p>
-  <p>Start location: <#%= ride.start_location %></p>
-  <p>End location: <#%= ride.end_location %></p>
-  <p>Start time: <#%= ride.start_time.strftime("%H:%M") %></p>
-  <p>End time: <#%= ride.end_time.strftime("%H:%M") %></p>
-  <p>Available dates: <#%= ride.available_dates %></p>
-  <p>Number of people: <#%= ride.number_of_people %></p>
-  <p>Duration: <#%= ride.duration %> h</p>
--->
-<!--
-<div style='display: flex; flex-direction: row-reverse; padding: 4px 16px;'>
-  <#% if policy(ride).edit? %>
-    <h6><#%= link_to 'Edit', edit_ride_path(ride), class: "", style: 'margin: 0 4px;' %></h6>
-  <#% end %>
-  <#% if policy(ride).destroy? %>
-    <h6><#%= link_to "Delete", ride, class: "",  style: 'margin: 0 4px;', method: :delete, data: {confirm: "Are you sure?"} %></h6>
-  <#% end %>
-</div>
--->
-<div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
-  <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
+<div class="" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
+    <div>
+      <% if current_user.favorited?(ride) %>
+        <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
+          <i onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark' style="font-size:16px; " ></i>
+        <% end %>
+      <% else %>
+        <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+          <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark" style="font-size:16px;"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
       <%= link_to user_path(ride.user) do %>
-      <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
-    <% end %>
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+      <% end %>
+    </div>
   </div>
+
+  <div>
     <%= link_to ride_path(ride) do %>
   <div class="card" style="border-radius: 16px; border: 0;">
     <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
@@ -37,31 +32,16 @@
     </div>
       <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
 
-    <!-- update somehow this info in real time -->
-      <% if ride.favoritors.size == 1 %>
-        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %></small></span>
-      <% elsif ride.favoritors.size > 1 %>
-        <span style="padding-left: 4px;"><small><%= ride.favoritors.first.name %> and <%= ride.favoritors.size - 1 %></small></span>
-        <!--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>-->
-      <% else %>
+    <!-- update somehow this info in real time --> <!-- we don't need this
+      <#% if ride.favoritors.size == 1 %>
+        <span style="padding-left: 4px;"><small><#%= ride.favoritors.first.name %></small></span>
+      <#% elsif ride.favoritors.size > 1 %>
+        <span style="padding-left: 4px;"><small><#%= ride.favoritors.first.name %> and <#%= ride.favoritors.size - 1 %></small></span>
+        <--<span  class='favs' id="<#%= ride.id %>" ><#%= ride.favoritors.size %> </span>->
+      <#% else %>
         <span><small></small></span>
-      <% end %>
+      <#% end %> -->
 
-    <!-- <#% if policy(ride).unfav? %>-->
-      <% if current_user.favorited?(ride) %>
-        <p>
-          <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeHeart(this) title='Unfavorite' class="fas fa-thumbs-up" style="font-size:16px; padding-left: 4px;" ></i>
-          <% end %>
-        </p>
-      <% else %>
-      <!-- <#% if policy(ride).fav?  %> -->
-        <p>
-          <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeHeart(this) title='Favorite' class="like" style="font-size:16px; padding-left: 4px;">Like</i>
-          <% end %>
-        </p>
-        <% end %>
       <!-- ride dates -->
       <div class="my-container" style="padding: 0;">
         <div style="display: flex; flex-wrap: wrap;">
@@ -74,22 +54,19 @@
       </div>
     </div>
   <% end %>
+</div>
 <br>
 
 <script>
- function changeHeart(_this) {
-    if (_this.classList.contains('like')) {
-      _this.classList.remove('like');
+ function changeBookmark(_this) {
+    if (_this.classList.contains('far')) {
+      _this.classList.remove('far');
       _this.classList.add('fas');
-      _this.classList.add('fa-thumbs-up');
-      _this.innerText = '';
-      _this.title = 'Unfavorite';
+      _this.title = 'Unbookmark';
     } else {
       _this.classList.remove('fas');
-      _this.classList.remove('fa-thumbs-up');
-      _this.classList.add('like');
-      _this.innerText ='Like';
-      _this.title = 'Favorite';
+      _this.classList.add('far');
+      _this.title = 'Bookmark';
     }
   }
 </script>

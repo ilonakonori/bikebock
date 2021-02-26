@@ -2,7 +2,5 @@
   <%= render 'rides/search_input' %>
 </div>
 <% @rides.each do |ride| %>
-  <%= link_to ride_path(ride) do %>
-    <%= render 'rides/ride', ride: ride %>
-  <% end %>
+  <%= render 'rides/ride', ride: ride %>
 <% end %>
