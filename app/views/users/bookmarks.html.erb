@@ -1,0 +1,11 @@
+<% if @bookmarks.blank? %>
+  <!-- write here smtng nice -->
+  <p> You still don't have any bookmarks, go and find some: </p>
+  <%= link_to "Rides", rides_path, style: 'color: red;' %>
+<% end %>
+<% @bookmarks.each do |b| %>
+  <% rides = Ride.where(id: b.favoritable_id) %>
+  <% rides.each do |ride| %>
+    <%= render 'rides/ride', ride: ride %>
+  <% end %>
+<% end %>

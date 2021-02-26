@@ -12,4 +12,8 @@ class UserPolicy < ApplicationPolicy
   def presence?
     true
   end
+
+  def bookmarks?
+    true
+  end
 end

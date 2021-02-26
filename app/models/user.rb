@@ -20,7 +20,7 @@ class User < ApplicationRecord
   acts_as_favoritor
 
   def online?
-    last_seen > 2.minutes.ago
+    last_seen > 1.minutes.ago
   end
 
   def last_online
