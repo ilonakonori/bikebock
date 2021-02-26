@@ -21,8 +21,8 @@ class MessagesController < ApplicationController
         action_time: Time.now,
         read: false,
         content: "#{sender_name} sent you message"
+        #link: "/conversations/#{c.id}#message-#{m.id}"
       )
-
 
       ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
       redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")

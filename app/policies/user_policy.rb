@@ -16,4 +16,8 @@ class UserPolicy < ApplicationPolicy
   def bookmarks?
     true
   end
+
+  def notifications?
+    true
+  end
 end

@@ -18,6 +18,12 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def notifications
+    @user = current_user
+    @notifications = @user.notifications.where(read: false).order(created_at: :desc)
+    authorize @user
+  end
+
   private
 
   def set_user

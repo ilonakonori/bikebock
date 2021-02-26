@@ -17,6 +17,7 @@ class ConversationsController < ApplicationController
     @request.update(accepted: true, friend: true)
     authorize @conversation
     if @conversation.save
+
       c = Conversation.find(@conversation.id)
 
       sender_name = User.find(c.recipient_id).name
@@ -25,11 +26,12 @@ class ConversationsController < ApplicationController
       Notification.create!(
         user: recipient,
         sender_name: sender_name,
-        action: 'Request',
+        action: 'Request accepted',
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} accepted your message request :)"
+        content: "#{sender_name} accepted your message request :)",
+        link: "/conversations/#{c.id}/"
       )
 
       Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)

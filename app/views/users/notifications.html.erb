@@ -1,0 +1,8 @@
+<h3>Notifications (<%= @notifications.size %>)</h3>
+<% @notifications.each do |n| %>
+  <% if n.link.present? %>
+    <p><%= link_to n.content, n.link %></p>
+  <% else %>
+    <p><%= n.content %>
+  <% end %>
+<% end %>

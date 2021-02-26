@@ -26,7 +26,8 @@ class RequestsController < ApplicationController
         action_id: r.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} sent you message request"
+        content: "#{sender_name} sent you message request",
+        link: "/requests/#{r.id}/"
       )
 
       redirect_to user_path(@request.recipient_id), notice: 'Request was succesfully sent'
