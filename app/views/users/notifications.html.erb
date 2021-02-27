@@ -6,3 +6,11 @@
     <p><%= n.content %>
   <% end %>
 <% end %>
+
+<% @notifications_read.each do |n| %>
+<% if n.link.present? %>
+  <p ><%= link_to n.content, n.link, style: 'color: blue;' %></p>
+  <% else %>
+    <p style='color: #999;'><%= n.content %>
+  <% end %>
+<% end %>
