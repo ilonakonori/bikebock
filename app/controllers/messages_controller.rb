@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
     authorize @message
     if @message.save
 
+      # wip: create notification if recipient not present /conversations/#{@conversation.id}
       m = Message.find(@message.id)
-
       sender_name = User.find(m.sender_id).name
       recipient = User.find(m.recipient_id)
 
@@ -20,8 +20,8 @@ class MessagesController < ApplicationController
         action_id: m.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} sent you message"
-        #link: "/conversations/#{c.id}#message-#{m.id}"
+        content: "#{sender_name} sent you message",
+        link: "/conversations/#{@conversation.id}#message-#{m.id}"
       )
 
       ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
