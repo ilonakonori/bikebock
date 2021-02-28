@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @requests_received = Request.where(accepted: false, recipient_id: @user.id)
     @requests_sent = Request.where(accepted: false, sender_id: @user.id)
+    update_tracking
   end
 
   def presence
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   def bookmarks
     @user = current_user
     @bookmarks = @user.favorites.order('created_at desc')
+    update_tracking
     authorize @user
   end
 
@@ -37,7 +39,14 @@ class UsersController < ApplicationController
     end
     @notifications = @user.notifications.where(read: false).order(action_time: :desc)
     @notifications_read = @user.notifications.where(read: true).order(created_at: :desc).first(10)
+
+    update_tracking
     authorize @user
+  end
+
+  def update_tracking
+    tracking = Tracking.find_by(user: current_user.id)
+    tracking.update!(location: request.url, location_time: Time.now)
   end
 
   private
