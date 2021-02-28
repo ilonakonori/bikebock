@@ -1,9 +1,14 @@
 <div id='sidebar' class='sidebar-nav'>
 
-  <!-- wip => render part -->
-  <% if current_user.notifications.where(read: false).present? %>
-    <i class="fas fa-bell"></i>
-  <% end %>
+  <!-- notification bell render part -->
+  <div class='not-box'>
+  <div id='notifications'>
+    <p id='note' data-note-id="<%= current_user.id %>" ></p>
+    <% if current_user.notifications.where(read: false).present? %>
+      <i class="fas fa-bell"></i>
+    <% end %>
+  </div>
+</div>
   <!-- end -->
 
   <i id='sidebar-toggler' class="fa fa-bars"></i>

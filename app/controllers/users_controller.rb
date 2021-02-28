@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :presence]
+  before_action :set_user, only: [:show, :presence, :unread]
   after_action :read_notification, only: :notifications
 
   def show
@@ -42,6 +42,9 @@ class UsersController < ApplicationController
 
     update_tracking
     authorize @user
+  end
+
+  def unread
   end
 
   def update_tracking

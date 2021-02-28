@@ -21,14 +21,15 @@
   padding-top: 8px;
 }
 
-.fas.fa-bell {
+.not-box {
   position: absolute;
   right: 1%;
   font-size: 14px;
-  padding-top: 5px;
+  top: -2%;
   color: rgba(0, 145, 124, 1);
   z-index: 1000;
 }
+
 
 .sidebar-nav.active {
   animation: showSidebar .5s 1 ease-in-out;
@@ -40,7 +41,8 @@
   to {left: 0; background-color:rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 900;}
 }
 
-.fas.fa-bell.active {
+/* render this somehow */
+#notifications > i.active {
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }

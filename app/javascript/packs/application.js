@@ -33,6 +33,10 @@ import { initDots } from '../channels/init_dots';
 import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../channels/init_sidebar';
 import { initPresence } from '../channels/init_presence';
+import { initPresenceCurrent } from '../channels/init_presence_current';
+
+import { initNotifications } from '../channels/init_notifications';
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -44,7 +48,6 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
 
   const sidebar = document.getElementById('sidebar');
-
   if(sidebar) {
     initSidebar();
   }
@@ -52,6 +55,16 @@ document.addEventListener('turbolinks:load', () => {
   const user = document.getElementById('user');
   if(user) {
     initPresence();
+  }
+
+  const c_user = document.getElementById('c_user');
+  if(c_user) {
+    initPresenceCurrent();
+  }
+
+  const note = document.getElementById('note')
+  if(note) {
+    initNotifications();
   }
 
   flatpickr(".flatpickr", {
