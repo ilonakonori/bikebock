@@ -2,6 +2,8 @@
   <i id='sidebar-toggler' class="fa fa-bars"></i>
   <ul>
 
+    <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
+
     <%= cl_image_tag current_user.profile_photo.key, height: 40, width: 40, crop: :fill, class: "avatar"%>
     <br>
     <!-- dropdown -->

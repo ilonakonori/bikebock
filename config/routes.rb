@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :requests, only: [:new, :create, :show] do
+  resources :requests, only: [:new, :create, :show, :destroy] do
     resources :conversations, only: [:new, :create]
   end
 

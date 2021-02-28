@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: :show
+  before_action :set_request, only: [:show, :destroy]
 
   def new
     @request = Request.new
@@ -18,6 +18,11 @@ class RequestsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @request.destroy
+    redirect_to conversations_path(current_user), notice: 'You declined this message request!'
   end
 
   private
