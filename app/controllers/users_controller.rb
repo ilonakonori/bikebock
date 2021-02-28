@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def read_notification
     if @notifications.present?
       @notifications.each do |n|
-        n.update(read: true)
+        n.update(read: true, read_at: Time.now)
       end
     end
   end

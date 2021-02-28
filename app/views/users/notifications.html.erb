@@ -1,7 +1,7 @@
 <h3>Notifications (<%= @notifications.size %>)</h3>
 <% @notifications.each do |n| %>
   <% if n.link.present? %>
-    <p><%= link_to n.content, n.link %></p>
+    <p><%= link_to n.content, n.link %><small><!--<#%= n.action_time%></small>--></p>
   <% else %>
     <p><%= n.content %>
   <% end %>
@@ -9,7 +9,7 @@
 
 <% @notifications_read.each do |n| %>
 <% if n.link.present? %>
-  <p ><%= link_to n.content, n.link, style: 'color: blue;' %></p>
+  <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
   <% else %>
     <p style='color: #999;'><%= n.content %>
   <% end %>
