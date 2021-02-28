@@ -3,10 +3,12 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
+    update_tracking
     authorize @request
   end
 
   def show
+    update_tracking
     @conversation = Conversation.new
   end
 
@@ -34,6 +36,7 @@ class RequestsController < ApplicationController
     else
       render :new
     end
+    update_tracking
   end
 
   def destroy
@@ -51,8 +54,13 @@ class RequestsController < ApplicationController
         read: false,
         content: "#{sender_name} declined your message request :("
       )
-
+    update_tracking
     redirect_to conversations_path(current_user), notice: 'You declined this message request!'
+  end
+
+  def update_tracking
+    tracking = Tracking.find_by(user: current_user.id)
+    tracking.update!(location: request.url, location_time: Time.now)
   end
 
   private

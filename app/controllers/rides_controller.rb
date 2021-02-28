@@ -8,13 +8,17 @@ class RidesController < ApplicationController
     else
       filter
     end
+
+    update_tracking
   end
 
   def show
+    update_tracking
   end
 
   def new
     @ride = current_user.rides.new
+    update_tracking
     authorize @ride
   end
 
@@ -26,6 +30,7 @@ class RidesController < ApplicationController
     else
       render :new
     end
+    update_tracking
   end
 
   def edit
@@ -38,10 +43,12 @@ class RidesController < ApplicationController
     else
       render :edit
     end
+    update_tracking
   end
 
   def destroy
     @ride.destroy
+    update_tracking
     redirect_to user_path(current_user), notice: 'Ride was succesfully removed!'
   end
 
@@ -51,6 +58,11 @@ class RidesController < ApplicationController
 
   def unfav
     current_user.unfavorite(@ride)
+  end
+
+  def update_tracking
+    tracking = Tracking.find_by(user: current_user.id)
+    tracking.update!(location: request.url, location_time: Time.now)
   end
 
   private
