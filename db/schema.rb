@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_200115) do
+ActiveRecord::Schema.define(version: 2021_02_26_195723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,21 @@ ActiveRecord::Schema.define(version: 2021_02_24_200115) do
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "action"
+    t.integer "action_id"
+    t.string "sender_name"
+    t.string "content"
+    t.boolean "read"
+    t.datetime "read_at"
+    t.datetime "action_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
@@ -121,5 +136,6 @@ ActiveRecord::Schema.define(version: 2021_02_24_200115) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "conversations", "requests"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "notifications", "users"
   add_foreign_key "rides", "users"
 end

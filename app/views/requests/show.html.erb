@@ -7,6 +7,6 @@
   <% end %>
 
   <% if policy(@request).destroy? %>
-    <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, style: 'color:red;' %>
   <% end %>
 <% end %>
