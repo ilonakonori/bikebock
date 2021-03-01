@@ -1,5 +1,5 @@
 
-<div id='ride-<%= ride.id %>' class="" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+<div id='ride-<%= ride.id %>' class="" style="margin-bottom: 24px; padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
     <div>
       <% if policy(ride).fav? %>
@@ -57,7 +57,7 @@
     </div>
   <% end %>
 </div>
-<br>
+
 
 <script>
   function changeBookmark(_this) {
