@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
 
       sender_name = User.find(c.recipient_id).name
       recipient = User.find(c.sender_id)
-
+     #check!!
       Notification.create!(
         user: recipient,
         sender_name: sender_name,
