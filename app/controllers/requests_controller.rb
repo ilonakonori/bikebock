@@ -56,7 +56,7 @@ class RequestsController < ApplicationController
     Notification.create!(
         user: recipient,
         sender_name: sender_name,
-        action: 'Request declined',
+        action: 'Request',
         action_id: @request.id,
         action_time: Time.now,
         read: false,

@@ -23,11 +23,11 @@
       <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
 
-    <!-- do we really need notification page? --> <!--
+    <!-- just atm -->
     <li class="nav-item">
-      <%#= link_to "Notifications", notifications_users_path, class: "sidenav-link" %>
-      <span id='not-size'><%#= current_user.notifications.where(read: false).size %></span>
-    </li> -->
+      <%= link_to "Notifications", notifications_users_path, class: "sidenav-link" %>
+      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
+    </li>
 
     <!-- requests -->
      <li class="nav-item">
