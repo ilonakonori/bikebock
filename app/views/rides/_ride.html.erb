@@ -14,21 +14,33 @@
     </div>
     <div>
       <%= link_to user_path(ride.user) do %>
-        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
       <% end %>
     </div>
   </div>
 
   <div>
     <%= link_to ride_path(ride) do %>
-  <div class="card" style="border-radius: 16px; border: 0;">
-    <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
-  </div>
-  <br>
+    <div class="card" style="border-radius: 16px; border: 0;">
+      <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
+    </div>
+    <br>
     <div style="display: flex; justify-content: start;">
-      <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
-      <p style="display: flex; justify-content: flex-end; color: #00917C; padding-right: 0; font-size: 12px;">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+      <div style="display: flex; justify-content: start; color: #00917C; font-size: 12px;">
+        <h5 style="font-size: 4vw; padding-left: 4px; color: #333333;"><%= ride.title[0..25] %></h5>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+      </div>
+      <div style="display: flex; justify-content: end; font-size: 12px;">
+        <% if current_user.favorited?(ride) %>
+          <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
+            <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark' style="font-size:16px; " ></i>
+          <% end %>
+        <% else %>
+          <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+            <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark" style="font-size:16px;"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
       <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
 
