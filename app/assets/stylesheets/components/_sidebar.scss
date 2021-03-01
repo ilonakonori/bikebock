@@ -41,7 +41,6 @@
   to {left: 0; background-color:rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 900;}
 }
 
-/* render this somehow */
 #notifications > i.active {
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
