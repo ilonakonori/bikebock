@@ -20,4 +20,8 @@ class UserPolicy < ApplicationPolicy
   def notifications?
     true
   end
+
+  def unread?
+    true
+  end
 end

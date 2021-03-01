@@ -1,7 +1,7 @@
 <h3>Notifications (<%= @notifications.size %>)</h3>
 <% @notifications.each do |n| %>
   <% if n.link.present? %>
-    <p><%= link_to n.content, n.link %><small><!--<#%= n.action_time%></small>--></p>
+    <p><%= link_to n.content, n.link %><!--<#%= n.action_time%></small>--></p>
   <% else %>
     <p><%= n.content %>
   <% end %>

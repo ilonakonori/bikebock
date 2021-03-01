@@ -21,30 +21,57 @@
   padding-top: 8px;
 }
 
-.fas.fa-bell {
+.not-box {
   position: absolute;
   right: 1%;
   font-size: 14px;
-  padding-top: 5px;
+  top: -2%;
   color: rgba(0, 145, 124, 1);
   z-index: 1000;
 }
+
 
 .sidebar-nav.active {
   animation: showSidebar .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }
 
-@keyframes showSidebar {
-  from {left: -55%;}
-  to {left: 0; background-color:rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 900;}
+.sidebar-box {
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(0,0,0,0);
+
 }
 
-.fas.fa-bell.active {
+
+.sidebar-box.active {
+  animation: showSidebarBox .5s 1 ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showSidebar {
+  from {left: -55%;}
+  to {left: 0; background-color: rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 1000;}
+}
+
+
+@keyframes showSidebarBox {
+  to {background-color:rgba(0, 145, 124, 0.8); border-bottom-color: #fff; z-index: 900;}
+}
+
+#notifications > i.fas.fa-bell {
+  color: rgba(0, 145, 124, 0.8);
+}
+
+#notifications > i.fas.fa-bell.active {
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }
 
 @keyframes showBell {
   to { color: #2f2f2f; }
+}
+
+#request-size, #msg-size {
+  color: #2f2f2f;
+  font-weight: bold;
 }
