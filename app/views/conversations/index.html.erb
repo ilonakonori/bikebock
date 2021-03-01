@@ -16,8 +16,6 @@
     <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
   </div>
 
-  <span></span>
-
   <div class='col'>
     <small><%= c.messages.last.created_at %></small>
     <p><%= c.messages.last.content[0..40] %></p>
