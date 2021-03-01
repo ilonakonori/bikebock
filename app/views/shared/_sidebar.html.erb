@@ -1,5 +1,6 @@
 <div id='sidebar' class='sidebar-nav'>
-  <div style="background-color: rgba(0, 145, 124, 0.8); border-bottom: 1px solid #fff;" >
+
+  <div class="sidebar-box" >
     <i id='sidebar-toggler' class="fa fa-bars"></i>
     <p style="padding-left: 30px; padding-top: 10px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
     <%= current_user.name %> <i class="fas fa-bicycle">...</i>

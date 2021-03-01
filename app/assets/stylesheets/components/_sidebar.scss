@@ -36,12 +36,33 @@
   animation-fill-mode: forwards;
 }
 
-@keyframes showSidebar {
-  from {left: -55%;}
-  to {left: 0; background-color:rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 900;}
+.sidebar-box {
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(0,0,0,0);
+
 }
 
-#notifications > i.active {
+
+.sidebar-box.active {
+  animation: showSidebarBox .5s 1 ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showSidebar {
+  from {left: -55%;}
+  to {left: 0; background-color: rgba(0, 145, 124, 0.8); color: white; border-right: 1px solid; z-index: 1000;}
+}
+
+
+@keyframes showSidebarBox {
+  to {background-color:rgba(0, 145, 124, 0.8); border-bottom-color: #fff; z-index: 900;}
+}
+
+#notifications > i.fas.fa-bell {
+  color: rgba(0, 145, 124, 0.8);
+}
+
+#notifications > i.fas.fa-bell.active {
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }
