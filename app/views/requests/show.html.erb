@@ -5,5 +5,8 @@
   <% if !@request.accepted %>
     <%= render 'conversations/new' %>
   <% end %>
-  <%= link_to 'Decline' %> <!-- wip -->
+
+  <% if policy(@request).destroy? %>
+    <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, style: 'color:red;' %>
+  <% end %>
 <% end %>

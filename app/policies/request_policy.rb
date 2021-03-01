@@ -12,4 +12,8 @@ class RequestPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def destroy?
+    record.recipient_id == user.id && Conversation.find_by(request_id: record.id).nil?
+  end
 end

@@ -7,8 +7,10 @@ class User < ApplicationRecord
   has_one_attached :profile_photo
   has_one_attached :bike_photo
   has_many :rides, dependent: :destroy
-  #has_many :requests, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_one :tracking, dependent: :destroy
 
+  after_create :create_tracking
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -18,6 +20,10 @@ class User < ApplicationRecord
   validates :bike_photo, presence: true
 
   acts_as_favoritor
+
+  def self.create_tracking
+    self.tracking.create!(location: 'http://localhost:3000/rides', location_time: Time.now)
+  end
 
   def online?
     last_seen > 1.minutes.ago
