@@ -1,5 +1,13 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
+  after_action :read_request_notification, only: :index
+
+  def index
+    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
+    @requests_received = current_user.notifications.where(read: false, action: 'Request').order(action_time: :desc)
+    @requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
+    update_tracking
+  end
 
   def new
     @request = Request.new
@@ -64,6 +72,14 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def read_request_notification
+    if @requests_received.present?
+      @requests_received.each do |n|
+        n.update(read: true, read_at: Time.now)
+      end
+    end
+  end
 
   def set_request
     @request = Request.find(params[:id])

@@ -35,16 +35,27 @@
       <%= link_to "Home", rides_path, class: "sidenav-link" %>
     </li>
 
-    <!-- do we really need notification page? -->
+    <!-- do we really need notification page? --> <!--
     <li class="nav-item">
-      <%= link_to "Notifications", notifications_users_path, class: "sidenav-link" %>
-      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
+      <%#= link_to "Notifications", notifications_users_path, class: "sidenav-link" %>
+      <span id='not-size'><%#= current_user.notifications.where(read: false).size %></span>
+    </li> -->
+
+    <!-- requests -->
+     <li class="nav-item">
+      <%= link_to "Requests", requests_path, class: "sidenav-link" %>
+      <span id='request-size'>
+        <% if current_user.notifications.where(read: false, action: 'Request').size > 0 %>
+          <%= current_user.notifications.where(read: false, action: 'Request').size %>
+        <% end %>
+      </span>
     </li>
 
+    <!-- messages -->
     <li class="nav-item">
       <%= link_to "Messages", conversations_path, class: "sidenav-link" %>
       <!-- render this -->
-      <span id='notm-size'>
+      <span id='msg-size'>
         <% if current_user.notifications.where(read: false, action: 'Message').size > 0 %>
           <%= current_user.notifications.where(read: false, action: 'Message').size %>
         <% end %>

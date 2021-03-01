@@ -1,7 +1,7 @@
-<%= render 'requests/index' %>
+<%#= render 'requests/index' %>
 <h3>Conversations</h3>
 <% @conversations.each do |c| %>
-   <div style='display:flex; justify-content: flex-start;'>
+  <div style='display:flex; justify-content: flex-start;'>
     <%
       if c.opposed_user(current_user).online?
         present_color = '#00917C;'
@@ -13,6 +13,14 @@
     <span id='last-online-<%= c.opposed_user(current_user).id %>'>
       <i class='fas fa-circle' style="color:<%= present_color %>"></i>
     </span>
-  <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
-</div>
+    <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+  </div>
+
+  <span></span>
+
+  <div class='col'>
+    <small><%= c.messages.last.created_at %></small>
+    <p><%= c.messages.last.content[0..40] %></p>
+  </div>
+
 <% end %>

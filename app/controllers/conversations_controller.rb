@@ -1,8 +1,10 @@
 class ConversationsController < ApplicationController
+  #after_action :read_message_notifications, only: :show
+
   def index
     update_tracking
-    @requests_received = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
-    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id).order(created_at: :desc)
+
+    #@new_messages = current_user.notifications.where(read: false, action: 'Message').order(action_time: :desc)
     @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
   end
 

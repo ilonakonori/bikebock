@@ -1,0 +1,24 @@
+<h3>Pending requests</h3>
+<h6>Received requests: <%= @requests_received.size %></h6>
+<% @requests_received.each do |r| %>
+
+  <% if r.link.present? %>
+    <p><%= link_to r.content, r.link %><small><%#= r.action_time%></small></p>
+  <% else %>
+    <p><%= r.content %>
+  <% end %>
+
+<% end %>
+
+<% @requests_read.each do |n| %>
+<% if n.link.present? %>
+  <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
+  <% else %>
+    <p style='color: #999;'><%= n.content %>
+  <% end %>
+<% end %>
+
+<h6>Sent requests: <%= @requests_sent.size %></h6>
+<% @requests_sent.each do |r| %>
+  <p><%= link_to User.find(r.recipient_id).name, request_path(r) %></p>
+<% end %>

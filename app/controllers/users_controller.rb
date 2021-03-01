@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   after_action :read_notification, only: :notifications
 
   def show
-    @requests_received = Request.where(accepted: false, recipient_id: @user.id)
-    @requests_sent = Request.where(accepted: false, sender_id: @user.id)
+    #@requests_received = Request.where(accepted: false, recipient_id: @user.id)
+    #@requests_sent = Request.where(accepted: false, sender_id: @user.id)
     update_tracking
   end
 

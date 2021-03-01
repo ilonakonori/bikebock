@@ -49,3 +49,8 @@
 @keyframes showBell {
   to { color: #2f2f2f; }
 }
+
+#request-size, #msg-size {
+  color: #2f2f2f;
+  font-weight: bold;
+}
