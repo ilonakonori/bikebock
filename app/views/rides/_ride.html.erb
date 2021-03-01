@@ -2,14 +2,16 @@
 <div id='ride-<%= ride.id %>' class="" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
     <div>
-      <% if current_user.favorited?(ride) %>
-        <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-          <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark' style="font-size:16px; " ></i>
-        <% end %>
-      <% else %>
-        <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-          <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark" style="font-size:16px;"></i>
-        <% end %>
+      <% if policy(ride).fav? %>
+        <% if current_user.favorited?(ride) %>
+          <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
+            <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark' style="font-size:16px; " ></i>
+          <% end %>
+        <% else %>
+          <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+            <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark" style="font-size:16px;"></i>
+          <% end %>
+      <% end %>
       <% end %>
     </div>
     <div>
