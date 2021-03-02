@@ -16,7 +16,7 @@
     </div>
     <div>
       <%= link_to user_path(ride.user) do %>
-        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: 'border-radius: 50%;' %>
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
       <% end %>
     </div>
   </div>

@@ -5,7 +5,7 @@ class Ride < ApplicationRecord
   before_update :build_slug
 
   # validations
-  validates :title, presence: true, uniqueness: true, length: { in: 2..100 }, format: { with: /[[:alpha:]]/ }
+  validates :title, presence: true, uniqueness: true, length: { in: 2..26 }, format: { with: /[[:alpha:]]/ }
   validates :short_description, presence: true, length: { in: 50..900 }
   validates :number_of_people, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :start_time, presence: true
