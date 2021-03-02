@@ -33,7 +33,7 @@ Request.destroy_all
 
   1.times do
     new_ride = Ride.new(
-      title: "Route of industrial culture",
+      title: "Industrial Berlin",
       short_description: "Combine your bike trip with a discovery tour of Berlin's industrial culture.
       Visit the backyard workshop where Siemens & Halske, a global corporation, began.
       Find out from where Berlin was once supplied with electricity, water and gas.
@@ -139,7 +139,7 @@ end
 
   1.times do
     new_ride = Ride.new(
-      title: "Along the River Spree",
+      title: "Along the Spree",
       short_description: "There is also a lot of water right at the heart of Berlin – just cycle along the banks of the river Spree.
       The ride starts at Potsdamer Platz and takes you past the Brandenburg Gate, Reichstag, Bundeskanzleramt, Bellevue Palace and other sights.
       The section along the Landwehr Canal is particularly beautiful.",
@@ -244,7 +244,7 @@ end
 
   1.times do
     new_ride = Ride.new(
-      title: "Wannsee cycle route",
+      title: "Wannsee Cycle Route",
       short_description: "A classic bike ride, but always lovely – from the city centre to Wannsee.
       You’ll travel through the historical centre, 19th century neighbourhoods and the villa suburbs to Potsdam.
       On the way you’ll pass Gendarmenmarkt, Checkpoint Charlie, the Schöneberg Town Hall, the Free University and much more.
@@ -297,7 +297,7 @@ end
 
   1.times do
     new_ride = Ride.new(
-      title: "Bicycle ride through Reinickendorf",
+      title: "Ride Through Reinickendorf",
       short_description: "The north of Berlin is also great for bicycle rides.
       In addition to Tegel Airport, Reinickendorf offers a lot of water and nature.
       You can get acquainted with Berlin’s oldest tree in Tegel Forest and cycle around Lake Tegel.",
@@ -401,7 +401,7 @@ end
 
   1.times do
     new_ride = Ride.new(
-      title: "Bike ride through Treptow-Köpenick",
+      title: "Treptow-Köpenick",
       short_description: "The centre, north and south-west - the south-east is still missing.
       And it’s worth it too.
       Treptow-Köpenick is blessed with plenty of water.
