@@ -2,8 +2,8 @@
 
   <div class="sidebar-box" >
     <i id='sidebar-toggler' class="fa fa-bars"></i>
-    <p style="padding-left: 30px; padding-top: 10px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
-    <%= current_user.name %> <i class="fas fa-bicycle">...</i>
+    <p style="padding-left: 32px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
+    <span style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
 
   <!-- notification bell render part -->
@@ -19,29 +19,21 @@
 
   <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
 
-  <div style="height: 73vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
+  <div style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
       <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-
-    <!-- just atm -->
-    <li class="nav-item">
-      <%= link_to "Notifications", notifications_users_path, class: "sidenav-link" %>
-      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
+    <li class="nav-item active" style="margin-bottom: 24px;">
+      <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
-
     <!-- requests -->
-     <li class="nav-item">
-      <%= link_to "Requests", requests_path, class: "sidenav-link" %>
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
       <span id='request-size'>
         <% if current_user.notifications.where(read: false, action: 'Request').size > 0 %>
           <%= current_user.notifications.where(read: false, action: 'Request').size %>
         <% end %>
       </span>
-    </li>
-
-    <li class="nav-item active" style="margin-bottom: 24px;">
-      <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
@@ -52,10 +44,14 @@
         <% end %>
       </span>
       <!-- end -->
-
     </li>
-     <li class="nav-item" style="margin-bottom: 24px;">
+    <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+    </li>
+    <!-- just atm -->
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-bell"></i> <%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
     </li>
   </div>
   <div style="font-weight: 600; padding-left: 30px; padding-top: 16px; border-top: 1px solid #fff;">
