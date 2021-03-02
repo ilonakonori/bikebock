@@ -23,14 +23,15 @@
 
   <div>
     <%= link_to ride_path(ride) do %>
-  <div class="card" style="border-radius: 16px; border: 0;">
-    <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
-  </div>
-  <br>
+    <div class="card" style="border-radius: 16px; border: 0;">
+      <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
+    </div>
+    <br>
     <div style="display: flex; justify-content: start;">
-      <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
-      <p style="display: flex; justify-content: flex-end; color: #00917C; padding-left: 4px; font-size: 12px;">
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+      <div style="display: flex; justify-content: start; color: #00917C; font-size: 12px;">
+        <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 8px; color: #333333;"><%= ride.title[0..25] %></h5>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+      </div>
     </div>
       <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
 
