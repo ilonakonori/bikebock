@@ -1,9 +1,0 @@
-<h3>Pending requests</h3>
-<h6>Received requests: <%= @requests_received.size %></h6>
-<% @requests_received.each do |r| %>
-  <p><%= link_to User.find(r.sender_id).name, request_path(r) %></p>
-<% end %>
-<h6>Sent requests: <%= @requests_sent.size %></h6>
-<% @requests_sent.each do |r| %>
-  <p><%= link_to User.find(r.recipient_id).name, request_path(r) %></p>
-<% end %>

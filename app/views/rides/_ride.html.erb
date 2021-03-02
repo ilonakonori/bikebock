@@ -1,20 +1,26 @@
 
-<div id='ride-<%= ride.id %>' class="" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+<div id='ride-<%= ride.id %>' class="" style="margin-bottom: 24px; padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
     <div>
-      <% if current_user.favorited?(ride) %>
-        <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-          <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark' style="font-size:16px; " ></i>
-        <% end %>
-      <% else %>
-        <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-          <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark" style="font-size:16px;"></i>
-        <% end %>
+      <% if policy(ride).fav? %>
+        <% if current_user.favorited?(ride) %>
+          <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
+            <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark r'></i>
+          <% end %>
+        <% else %>
+          <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
+            <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark r"></i>
+          <% end %>
+      <% end %>
       <% end %>
     </div>
     <div>
       <%= link_to user_path(ride.user) do %>
+<<<<<<< HEAD
         <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
+=======
+        <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+>>>>>>> bf5ef8759b09510b74ecc4640241bdedcf4bb1db
       <% end %>
     </div>
   </div>
@@ -26,6 +32,7 @@
     </div>
     <br>
     <div style="display: flex; justify-content: start;">
+<<<<<<< HEAD
       <div style="display: flex; justify-content: start; color: #00917C; font-size: 12px;">
         <h5 style="font-size: 4vw; padding-left: 4px; color: #333333;"><%= ride.title[0..25] %></h5>
         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
@@ -41,6 +48,11 @@
           <% end %>
         <% end %>
       </div>
+=======
+      <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
+      <p style="display: flex; justify-content: flex-end; color: #00917C; padding-left: 4px; font-size: 12px;">
+      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+>>>>>>> bf5ef8759b09510b74ecc4640241bdedcf4bb1db
     </div>
       <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
 
@@ -67,7 +79,7 @@
     </div>
   <% end %>
 </div>
-<br>
+
 
 <script>
   function changeBookmark(_this) {

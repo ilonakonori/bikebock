@@ -1,5 +1,5 @@
-const initPresence = () => {
-  const id = document.getElementById('user').dataset.onlineId;
+const initPresenceCurrent = () => {
+  const id = document.getElementById('c_user').dataset.conlineId;
 
   setInterval(function() {
     $.ajax({
@@ -14,4 +14,4 @@ const initPresence = () => {
 
 }
 
-export { initPresence };
+export { initPresenceCurrent };

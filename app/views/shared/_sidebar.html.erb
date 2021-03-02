@@ -1,38 +1,64 @@
 <div id='sidebar' class='sidebar-nav'>
-  <div style="background-color: rgba(0, 145, 124, 0.8); border-bottom: 1px solid #fff;" >
-    <i id='sidebar-toggler' class="fa fa-bars"></i>
-    <p style="padding-left: 30px; padding-top: 10px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
-    <%= current_user.name %> <i class="fas fa-bicycle">...</i>
-  </div>
-    <!-- dropdown not needed 
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-        My account
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li><%= link_to "Profile", user_path(current_user), class: "dropdown-item" %></li>
-        <li><%= link_to "Another action", "#", class: "dropdown-item" %></li>
-        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-      </ul>
-    </div> -->
 
-  <div style="height: 73vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
+  <div class="sidebar-box" >
+    <i id='sidebar-toggler' class="fa fa-bars"></i>
+    <p style="padding-left: 32px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
+    <span style="margin-left: 4px;"><%= current_user.name %></span>
+  </div>
+
+  <!-- notification bell render part -->
+  <div class='not-box'>
+  <div id='notifications'>
+    <p id='note' data-note-id="<%= current_user.id %>" ></p>
+    <% if current_user.notifications.where(read: false).present? %>
+      <i class="fas fa-bell"></i>
+    <% end %>
+  </div>
+</div>
+  <!-- end -->
+
+  <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
+
+  <div style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
       <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
     <li class="nav-item active" style="margin-bottom: 24px;">
       <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
+    <!-- requests -->
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <span id='request-size'>
+        <% if current_user.notifications.where(read: false, action: 'Request').size > 0 %>
+          <%= current_user.notifications.where(read: false, action: 'Request').size %>
+        <% end %>
+      </span>
+    </li>
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <!-- render this -->
+      <span id='msg-size'>
+        <% if current_user.notifications.where(read: false, action: 'Message').size > 0 %>
+          <%= current_user.notifications.where(read: false, action: 'Message').size %>
+        <% end %>
+      </span>
+      <!-- end -->
     </li>
-     <li class="nav-item" style="margin-bottom: 24px;">
+    <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+    </li>
+    <!-- just atm -->
+    <li class="nav-item" style="margin-bottom: 24px;">
+      <i class="fas fa-bell"></i> <%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
     </li>
   </div>
   <div style="font-weight: 600; padding-left: 30px; padding-top: 16px; border-top: 1px solid #fff;">
-  <li class="nav-item">
+    <li class="nav-item">
       <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "sidenav-link", style: "padding-left: 8px;" %>
     </li>
   </div>
 </div>
+
+

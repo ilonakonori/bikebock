@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     member do
       get :presence
+      get :unread
     end
     collection do
       get :bookmarks
+      get :notifications
     end
   end
 
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :requests, only: [:new, :create, :show] do
+  resources :requests, only: [:index, :new, :create, :show, :destroy] do
     resources :conversations, only: [:new, :create]
   end
 

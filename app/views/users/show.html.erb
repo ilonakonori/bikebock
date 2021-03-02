@@ -1,11 +1,11 @@
 <div class="my-card" id='user' data-online-id="<%= @user.id %>">
-  <div class="my-row" style="display: flex; justify-content: space-around; padding: 16px 0;">
-    <%= cl_image_tag @user.profile_photo.key, height: 147, width: 147, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+  <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
+    <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
     <div class="my-card-body" style="padding: 0 16px;">
       <h6 style="font-size: 4vw;"><%= @user.name %></h6>
       <!-- render part -->
       <div id='online-<%= @user.id %>'>
-        <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px;font-weight: 300;">
+        <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px; font-weight: 300; margin-bottom: 0 !important;">
           Online
           <%
             if @user.online?
@@ -15,7 +15,7 @@
             end
           %>
           <span>
-            <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+            <i class='fas fa-circle' style="color: <%= present_color %>"></i>
           </span>
           <% if !@user.online? %>
             <span style="font-size: 11px;"> <%= @user.last_online %></span>
@@ -30,10 +30,10 @@
 </div>
 
 <div class="card" style="box-shadow: inset 0 0 4vmin 3vmin rgba(0,0,0,0.5);">
-  <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 50vw;"%>
+  <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
 </div>
 
-<div class="my-container" style="padding: 24px 0;">
+<div class="my-container" style="padding: 20px 0;">
   <div style="display: flex; flex-wrap: wrap;">
     <% @user.interests.split(/\W+/).each do |i| %>
       <p class="interests"><%= i.upcase %></p>
@@ -49,34 +49,29 @@
       <%= link_to ride_path(ride) do %>
         <div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
         <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
-          <%= cl_image_tag @user.profile_photo.key, height: 30, width: 30, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+          <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>
           <%= cl_image_tag ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
         <br>
-          <div style="display: flex; justify-content: flex-start; color: #00917C; font-size: 12px;">
-            <h5 style="font-size: 4vw; color: #333333;"><%= ride.title %></h5>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <!-- fake ratings atm -->
+          <div style="display: flex; justify-content: start;">
+            <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
+            <p style="display: flex; justify-content: flex-end; color: #00917C; padding-left: 4px; font-size: 12px;">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
           </div>
           <p style="font-size: 3vw; padding-left: 4px;"><%= ride.short_description[0..200] %>...</p>
         </div>
       <% end %>
     <% end %>
   <% end %>
-
-  <br>
-  <br>
-  <div>
+  <div style="padding-top: 32px;">
     <% if @user == current_user %>
+      <%= link_to "Edit Profile", edit_user_registration_path(@user), style: "  background-color: #433520; padding: 8px 55px; margin-left: 70px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
 
-      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
-      <!-- sidebar! -->
+      <!-- not in profile!
       <%= link_to "My Messages", conversations_path %>
-      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Add Ride", new_ride_path, class: "" %>
-      <hr style="width: 100%; text-align: left; margin-left: 0;"/>
       <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
-      <!-- end -->
+      end -->
 
     <% elsif Request.where(accepted: false, sender_id: current_user, recipient_id: @user).present? %>
       <% request = Request.where(accepted: false, sender_id: current_user, recipient_id: @user).first %>
@@ -91,4 +86,5 @@
       <%= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
   </div>
+  <br>
 </div>

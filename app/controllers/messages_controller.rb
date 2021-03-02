@@ -7,6 +7,24 @@ class MessagesController < ApplicationController
     @message.sender_id = current_user.id
     authorize @message
     if @message.save
+
+      m = Message.find(@message.id)
+      sender_name = User.find(m.sender_id).name
+      recipient = User.find(m.recipient_id)
+
+      if !recipient.online? || recipient.online? && recipient.tracking.location != "http://localhost:3000/conversations/#{@conversation.id}"
+        Notification.create!(
+          user: recipient,
+          sender_name: sender_name,
+          action: 'Message',
+          action_id: m.id,
+          action_time: Time.now,
+          read: false,
+          content: "#{sender_name} sent you message",
+          link: "/conversations/#{@conversation.id}#message-#{m.id}"
+        )
+      end
+
       ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
       redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")
     else
