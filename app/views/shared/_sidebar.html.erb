@@ -31,7 +31,7 @@
      <!-- requests stimulus-->
       <span id='request-size' data-controller="requests">
         <span class='requests'>
-          <span data-requests-target="request"></span>
+          <span data-requests-target="request"><%= @unread_requests unless @unread_requests.zero? %></span>
         </span>
       </span>
 
@@ -43,7 +43,7 @@
       <!-- msg stimulus -->
       <span id='msg-size' data-controller="messages">
         <span class='messages'>
-          <span data-messages-target="message"></span>
+          <span data-messages-target="message"><%= @unread_messages unless @unread_messages.zero? %></span>
         </span>
       </span>
       <!-- end -->

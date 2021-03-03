@@ -19,17 +19,10 @@ class ApplicationController < ActionController::Base
   private
 
   def unread
-  end
-
-  def requests
-     if user_signed_in?
-      @unread_requests = current_user.notifications.where(read: false, action: 'Request')
-    end
-  end
-
-  def messages
-     if user_signed_in?
-      @unread_messages = current_user.notifications.where(read: false, action: 'Message')
+    if user_signed_in?
+      @unread = current_user.notifications.where(read: false).present?
+      @unread_requests = current_user.notifications.where(read: false, action: 'Request').count
+      @unread_messages = current_user.notifications.where(read: false, action: 'Message').count
     end
   end
 
