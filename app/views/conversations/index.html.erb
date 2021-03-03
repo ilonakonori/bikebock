@@ -1,24 +1,33 @@
 <%#= render 'requests/index' %>
-<h3>Conversations</h3>
-<% @conversations.each do |c| %>
-  <div style='display:flex; justify-content: flex-start;'>
-    <%
-      if c.opposed_user(current_user).online?
-        present_color = '#00917C;'
-      else
-        present_color = '#aaa;'
-      end
-    %>
-
-    <span id='last-online-<%= c.opposed_user(current_user).id %>'>
-      <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-    </span>
-    <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+<div>
+  <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
+    <p style="font-size: 60px;"><i class="far fa-comments"></i></p>
+    <h6>No Messeges Yet!</h6>
+    <br>
+    <p style="color: rgba(14, 0, 0, 0.38);">Get or send a messege and it shows up here!</p>
+    <br>
+    <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
   </div>
+  <% @conversations.each do |c| %>
+    <div style='display:flex; justify-content: flex-start;'>
+      <%
+        if c.opposed_user(current_user).online?
+          present_color = '#00917C;'
+        else
+          present_color = '#aaa;'
+        end
+      %>
 
-  <div class='col'>
-    <small><%= c.messages.last.created_at %></small>
-    <p><%= c.messages.last.content[0..40] %></p>
-  </div>
+      <span id='last-online-<%= c.opposed_user(current_user).id %>'>
+        <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+      </span>
+      <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+    </div>
 
-<% end %>
+    <div class='col'>
+      <small><%= c.messages.last.created_at %></small>
+      <p><%= c.messages.last.content[0..40] %></p>
+    </div>
+
+  <% end %>
+</div>
