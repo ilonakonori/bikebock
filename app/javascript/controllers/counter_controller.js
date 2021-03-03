@@ -12,10 +12,11 @@ export default class extends Controller {
       .then(response => response.json())
       .then((data) => {
         if(data.unread) {
-          this.countTarget.className = 'fas fa-bell';
+          this.countTarget.className = 'fas fa-bell active';
+
         } else {
-          this.countTarget.classList.remove('fas');
-          this.countTarget.classList.remove('fa-bell');
+          this.countTarget.className = '';
+
         }
         console.log(data.unread);
       });
