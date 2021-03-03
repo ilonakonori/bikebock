@@ -53,10 +53,12 @@ class UsersController < ApplicationController
   def unread
     @user = current_user
     @unread = @user.notifications.where(read: false).present?
+    @unread_requests = @user.notifications.where(read: false, action: 'Request').count
+    @unread_messages = @user.notifications.where(read: false, action: 'Message').count
     authorize @user
      respond_to do |format|
       format.html
-      format.json { render json: { notifications: @unread } }
+      format.json { render json: { unread: @unread, requests: @unread_requests, messages: @unread_messages } }
     end
   end
 

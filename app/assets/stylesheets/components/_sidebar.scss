@@ -58,11 +58,9 @@
   to {background-color:rgba(0, 145, 124, 0.8); border-bottom-color: #fff; z-index: 900;}
 }
 
-#notifications > i.fas.fa-bell {
-  color: rgba(0, 145, 124, 0.8);
-}
-
-#notifications > i.fas.fa-bell.active {
+#sidebar > div.not-box > div > i.fas.fa-bell.active
+//.not-box.counter > i.fas.fa-bell.active {
+{
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }

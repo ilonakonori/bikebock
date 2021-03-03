@@ -1,7 +1,7 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = [ 'count' ];
+  static targets = [ 'message' ];
 
   connect() {
     setInterval(this.refresh, 5000);
@@ -11,14 +11,10 @@ export default class extends Controller {
     fetch('/users/unread', { headers: { accept: "application/json" } } )
       .then(response => response.json())
       .then((data) => {
-        if(data.unread) {
-          this.countTarget.className = 'fas fa-bell';
-        } else {
-          this.countTarget.classList.remove('fas');
-          this.countTarget.classList.remove('fa-bell');
+        if(data.messages > 0) {
+          this.messageTarget.innerText = data.messages;
         }
-        console.log(data.unread);
+        console.log(data.messages);
       });
-
   }
 }

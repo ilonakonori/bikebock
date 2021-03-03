@@ -19,10 +19,16 @@ class ApplicationController < ActionController::Base
   private
 
   def unread
-    if user_signed_in?
-      @unread_note = current_user.notifications.where(read: false).present?
-      # new method + stimulus
+  end
+
+  def requests
+     if user_signed_in?
       @unread_requests = current_user.notifications.where(read: false, action: 'Request')
+    end
+  end
+
+  def messages
+     if user_signed_in?
       @unread_messages = current_user.notifications.where(read: false, action: 'Message')
     end
   end

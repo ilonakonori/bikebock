@@ -27,21 +27,27 @@
     <!-- requests -->
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
-      <span id='request-size'>
-        <% if @unread_requests && @unread_requests.size > 0 %>
-          <%= @unread_requests.size %>
-        <% end %>
+
+     <!-- requests stimulus-->
+      <span id='request-size' data-controller="requests">
+        <span class='requests'>
+          <span data-requests-target="request"></span>
+        </span>
       </span>
+
+
     </li>
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
-      <!-- render this -->
-      <span id='msg-size'>
-        <% if @unread_messages && @unread_messages.size > 0 %>
-          <%= @unread_messages.size %>
-        <% end %>
+
+      <!-- msg stimulus -->
+      <span id='msg-size' data-controller="messages">
+        <span class='messages'>
+          <span data-messages-target="message"></span>
+        </span>
       </span>
       <!-- end -->
+
     </li>
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
