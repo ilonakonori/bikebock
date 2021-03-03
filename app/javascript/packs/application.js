@@ -34,7 +34,6 @@ import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../channels/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
-//import { initNotifications } from '../channels/init_notifications';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -60,10 +59,6 @@ document.addEventListener('turbolinks:load', () => {
     initPresenceCurrent();
   }
 
-  const note = document.getElementById('note')
-  if(note) {
-   // initNotifications();
-  }
 
   flatpickr(".flatpickr", {
     mode: "multiple",
