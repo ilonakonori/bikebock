@@ -18,14 +18,20 @@
 
   <div style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to rides_path, class: "sidenav-link" do %>
+        <i class="fas fa-home"></i><span style="padding-left: 8px;">Home</span>
+      <% end %>
     </li>
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to user_path(current_user), class: "sidenav-link" do %>
+        <i class="fas fa-user"></i><span style="padding-left: 8px;">My Profile</span>
+      <% end %>
     </li>
     <!-- requests -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to requests_path, class: "sidenav-link" do %>
+        <i class="fas fa-plus"></i><span style="padding-left: 8px;">Requests</span>
+      <% end %>
      <!-- requests stimulus-->
       <span id='request-size' data-controller="requests">
         <span class='requests'>
@@ -35,7 +41,9 @@
     </li>
 
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-comment-alt"></i><%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to conversations_path, class: "sidenav-link" do%>
+        <i class="fas fa-comment-alt"></i><span style="padding-left: 8px;">Messages</span>
+      <% end %>
       <!-- msg stimulus -->
       <span id='msg-size' data-controller="messages">
         <span class='messages'>
@@ -46,18 +54,24 @@
 
     </li>
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to bookmarks_users_path, class: "sidenav-link" do %>
+        <i class="fas fa-bookmark"></i><span style="padding-left: 8px;">Bookmarks</span>
+      <% end %>
     </li>
-    <!-- just atm -->
+
+    <!-- just atm! -->
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-bell"></i> <%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
       <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
     </li>
+
   </div>
 
   <div class='sidebar-footer-box'>
     <li class="nav-item">
-      <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "sidenav-link" do %>
+        <i class="fas fa-sign-out-alt"></i><span style="padding-left: 8px;">Logout</span>
+      <% end %>
     </li>
   </div>
 </div>

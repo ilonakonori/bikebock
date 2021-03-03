@@ -13,10 +13,8 @@ export default class extends Controller {
       .then((data) => {
         if(data.unread) {
           this.countTarget.className = 'fas fa-bell active';
-
         } else {
           this.countTarget.className = '';
-
         }
         console.log(data.unread);
       });
