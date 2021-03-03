@@ -1,11 +1,20 @@
-<% if @bookmarks.blank? %>
-  <!-- write here smtng nice -->
-  <p> You still don't have any bookmarks, go and find some: </p>
-  <%= link_to "Rides", rides_path, style: 'color: red;' %>
-<% end %>
-<% @bookmarks.each do |b| %>
-  <% rides = Ride.where(id: b.favoritable_id) %>
-  <% rides.each do |ride| %>
-    <%= render 'rides/ride', ride: ride %>
+<div>
+  <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
+    <% if @bookmarks.blank? %>
+     <!-- write here smtng nice -->
+     <p style="font-size: 60px;"><i class="fas fa-bicycle"></i></p>
+     <h6> No Rides Bookmarked!</h6>
+     <br>
+     <p style="color: rgba(14, 0, 0, 0.38);"> You haven't saved any rides yet, so we don't have nything to show you! Go bookmark some!</p>
+     <br>
+     <%= link_to "Rides", rides_path, style: "background-color: #433520;
+    padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+    <% end %>
+  </div>
+  <% @bookmarks.each do |b| %>
+    <% rides = Ride.where(id: b.favoritable_id) %>
+    <% rides.each do |ride| %>
+      <%= render 'rides/ride', ride: ride %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
