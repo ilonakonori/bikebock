@@ -51,6 +51,13 @@ class UsersController < ApplicationController
   end
 
   def unread
+    @user = current_user
+    @unread = @user.notifications.where(read: false).present?
+    authorize @user
+     respond_to do |format|
+      format.html
+      format.json { render json: { notifications: @unread } }
+    end
   end
 
   def update_tracking

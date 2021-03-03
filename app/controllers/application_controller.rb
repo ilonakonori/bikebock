@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :unread
 
   include Pundit
 
@@ -16,6 +17,15 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def unread
+    if user_signed_in?
+      @unread_note = current_user.notifications.where(read: false).present?
+      # new method + stimulus
+      @unread_requests = current_user.notifications.where(read: false, action: 'Request')
+      @unread_messages = current_user.notifications.where(read: false, action: 'Message')
+    end
+  end
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/

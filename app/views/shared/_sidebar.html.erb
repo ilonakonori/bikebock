@@ -6,15 +6,13 @@
     <span style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
 
-  <!-- notification bell render part -->
-  <div class='not-box'>
-  <div id='notifications'>
-    <p id='note' data-note-id="<%= current_user.id %>" ></p>
-    <% if current_user.notifications.where(read: false).present? %>
-      <i class="fas fa-bell"></i>
-    <% end %>
+  <!-- notification bell stimulus part -->
+  <div class='not-box' data-controller="counter">
+    <div class="counter">
+      <br>
+      <i data-counter-target="count" class=""></i>
+    </div>
   </div>
-</div>
   <!-- end -->
 
   <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
@@ -30,8 +28,8 @@
     <li class="nav-item" style="margin-bottom: 24px;">
       <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
       <span id='request-size'>
-        <% if current_user.notifications.where(read: false, action: 'Request').size > 0 %>
-          <%= current_user.notifications.where(read: false, action: 'Request').size %>
+        <% if @unread_requests && @unread_requests.size > 0 %>
+          <%= @unread_requests.size %>
         <% end %>
       </span>
     </li>
@@ -39,8 +37,8 @@
       <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
       <!-- render this -->
       <span id='msg-size'>
-        <% if current_user.notifications.where(read: false, action: 'Message').size > 0 %>
-          <%= current_user.notifications.where(read: false, action: 'Message').size %>
+        <% if @unread_messages && @unread_messages.size > 0 %>
+          <%= @unread_messages.size %>
         <% end %>
       </span>
       <!-- end -->
