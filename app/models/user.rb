@@ -10,11 +10,14 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_one :tracking, dependent: :destroy
 
+  acts_as_taggable_on :tags
+  before_save :set_tags
+
   after_create :create_tracking
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :about_me, presence: true, length: { in: 20..188 }
+  # validates :about_me, presence: true, length: { in: 20..188 }
   validates :interests, presence: true, length: { in: 10..200 }
   validates :profile_photo, presence: true
   validates :bike_photo, presence: true
@@ -42,5 +45,9 @@ class User < ApplicationRecord
       min = "%3d"%[mins.to_i, secs]
       min + ' minute'.pluralize(min.to_i) + ' ago'
     end
+  end
+
+  def set_tags
+    self.tag_list = self.interests.split(/\W+/)
   end
 end

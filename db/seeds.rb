@@ -228,7 +228,7 @@ end
     email: "ronant6kruithof3+@gmail.com",
     password: "123456",
     about_me: "I am a bird-watching enthusiast. I love the outdoors and enjoy going for hikes during weekends. Also, I often spend time reading nature books and also keep digging information on the internet about birds.",
-    interests: "ART ARCHITECTURE DESIGN MUSIC MEDIA TECH",
+    interests: "ART ARCHITECTURE DESIGN MUSIC MEDIA TECH TRAVEL",
     last_seen: DateTime.now
     )
   puts "User not saved!"
@@ -281,7 +281,7 @@ end
     email: "martina5guido9+@gmail.com",
     password: "123456",
     about_me: "I enjoyed travelling the most. Yes, I am a wandering soul. Visiting new places, traveling new roads, trying new cuisines and learning about new cultures excites me!",
-    interests: "SUSTAINABILITY POLITICS ECONOMY CLUBING ICE-DIPPING",
+    interests: "SUSTAINABILITY POLITICS ECONOMY CLUBING ICE-DIPPING yoga travel",
     last_seen: DateTime.now
     )
   puts "User not saved!"
