@@ -1,16 +1,15 @@
 class ConversationsController < ApplicationController
-  #after_action :read_message_notifications, only: :show
+  after_action :read_message_notifications, only: :show
 
   def index
     update_tracking
-
-    #@new_messages = current_user.notifications.where(read: false, action: 'Message').order(action_time: :desc)
     @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
   end
 
   def show
     @conversation = Conversation.find(params[:id])
     @message = Message.new
+    @unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
     update_tracking
     authorize @conversation
   end
@@ -48,6 +47,14 @@ class ConversationsController < ApplicationController
       render 'requests/show'
     end
     update_tracking
+  end
+
+  def read_message_notifications
+    if @unread_msgs.present?
+      @unread_msgs.each do |n|
+        n.update(read: true, read_at: Time.now)
+      end
+    end
   end
 
   def update_tracking

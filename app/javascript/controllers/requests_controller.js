@@ -11,7 +11,7 @@ export default class extends Controller {
     fetch('/users/unread', { headers: { accept: "application/json" } } )
       .then(response => response.json())
       .then((data) => {
-        if(data.requests > 0) {
+        if(data.requests) {
           this.requestTarget.innerText = data.requests;
         }
         console.log(data.requests);
