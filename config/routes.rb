@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get :bookmarks
       get :notifications
+      get :tagged
     end
   end
 

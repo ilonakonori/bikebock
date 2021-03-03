@@ -16,9 +16,15 @@ class UsersController < ApplicationController
 
   def bookmarks
     @user = current_user
-    @bookmarks = @user.favorites.order('created_at desc')
+    @bookmarks = @user.favorites.order(created_at: :desc)
     update_tracking
     authorize @user
+  end
+
+  def tagged
+    @tag = params[:format]
+    @tagged_users = User.includes(:taggings).tagged_with(@tag, :any => true).order(created_at: :desc)
+    authorize @tagged_users
   end
 
   def notifications # works good
