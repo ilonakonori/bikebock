@@ -21,12 +21,6 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def tagged
-    @tag = params[:format]
-    @tagged_users = User.includes(:taggings).tagged_with(@tag, :any => true).order(created_at: :desc)
-    authorize @tagged_users
-  end
-
   def notifications # works good
 =begin
     @user = current_user

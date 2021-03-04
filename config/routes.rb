@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     collection do
       get :bookmarks
       get :notifications
-      get :tagged
     end
   end
 
@@ -33,4 +32,6 @@ Rails.application.routes.draw do
   resources :conversations, only: [:show, :index] do
     resources :messages, only: :create
   end
+
+  resources :tags, only: :show
 end
