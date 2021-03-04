@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
           user: recipient,
           sender_name: sender_name,
           action: 'Message',
-          action_id: m.id,
+          action_id: @conversation.id,
           action_time: Time.now,
           read: false,
           content: "#{sender_name} sent you message",

@@ -21,13 +21,8 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def tagged
-    @tag = params[:format]
-    @tagged_users = User.includes(:taggings).tagged_with(@tag, :any => true).order(created_at: :desc)
-    authorize @tagged_users
-  end
-
   def notifications # works good
+
     @user = current_user
     msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
 
@@ -48,9 +43,19 @@ class UsersController < ApplicationController
 
     update_tracking
     authorize @user
+
   end
 
   def unread
+    @user = current_user
+    @unread = @user.notifications.where(read: false).present?
+    @unread_requests = @user.notifications.where(read: false, action: 'Request').count
+    @unread_messages = @user.notifications.where(read: false, action: 'Message').count
+    authorize @user
+     respond_to do |format|
+      format.html
+      format.json { render json: { unread: @unread, requests: @unread_requests, messages: @unread_messages } }
+    end
   end
 
   def update_tracking

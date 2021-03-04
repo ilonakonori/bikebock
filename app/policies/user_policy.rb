@@ -17,10 +17,6 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
-  def tagged?
-    true
-  end
-
   def notifications?
     true
   end

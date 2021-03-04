@@ -23,13 +23,12 @@
 
 .not-box {
   position: absolute;
-  right: 1%;
+  right: 1.8%;
   font-size: 14px;
-  top: -2%;
-  color: rgba(0, 145, 124, 1);
+  top: 0.3%;
+  color: #2f2f2f; //rgba(0, 145, 124, 1);
   z-index: 1000;
 }
-
 
 .sidebar-nav.active {
   animation: showSidebar .5s 1 ease-in-out;
@@ -39,12 +38,24 @@
 .sidebar-box {
   border-bottom: 1px solid;
   border-bottom-color: rgba(0,0,0,0);
-
 }
-
 
 .sidebar-box.active {
   animation: showSidebarBox .5s 1 ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.sidebar-footer-box {
+  font: 1em sans-serif;
+  font-weight: 600;
+  padding-left: 30px;
+  padding-top: 16px;
+  border-top: 1px solid;
+  border-top-color: rgba(0,0,0,0);
+}
+
+.sidebar-footer-box.active {
+  animation: showSidebarFooterBox .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }
 
@@ -58,11 +69,14 @@
   to {background-color:rgba(0, 145, 124, 0.8); border-bottom-color: #fff; z-index: 900;}
 }
 
-#notifications > i.fas.fa-bell {
-  color: rgba(0, 145, 124, 0.8);
+@keyframes showSidebarFooterBox {
+  to {border-top-color: #fff; z-index: 900;}
 }
 
-#notifications > i.fas.fa-bell.active {
+/*
+#sidebar > div.not-box > div > i.fas.fa-bell.active
+//.not-box.counter > i.fas.fa-bell.active {
+{
   animation: showBell .5s 1 ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -70,6 +84,7 @@
 @keyframes showBell {
   to { color: #2f2f2f; }
 }
+*/
 
 #request-size, #msg-size {
   color: #2f2f2f;

@@ -35,8 +35,8 @@
 
 <div class="my-container" style="padding: 20px 0;">
   <div style="display: flex; flex-wrap: wrap;">
-    <% @user.tag_list.each do |tag| %>
-      <p class="interests"><%= link_to tag.upcase, tagged_users_path(tag) %></p>
+    <% @user.tags.each do |tag| %>
+      <p class="interests"><%= link_to tag.name, tag_path(tag) %></p>
     <% end %>
   </div>
 </div>

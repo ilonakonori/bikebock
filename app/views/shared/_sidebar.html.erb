@@ -6,57 +6,72 @@
     <span style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
 
-  <!-- notification bell render part -->
-  <div class='not-box'>
-  <div id='notifications'>
-    <p id='note' data-note-id="<%= current_user.id %>" ></p>
-    <% if current_user.notifications.where(read: false).present? %>
-      <i class="fas fa-bell"></i>
-    <% end %>
+  <!-- notification bell stimulus part -->
+  <div class='not-box' data-controller="counter">
+    <div class="counter">
+      <i data-counter-target="count" class="<%= @unread ? 'fas fa-bell' :'' %>"></i>
+    </div>
   </div>
-</div>
   <!-- end -->
 
   <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
 
   <div style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <i class="fas fa-home"></i> <%= link_to "Home", rides_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to rides_path, class: "sidenav-link" do %>
+        <i class="fas fa-home"></i><span style="padding-left: 8px;">Home</span>
+      <% end %>
     </li>
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <i class="fas fa-user"></i> <%= link_to "My Profile", user_path(current_user), class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to user_path(current_user), class: "sidenav-link" do %>
+        <i class="fas fa-user"></i><span style="padding-left: 8px;">My Profile</span>
+      <% end %>
     </li>
     <!-- requests -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-plus"></i> <%= link_to "Requests", requests_path, class: "sidenav-link", style: "padding-left: 8px;" %>
-      <span id='request-size'>
-        <% if current_user.notifications.where(read: false, action: 'Request').size > 0 %>
-          <%= current_user.notifications.where(read: false, action: 'Request').size %>
-        <% end %>
+      <%= link_to requests_path, class: "sidenav-link" do %>
+        <i class="fas fa-plus"></i><span style="padding-left: 8px;">Requests</span>
+      <% end %>
+     <!-- requests stimulus-->
+      <span id='request-size' data-controller="requests">
+        <span class='requests'>
+          <span data-requests-target="request"><%= @unread_requests unless @unread_requests.zero? %></span>
+        </span>
       </span>
     </li>
+
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-comment-alt"></i> <%= link_to "Messages", conversations_path, class: "sidenav-link", style: "padding-left: 8px;" %>
-      <!-- render this -->
-      <span id='msg-size'>
-        <% if current_user.notifications.where(read: false, action: 'Message').size > 0 %>
-          <%= current_user.notifications.where(read: false, action: 'Message').size %>
-        <% end %>
+      <%= link_to conversations_path, class: "sidenav-link" do%>
+        <i class="fas fa-comment-alt"></i><span style="padding-left: 8px;">Messages</span>
+      <% end %>
+      <!-- msg stimulus -->
+      <span id='msg-size' data-controller="messages">
+        <span class='messages'>
+          <span data-messages-target="message"><%= @unread_messages unless @unread_messages.zero? %></span>
+        </span>
       </span>
       <!-- end -->
+
     </li>
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-bookmark"></i> <%= link_to "Bookmarks", bookmarks_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to bookmarks_users_path, class: "sidenav-link" do %>
+        <i class="fas fa-bookmark"></i><span style="padding-left: 8px;">Bookmarks</span>
+      <% end %>
     </li>
-    <!-- just atm -->
+
+    <!-- just atm! -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-bell"></i> <%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <i class="fas fa-bell"></i><%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
       <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
     </li>
+
   </div>
-  <div style="font-weight: 600; padding-left: 30px; padding-top: 16px; border-top: 1px solid #fff;">
+
+  <div class='sidebar-footer-box'>
     <li class="nav-item">
-      <i class="fas fa-sign-out-alt"></i> <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "sidenav-link", style: "padding-left: 8px;" %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "sidenav-link" do %>
+        <i class="fas fa-sign-out-alt"></i><span style="padding-left: 8px;">Logout</span>
+      <% end %>
     </li>
   </div>
 </div>
