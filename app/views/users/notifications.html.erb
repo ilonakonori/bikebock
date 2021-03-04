@@ -1,16 +1,25 @@
-<h3>Notifications (<%= @notifications.size %>)</h3>
-<% @notifications.each do |n| %>
-  <% if n.link.present? %>
-    <p><%= link_to n.content, n.link %><!--<#%= n.action_time%></small>--></p>
-  <% else %>
-    <p><%= n.content %>
+<div>
+  <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
+    <p style="font-size: 60px;"><i class="far fa-bell"></i></p>
+    <h6>No Notifications Here! <!--(<%= @notifications.size %>) --> </h6>
+    <br>
+    <p style="color: rgba(14, 0, 0, 0.38);">We'll let you know when we've got someting new for you!</p>
+    <br>
+    <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+  </div>
+  <% @notifications.each do |n| %>
+    <% if n.link.present? %>
+      <p><%= link_to n.content, n.link %><!--<#%= n.action_time%></small>--></p>
+    <% else %>
+      <p><%= n.content %>
+    <% end %>
   <% end %>
-<% end %>
 
-<% @notifications_read.each do |n| %>
-<% if n.link.present? %>
-  <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
-  <% else %>
-    <p style='color: #999;'><%= n.content %>
+  <% @notifications_read.each do |n| %>
+  <% if n.link.present? %>
+    <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
+    <% else %>
+      <p style='color: #999;'><%= n.content %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
