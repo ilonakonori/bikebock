@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :presence, :unread]
-  # after_action :read_notification, only: :notifications
+  after_action :read_notification, only: :notifications
 
   def show
     #@requests_received = Request.where(accepted: false, recipient_id: @user.id)
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def notifications # works good
-=begin
+
     @user = current_user
     msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
 
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
     update_tracking
     authorize @user
-=end
+
   end
 
   def unread
