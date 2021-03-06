@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :rides, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_one :tracking, dependent: :destroy
+  has_many :friends, dependent: :destroy
+
+  after_destroy :destroy_as_friend
 
   acts_as_taggable_on :tags
   before_save :set_tags
@@ -23,6 +26,10 @@ class User < ApplicationRecord
   validates :bike_photo, presence: true
 
   acts_as_favoritor
+
+  def destroy_as_friend
+    Friend.where(friend_id: self.id).destroy_all
+  end
 
   def self.create_tracking
     self.tracking.create!(location: 'http://localhost:3000/rides', location_time: Time.now)
