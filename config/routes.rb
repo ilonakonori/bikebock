@@ -22,10 +22,9 @@ Rails.application.routes.draw do
       get :unfav
       put :unfav
     end
-
   end
 
-  resources :requests, only: [:index, :new, :create, :show, :destroy] do
+  resources :requests, only: [:index, :create, :show, :destroy] do
     resources :conversations, only: [:new, :create]
   end
 

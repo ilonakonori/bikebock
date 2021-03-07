@@ -97,7 +97,15 @@
       <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
     <% if current_user != ride.user %>
-      <%= link_to 'I want to go' %>
+      <%= link_to 'I want to go'  %>
+
+     <!-- add request logic as on user#show -->
+     <form method="post" action="/requests" class=" ">
+       <input value="I want to go'" type="submit" />
+       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+       <%= hidden_field_tag :ride_id, ride.id %>
+     </form>"
+
     <% end %>
   </div>
   <br>

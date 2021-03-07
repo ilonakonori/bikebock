@@ -21,28 +21,15 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(request_params)
+    @request = Request.new
     authorize @request
-    if @request.save
-
-      r = Request.find(@request.id)
-      sender_name = User.find(r.sender_id).name
-      recipient = User.find(r.recipient_id)
-
-      Notification.create!(
-        user: recipient,
-        sender_name: sender_name,
-        action: 'Request',
-        action_id: r.id,
-        action_time: Time.now,
-        read: false,
-        content: "#{sender_name} sent you message request",
-        link: "/requests/#{r.id}/"
-      )
-
-      redirect_to user_path(@request.recipient_id), notice: 'Request was succesfully sent'
-    else
-      render :new
+    @ride = Ride.find(params[:ride_id])
+    @request.recipient_id = @ride.user_id
+    @request.sender_id = current_user.id
+    @request.first_message = "#{@ride.user.name} sent you request for #{@ride.title}"
+    if @request.save!
+      flash[:notice] = 'Request sent'
+      redirect_to ride_path(@ride)
     end
     update_tracking
   end

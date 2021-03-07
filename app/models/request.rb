@@ -4,7 +4,7 @@ class Request < ApplicationRecord
   has_one :conversation, dependent: :destroy
 
   # validation not working?
-  validates :first_message, presence: true
+  #validates :first_message, presence: true
 
   validates :sender_id, uniqueness: { scope: :recipient_id }
 

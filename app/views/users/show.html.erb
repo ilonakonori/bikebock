@@ -83,7 +83,7 @@
       <% room = Conversation.where(sender_id: current_user, recipient_id: @user).or(Conversation.where(sender_id: @user, recipient_id: current_user)).first %>
       <%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
     <% else %>
-      <%= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
+      <%#= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
   </div>
   <br>
