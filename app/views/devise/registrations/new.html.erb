@@ -1,6 +1,9 @@
-<div class="container" style="background-color: #00917C;">
-  <h3 style="text-align: center; color: #fff;">Create Account!</h3>
-  <p style="text-align: center;">Create a new account</p>
+<div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
+  <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
+    <h3>Create Account!</h3>
+    <p style="color: #000;">Create a new account</p>
+    <hr style="width: 95%; text-align: left; margin-left: 0;">
+  </div>
   <br>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -17,12 +20,12 @@
                   label: false,
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
+                  <br>
       <%= f.input :about_me, 
                   required: true, 
                   autofocus: true,
                   label: false,
                   placeholder: "About Yourself" %>
-                  <br>
       <%= f.input :interests,
                   required: true,
                   autofocus: true,
@@ -39,7 +42,7 @@
                   <br>
       <%= f.input :password,
                   required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  hint: ("Must have at least #{@minimum_password_length} characters" if @minimum_password_length),
                   label: false,
                   placeholder: "Password",
                   input_html: { autocomplete: "new-password" } %>
@@ -57,5 +60,5 @@
     </div>
   <% end %>
   <br>
-  <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links", style:"font-weight: 600;" %><br />
+  <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
 </div>
