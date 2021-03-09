@@ -1,6 +1,6 @@
 <h3><%= @request.opposed_user(current_user).name %></h3>
 <small><%= @request.created_at %></small>
-<p><%= @request.first_message %></p>
+<p><%#= @request.first_message %></p>
 <% if @request.recipient_id == current_user.id %>
   <% if !@request.accepted %>
 
@@ -9,10 +9,22 @@
        <%= hidden_field_tag :id, @request.id %>
        <input value="Accept" type="submit" />
      </form>"
+  <% else %>
+    <p> Request accepted :) go to chat! <p>
 
   <% end %>
 
   <% if policy(@request).destroy? %>
     <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, style: 'color:red;' %>
   <% end %>
+
+<% else %>
+  <% if !@request.accepted %>
+    <p> Status pending </p>
+  <% else %>
+    <p> Request accepted :) go to chat! <p>
+
+  <% end %>
+
 <% end %>
+<!-- imp this! -->

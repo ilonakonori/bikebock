@@ -96,17 +96,34 @@
     <% if policy(ride).destroy? %>
       <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
-    <% if current_user != ride.user %>
-      <%= link_to 'I want to go'  %>
 
-     <!-- add request logic as on user#show -->
-     <form method="post" action="/requests" class=" ">
-       <input value="I want to go" type="submit" />
-       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-       <%= hidden_field_tag :ride_id, ride.id %>
-     </form>"
+     <% if Request.where(accepted: false, sender_id: current_user, recipient_id: ride.user_id).present? %>
+      <% request = Request.where(accepted: false, sender_id: current_user, recipient_id: ride.user_id).first %>
+      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
+    <% elsif Request.where(accepted: false, sender_id: ride.user_id, recipient_id: current_user).present? %>
+      <% request = Request.where(accepted: false, sender_id: ride.user_id, recipient_id: current_user).first %>
+      <%= link_to 'Check your request', request_path(request.id) %>
+    <% elsif Conversation.where(sender_id: current_user, recipient_id: ride.user_id).present? || Conversation.where(sender_id: ride.user_id, recipient_id: current_user).present? %>
+      <% room = Conversation.where(sender_id: current_user, recipient_id: ride.user.id).or(Conversation.where(sender_id: ride.user.id, recipient_id: current_user)).first %>
 
+      <% if room.messages.present? %>
+        <%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
+      <% else %>
+        <%= link_to 'Chat', conversation_path(room.id) %>
+      <% end %>
+
+    <% elsif current_user.id != ride.user_id %>
+
+      <form method="post" action="/requests" class=" ">
+        <input value="I want to go" type="submit" />
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag :ride_id, ride.id %>
+      </form>
+      <%#= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
+
+
+
   </div>
   <br>
 </div>

@@ -21,10 +21,9 @@ class ConversationsController < ApplicationController
                       sender_id: @request.sender_id,
                       recipient_id: @request.recipient_id)
     authorize @conversation
-
+    @request.update(accepted: true, friend: true)
     if @conversation.save
 
-      @request.update(accepted: true, friend: true)
       c = Conversation.find(@conversation.id)
       sender_name = User.find(c.recipient_id).name
       recipient = User.find(c.sender_id)

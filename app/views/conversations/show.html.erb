@@ -1,6 +1,8 @@
 <div class='chat-user-box'>
   <div style="text-align: center;">
-    <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
+    <%= link_to user_path(@conversation.opposed_user(current_user)) do %>
+      <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
+    <% end %>
   </div>
 
   <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">

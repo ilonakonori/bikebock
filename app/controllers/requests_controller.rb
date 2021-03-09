@@ -2,18 +2,12 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
   after_action :read_request_notification, only: :index
 
-  def index
+  def index # imp this!
     @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
     @requests_received = current_user.notifications.where(read: false, action: 'Request').order(action_time: :desc)
     @requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     update_tracking
   end
-
- # def new
- #   @request = Request.new
- #   update_tracking
- #   authorize @request
- # end
 
   def show
     update_tracking
@@ -30,10 +24,6 @@ class RequestsController < ApplicationController
                 friend: false
                 )
 
-    #@request.recipient_id = ride.user_id
-    #@request.sender_id = current_user.id
-    #@request.accepted = false
-    #@request.friend = false
     authorize @request
 
     if @request.save!
@@ -97,8 +87,4 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     authorize @request
   end
-
- # def request_params
- #   params.require(:request).permit(:first_message, :recipient_id, :sender_id)
- # end
 end
