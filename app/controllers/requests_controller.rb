@@ -9,11 +9,11 @@ class RequestsController < ApplicationController
     update_tracking
   end
 
-  def new
-    @request = Request.new
-    update_tracking
-    authorize @request
-  end
+ # def new
+ #   @request = Request.new
+ #   update_tracking
+ #   authorize @request
+ # end
 
   def show
     update_tracking
@@ -21,15 +21,40 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new
+    ride = Ride.find(params[:ride_id])
+
+    @request = Request.new(
+                recipient_id: ride.user_id,
+                sender_id: current_user.id,
+                accepted: false,
+                friend: false
+                )
+
+    #@request.recipient_id = ride.user_id
+    #@request.sender_id = current_user.id
+    #@request.accepted = false
+    #@request.friend = false
     authorize @request
-    @ride = Ride.find(params[:ride_id])
-    @request.recipient_id = @ride.user_id
-    @request.sender_id = current_user.id
-    @request.first_message = "#{@ride.user.name} sent you request for #{@ride.title}"
+
     if @request.save!
-      flash[:notice] = 'Request sent'
-      redirect_to ride_path(@ride)
+
+      r = Request.find(@request.id)
+      sender_name = User.find(r.sender_id).name
+      recipient = User.find(r.recipient_id)
+
+      Notification.create!(
+        user: recipient,
+        sender_name: sender_name,
+        action: 'Request',
+        action_id: r.id,
+        action_time: Time.now,
+        read: false,
+        link: "requests/#{r.id}",
+        content: "#{sender_name} sent you request"
+      )
+
+      flash[:notice] = 'Request successfully sent'
+      redirect_to ride_path(ride)
     end
     update_tracking
   end
@@ -47,10 +72,10 @@ class RequestsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} declined your message request :("
+        content: "#{sender_name} declined your request :("
       )
     update_tracking
-    redirect_to conversations_path(current_user), notice: 'You declined this message request!'
+    redirect_to conversations_path(current_user), notice: 'You declined this request!'
   end
 
   def update_tracking
@@ -73,7 +98,7 @@ class RequestsController < ApplicationController
     authorize @request
   end
 
-  def request_params
-    params.require(:request).permit(:first_message, :recipient_id, :sender_id)
-  end
+ # def request_params
+ #   params.require(:request).permit(:first_message, :recipient_id, :sender_id)
+ # end
 end

@@ -2,35 +2,42 @@
   <% if @conversations.blank? %>
     <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
       <p style="font-size: 60px;"><i class="far fa-comments"></i></p>
-      <h6>No Messeges Yet!</h6>
+      <h6>No Messages Yet!</h6>
       <br>
-      <p style="color: rgba(14, 0, 0, 0.38);">Get or send a messege and it shows up here!</p>
+      <!--
+        <p style="color: rgba(14, 0, 0, 0.38);">Get or send a message and it shows up here!</p>
+         -->
+      <p style="color: rgba(14, 0, 0, 0.38);">Connect with someone first!</p> <!-- write smtng nice here-->
       <br>
       <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
+
     <% @conversations.each do |c| %>
-      <div style='display:flex; justify-content: flex-start;'>
-        <%
-          if c.opposed_user(current_user).online?
-            present_color = '#00917C;'
-          else
-            present_color = '#aaa;'
-          end
-        %>
+    <!-- add here search for friends -->
+      <% if c.messages.present? %>
+        <div style='display:flex; justify-content: flex-start;'>
+          <%
+            if c.opposed_user(current_user).online?
+              present_color = '#00917C;'
+            else
+              present_color = '#aaa;'
+            end
+          %>
 
-        <span id='last-online-<%= c.opposed_user(current_user).id %>'>
-          <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-        </span>
-        <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
-        <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user).size %>
-        <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
-      </div>
+          <span id='last-online-<%= c.opposed_user(current_user).id %>'>
+            <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+          </span>
+          <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
+          <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user).size %>
+          <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
+        </div>
 
-      <div class='col'>
-        <small><%= c.messages.last.created_at %></small>
-        <p><%= c.messages.last.content[0..40] %></p>
-      </div>
+        <div class='col'>
+          <small><%= c.messages.last.created_at %></small>
+          <p><%= c.messages.last.content[0..40] %></p>
+        </div>
+     <% end %>
     <% end %>
   <% end %>
 </div>

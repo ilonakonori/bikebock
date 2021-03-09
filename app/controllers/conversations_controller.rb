@@ -15,14 +15,17 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @request = Request.find(params[:request_id])
-    @conversation = Conversation.new(conversation_params)
-    @request.update(accepted: true, friend: true)
+    @request = Request.find(params[:id])
+    @conversation = Conversation.new(
+                      request_id: @request.id,
+                      sender_id: @request.sender_id,
+                      recipient_id: @request.recipient_id)
     authorize @conversation
+
     if @conversation.save
 
+      @request.update(accepted: true, friend: true)
       c = Conversation.find(@conversation.id)
-
       sender_name = User.find(c.recipient_id).name
       recipient = User.find(c.sender_id)
 
@@ -33,11 +36,11 @@ class ConversationsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} accepted your message request :)",
+        content: "#{sender_name} accepted your request :)",
         link: "/conversations/#{c.id}/"
       )
 
-      Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
+      #Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
 
       #ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
       #redirect_to conversation_path(@conversation) #, anchor: "message-#{@message.id}")

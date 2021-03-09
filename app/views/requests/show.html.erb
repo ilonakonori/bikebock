@@ -3,7 +3,13 @@
 <p><%= @request.first_message %></p>
 <% if @request.recipient_id == current_user.id %>
   <% if !@request.accepted %>
-    <%= render 'conversations/new' %>
+
+      <form method="post" action="/requests/:id/conversations" class=" ">
+       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+       <%= hidden_field_tag :id, @request.id %>
+       <input value="Accept" type="submit" />
+     </form>"
+
   <% end %>
 
   <% if policy(@request).destroy? %>

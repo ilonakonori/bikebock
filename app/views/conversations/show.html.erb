@@ -1,32 +1,41 @@
-<div style="text-align: center;">
-  <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
-</div>
-
-<div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
-  <%= @conversation.opposed_user(current_user).name %>
-  <!-- render part -->
-  <div id='online-<%= @conversation.opposed_user(current_user).id %>'>
-    <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 11px;font-weight: 300;">
-      Online
-      <%
-        if @conversation.opposed_user(current_user).online?
-          present_color = '#00917C;'
-        else
-          present_color = '#aaa;'
-        end
-      %>
-      <span>
-        <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-      </span>
-      <% if !@conversation.opposed_user(current_user).online? %>
-        <span style="font-size: 11px;"> <%= @conversation.opposed_user(current_user).last_online %></span>
-      <% end %>
-    </p>
+<div class='chat-user-box'>
+  <div style="text-align: center;">
+    <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
   </div>
-  <!-- end of render part -->
+
+  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
+    <%= @conversation.opposed_user(current_user).name %>
+    <!-- render part -->
+    <div id='online-<%= @conversation.opposed_user(current_user).id %>'>
+      <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 11px;font-weight: 300;">
+        Online
+        <%
+          if @conversation.opposed_user(current_user).online?
+            present_color = '#00917C;'
+          else
+            present_color = '#aaa;'
+          end
+        %>
+        <span>
+          <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+        </span>
+        <% if !@conversation.opposed_user(current_user).online? %>
+          <span style="font-size: 11px;"> <%= @conversation.opposed_user(current_user).last_online %></span>
+        <% end %>
+      </p>
+    </div>
+    <!-- end of render part -->
+  </div>
 </div>
 
 <div class='chatbox'>
+  <div class='user-not'>
+    <small>
+      <i class="fas fa-lock"></i>
+      <!-- not really, but it sounds good :D! smtng to work on :)-->
+      Messages are end-to-end encrypted. No one outside of this chat, not even BikeBock, can read them.
+    </small>
+  </div>
 
   <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>">
     <% @conversation.messages.each do |message| %>
