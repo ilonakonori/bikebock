@@ -35,3 +35,24 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked:after {
   background: #fff;
 }
+
+
+.new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo {
+  padding-left: 8px;
+}
+
+#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo > label, #user_bike_photo {
+  padding-left: 8px;
+  border:0;
+  outline:0;
+}
+
+#new_user > div.form-inputs > div.form-group.password.required.user_password > small {
+  padding-left: 8px;
+  border:0;
+  outline:0;
+}
+
+#content-wrap > div > div > p > a {
+  font-weight: 600;
+}
