@@ -14,7 +14,9 @@ class ConversationsController < ApplicationController
     authorize @conversation
   end
 
-  def create
+  def create # update this
+    #@conversation.create(conversation_params) unless conversated?
+    # method conversated? Conversation.find_by(sender_id: @request.sender_id, recipient_id: @request.recipient_id).present?
     @request = Request.find(params[:id])
     @conversation = Conversation.new(
                       request_id: @request.id,
