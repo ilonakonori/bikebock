@@ -1,14 +1,12 @@
 <!-- carousel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" style='border-radius: 16px; height: 37vw; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
-    <div class="carousel-item active">
-      <%= cl_image_tag ride.photos.first.key, class: "d-block w-100" %>
-    </div>
-    <% ride.photos[1..-1].each do |photo| %>
-      <div class="carousel-item">
+    <% ride.photos.each_with_index do |photo, i| %>
+      <div class="carousel-item <%= 'active' if i == 0 %>">
         <%= cl_image_tag photo.key, class: "d-block w-100" %>
       </div>
     <% end %>
+
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
