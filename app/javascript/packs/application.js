@@ -29,7 +29,6 @@ import "flatpickr/dist/flatpickr.min.css";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initDots } from '../channels/init_dots';
 import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../channels/init_sidebar';
 import { initPresence } from '../channels/init_presence';
@@ -39,8 +38,6 @@ import { initPresenceCurrent } from '../channels/init_presence_current';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-
-  initDots();
 
   initConversationCable();
 
