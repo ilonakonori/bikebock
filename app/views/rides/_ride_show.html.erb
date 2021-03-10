@@ -112,12 +112,24 @@
       <% end %>
 
     <% elsif current_user.id != ride.user_id %>
-
+       <a onclick='showForm(this)'>I want to go</a>
+<!--
       <form method="post" action="/requests" class=" ">
         <input value="I want to go" type="submit" />
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <%= hidden_field_tag :ride_id, ride.id %>
+        <%#= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%#= hidden_field_tag :ride_id, ride.id %>
       </form>
+
+    -->
+    <!-- wip-->
+  <div id='myForm' style='display:none;'>
+    <%= simple_form_for(@request) do |f| %>
+      <%= f.input :first_message, collection: ride.available_dates.split(' '), prompt: "Select date", selected: ride.available_dates.first %>
+      <%= f.hidden_field :sender_id, :value => current_user.id %>
+      <%= f.hidden_field :recipient_id, :value => ride.user_id %>
+      <%= f.submit value="Send",class: "" %>
+    <% end %>
+  </div>
       <%#= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
 
@@ -126,3 +138,10 @@
   </div>
   <br>
 </div>
+
+<script>
+  function showForm(_this) {
+    document.getElementById('myForm').style.display = 'inherit';
+    _this.style.display = 'none';
+  }
+</script>

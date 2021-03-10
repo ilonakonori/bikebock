@@ -13,6 +13,7 @@ class RidesController < ApplicationController
   end
 
   def show
+    @request = Request.new
     update_tracking
   end
 

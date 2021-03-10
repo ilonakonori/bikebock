@@ -15,14 +15,16 @@ class RequestsController < ApplicationController
   end
 
   def create
-    ride = Ride.find(params[:ride_id])
+    #ride = Ride.find(params[:ride_id])
 
-    @request = Request.new(
-                recipient_id: ride.user_id,
-                sender_id: current_user.id,
-                accepted: false,
-                friend: false
-                )
+    @request = Request.new(request_params)
+                #recipient_id: ride.user_id,
+                #sender_id: current_user.id,
+                #accepted: false,
+                #friend: false
+                #)
+    @request.accepted = false;
+    @request.friend = false;
 
     authorize @request
 
@@ -44,7 +46,7 @@ class RequestsController < ApplicationController
       )
 
       flash[:notice] = 'Request successfully sent'
-      redirect_to ride_path(ride)
+      redirect_back(fallback_location: 'rides#show') #o ride_path(ride)
     end
     update_tracking
   end
@@ -86,5 +88,9 @@ class RequestsController < ApplicationController
   def set_request
     @request = Request.find(params[:id])
     authorize @request
+  end
+
+  def request_params
+    params.require(:request).permit(:recipient_id, :sender_id, :first_message)
   end
 end

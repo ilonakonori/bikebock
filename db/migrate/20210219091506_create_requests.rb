@@ -14,3 +14,5 @@ class CreateRequests < ActiveRecord::Migration[6.0]
     add_index :requests, [:recipient_id, :sender_id], unique: true
   end
 end
+
+# change this scope
