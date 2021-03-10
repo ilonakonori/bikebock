@@ -1,11 +1,8 @@
 <!-- carousel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" style='border-radius: 16px; height: 37vw; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
-    <div class="carousel-item active">
-      <%= cl_image_tag ride.photos.first.key, class: "d-block w-100" %>
-    </div>
-    <% ride.photos[1..-1].each do |photo| %>
-      <div class="carousel-item">
+    <% ride.photos.each_with_index do |photo, i| %>
+      <div class="carousel-item <%= 'active' if i == 0 %>">
         <%= cl_image_tag photo.key, class: "d-block w-100" %>
       </div>
     <% end %>
@@ -52,28 +49,30 @@
     </div>
   </div>
   <!-- difficulty -->
-  <p id='noD' data-diff-id='<%= ride.difficulty %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Difficulty: <%#= ride.difficulty %></p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Difficulty: <%#= ride.difficulty %></p>
   <div class='box'>
     <div class='line' style="padding-left: 4px; padding-right: 4px;"></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
+      <% ride.difficulty.to_i.times do |d| %>
+        <div class='dot' style='background-color: #00917C'></div>
+      <% end %>
+      <% (5 - ride.difficulty.to_i).times do |d| %>
+        <div class='dot'></div>
+      <% end %>
     </div>
   </div>
   <!-- number of people -->
   <br>
-  <p id='noP' data-people-id='<%= ride.number_of_people %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600'>Number of people: </p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600'>Number of people: </p>
   <div class='box'>
     <div class='line' ></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
+       <% ride.number_of_people.to_i.times do |d| %>
+        <div class='dot' style='background-color: #00917C'></div>
+      <% end %>
+      <% (5 - ride.number_of_people.to_i).times do |d| %>
+        <div class='dot'></div>
+      <% end %>
     </div>
   </div>
   <!-- available dates -->
@@ -127,7 +126,3 @@
   </div>
   <br>
 </div>
-
-<script>
-
-</script>
