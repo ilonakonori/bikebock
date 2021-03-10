@@ -1,6 +1,18 @@
 <div class="<%= local_assigns[:css_message] %> message-container " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
   <div class="<%= local_assigns[:css_msg] %> " >
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
+    <% if message.attachment.present? %>
+      <%= cl_image_tag message.attachment.key, height: 150, width: 150, crop: :fill %>
+    <% end %>
+    <br>
     <%= message.content %>
   </div>
 </div>
+<!--
+<%= message.download_link %>
+      <%#= link_to("Download", cl_private_download_url("my_private_image", :jpg, :attachment => true)) %>
+      <%#= link_to 'download', rails_blob_path(message, disposition: 'attachment') %>
+
+<a href="<%= message.attachment %>" download="image" >
+</a>
+  cl_image_path(message.attachment)-->

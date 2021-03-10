@@ -44,6 +44,11 @@
   <div>
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
       <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
+      <%= f.input :attachment, as: :file %>
+      <%= f.submit 'Send' %>
     <% end %>
   </div>
 </div>
+<!-- style this, hide submit btn
+<i class="fas fa-paperclip"></i>
+-->
