@@ -9,8 +9,8 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :name, 
-                  required: true, 
+      <%= f.input :name,
+                  required: true,
                   autofocus: true,
                   label: false,
                   placeholder: "Your Name " %>
@@ -21,8 +21,8 @@
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
                   <br>
-      <%= f.input :about_me, 
-                  required: true, 
+      <%= f.input :about_me,
+                  required: true,
                   autofocus: true,
                   label: false,
                   placeholder: "About Yourself" %>
@@ -34,12 +34,23 @@
       <%= f.input :profile_photo,
                   as: :file,
                   required: true,
-                  autofocus: true %>
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+
+      <div id="previewAvatar" class='my-3'></div>
+
       <%= f.input :bike_photo,
                   as: :file,
                   required: true,
-                  autofocus: true  %>
-                  <br>
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+
+      <div id="previewBike" class='my-3'></div>
+
       <%= f.input :password,
                   required: true,
                   hint: ("Must have at least #{@minimum_password_length} characters" if @minimum_password_length),

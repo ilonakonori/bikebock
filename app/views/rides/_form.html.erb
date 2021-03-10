@@ -8,11 +8,13 @@
   <%= f.input :end_time %>
   <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
   <%= f.input :available_dates, as: :string, input_html: { class: 'flatpickr' } %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'custom-file-input' },
+                                  label_html: { class: 'custom-file-label' },
+                                  wrapper_html: { class: 'custom-file' } %>
+
   <% if ride.persisted? %>
     <%= f.submit value="Save", class: "" %>
   <% else %>
     <%= f.submit value="Add", class: "" %>
   <% end %>
 <% end %>
-
