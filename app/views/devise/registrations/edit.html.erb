@@ -23,14 +23,35 @@
                 required: false,
                 hint: "leave it blank if you don't want to change it",
                 input_html: { autocomplete: "new-interests" } %>
+
     <%= f.input :profile_photo,
                 as: :file,
                 required: false,
-                hint: "leave it blank if you don't want to change it" %>
+                hint: "leave it blank if you don't want to change it",
+                input_html: { class: 'custom-file-input'},
+                label_html: { class: 'custom-file-label' },
+                wrapper_html: { class: 'custom-file' } %>
+
+    <small>Current profile photo | new profile photo: </small>
+    <div class="my-row" style="display: flex; justify-content: space-between; padding-bottom: 16px;">
+      <div><%= cl_image_tag current_user.profile_photo.key, height: 100, width: 130, crop: :fill %></div>
+      <div id="previewAvatar" class=''></div>
+    </div>
+
     <%= f.input :bike_photo,
                 as: :file,
                 required: false,
-                hint: "leave it blank if you don't want to change it" %>
+                hint: "leave it blank if you don't want to change it",
+                input_html: { class: 'custom-file-input'},
+                label_html: { class: 'custom-file-label' },
+                wrapper_html: { class: 'custom-file' } %>
+
+    <small>Current bike photo | new bike photo: </small>
+    <div class="my-row" style="display: flex; justify-content: space-between; padding-bottom: 16px;">
+      <div><%= cl_image_tag current_user.bike_photo.key, height: 100, width: 130, crop: :fill %></div>
+      <div id="previewBike" class=''></div>
+    </div>
+
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
