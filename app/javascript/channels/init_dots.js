@@ -26,4 +26,4 @@ const initDots = () => {
   changeColor("dot n", numberOfPeople);
 }
 
-export { initDots };
+//export { initDots };

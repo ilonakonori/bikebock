@@ -52,28 +52,30 @@
     </div>
   </div>
   <!-- difficulty -->
-  <p id='noD' data-diff-id='<%= ride.difficulty %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Difficulty: <%#= ride.difficulty %></p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Difficulty: <%#= ride.difficulty %></p>
   <div class='box'>
     <div class='line' style="padding-left: 4px; padding-right: 4px;"></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
-      <div class='dot d'></div>
+      <% ride.difficulty.to_i.times do |d| %>
+        <div class='dot' style='background-color: #00917C'></div>
+      <% end %>
+      <% (5 - ride.difficulty.to_i).times do |d| %>
+        <div class='dot'></div>
+      <% end %>
     </div>
   </div>
   <!-- number of people -->
   <br>
-  <p id='noP' data-people-id='<%= ride.number_of_people %>' style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600'>Number of people: </p>
+  <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600'>Number of people: </p>
   <div class='box'>
     <div class='line' ></div>
     <div class='row' style="padding-left: 4px; padding-right: 4px;">
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
-      <div class='dot n'></div>
+       <% ride.number_of_people.to_i.times do |d| %>
+        <div class='dot' style='background-color: #00917C'></div>
+      <% end %>
+      <% (5 - ride.number_of_people.to_i).times do |d| %>
+        <div class='dot'></div>
+      <% end %>
     </div>
   </div>
   <!-- available dates -->
