@@ -33,7 +33,7 @@ import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
-import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
+import { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRide  } from '../components/file_input_preview';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -41,6 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   fileInputPreviewAvatar();
   fileInputPreviewBike();
+  fileInputPreviewRide();
 
   initConversationCable();
 

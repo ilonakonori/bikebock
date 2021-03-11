@@ -8,13 +8,50 @@
   <%= f.input :end_time %>
   <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
   <%= f.input :available_dates, as: :string, input_html: { class: 'flatpickr' } %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'custom-file-input' },
-                                  label_html: { class: 'custom-file-label' },
-                                  wrapper_html: { class: 'custom-file' } %>
+
+  <div data-controller="multi-upload">
+    <div class="photos">
+      <%= f.input :photos, as: :file,
+                  input_html: { multiple: true, class: 'custom-file-input' },
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' },
+                  :data => {:action => "multi-upload#addFile"} %>
+    </div>
+    <div data-multi-upload-target="files"></div>
+  </div>
+
 
   <% if ride.persisted? %>
+
+    <small>Current photos: </small>
+    <div class="my-row" style="display: flex; justify-content: space-between; padding-bottom: 16px;">
+      <% ride.photos.each do |photo| %>
+        <div><%= cl_image_tag photo.key, height: 70, width: 100, crop: :fill %></div>
+      <% end %>
+    </div>
+
+    <small>New photos:</small>
+    <div id="previewRide" class=''></div>
+
     <%= f.submit value="Save", class: "" %>
+
   <% else %>
+    <!-- preview -->
+    <div id="previewRide" class=''></div>
     <%= f.submit value="Add", class: "" %>
   <% end %>
 <% end %>
+
+<!-- wip -->
+<script>
+  const previewDiv = document.getElementById('previewRide');
+  const photos = document.getElementById('ride_photos');
+  photos.addEventListener('click', maxThree);
+  function maxThree() {
+    let photosNo = previewDiv.children.length;
+    if(photosNo === 3) {
+      photos.disabled = true;
+      alert("You can only upload a maximum of 3 files");
+    }
+  }
+</script>

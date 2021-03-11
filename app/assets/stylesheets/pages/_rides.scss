@@ -87,3 +87,24 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
   margin-top: 16px;
   margin-left: 4px;
 }
+
+/* preview multiple-photos */
+
+#previewRide {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+/* multi-upload-photos */
+
+.selected-file {
+  background: #ddeeff;
+  border-radius: 0.2em;
+  margin-top: 1px;
+  padding: 0.2em;
+}
+
+.selected-file input[type='file'] {
+  display: none;
+}

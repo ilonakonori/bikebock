@@ -22,4 +22,18 @@ const fileInputPreviewBike = () => {
   }
 };
 
-export { fileInputPreviewAvatar, fileInputPreviewBike };
+const fileInputPreviewRide = () => {
+  const photoInput = document.getElementById('ride_photos');
+  if (photoInput) {
+    photoInput.addEventListener('change', (event) => {
+      const previewDiv = document.getElementById('previewRide');
+      const uploadedImage = event.currentTarget.files[0];
+      const imageUrl = window.URL.createObjectURL(uploadedImage);
+      const previewImg = document.createElement("div");
+      previewImg.innerHTML = `<img src='${imageUrl}' width='100' height='70' >`;
+      previewDiv.appendChild(previewImg);
+    });
+  }
+};
+
+export { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRide };
