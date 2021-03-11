@@ -1,5 +1,5 @@
 #messages {
-  height: 58vh;
+  height: 70vh;
   overflow-y: scroll;
 }
 
@@ -7,14 +7,13 @@
 #new_message {
   display: flex;
   justify-content:flex-start;
-  margin: 4vw;
 }
 
 #message_content {
-  width: 75vw;
+  width: 85vw;
   height: 10.3vw;
   padding-left: 16px;
-
+  margin-left: 4px;
 }
 
 #new_message > input[type=submit].myBtn {
