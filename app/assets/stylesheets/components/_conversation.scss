@@ -122,3 +122,8 @@
   max-height: 32px;
   overflow: hidden;
 }
+
+// bc all links are white by default
+a.myLink {
+  color: #0c0c0c;
+}

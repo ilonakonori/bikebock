@@ -20,36 +20,37 @@
           end
         %>
 
-        <!-- Iva, SOS -->
-        <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
-        <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user).size %>
-        <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
-
+        <!-- Iva, SOS => solved! :) -->
       </div>
 
-      <div class="chat" style="padding-top: 16px;"> 
-        <div class="row chat-wrapper">  
-          <div class="col-md-4">
-            <div class="compose-area"> 
-              <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
-                <ul class="chat-list">
-                  <li class="new">
-                  <span class="pic">
-                    <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
-                  </span>
-                  <div class="body">
-                    <div class="header">
-                      <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
-                      <small class="timestamp"><%= c.messages.last.created_at.to_date %></small>
+      <%= link_to conversation_path(c, anchor: "message-#{c.messages.last.id}"), class: 'myLink' do %>
+        <div class="chat" style="padding-top: 16px;">
+          <div class="row chat-wrapper">
+            <div class="col-md-4">
+              <div class="compose-area">
+                <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
+                  <ul class="chat-list">
+                    <li class="new">
+                    <span class="pic">
+                      <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                    </span>
+                    <div class="body">
+                      <div class="header">
+                        <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
+                        <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user).size %>
+                        <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
+                        <small class="timestamp"><%= c.messages.last.created_at.to_date %></small>
+                      </div>
+                      <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
                     </div>
-                    <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
-                  </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
+  <% end %>
 </div>
