@@ -41,17 +41,3 @@
     <%= f.submit value="Add", class: "" %>
   <% end %>
 <% end %>
-
-<!-- wip -->
-<script>
-  const previewDiv = document.getElementById('previewRide');
-  const photos = document.getElementById('ride_photos');
-  photos.addEventListener('click', maxThree);
-  function maxThree() {
-    let photosNo = previewDiv.children.length;
-    if(photosNo === 3) {
-      photos.disabled = true;
-      alert("You can only upload a maximum of 3 files");
-    }
-  }
-</script>

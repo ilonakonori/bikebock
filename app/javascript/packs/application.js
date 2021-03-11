@@ -34,7 +34,7 @@ import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRide  } from '../components/file_input_preview';
-
+import { maxThreePhotos } from '../components/init_max_three';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -42,6 +42,8 @@ document.addEventListener('turbolinks:load', () => {
   fileInputPreviewAvatar();
   fileInputPreviewBike();
   fileInputPreviewRide();
+
+  maxThreePhotos();
 
   initConversationCable();
 
