@@ -87,3 +87,32 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
   margin-top: 16px;
   margin-left: 4px;
 }
+
+/* preview multiple-photos */
+
+#previewRide, .current-photos {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 16px;
+}
+
+/* multi-upload-photos */
+
+.multi-upload {
+  border-radius: 0.2em;
+  margin-top: 1px;
+  padding: 0.2em;
+}
+
+.selected-file input[type='file'] {
+  display: none;
+}
+
+#previewRide > div:nth-child(1) > img,
+#previewRide > div:nth-child(2) > img,
+#previewRide > div:nth-child(3) > img,
+.current-photos > div:nth-child(1) > img,
+.current-photos > div:nth-child(2) > img,
+.current-photos > div:nth-child(3) > img  {
+  padding: 0 4px;
+}

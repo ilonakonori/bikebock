@@ -1,5 +1,5 @@
 #messages {
-  height: 58vh;
+  height: 68vh;
   overflow-y: scroll;
 }
 
@@ -7,14 +7,13 @@
 #new_message {
   display: flex;
   justify-content:flex-start;
-  margin: 4vw;
 }
 
 #message_content {
-  width: 75vw;
+  width: 65vw;
   height: 10.3vw;
   padding-left: 16px;
-
+  margin-left: 4px;
 }
 
 #new_message > input[type=submit].myBtn {
@@ -27,6 +26,10 @@
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
+
+
+
+
 // end of msg input
 
 #messages.message-container {
@@ -83,4 +86,45 @@
 
 #content-wrap > div.container > p > a, #user > a {
   color: red;
+}
+
+//conversation
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list {
+  padding: 0;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li {
+  display: block;
+  padding: 8px 0;
+  clear: both;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .pic {
+  margin-right: 8px;
+  float: left;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body .header .username {
+  font-weight: 600;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body .header .timestamp {
+  float: right;
+  color: #999;
+  font-size: 11px;
+  line-height: 18px;
+  font-style: italic;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body p {
+  font-size: 9px;
+  max-height: 32px;
+  overflow: hidden;
+}
+
+// bc all links are white by default
+a.myLink {
+  color: #0c0c0c;
 }
