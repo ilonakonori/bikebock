@@ -1,4 +1,4 @@
-<div id="overview">
+<div style="margin: -1px !important">
   <% if @conversations.blank? %>
     <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
       <p style="font-size: 60px;"><i class="far fa-comments"></i></p>
@@ -19,12 +19,10 @@
             present_color = '#aaa;'
           end
         %>
-
-        <!-- Iva, SOS => solved! :) -->
       </div>
 
       <%= link_to conversation_path(c, anchor: "message-#{c.messages.last.id}"), class: 'myLink' do %>
-        <div class="chat" style="padding-top: 16px;">
+        <div class="chat">
           <div class="row chat-wrapper">
             <div class="col-md-4">
               <div class="compose-area">
