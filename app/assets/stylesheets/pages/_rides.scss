@@ -90,10 +90,10 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 /* preview multiple-photos */
 
-#previewRide {
+#previewRide, .current-photos {
   display: flex;
-  justify-content: space-between;
-  margin: 12px 0;
+  justify-content: flex-start;
+  padding-bottom: 16px;
 }
 
 /* multi-upload-photos */
@@ -106,4 +106,13 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 .selected-file input[type='file'] {
   display: none;
+}
+
+#previewRide > div:nth-child(1) > img,
+#previewRide > div:nth-child(2) > img,
+#previewRide > div:nth-child(3) > img,
+.current-photos > div:nth-child(1) > img,
+.current-photos > div:nth-child(2) > img,
+.current-photos > div:nth-child(3) > img  {
+  padding: 0 4px;
 }
