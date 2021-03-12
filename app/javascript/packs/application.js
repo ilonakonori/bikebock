@@ -35,7 +35,6 @@ import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
 
-
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
