@@ -33,17 +33,13 @@ import { initConversationCable } from '../channels/conversation_channel';
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
-import { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRide  } from '../components/file_input_preview';
-import { maxThreePhotos } from '../components/init_max_three';
+import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   fileInputPreviewAvatar();
   fileInputPreviewBike();
-  fileInputPreviewRide();
-
-  maxThreePhotos();
 
   initConversationCable();
 

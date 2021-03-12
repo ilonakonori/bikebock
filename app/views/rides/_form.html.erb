@@ -9,13 +9,15 @@
   <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
   <%= f.input :available_dates, as: :string, input_html: { class: 'flatpickr' } %>
 
-  <div data-controller="multi-upload">
-    <div class="photos">
+
+  <div data-controller="multi-upload" data-action ="input->multi-upload#addFile" style='padding: 0.2em;'>
+    <div class="multi-upload">
+
       <%= f.input :photos, as: :file,
                   input_html: { multiple: true, class: 'custom-file-input' },
                   label_html: { class: 'custom-file-label' },
-                  wrapper_html: { class: 'custom-file' },
-                  :data => {:action => "multi-upload#addFile"} %>
+                  wrapper_html: { class: 'custom-file' }
+                  %>
     </div>
     <div data-multi-upload-target="files"></div>
   </div>
