@@ -1,7 +1,9 @@
 .form-control {
-   border-radius: 16px !important;
-   border-style: none;
-   border-color: #fff !important;
+  border-radius: 16px !important;
+  border-style: none;
+  border-color: #fff !important;
+  // make it smaller & center it
+  //width: 85%;
 }
 
 a:-webkit-any-link {
@@ -82,3 +84,21 @@ input[type="file"] {
   padding-left: 8px;
 }
 
+#edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file {
+  margin-bottom: .5em;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file {
+ margin-bottom: -0.3em;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
+  margin-top: -5em;
+  margin-bottom: -1.5em;
+}
+
+// new_user
+#new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
+#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
+  margin-bottom: -1.5em;
+}

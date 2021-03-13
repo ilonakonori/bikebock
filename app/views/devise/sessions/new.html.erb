@@ -11,15 +11,16 @@
                     placeholder: "Email",
                     input_html: { autocomplete: "email" }
                     %>
-        <br>
+        <!--<br> -- why? -->
         <%= f.input :password,
                     required: false,
                     label: false,
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
         <!--<div style="color: #fff; margin-left: 4px; display: flex; justify-content: space-around;">
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-        </div> -->
+          <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div> --> <!-- get back this! it's not user friendly not to have it!-->
+
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <p style="text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
         <% end %>
