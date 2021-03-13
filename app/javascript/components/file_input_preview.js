@@ -5,7 +5,8 @@ const fileInputPreviewAvatar = () => {
       const uploadedImage = event.currentTarget.files[0];
       const imageUrl = window.URL.createObjectURL(uploadedImage);
       const previewDiv = document.getElementById('previewAvatar');
-      previewDiv.innerHTML = `<img src='${imageUrl}' width='130' height='100' >`
+      previewDiv.innerHTML = `<img src='${imageUrl}' width='130' height='100' >`;
+      previewDiv.style.paddingTop = '1em';
     });
   }
 };
@@ -17,7 +18,8 @@ const fileInputPreviewBike = () => {
       const uploadedImage = event.currentTarget.files[0];
       const imageUrl = window.URL.createObjectURL(uploadedImage);
       const previewDiv = document.getElementById('previewBike');
-      previewDiv.innerHTML = `<img src='${imageUrl}' width='130' height='100' >`
+      previewDiv.innerHTML = `<img src='${imageUrl}' width='130' height='100' >`;
+      previewDiv.style.paddingTop = '1em';
     });
   }
 };

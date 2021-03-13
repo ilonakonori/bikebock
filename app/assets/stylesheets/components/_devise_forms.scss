@@ -82,3 +82,11 @@ input[type="file"] {
   padding-left: 8px;
 }
 
+#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file,
+#new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file {
+  margin: -1.4em 0;
+}
+
+#previewAvatar, #previewBike {
+  //padding-top: 1em;
+}
