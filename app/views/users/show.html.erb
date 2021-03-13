@@ -81,7 +81,7 @@
       <%= link_to 'Check your request', request_path(request.id) %>
     <% elsif Conversation.where(sender_id: current_user, recipient_id: @user).present? || Conversation.where(sender_id: @user, recipient_id: current_user).present? %>
       <% room = Conversation.where(sender_id: current_user, recipient_id: @user).or(Conversation.where(sender_id: @user, recipient_id: current_user)).first %>
-      <%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
+      <%= link_to 'Send Messege', conversation_path(room.id, anchor: "message-#{room.messages.last.id}" ), style: "background-color: #433520; padding: 8px 55px; margin-left: 40px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;"%>
     <% else %>
       <%= link_to "Send Message", new_request_path(sender_id: current_user, recipient_id: @user), style: "background-color: #433520; padding: 8px 55px; margin-left: 40px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
     <% end %>
