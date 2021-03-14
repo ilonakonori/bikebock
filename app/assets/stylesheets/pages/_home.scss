@@ -3,3 +3,19 @@
   position: relative;
   padding-top: 84px;
 }
+
+.search{
+  border: 1px solid grey;
+  height: 35px;
+  width: 6%;
+  padding: 5px 79px 22px 30px;
+  outline: 0;
+  border-radius: 16px;
+  background-color: #FDE8CD;
+  font-weight: 400;
+}
+
+.search:hover, .search:focus {
+  border: 1.5px solid #433520;
+  background-color: fff;
+}
