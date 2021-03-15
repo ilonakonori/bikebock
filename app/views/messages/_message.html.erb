@@ -2,17 +2,26 @@
   <div class="<%= local_assigns[:css_msg] %> " >
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
     <% if message.attachment.present? %>
-      <%= cl_image_tag message.attachment.key, height: 150, width: 150, crop: :fill %>
+      <%= cl_image_tag message.attachment.key, height: 160, width: 160, crop: :fill, onclick: 'preview(this)' %>
     <% end %>
     <br>
     <%= message.content %>
   </div>
 </div>
 <!--
-<%= message.download_link %>
+<%#= message.download_link %>
       <%#= link_to("Download", cl_private_download_url("my_private_image", :jpg, :attachment => true)) %>
       <%#= link_to 'download', rails_blob_path(message, disposition: 'attachment') %>
 
-<a href="<%= message.attachment %>" download="image" >
+<a href="<%#= message.attachment %>" download="image" >
 </a>
   cl_image_path(message.attachment)-->
+
+<script>
+  function preview(_this) {
+    console.log('click');
+   // _this.width = '250px';
+   // _this.style.height = '350px';
+   // download
+  }
+</script>
