@@ -18,10 +18,26 @@
   cl_image_path(message.attachment)-->
 
 <script>
+
   function preview(_this) {
-    console.log('click');
-   // _this.width = '250px';
-   // _this.style.height = '350px';
-   // download
+    console.log(_this);
+    const chat = document.querySelector('.chatbox');
+    if(_this.classList.contains('prev')) {
+      _this.classList.remove('prev');
+    } else {
+      _this.classList.add('prev');
+    }
   }
 </script>
+
+<style>
+  .prev {
+    position:absolute;
+    top:24%;
+    left:50%;
+    transform:translate(-50%, 0);
+    width:100%;
+    height:70%;
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  }
+</style>
