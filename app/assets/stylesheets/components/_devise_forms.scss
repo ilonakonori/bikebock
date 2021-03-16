@@ -102,3 +102,13 @@ input[type="file"] {
 #new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
   margin-bottom: -1.5em;
 }
+
+#new_user > div > div.form-group.email.optional.user_email {
+  padding-bottom: 2px;
+}
+
+
+#new_user {
+  display: flex;
+  justify-content: center;
+}
