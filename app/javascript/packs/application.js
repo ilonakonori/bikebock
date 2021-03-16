@@ -29,7 +29,7 @@ import "flatpickr/dist/flatpickr.min.css";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initConversationCable } from '../channels/conversation_channel';
+import { initConversationCable, submitAttachment } from '../channels/conversation_channel';
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
@@ -42,6 +42,8 @@ document.addEventListener('turbolinks:load', () => {
   fileInputPreviewBike();
 
   initConversationCable();
+
+  submitAttachment();
 
   const sidebar = document.getElementById('sidebar');
   if(sidebar) {
