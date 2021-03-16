@@ -25,11 +25,11 @@
         </div> --> <!-- get back this! it's not user friendly not to have it!-->
 
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <p style="font-size: 12px; text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
+          <p style="font-size: 14px; text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
         <% end %>
         <br>
         <div class="form-actions" style="text-align: center;">
-          <%= f.button :submit, "Log me in!", style: "background-color: #FDE8CD; padding: 8px 45px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+          <%= f.button :submit, "Log me in!", style: "background-color: #FDE8CD; padding: 8px 40px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>
         <br>
         <br>
@@ -42,16 +42,17 @@
 </div>
 
 <!-- placeholder: raw("Email &#xf0e0;"), -->
+<!-- false logo atm -->
 <style>
   #animationDiv {
     display: flex;
     justify-content: center;
-    padding-bottom: 12px;
+    padding-bottom: 20px;
     padding-top: 0;
-    margin-top: -34px;
+    margin-top: -48px;
   }
   #animationWheel {
-    animation-duration: 10s;
+    animation-duration: 50s;
     animation-iteration-count: infinite;
     animation-name: spin;
     animation-timing-function: linear;
@@ -61,4 +62,4 @@
       100% {transform:rotate(1080deg);}
     }
   }
-  </style
+  </style>
