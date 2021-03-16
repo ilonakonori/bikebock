@@ -31,4 +31,14 @@ const initConversationCable = () => {
   }
 }
 
-export { initConversationCable };
+// submit attachment on attachment input
+const submitAttachment = () => {
+  const attachmentInput = document.getElementById('message_attachment');
+  if(attachmentInput) {
+    attachmentInput.addEventListener('input', (event) => {
+      document.querySelector('#new_message > div > button').click();
+    });
+  }
+}
+
+export { initConversationCable, submitAttachment };

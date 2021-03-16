@@ -1,6 +1,22 @@
 <div class="<%= local_assigns[:css_message] %> message-container " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
   <div class="<%= local_assigns[:css_msg] %> " >
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
+    <% if message.attachment.present? %>
+      <%= cl_image_tag message.attachment.key, height: 220, width: 220, crop: :fill, onclick: 'preview(this)' %>
+      <br>
+    <% end %>
+
     <%= message.content %>
   </div>
 </div>
+
+<script>
+  function preview(_this) {
+    if(_this.classList.contains('prev')) {
+      _this.classList.remove('prev');
+    } else {
+      _this.classList.add('prev');
+    }
+  }
+</script>
+

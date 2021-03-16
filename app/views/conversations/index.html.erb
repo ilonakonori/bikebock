@@ -39,7 +39,14 @@
                         <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
                         <small class="timestamp"><%= c.messages.last.created_at.to_date %></small>
                       </div>
-                      <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+
+                      <% if c.messages.last.content.present? %>
+                        <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+                      <% else %> <!--
+                      <#% if c.messages.last.attachment.present? %>-->
+                        <p style="font-weight: 600;">** Attachment **</p>
+                      <% end %>
+
                     </div>
                     </li>
                   </ul>
