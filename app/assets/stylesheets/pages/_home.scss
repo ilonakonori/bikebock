@@ -8,7 +8,7 @@
   border: 1px solid grey;
   height: 35px;
   width: 6%;
-  padding: 5px 79px 22px 30px;
+  padding: 5px 62px 22px 16px;
   outline: 0;
   border-radius: 16px;
   background-color: #FDE8CD;
@@ -18,4 +18,8 @@
 .search:hover, .search:focus {
   border: 1.5px solid #433520;
   background-color: fff;
+}
+
+#select {
+  padding-left: 8px;
 }
