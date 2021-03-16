@@ -2,9 +2,10 @@
   <div class="<%= local_assigns[:css_msg] %> " >
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
     <% if message.attachment.present? %>
-      <%= cl_image_tag message.attachment.key, height: 160, width: 160, crop: :fill, onclick: 'preview(this)' %>
+      <%= cl_image_tag message.attachment.key, height: 220, width: 220, crop: :fill, onclick: 'preview(this)' %>
+      <br>
     <% end %>
-    <br>
+
     <%= message.content %>
   </div>
 </div>

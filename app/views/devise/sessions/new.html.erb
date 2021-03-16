@@ -20,9 +20,11 @@
                     label: false,
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
-        <!--<div style="color: #fff; margin-left: 4px; display: flex; justify-content: space-around;">
-          <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-        </div> --> <!-- get back this! it's not user friendly not to have it!-->
+
+        <div style="font-size: 14px; color: #fff; text-align: center;">
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div> <!-- get back this! it's not user friendly not to have it!
+                i get this back, but style is still not perfect :/ -->
 
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <p style="font-size: 14px; text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
@@ -37,7 +39,7 @@
           <p style="text-align: center; color: #fff !important;">Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name), style:"font-weight: 600;" %><br />
         <% end %>
         <br>
-        <br>
+
       <% end %>
 </div>
 
@@ -62,4 +64,4 @@
       100% {transform:rotate(1080deg);}
     }
   }
-  </style>
+</style>

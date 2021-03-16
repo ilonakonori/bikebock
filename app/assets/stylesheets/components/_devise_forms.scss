@@ -11,12 +11,12 @@ a:-webkit-any-link {
 }
 
 input[type="checkbox"] {
-  font-size: 16px;
+  font-size: 14px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: .8em;
-  height: .8em;
+  width: .7em;
+  height: .7em;
   background: #00917C;
   border-radius: 3em !important;
 
@@ -28,7 +28,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:after {
   position: absolute;
   content: "";
-  width: .8em;
+  width: .7em;
   transform: scale(.7);
 }
 
@@ -40,6 +40,9 @@ input[type="checkbox"]:checked:after {
   background: #fff;
 }
 
+#user_remember_me {
+  margin-left: -1em;
+}
 
 .new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo {
   border-radius: 16px;
