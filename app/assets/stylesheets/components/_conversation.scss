@@ -141,15 +141,20 @@ a.myLink {
   height:70%;
 }
 
-// input fornew msg
+// input for new msg
 .msg-input-container {
   border: 1px #ccc solid;
   border-radius: 24px;
   background: #fff;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 #message_content {
   border: none;
+}
+
+#message_attachment {
+  display: inherit;
 }
