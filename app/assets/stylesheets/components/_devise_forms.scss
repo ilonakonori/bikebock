@@ -1,5 +1,9 @@
 .form-control {
-   border-radius: 16px !important;
+  border-radius: 16px !important;
+  border-style: none;
+  border-color: #fff !important;
+  // make it smaller & center it
+  //width: 85%;
 }
 
 a:-webkit-any-link {
@@ -38,13 +42,11 @@ input[type="checkbox"]:checked:after {
 
 
 .new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo {
-  padding-left: 8px;
+  border-radius: 16px;
 }
 
 #new_user > div.form-inputs > div.form-group.file.required.user_bike_photo > label, #user_bike_photo {
-  padding-left: 8px;
-  border:0;
-  outline:0;
+  border-radius: 16px;
 }
 
 #new_user > div.form-inputs > div.form-group.password.required.user_password > small {
@@ -55,4 +57,48 @@ input[type="checkbox"]:checked:after {
 
 #content-wrap > div > div > p > a {
   font-weight: 600;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+// update profile
+
+#edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file > label {
+  border-radius: 16px;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.optional.user_bike_photo.form-group-valid.custom-file > label {
+  border-radius: 16px;
+}
+
+#edit_user > div.form-inputs > div.form-group.password.optional.user_password > small {
+  padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file {
+  margin-bottom: .5em;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file {
+ margin-bottom: -0.3em;
+}
+
+#edit_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
+  margin-top: -5em;
+  margin-bottom: -1.5em;
+}
+
+// new_user
+#new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
+#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
+  margin-bottom: -1.5em;
 }
