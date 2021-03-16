@@ -27,9 +27,9 @@
     <!-- end of render part -->
   </div>
 
-    <div class='chatbox'>
+  <div class='chatbox'>
 
-      <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
+    <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
         <% @conversation.messages.each do |message| %>
 
           <% if message.sender_id == current_user.id %>
@@ -39,42 +39,27 @@
           <% end %>
 
         <% end %>
-      </div>
-
-      <!-- icon in the placeholder wip -->
-      <div style="display: flex; justify-content: space-evenly;">
-        <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-
-          <div class='msg-input-container'>
-            <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
-            <%= f.input :attachment, as: :file, label: false,
-                        input_html: { class: 'fas fa-paperclip' }
-                        %>
-
-            <button type="submit" style="background: transparent; border: none; padding: 0;">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
-
-        <% end %>
-      </div>
-
     </div>
+
+    <!-- icon in the placeholder wip -->
+    <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
+      <!-- need styling so bad -->
+      <div class='msg-input-container'>
+        <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
+        <!-- input for attachment i.e. photo => need styling -->
+        <%= f.input :attachment, as: :file, label: false,
+                    input_html: { class: 'fas fa-paperclip' }
+                    %>
+        <!-- put icon to be submit btn => style somehow this -->
+        <button type="submit" style="background: transparent; border: none; padding: 0;">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+    <% end %>
   </div>
+</div>
 
-<style>
-  .msg-input-container {
-    border: 1px #ccc solid;
-    border-radius: 24px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #message_content {
-    border: none;
-  }
-</style>
 
 <script>
 document.getElementById('message_attachment').addEventListener('input', submitThis);
