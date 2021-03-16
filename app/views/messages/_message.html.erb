@@ -3,6 +3,7 @@
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
     <% if message.attachment.present? %>
       <%= cl_image_tag message.attachment.key, height: 160, width: 160, crop: :fill, onclick: 'preview(this)' %>
+      <a href="<%= cl_image_path(message.attachment.key) %>" target="_blank" download><i class="fas fa-cloud-download-alt"></i></a>
     <% end %>
     <br>
     <%= message.content %>
@@ -16,9 +17,14 @@
 <a href="<%#= message.attachment %>" download="image" >
 </a>
   cl_image_path(message.attachment)-->
+  <div id='d'></div>
 
 <script>
   function preview(_this) {
+    console.log(_this.src);
+    const dwnl = `<a href='${_this.src} download='image'><i class="fas fa-cloud-download-alt"></i></a>`;
+    console.log(dwnl);
+
     if(_this.classList.contains('prev')) {
       _this.classList.remove('prev');
     } else {
@@ -35,6 +41,5 @@
     transform:translate(-50%, 0);
     width:100%;
     height:70%;
-    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   }
 </style>
