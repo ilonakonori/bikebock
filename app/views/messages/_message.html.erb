@@ -3,7 +3,7 @@
     <!--  <small><#%= message.created_at.strftime("%b %e at %l:%M%p") %></small><br>-->
     <div style=''>
     <% if message.attachment.present? %>
-      <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, onclick: 'preview(this)' %>
+      <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, class: 'imgs' %>
       <br>
     <% end %>
 
@@ -12,24 +12,4 @@
   </div>
 </div>
 
-<div id='prevDiv' onclick='hideThis(this)'></div>
-<script>
-  function preview(_this) {
-    console.log(_this.src);
-    const prevDiv = document.getElementById('prevDiv');
-
-    if(prevDiv.hasChildNodes()) {
-      prevDiv.removeChild(prevDiv.childNodes[0]);
-    } else {
-      const img = document.createElement('img');
-      img.src = _this.src;
-      img.classList.add('prev');
-      prevDiv.appendChild(img);
-    }
-  }
-
-  function hideThis(_this) {
-    _this.removeChild(_this.childNodes[0]);
-  }
-</script>
-
+<div id='prevDiv'></div>
