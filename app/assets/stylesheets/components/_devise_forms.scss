@@ -100,6 +100,26 @@ input[type="file"] {
   margin-bottom: -1.5em;
 }
 
+#edit_user > div.form-inputs > div.form-group.string.optional.user_about_me.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.string.optional.user_interests.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.password.optional.user_password > label{
+  padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.password.optional.user_password_confirmation > label {
+  padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.password.required.user_current_password > label {
+  padding-left: 8px;
+}
+
 // new_user
 #new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
 #new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
@@ -109,7 +129,6 @@ input[type="file"] {
 #new_user > div > div.form-group.email.optional.user_email {
   padding-bottom: 2px;
 }
-
 
 #new_user {
   display: flex;
