@@ -31,10 +31,12 @@ import "flatpickr/dist/flatpickr.min.css";
 // import { initSelect2 } from '../components/init_select2';
 import { initConversationCable, submitAttachment } from '../channels/conversation_channel';
 import { initSidebar } from '../components/init_sidebar';
-import { initPresence } from '../channels/init_presence';
-import { initPresenceCurrent } from '../channels/init_presence_current';
+import { initPresence } from '../components/init_presence';
+import { initPresenceCurrent } from '../components/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
+import { initBookmarks } from '../components/init_bookmarks';
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -45,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
 
   initConversationCable();
 
+  initBookmarks();
   submitAttachment();
   initMsgAttachmentPreview();
   hideIt();
