@@ -1,15 +1,15 @@
 
-<div id='ride-<%= ride.id %>' class="" style="margin-bottom: 24px; padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+<div id='ride-<%= ride.id %>' class="rides" style="margin-bottom: 24px; padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
     <div>
       <% if policy(ride).fav? %>
         <% if current_user.favorited?(ride) %>
           <%= link_to unfav_ride_path(ride), method: :put, remote: true do %>
-            <i id='b-<%= ride.id %>' onclick=changeBookmark(this) title='Unbookmark' class='fas fa-bookmark r'></i>
+            <i data-ride-id='b-<%= ride.id %>' title='Unbookmark' class='fas fa-bookmark r'></i>
           <% end %>
         <% else %>
           <%= link_to fav_ride_path(ride), method: :put, remote: true do %>
-            <i onclick=changeBookmark(this) title='Bookmark' class="far fa-bookmark r"></i>
+            <i title='Bookmark' class="far fa-bookmark r"></i>
           <% end %>
       <% end %>
       <% end %>
@@ -58,25 +58,3 @@
     </div>
   <% end %>
 </div>
-
-
-<script>
-  function changeBookmark(_this) {
-    const location = window.location.href; //change location for production => https://www.readtoremember.xyz/highlights/favorites
-    if (location == 'http://localhost:3000/users/bookmarks') {
-      const id = _this.id.replace('b-', '');
-      document.getElementById('ride-' + id).remove();
-    } else {
-      if (_this.classList.contains('far')) {
-        _this.classList.remove('far');
-        _this.classList.add('fas');
-        _this.title = 'Unbookmark';
-      } else {
-        _this.classList.remove('fas');
-        _this.classList.add('far');
-        _this.title = 'Bookmark';
-      }
-    }
-  }
-</script>
-<!-- works good -->
