@@ -20,12 +20,19 @@
                     placeholder: "Password",
                     input_html: { autocomplete: "current-password" } %>
 
-        <div style="font-size: 14px; color: #fff; text-align: center;">
+        <!-- one line -->
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #fff;">
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <p style="font-size: 14px; text-align: center; color: #fff !important;">Forgot Password?<%= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
+            <p style="font-size: 12px; color: #fff !important;"><%= link_to " Forgot password?", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
           <% end %>
+
+        <!-- two lines
+        <div style="font-size: 14px; color: #fff; text-align: center;">
+          <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <#%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <p style="font-size: 14px; text-align: center; color: #fff !important;">Forgot Password?<%#= link_to " Click Here", new_password_path(resource_name), style:"font-weight: 600;" %><br/></p>
+          <#% end %> -->
         </div>
 
         <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 56px;">
