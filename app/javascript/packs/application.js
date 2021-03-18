@@ -34,6 +34,8 @@ import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../channels/init_presence';
 import { initPresenceCurrent } from '../channels/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
+import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -44,6 +46,8 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
 
   submitAttachment();
+  initMsgAttachmentPreview();
+  hideIt();
 
   const sidebar = document.getElementById('sidebar');
   if(sidebar) {
