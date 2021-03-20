@@ -36,6 +36,8 @@ import { initPresenceCurrent } from '../components/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
 import { initBookmarks } from '../components/init_bookmarks';
+import { initCloseAlert } from '../components/init_close_alert';
+
 
 
 
@@ -51,6 +53,7 @@ document.addEventListener('turbolinks:load', () => {
   submitAttachment();
   initMsgAttachmentPreview();
   hideIt();
+  initCloseAlert();
 
   const sidebar = document.getElementById('sidebar');
   if(sidebar) {
