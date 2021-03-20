@@ -54,22 +54,9 @@ document.addEventListener('turbolinks:load', () => {
   initMsgAttachmentPreview();
   hideIt();
   initCloseAlert();
-
-  const sidebar = document.getElementById('sidebar');
-  if(sidebar) {
-    initSidebar();
-  }
-
-  const user = document.getElementById('user');
-  if(user) {
-    initPresence();
-  }
-
-  const c_user = document.getElementById('c_user');
-  if(c_user) {
-    initPresenceCurrent();
-  }
-
+  initSidebar();
+  initPresence();
+  initPresenceCurrent();
 
   flatpickr(".flatpickr", {
     mode: "multiple",
