@@ -20,7 +20,7 @@
                   label: false,
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
-                  <br>
+                  <!-- <br> => why? -->
       <%= f.input :about_me,
                   required: true,
                   autofocus: true,
@@ -31,6 +31,7 @@
                   autofocus: true,
                   label: false,
                   placeholder: "Interests" %>
+
       <%= f.input :profile_photo,
                   as: :file,
                   required: true,
@@ -39,7 +40,7 @@
                   label_html: { class: 'custom-file-label' },
                   wrapper_html: { class: 'custom-file' } %>
 
-      <div id="previewAvatar" class='my-3'></div>
+      <div id="previewAvatar" class='my-3' style='display:flex; justify-content: center;'></div>
 
       <%= f.input :bike_photo,
                   as: :file,
@@ -49,7 +50,7 @@
                   label_html: { class: 'custom-file-label' },
                   wrapper_html: { class: 'custom-file' } %>
 
-      <div id="previewBike" class='my-3'></div>
+      <div id="previewBike" class='my-3' style='display:flex; justify-content: center;'></div>
 
       <%= f.input :password,
                   required: true,
@@ -64,12 +65,14 @@
                   input_html: { autocomplete: "new-password" } %>
       <%= f.hidden_field :last_seen,
                   :value => DateTime.now %>
-                  <br>
-    </div>
-    <div class="form-actions" style="text-align: center;">
-      <%= f.button :submit, "Create account", style: "background-color: #FDE8CD; padding: 8px 55px; border-radius: 16px; color: #000; font-weight: 400; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      <br>
+      <div class="form-actions" style="text-align: center;  margin-bottom: 48px;">
+        <%= f.button :submit, "Create account", style: "margin-bottom: 12px;background-color: #FDE8CD; padding: 8px 40px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+        <br>
+        <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' BikeBock! Terms of service' %></small>
+      </div>
     </div>
   <% end %>
-  <br>
+
   <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
 </div>

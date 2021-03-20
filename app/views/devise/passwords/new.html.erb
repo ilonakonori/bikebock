@@ -1,6 +1,7 @@
-<div class="container" style="position: fixed; width: 80%; top: 20%; background-color: #E5E5E5; padding-top: 16px !important;">
-  <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
-    <h5>Reset Your Password</h5>
+<div class="container" style="margin-top: 118px; width: 96%; background-color: #E5E5E5; padding-top: 16px !important;">
+  <br>
+  <div style="text-align: center; color: #fff; font-weight: 600;">
+    <h5 style="">Reset Your Password</h5>
     <p style="font-size: 12px; color: #000">Fear not. We'll email you instructions to reset your password.</p>
     <hr style="width: 95%; text-align: left; margin-left: 0;">
   </div>
@@ -15,10 +16,10 @@
                   label: false,
                   placeholder: "Your email",
                   input_html: { autocomplete: "email" } %>
-    </div>
-    <br>
-    <div class="form-actions" style="text-align: center;">
-      <%= f.button :submit, "Reset Password!", style: "background-color: #FDE8CD; padding: 8px 24px; border-radius: 16px; color: #000; font-weight: 400; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+
+      <div class="form-actions" style="text-align: center; padding-top: 12px;">
+        <%= f.button :submit, "Reset Password!", style: "background-color: #FDE8CD; padding: 7px 24px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      </div>
     </div>
   <% end %>
   <br>
