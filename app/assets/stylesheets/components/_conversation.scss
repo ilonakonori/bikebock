@@ -30,14 +30,17 @@
 
 #message_content {
   width: 65vw;
-  height: 10.3vw;
+  max-height: 10.3vw;
   padding-left: 16px;
   margin-left: 4px;
-}
-#new_message > div > div.form-group.string.optional.message_content {
-  margin-bottom: 0 !important;
+  rows: 1;
+  overflow-y: scroll;
+
 }
 
+#new_message > div > div.form-group.text.optional.message_content {
+  margin-bottom: 0 !important;
+}
 
 // exist now
 button.myBtn {
