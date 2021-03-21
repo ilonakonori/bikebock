@@ -4,6 +4,25 @@
 }
 
 // msg input > wip
+// all this style is katastrophe
+// input for new msg
+.msg-input-container {
+  border: 1px #ccc solid;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+#message_content {
+  border: none;
+}
+
+#message_attachment {
+  display: inherit;
+}
+
 #new_message {
   display: flex;
   justify-content:flex-start;
@@ -15,17 +34,21 @@
   padding-left: 16px;
   margin-left: 4px;
 }
+#new_message > div > div.form-group.string.optional.message_content {
+  margin-bottom: 0 !important;
+}
 
-// this one doesn't exist
-#new_message > input[type=submit].myBtn {
+
+// exist now
+button.myBtn {
   padding: 0 16px !important;
   height: 10.3vw;
   font-weight: bold;
   color: #fff;
-  background-color: rgba(0, 145, 124, .8);
+  background-color: rgba(0, 145, 125, 0.8);
   border: none;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-radius: 50%;
+  margin-left: 8px;
 }
 
 
@@ -182,22 +205,3 @@ a.myLink {
   to { width: 100px; }
 }
 
-
-// all this style is katastrophe
-// input for new msg
-.msg-input-container {
-  border: 1px #ccc solid;
-  border-radius: 24px;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-#message_content {
-  border: none;
-}
-
-#message_attachment {
-  display: inherit;
-}

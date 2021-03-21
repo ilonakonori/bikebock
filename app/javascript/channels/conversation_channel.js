@@ -38,7 +38,7 @@ const submitAttachment = () => {
   const attachmentInput = document.getElementById('message_attachment');
   if(attachmentInput) {
     attachmentInput.addEventListener('input', (event) => {
-      document.querySelector('#new_message > div > button').click();
+      document.querySelector('#new_message > button').click();
       document.getElementById('loadDiv').style.display = 'inherit';
     });
   }
