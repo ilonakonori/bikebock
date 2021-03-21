@@ -4,7 +4,6 @@
 }
 
 // msg input > wip
-// all this style is katastrophe
 // input for new msg
 .msg-input-container {
   border: 1px #ccc solid;
@@ -15,9 +14,13 @@
   width: 85%;
 }
 
-#message_content {
-  border: none;
+// paper-clip for attachments
+#upload-btn {
+  padding-top: 9px;
+  font-size: 20px;
+  color: #646464;
 }
+
 
 #message_attachment {
   display: inherit;
@@ -29,13 +32,12 @@
 }
 
 #message_content {
+  border: none;
   width: 65vw;
   max-height: 10.3vw;
+  min-height: 10.3vw;
   padding-left: 16px;
   margin-left: 4px;
-  rows: 1;
-  overflow-y: scroll;
-
 }
 
 #new_message > div > div.form-group.text.optional.message_content {
@@ -44,17 +46,15 @@
 
 // exist now
 button.myBtn {
-  padding: 0 16px !important;
+  padding: 0 14px !important;
   height: 10.3vw;
   font-weight: bold;
   color: #fff;
   background-color: rgba(0, 145, 125, 0.8);
   border: none;
   border-radius: 50%;
-  margin-left: 8px;
+  margin-left: 7px;
 }
-
-
 
 // end of msg input
 
