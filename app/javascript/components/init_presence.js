@@ -5,13 +5,21 @@ const initPresence = () => {
 
     setInterval(function() {
       $.ajax({
-      url:  `/users/${id}/presence`,
-      type: 'GET'
+        url:  `/users/${id}/presence`,
+        type: 'GET'
       })
       .done(function(response){
         //console.log(response);
       })
       console.log(`${id} sent`);
+    }, 5000);
+
+    setInterval(function() {
+      $.ajax({
+        type: "PUT",
+        url: `/users/${id}/presence`,
+        dataType: "script"
+      })
     }, 5000);
   }
 }
