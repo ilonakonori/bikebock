@@ -175,6 +175,7 @@ a.myLink {
   border-top: 8px solid rgba(0, 145, 125, 0.8);
   z-index: 2;
   animation: run 2s linear;
+  animation-fill-mode: forwards;
 }
 
 @keyframes run {
