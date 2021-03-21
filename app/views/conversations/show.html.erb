@@ -3,7 +3,7 @@
     <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 70, width: 70, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
   </div>
 
-  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
+  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px; margin-bottom: -0.5em;">
     <%= @conversation.opposed_user(current_user).name %>
     <!-- render part -->
     <div id='online-<%= @conversation.opposed_user(current_user).id %>'>

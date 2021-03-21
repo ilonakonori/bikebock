@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :presence, :unread]
   after_action :read_notification, only: :notifications
+  respond_to :html, :js
 
   def show
     #@requests_received = Request.where(accepted: false, recipient_id: @user.id)
