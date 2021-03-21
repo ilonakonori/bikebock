@@ -37,6 +37,8 @@ import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
 import { initBookmarks } from '../components/init_bookmarks';
 import { initCloseAlert } from '../components/init_close_alert';
+import { initMsgAttachmentBtn } from '../components/init_msg_attachment_btn';
+
 
 
 
@@ -50,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
 
   initBookmarks();
+  initMsgAttachmentBtn();
   submitAttachment();
   initMsgAttachmentPreview();
   hideIt();
