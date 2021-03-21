@@ -36,6 +36,10 @@ import { initPresenceCurrent } from '../components/init_presence_current';
 import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
 import { initBookmarks } from '../components/init_bookmarks';
+import { initCloseAlert } from '../components/init_close_alert';
+import { initMsgAttachmentBtn } from '../components/init_msg_attachment_btn';
+
+
 
 
 
@@ -48,25 +52,14 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
 
   initBookmarks();
+  initMsgAttachmentBtn();
   submitAttachment();
   initMsgAttachmentPreview();
   hideIt();
-
-  const sidebar = document.getElementById('sidebar');
-  if(sidebar) {
-    initSidebar();
-  }
-
-  const user = document.getElementById('user');
-  if(user) {
-    initPresence();
-  }
-
-  const c_user = document.getElementById('c_user');
-  if(c_user) {
-    initPresenceCurrent();
-  }
-
+  initCloseAlert();
+  initSidebar();
+  initPresence();
+  initPresenceCurrent();
 
   flatpickr(".flatpickr", {
     mode: "multiple",

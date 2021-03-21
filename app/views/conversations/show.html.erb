@@ -41,22 +41,16 @@
       <% end %>
     </div>
 
-    <!-- icon in the placeholder wip -->
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-      <!-- ILona SOS -->
-      <!-- need styling so bad -->
       <div class='msg-input-container'>
         <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
-        <!-- input for attachment i.e. photo => need styling -->
-        <%= f.input :attachment, as: :file, label: false,
-                    input_html: { class: 'fas fa-paperclip' }
-                    %>
-        <!-- put icon to be submit btn => style somehow this -->
-        <button type="submit" style="background: transparent; border: none; padding: 0;">
-          <i class="fas fa-paper-plane"></i>
-        </button>
+        <i id="upload-btn" class="fas fa-paperclip"></i>
+        <%= f.input :attachment, as: :file, label: false, input_html: { hidden: true } %>
       </div>
-      <!-- end of msg-input-container - one that need some magic to look good -->
+      <button type="submit" class='myBtn' style="">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <!-- end of msg-input-container  -->
     <% end %>
   </div>
 </div>

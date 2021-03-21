@@ -4,31 +4,56 @@
 }
 
 // msg input > wip
+// input for new msg
+.msg-input-container {
+  border: 1px #ccc solid;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+// paper-clip for attachments
+#upload-btn {
+  padding-top: 9px;
+  font-size: 20px;
+  color: #646464;
+}
+
+#message_attachment {
+  display: inherit;
+}
+
 #new_message {
   display: flex;
   justify-content:flex-start;
 }
 
 #message_content {
+  border: none;
   width: 65vw;
-  height: 10.3vw;
+  max-height: 10.3vw;
+  min-height: 10.3vw;
   padding-left: 16px;
   margin-left: 4px;
 }
 
-// this one doesn't exist
-#new_message > input[type=submit].myBtn {
-  padding: 0 16px !important;
+#new_message > div > div.form-group.text.optional.message_content {
+  margin-bottom: 0 !important;
+}
+
+// exist now
+button.myBtn {
+  padding: 0 14px !important;
   height: 10.3vw;
   font-weight: bold;
   color: #fff;
-  background-color: rgba(0, 145, 124, .8);
+  background-color: rgba(0, 145, 125, 0.8);
   border: none;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-radius: 50%;
+  margin-left: 7px;
 }
-
-
 
 // end of msg input
 
@@ -175,28 +200,10 @@ a.myLink {
   border-top: 8px solid rgba(0, 145, 125, 0.8);
   z-index: 2;
   animation: run 2s linear;
+  animation-fill-mode: forwards;
 }
 
 @keyframes run {
   to { width: 100px; }
 }
 
-
-// all this style is katastrophe
-// input for new msg
-.msg-input-container {
-  border: 1px #ccc solid;
-  border-radius: 24px;
-  background: #fff;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-#message_content {
-  border: none;
-}
-
-#message_attachment {
-  display: inherit;
-}
