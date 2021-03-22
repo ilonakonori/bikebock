@@ -12,4 +12,8 @@ class ConversationPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def media?
+    true
+  end
 end
