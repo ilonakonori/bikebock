@@ -1,28 +1,9 @@
 <div style="margin: -16px !important">
-
-  <div class="navbar fixed-top navbar-expand-sm navbar-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style=''>
-      <ul class="navbar-nav mr-auto">
-        <div class="nav-item dropdown">
-          <a id="navbarDropdown", data-toggle="dropdown", aria-haspopup='true', aria-expanded='false'  >
-            <i class="fas fa-ellipsis-v"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-            <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
-            <!--build this one -->
-            <%= link_to "Media and docs", media_conversation_path(@conversation), class: "dropdown-item" %>
-          </div>
-        </div>
-      </ul>
-    </div>
-  </div>
-
-
   <div style="text-align: center; padding-top: 16px;">
     <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 70, width: 70, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
   </div>
 
-  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px; margin-bottom: -0.5em;">
+  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
     <%= @conversation.opposed_user(current_user).name %>
     <!-- render part -->
     <div id='online-<%= @conversation.opposed_user(current_user).id %>'>

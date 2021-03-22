@@ -1,5 +1,5 @@
-<div class="form-inline" style="margin-left: auto;">
-  <%= form_tag rides_path, class: "form-inline m-2", method: :get do %>
+<div class="form-inline">
+  <%= form_tag rides_path, class: "form-inline", method: :get do %>
     <%= select_tag(:select, options_for_select([
       ["Sort by Date", 2],
       ['Sort by Size', 1],
