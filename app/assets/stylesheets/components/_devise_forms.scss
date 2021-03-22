@@ -120,6 +120,10 @@ input[type="file"] {
   padding-left: 8px;
 }
 
+#edit_user > div.form-inputs > div.form-group.string.optional.user_interests.form-group-valid > small {
+  padding-left: 8px;
+}
+
 // new_user
 #new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
 #new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
