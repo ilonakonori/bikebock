@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   resources :conversations, only: [:show, :index] do
     resources :messages, only: :create
+    member do
+      get :media
+    end
   end
 
   resources :tags, only: :show

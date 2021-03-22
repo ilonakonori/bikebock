@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_action :set_conversation, only: [:show, :media]
   after_action :read_message_notifications, only: :show
 
   def index
@@ -7,11 +8,14 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = Conversation.find(params[:id])
     @message = Message.new
     @unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
     update_tracking
-    authorize @conversation
+  end
+
+  def media
+    @media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
+    @media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
   end
 
   def create
@@ -63,6 +67,11 @@ class ConversationsController < ApplicationController
   end
 
   private
+
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+    authorize @conversation
+  end
 
   def conversation_params
     params.require(:conversation).permit(:request_id, :sender_id, :recipient_id)

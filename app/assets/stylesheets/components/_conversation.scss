@@ -223,6 +223,7 @@ a.myLink {
   padding: 8px 24px;
   display: flex;
   justify-content: flex-end;
+  z-index: 1;
 }
 
 #navbarSupportedContent {
@@ -248,4 +249,22 @@ a.myLink {
       display: flex !important;
       flex-basis: auto;
   }
+}
+
+
+// media
+.media-box {
+  max-height: 80vh;
+  overflow-y: scroll;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
+  padding: 12px;
+  margin: 0 6px;
+}
+
+.media-sent {
+  background-color: rgba(253, 232, 205, 0.8);
+}
+
+.media-received {
+  background-color: rgba(0, 145, 125, 0.6);
 }
