@@ -207,3 +207,45 @@ a.myLink {
   to { width: 100px; }
 }
 
+
+
+// 'navbar' i.e. profile + media and docs
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+.navbar-nav .dropdown-menu {
+  float: left;
+}
+
+.fixed-top {
+  left: 0%;
+  padding: 8px 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#navbarSupportedContent {
+  font-size: 18px;
+  float: right;
+  color: #aaa;
+}
+
+#navbarSupportedContent > ul > div > div {
+  border-radius: 24px;
+}
+
+#navbarSupportedContent > ul > div > div > a {
+  padding: 0 12px;
+}
+
+.dropdown-menu {
+  min-width: 9em;
+}
+
+@media (min-width: 200px) {
+  .navbar-expand-sm .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+  }
+}
