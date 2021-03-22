@@ -15,11 +15,13 @@
       <h6>Bookmarked Rides!</h6>
       <br>
     </div>
-    <% @bookmarks.each do |b| %>
-      <% rides = Ride.where(id: b.favoritable_id) %>
-      <% rides.each do |ride| %>
-        <%= render 'rides/ride', ride: ride %>
+    <div style='height: 78vh; overflow-y: scroll;'>
+      <% @bookmarks.each do |b| %>
+        <% rides = Ride.where(id: b.favoritable_id) %>
+        <% rides.each do |ride| %>
+          <%= render 'rides/ride', ride: ride %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
 </div>
