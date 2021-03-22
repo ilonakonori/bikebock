@@ -1,6 +1,8 @@
 <div class='row'>
   <%= render 'rides/search_input' %>
 </div>
-<% @rides.each do |ride| %>
-  <%= render 'rides/ride', ride: ride %>
-<% end %>
+<div class='scroll-box'>
+  <% @rides.each do |ride| %>
+    <%= render 'rides/ride', ride: ride %>
+  <% end %>
+</div>

@@ -2,18 +2,18 @@
   <h3>You and <%= @conversation.opposed_user(current_user).name %></h3>
   <%= link_to 'Back', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'myLink' %>
 
-  <div class='row'>
-  <% @media.each do |media| %>
-    <%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
-  <% end %>
+  <div class='scroll-box'>
+    <% @media.each do |media| %>
+      <%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
+    <% end %>
   </div>
 <!--
   <div class='row'>
       <div class="col">
-        <h6>Sent (<%= @media_sent.count %>)</h6>
+        <h6>Sent (<#%= @media_sent.count %>)</h6>
       </div>
       <div class="col">
-        <h6>Received (<%= @media_received.count %>)</h6>
+        <h6>Received (<#%= @media_received.count %>)</h6>
       </div>
   </div>
 
