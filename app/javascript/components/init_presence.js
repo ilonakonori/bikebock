@@ -12,7 +12,7 @@ const initPresence = () => {
         //console.log(response);
       })
       console.log(`${id} sent`);
-    }, 5000);
+    }, 60000);
 
     setInterval(function() {
       $.ajax({
@@ -20,7 +20,7 @@ const initPresence = () => {
         url: `/users/${id}/presence`,
         dataType: "script"
       })
-    }, 5000);
+    }, 60000);
   }
 }
 
