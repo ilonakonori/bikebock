@@ -116,3 +116,9 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 .current-photos > div:nth-child(3) > img  {
   padding: 0 4px;
 }
+
+// index page
+.scroll-box {
+  max-height: 85vh;
+  overflow-y: scroll;
+}
