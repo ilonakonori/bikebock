@@ -116,12 +116,12 @@ button.myBtn {
 //conversation
 
 .chat .chat-wrapper .chat-list-wrapper .chat-list {
-  padding: 0;
+  padding: 0px;
 }
 
 .chat .chat-wrapper .chat-list-wrapper .chat-list li {
   display: block;
-  padding: 8px 0;
+  padding-bottom: 8px;
   clear: both;
   border-bottom: 1px solid #ddd;
 }
@@ -140,13 +140,15 @@ button.myBtn {
   color: #999;
   font-size: 11px;
   line-height: 18px;
-  font-style: italic;
+  font-weight: 500;
 }
 
 .chat .chat-wrapper .chat-list-wrapper .chat-list li .body p {
-  font-size: 9px;
-  max-height: 32px;
+  font-size: 12px;
+  max-height: 34px;
   overflow: hidden;
+  padding-bottom: 12px;
+  margin: 5px;
 }
 
 
