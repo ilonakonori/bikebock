@@ -82,24 +82,24 @@ button.myBtn {
 
 .msg-sent {
   background-color: rgba(253, 232, 205, 0.8);
-  padding: 16px 16px;
-  border-top-right-radius: 24px;
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
+  padding: 8px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   border-bottom-right-radius: 0px;
-  max-width: 250px;
+  max-width: 240px;
   font-size: 12px;
   word-break: break-word;
 }
 
 .msg-received {
   background-color: rgba(0, 145, 125, 0.8);
-  padding: 16px 16px;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
+  padding: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-bottom-left-radius: 0px;
-  max-width: 250px;
+  max-width: 240px;
   font-size: 12px;
   word-break: break-word;
 }
@@ -149,6 +149,7 @@ button.myBtn {
   overflow: hidden;
 }
 
+
 // bc all links are white by default
 a.myLink {
   color: #0c0c0c;
@@ -171,7 +172,7 @@ a.myLink {
 
 #loadDiv {
   background-color: #eee;
-  display: flex;
+  //display: flex;
   justify-content: center;
   position:absolute;
   top:42%;
@@ -179,7 +180,7 @@ a.myLink {
   padding: 24px;
   transform:translate(-50%, 0);
   border-radius: 12px;
-  box-shadow: 0px 1px 12px 1px rgba(120,120,120,0.2); // pls check!
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2); // pls check!
   padding: 24px 56px 8px 56px;
 }
 

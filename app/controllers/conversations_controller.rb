@@ -14,8 +14,9 @@ class ConversationsController < ApplicationController
   end
 
   def media
-    @media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
-    @media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
+    #@media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
+    #@media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
+    @media = @conversation.messages.order(created_at: :desc).select { |m| m.attachment.attached? }
   end
 
   def create

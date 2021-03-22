@@ -3,6 +3,12 @@
   <%= link_to 'Back', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'myLink' %>
 
   <div class='row'>
+  <% @media.each do |media| %>
+    <%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
+  <% end %>
+  </div>
+<!--
+  <div class='row'>
       <div class="col">
         <h6>Sent (<%= @media_sent.count %>)</h6>
       </div>
@@ -13,16 +19,16 @@
 
   <div class="row">
     <div class="col media-box media-sent">
-      <% @media_sent.each do |media| %>
-        <%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
-      <% end %>
+      <#% @media_sent.each do |media| %>
+        <#%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
+      <#% end %>
     </div>
 
     <div class="col media-box media-received">
-      <% @media_received.each do |media| %>
-        <%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
-      <% end %>
+      <#% @media_received.each do |media| %>
+        <#%= cl_image_tag media.attachment.key, width: 120, crop: :fit, style: 'padding: 8px;' %>
+      <#% end %>
     </div>
   </div>
-
+-->
 </div>
