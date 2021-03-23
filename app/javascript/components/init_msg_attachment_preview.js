@@ -10,7 +10,7 @@ const initMsgAttachmentPreview = () => {
           prevDiv.removeChild(prevDiv.childNodes[0]);
         } else {
           const image = document.createElement('img');
-          image.src = imgs[i].src;
+          image.src = imgs[i].src.replace(/c_fill,h_70,w_70/g, 'c_fit,w_220');
           image.classList.add('prev');
           prevDiv.appendChild(image);
         }
