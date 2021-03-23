@@ -11,6 +11,16 @@
   filter: invert(3);
 }
 
+.rides {
+  margin-bottom: 24px;
+  padding: 8px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 16px;
+  border: 1px solid #efefef;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
 .card.card-ride {
   background-color: transparent;
   border: 0px transparent;
@@ -119,6 +129,6 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 // index page
 .scroll-box {
-  max-height: 85vh;
+  max-height: 84vh;
   overflow-y: scroll;
 }

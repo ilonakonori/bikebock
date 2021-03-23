@@ -1,9 +1,12 @@
-<h1 class="interests"><%= @tag.name %></h1>
-<div class='scroll-box'>
+<div style='text-align: center; padding: 24px 0px 12px 0px;'>
+  <h1 class="interests" style='font-size: 24px;'><%= @tag.name %></h1>
+</div>
+<div class='scroll-box' style='padding-left: 6px;'>
   <% @tagged.each do |t| %>
     <% user = User.find(t.taggable_id) %>
     <%= link_to user_path(user) do %>
-      <%= cl_image_tag user.profile_photo.key, height: 70, width: 70, crop: :fill, style: "margin-top: 16px; border-radius: 16px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      <%= cl_image_tag user.profile_photo.key, height: 70, width: 70, crop: :fill, style: "margin: 4px 2px; border-radius: 16px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
     <% end %>
   <% end %>
 </div>
+

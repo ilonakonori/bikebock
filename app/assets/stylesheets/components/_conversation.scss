@@ -92,7 +92,8 @@ ul {
 }
 
 .msg-sent {
-  background-color: rgba(253, 232, 205, 0.8);
+  background-color: rgba(0, 195, 85, 0.2);
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
   padding: 8px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
@@ -104,7 +105,8 @@ ul {
 }
 
 .msg-received {
-  background-color: rgba(0, 145, 125, 0.8);
+  background-color: #fff;
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
   padding: 8px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -195,7 +197,7 @@ a.myLink {
   transform:translate(-50%, 0);
   border-radius: 12px;
   box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
-  padding: 24px 56px 8px 56px;
+  padding: 24px 56px 8px 40px;
 }
 
 .line-load, .progress-load {
@@ -231,6 +233,8 @@ a.myLink {
 
 .navbar-nav .dropdown-menu {
   float: left;
+  margin-top: -2px;
+  margin-right: -12px;
 }
 
 .fixed-top {
@@ -242,13 +246,14 @@ a.myLink {
 }
 
 #navbarSupportedContent {
-  font-size: 18px;
   float: right;
   color: #aaa;
 }
 
 #navbarSupportedContent > ul > div > div {
-  border-radius: 24px;
+  border-radius: 8px;
+  border-top-right-radius: 0px;
+  font-size: 12px;
 }
 
 #navbarSupportedContent > ul > div > div > a {
@@ -274,12 +279,4 @@ a.myLink {
   box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
   padding: 12px;
   margin: 0 6px;
-}
-
-.media-sent {
-  background-color: rgba(253, 232, 205, 0.8);
-}
-
-.media-received {
-  background-color: rgba(0, 145, 125, 0.6);
 }
