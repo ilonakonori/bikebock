@@ -47,7 +47,7 @@
   <% else %>
     <% @user.rides.each do |ride| %>
       <%= link_to ride_path(ride) do %>
-        <div class="card" style="padding: 8px; background-color: #FDE8CD; color: #000; border-radius: 16px; border: 0px;">
+        <div class="card" style="padding: 8px; background-color: #fff; color: #000; border-radius: 16px; border: 1px solid #efefef;">
         <div style="display: flex; justify-content: flex-end; align-items: center; padding: 8px 8px;">
           <%= cl_image_tag ride.user.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         </div>

@@ -40,7 +40,7 @@
         </div>
 
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <p style="text-align: center; color: #fff !important; margin-bottom: 48px;">Don't have an account? <%= link_to "Sign up!", new_registration_path(resource_name), style:"font-weight: 600;" %><br />
+          <p style="text-align: center; color: #fff !important; padding-bottom: 24px;">Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name), style:"font-weight: 600;" %><br />
         <% end %>
 
       <% end %>

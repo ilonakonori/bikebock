@@ -25,12 +25,13 @@
                   required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "About Yourself" %>
+                  placeholder: "About Me" %>
       <%= f.input :interests,
                   required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "Interests" %>
+                  hint: "Express Yourself in #hashtags",
+                  placeholder: "My Interests" %>
 
       <%= f.input :profile_photo,
                   as: :file,
@@ -61,13 +62,13 @@
       <%= f.input :password_confirmation,
                   required: true,
                   label: false,
-                  placeholder: "Password confiramtion",
+                  placeholder: "Password Confiramtion",
                   input_html: { autocomplete: "new-password" } %>
       <%= f.hidden_field :last_seen,
                   :value => DateTime.now %>
       <br>
-      <div class="form-actions" style="text-align: center;  margin-bottom: 48px;">
-        <%= f.button :submit, "Create account", style: "margin-bottom: 12px;background-color: #FDE8CD; padding: 8px 40px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      <div class="form-actions" style="text-align: center; margin-bottom: 48px;">
+        <%= f.button :submit, "Create account", style: "background-color: #FDE8CD; padding: 8px 40px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
         <br>
         <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' BikeBock! Terms of service' %></small>
       </div>
