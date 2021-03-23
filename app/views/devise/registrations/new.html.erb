@@ -20,18 +20,17 @@
                   label: false,
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
-                  <!-- <br> => why? -->
       <%= f.input :about_me,
                   required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "About Yourself" %>
+                  placeholder: "About Me" %>
       <%= f.input :interests,
                   required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "Interests" %>
-
+                  hint: "Express yourself in #hashtags",
+                  placeholder: "My Interests" %>
       <%= f.input :profile_photo,
                   as: :file,
                   required: true,
@@ -61,7 +60,7 @@
       <%= f.input :password_confirmation,
                   required: true,
                   label: false,
-                  placeholder: "Password confiramtion",
+                  placeholder: "Password Confiramtion",
                   input_html: { autocomplete: "new-password" } %>
       <%= f.hidden_field :last_seen,
                   :value => DateTime.now %>
