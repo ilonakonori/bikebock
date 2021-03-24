@@ -17,6 +17,12 @@ class RidesController < ApplicationController
   end
 
   def show
+    Request.where(accepted: false, user_id: current_user, ride_id: @ride.id).present?
+      requests = Request.where(accepted: false, user_id: current_user, recipient_id: @ride.user_id)
+      all_dates = requests.map { |r| r.ride_date }
+      my_dates = (@ride.available_dates.split(' ') + all_dates)
+      @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
+
     @request = Request.new
     update_tracking
   end
