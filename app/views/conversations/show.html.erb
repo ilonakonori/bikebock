@@ -1,8 +1,25 @@
-<div class='chat-user-box'>
-  <div style="text-align: center;">
-    <%= link_to user_path(@conversation.opposed_user(current_user)) do %>
-      <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
-    <% end %>
+
+<div style="margin: -16px !important">
+
+ <!--dropdown -->
+  <div class="navbar fixed-top navbar-expand-sm navbar-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style=''>
+      <ul class="navbar-nav mr-auto">
+        <div class="nav-item dropdown">
+          <a id="navbarDropdown", data-toggle="dropdown", aria-haspopup='true', aria-expanded='false'  >
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+            <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
+            <%= link_to "Media and docs", media_conversation_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding-top: 16px;">
+    <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 70, width: 70, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
   </div>
 
   <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
@@ -28,33 +45,40 @@
     </div>
     <!-- end of render part -->
   </div>
-</div>
 
-<div class='chatbox'>
-  <div class='user-not'>
-    <small>
-      <i class="fas fa-lock"></i>
-      <!-- not really, but it sounds good :D! smtng to work on :)-->
-      Messages are end-to-end encrypted. No one outside of this chat, not even BikeBock, can read them.
-    </small>
-  </div>
+  <div class='chatbox'>
 
-  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
-    <% @conversation.messages.each do |message| %>
+    <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
 
-      <% if message.sender_id == current_user.id %>
-          <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
-      <% else %>
-          <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
+      <div class='user-not'>
+        <small>
+          <i class="fas fa-lock"></i>
+          <!-- not really, but it sounds good :D! smtng to work on :)-->
+          Messages are end-to-end encrypted. No one outside of this chat, not even BikeBock, can read them.
+        </small>
+      </div>
+
+      <% @conversation.messages.each do |message| %>
+
+        <% if message.sender_id == current_user.id %>
+            <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
+        <% else %>
+            <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
+        <% end %>
+
       <% end %>
+    </div>
 
-    <% end %>
-  </div>
-
-  <!-- icon in the placeholder wip -->
-  <div>
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
+      <div class='msg-input-container'>
+        <%= f.input :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
+        <i id="upload-btn" class="fas fa-paperclip"></i>
+        <%= f.input :attachment, as: :file, label: false, input_html: { hidden: true } %>
+      </div>
+      <button type="submit" class='myBtn' style="">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <!-- end of msg-input-container  -->
     <% end %>
   </div>
 </div>

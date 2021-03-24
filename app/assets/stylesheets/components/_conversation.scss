@@ -7,41 +7,80 @@
   font-size: 12px;
   margin-top: 12px;
   padding: 8px;
-  //background-color:
 }
 
 #messages {
-  height: 52vh;
+  //height: 52vh;
   //height: 58vh;
+  height: 68vh;
   overflow-y: scroll;
 }
 
 // msg input > wip
+// input for new msg
+.msg-input-container {
+  border: 1px #ccc solid;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+// paper-clip for attachments
+#upload-btn {
+  padding-top: 9px;
+  font-size: 20px;
+  color: #646464;
+}
+
+#message_attachment {
+  display: inherit;
+}
+
 #new_message {
   display: flex;
   justify-content:flex-start;
-  margin: 4vw;
-  margin-bottom: 1vw;
+  //margin: 4vw;
+  //margin-bottom: 1vw;
 }
 
 #message_content {
-  width: 75vw;
-  height: 10.3vw;
+  border: none;
+  width: 65vw;
+  max-height: 10.3vw;
+  min-height: 10.3vw;
   padding-left: 16px;
-
+  margin-left: 4px;
+  resize: none;
 }
 
-#new_message > input[type=submit].myBtn {
-  padding: 0 16px !important;
+#new_message > div > div.form-group.text.optional.message_content {
+  margin-bottom: 0 !important;
+}
+
+// exist now
+button.myBtn {
+  padding: 0 14px !important;
   height: 10.3vw;
   font-weight: bold;
   color: #fff;
-  background-color: rgba(0, 145, 124, .8);
+  background-color: rgba(0, 145, 125, 0.8);
   border: none;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-radius: 50%;
+  margin-left: 7px;
 }
+
 // end of msg input
+ul {
+  display: block;
+  list-style-type: none;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
 
 #messages.message-container {
   display: inline-block;
@@ -49,7 +88,8 @@
 
 .message-container {
   margin: 18px;
-  margin-bottom: 8px !important;
+  margin-bottom: 18px !important;
+  padding-top: 12px;
 }
 
 .message-container.message-sent {
@@ -67,25 +107,27 @@
 }
 
 .msg-sent {
-  background-color: rgba(253, 232, 205, 0.8);
-  padding: 16px 16px;
-  border-top-right-radius: 24px;
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
+  background-color: rgba(0, 195, 85, 0.2);
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
+  padding: 8px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   border-bottom-right-radius: 0px;
-  max-width: 80%;
+  max-width: 240px;
   font-size: 12px;
   word-break: break-word;
 }
 
 .msg-received {
-  background-color: rgba(0, 145, 125, 0.8);
-  padding: 16px 16px;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 32px;
-  border-bottom-right-radius: 32px;
+  background-color: #fff;
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
+  padding: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   border-bottom-left-radius: 0px;
-  max-width: 80%;
+  max-width: 240px;
   font-size: 12px;
   word-break: break-word;
 }
@@ -97,4 +139,159 @@
 
 #content-wrap > div.container > p > a, #user > a {
   color: red;
+}
+
+//conversation
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list {
+  padding: 0px;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li {
+  display: block;
+  padding-bottom: 8px;
+  clear: both;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .pic {
+  margin-right: 8px;
+  float: left;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body .header .username {
+  font-weight: 600;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body .header .timestamp {
+  float: right;
+  color: #999;
+  font-size: 11px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.chat .chat-wrapper .chat-list-wrapper .chat-list li .body p {
+  font-size: 12px;
+  max-height: 34px;
+  overflow: hidden;
+  padding-bottom: 12px;
+  margin: 5px;
+}
+
+
+// bc all links are white by default
+a.myLink {
+  color: #0c0c0c;
+}
+
+// preview of photo i.e. attachment => done!:)
+.prev {
+  transform: scale(1.5);
+  box-shadow: 0px 56px 50px 36px rgba(0,0,0,0.69);
+}
+
+#prevDiv {
+  display: flex;
+  justify-content: center;
+  position:absolute;
+  top:32%;
+  left:50%;
+  transform:translate(-50%, 0);
+}
+
+// Ilona  check this pls :)
+#loadDiv {
+  background-color: #eee;
+  //display: flex;
+  justify-content: center;
+  position:absolute;
+  top:42%;
+  left:50%;
+  padding: 24px;
+  transform:translate(-50%, 0);
+  border-radius: 12px;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
+  padding: 24px 56px 8px 40px;
+}
+
+.line-load, .progress-load {
+  position: absolute;
+
+}
+
+.line-load {
+  width: 100px;
+  border-top: 8px solid rgba(0, 145, 125, 0.4);
+  z-index: 1;
+}
+
+
+.progress-load {
+  width: 0px;
+  border-top: 8px solid rgba(0, 145, 125, 0.8);
+  z-index: 2;
+  animation: run 2s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes run {
+  to { width: 100px; }
+}
+
+
+
+// 'navbar' i.e. profile + media and docs
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+.navbar-nav .dropdown-menu {
+  float: left;
+  margin-top: -2px;
+  margin-right: -12px;
+}
+
+.fixed-top {
+  left: 0%;
+  padding: 8px 24px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+#navbarSupportedContent {
+  float: right;
+  color: #aaa;
+}
+
+#navbarSupportedContent > ul > div > div {
+  border-radius: 8px;
+  border-top-right-radius: 0px;
+  font-size: 12px;
+}
+
+#navbarSupportedContent > ul > div > div > a {
+  padding: 0 12px;
+}
+
+.dropdown-menu {
+  min-width: 9em;
+}
+
+@media (min-width: 200px) {
+  .navbar-expand-sm .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+  }
+}
+
+
+// media
+.media-box {
+  max-height: 80vh;
+  overflow-y: scroll;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
+  padding: 12px;
+  margin: 0 6px;
 }

@@ -9,8 +9,8 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :name, 
-                  required: true, 
+      <%= f.input :name,
+                  required: true,
                   autofocus: true,
                   label: false,
                   placeholder: "Your Name " %>
@@ -20,26 +20,39 @@
                   label: false,
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
-                  <br>
-      <%= f.input :about_me, 
-                  required: true, 
+                  <!-- <br> => why? -->
+      <%= f.input :about_me,
+                  required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "About Yourself" %>
+                  placeholder: "About Me" %>
       <%= f.input :interests,
                   required: true,
                   autofocus: true,
                   label: false,
-                  placeholder: "Interests" %>
+                  hint: "Express Yourself in #hashtags",
+                  placeholder: "My Interests" %>
+
       <%= f.input :profile_photo,
                   as: :file,
                   required: true,
-                  autofocus: true %>
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+
+      <div id="previewAvatar" class='my-3' style='display:flex; justify-content: center;'></div>
+
       <%= f.input :bike_photo,
                   as: :file,
                   required: true,
-                  autofocus: true  %>
-                  <br>
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+
+      <div id="previewBike" class='my-3' style='display:flex; justify-content: center;'></div>
+
       <%= f.input :password,
                   required: true,
                   hint: ("Must have at least #{@minimum_password_length} characters" if @minimum_password_length),
@@ -49,16 +62,18 @@
       <%= f.input :password_confirmation,
                   required: true,
                   label: false,
-                  placeholder: "Password confiramtion",
+                  placeholder: "Password Confirmation",
                   input_html: { autocomplete: "new-password" } %>
       <%= f.hidden_field :last_seen,
                   :value => DateTime.now %>
-                  <br>
-    </div>
-    <div class="form-actions" style="text-align: center;">
-      <%= f.button :submit, "Create account", style: "background-color: #FDE8CD; padding: 8px 55px; border-radius: 16px; color: #000; font-weight: 400; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+      <br>
+      <div class="form-actions" style="text-align: center; margin-bottom: 48px;">
+        <%= f.button :submit, "Create account", style: "background-color: #FDE8CD; padding: 8px 40px; border-radius: 16px; color: #000; font-weight: 600; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+        <br>
+        <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' BikeBock! Terms of service' %></small>
+      </div>
     </div>
   <% end %>
-  <br>
+
   <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
 </div>

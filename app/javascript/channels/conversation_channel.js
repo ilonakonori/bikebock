@@ -14,6 +14,8 @@ const insertIntoDOM = (messageHTML, currentUserId, messages) => {
   }
 
   messages.insertAdjacentElement('beforeend', message);
+  const uploading = document.getElementById('loadDiv');
+  uploading.style.display = 'none';
 }
 
 const initConversationCable = () => {
@@ -31,4 +33,15 @@ const initConversationCable = () => {
   }
 }
 
-export { initConversationCable };
+// submit attachment on attachment input
+const submitAttachment = () => {
+  const attachmentInput = document.getElementById('message_attachment');
+  if(attachmentInput) {
+    attachmentInput.addEventListener('input', (event) => {
+      document.querySelector('#new_message > button').click();
+      document.getElementById('loadDiv').style.display = 'inherit';
+    });
+  }
+}
+
+export { initConversationCable, submitAttachment };

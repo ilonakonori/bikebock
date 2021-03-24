@@ -8,11 +8,39 @@
   <%= f.input :end_time %>
   <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
   <%= f.input :available_dates, as: :string, input_html: { class: 'flatpickr' } %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+
+
+  <div data-controller="multi-upload" data-action ="input->multi-upload#addFile" style='padding-bottom: 0.2em;'>
+    <div class="multi-upload">
+
+      <%= f.input :photos, as: :file,
+                  input_html: { multiple: true, class: 'custom-file-input' },
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' }
+                  %>
+    </div>
+    <div data-multi-upload-target="files"></div>
+  </div>
+
+
   <% if ride.persisted? %>
+
+    <small>Current photos: </small>
+    <div class="my-row current-photos">
+      <% ride.photos.each do |photo| %>
+        <div><%= cl_image_tag photo.key, height: 70, width: 100, crop: :fill %></div>
+      <% end %>
+    </div>
+
+    <small>New photos:</small>
+    <div id="previewRide" class=''></div>
+
     <%= f.submit value="Save", class: "" %>
+
   <% else %>
+    <!-- preview -->
+    <br>
+    <div id="previewRide" class=''></div>
     <%= f.submit value="Add", class: "" %>
   <% end %>
 <% end %>
-

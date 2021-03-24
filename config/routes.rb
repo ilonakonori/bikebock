@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     member do
       get :presence
+      put :presence
       get :unread
     end
     collection do
@@ -30,6 +31,9 @@ Rails.application.routes.draw do
 
   resources :conversations, only: [:show, :index] do
     resources :messages, only: :create
+    member do
+      get :media
+    end
   end
 
   resources :tags, only: :show

@@ -1,4 +1,4 @@
-<div>
+<div style="padding-top: 24px;">
   <% if @conversations.blank? %>
     <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
       <p style="font-size: 60px;"><i class="far fa-comments"></i></p>
@@ -14,30 +14,56 @@
   <% else %>
 
     <% @conversations.each do |c| %>
-    <!-- add here search for friends -->
-      <% if c.messages.present? %>
-        <div style='display:flex; justify-content: flex-start;'>
-          <%
-            if c.opposed_user(current_user).online?
-              present_color = '#00917C;'
-            else
-              present_color = '#aaa;'
-            end
-          %>
+      <div>
+        <%
+          if c.opposed_user(current_user).online?
+            present_color = '#00917C;'
+          else
+            present_color = '#aaa;'
+          end
+        %>
+      </div>
 
-          <span id='last-online-<%= c.opposed_user(current_user).id %>'>
-            <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-          </span>
-          <p id='user' data-online-id="<%= c.opposed_user(current_user).id %>"><%= link_to c.opposed_user(current_user).name, conversation_path(c, anchor: "message-#{c.messages.last.id}") %></p>
-          <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user).size %>
-          <span style='padding-left: 8px;'><%= new_msg unless new_msg.zero? %></span>
-        </div>
+      <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
+         msg_link =  new_msg.present? ? new_msg.first.link : "/conversations/#{c.id}#message-#{c.messages.last.id}" %>
+      <!-- "/conversations/#{c.id}#message-#{c.messages.last.id}" -->
 
-        <div class='col'>
-          <small><%= c.messages.last.created_at %></small>
-          <p><%= c.messages.last.content[0..40] %></p>
+      <%= link_to "#{msg_link}", class: 'myLink' do %>
+      <%#= link_to conversation_path(c, anchor: "message-#{c.messages.last.id}"), class: 'myLink' do %>
+        <div class="chat">
+          <div class="row chat-wrapper">
+            <div class="col-md-4">
+              <div class="compose-area">
+                <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
+                  <ul class="chat-list">
+                    <li class="new" style='padding-top: 8px;'>
+                    <span class="pic">
+                      <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                    </span>
+                    <div class="body">
+                      <div class="header">
+                        <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
+
+                        <span style='padding-left: 8px;'><%= new_msg.size unless new_msg.size.zero? %></span>
+                        <small class="timestamp"><%= c.messages.last.created_at.to_date %></small>
+                      </div>
+
+                      <% if c.messages.last.content.present? %>
+                        <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+                      <% else %> <!--
+                      <#% if c.messages.last.attachment.present? %>-->
+                        <p style="font-weight: 600;">** Attachment **</p>
+                      <% end %>
+
+                    </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-     <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
