@@ -15,7 +15,9 @@ const insertIntoDOM = (messageHTML, currentUserId, messages) => {
 
   messages.insertAdjacentElement('beforeend', message);
   const uploading = document.getElementById('loadDiv');
-  uploading.style.display = 'none';
+  if(uploading) {
+    uploading.style.display = 'none';
+  }
 }
 
 const initConversationCable = () => {
@@ -26,7 +28,6 @@ const initConversationCable = () => {
 
     consumer.subscriptions.create({ channel: "ConversationChannel", id: id }, {
       received(messageHTML) {
-        console.log(messageHTML);
         insertIntoDOM(messageHTML, currentUserId, messagesContainer);
       },
     });
