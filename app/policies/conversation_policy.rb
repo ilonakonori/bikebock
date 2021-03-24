@@ -16,4 +16,8 @@ class ConversationPolicy < ApplicationPolicy
   def media?
     true
   end
+
+  def conversated?
+    true
+  end
 end

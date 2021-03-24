@@ -15,10 +15,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    #ride = Ride.find(params[:ride_id])
-
     @request = current_user.requests.new(request_params)
-
     @request.accepted = false;
     @request.friend = false;
 
