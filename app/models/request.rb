@@ -11,7 +11,7 @@ class Request < ApplicationRecord
   # add ride id, validates :ride_id, uniqueness: { scope: :select_date } + sender_id
   # scope: [:sender_id, :select_date]
 
-  validates :ride_id, uniqueness: { scope: [:user_id, :ride_date]}
+  #validates :ride_date, uniqueness: { scope: [:user_id, :ride_id]}
 
   #scope :between, -> (sender_id, recipient_id) do
   #  where(sender_id: sender_id, recipient_id: recipient_id).or(

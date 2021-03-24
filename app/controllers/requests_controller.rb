@@ -16,6 +16,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = current_user.requests.new(request_params)
+    @request.user_id = current_user.id
     @request.accepted = false;
     @request.friend = false;
 
@@ -39,7 +40,7 @@ class RequestsController < ApplicationController
       )
 
       flash[:notice] = 'Request successfully sent'
-      redirect_back(fallback_location: 'rides#show') #o ride_path(ride)
+      redirect_to ride_path(@request.ride_id, anchor: "request")
     end
     update_tracking
   end
