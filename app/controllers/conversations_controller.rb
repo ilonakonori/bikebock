@@ -19,16 +19,13 @@ class ConversationsController < ApplicationController
     @media = @conversation.messages.order(created_at: :desc).select { |m| m.attachment.attached? }.group_by { |m| m.created_at.beginning_of_month }
   end
 
-  def create # update this
-    #@conversation.create(conversation_params) unless conversated?
-    # method conversated? Conversation.find_by(sender_id: @request.sender_id, recipient_id: @request.recipient_id).present?
+  def create
     if !conversated
       @request = Request.find(params[:id])
       @conversation = Conversation.create(
                         request_id: @request.id,
                         sender_id: @request.user_id,
                         recipient_id: @request.recipient_id)
-      #authorize @conversation
     end
 
     @request.update(accepted: true, friend: true)
@@ -48,11 +45,7 @@ class ConversationsController < ApplicationController
         link: "/conversations/#{c.id}/"
       )
 
-      #Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
-
-      #ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
-      #redirect_to conversation_path(@conversation) #, anchor: "message-#{@message.id}")
-authorize @conversation
+    authorize @conversation
     redirect_to conversation_path(@conversation), notice: "Request accepted, start conversation :)"
     update_tracking
   end
@@ -75,7 +68,6 @@ authorize @conversation
   def conversated
     @request = Request.find(params[:id])
     @conversation = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id)
-    #authorize @conversation
   end
 
   def set_conversation
