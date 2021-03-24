@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new(
                       request_id: @request.id,
                       sender_id: @request.user_id,
-                      recipient_id: @request.recipient_id)
+                      recipient_id: @request.recipient_id) unless conversated?
     authorize @conversation
     @request.update(accepted: true, friend: true)
     if @conversation.save
@@ -72,6 +72,11 @@ class ConversationsController < ApplicationController
   end
 
   private
+
+  def conversated?
+    @request = Request.find(params[:id])
+    Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id)
+  end
 
   def set_conversation
     @conversation = Conversation.find(params[:id])
