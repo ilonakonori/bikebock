@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_102031) do
+ActiveRecord::Schema.define(version: 2021_03_24_170730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,16 +98,17 @@ ActiveRecord::Schema.define(version: 2021_03_21_102031) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer "sender_id"
     t.integer "recipient_id"
-    t.string "first_message"
     t.boolean "accepted", default: false
     t.boolean "friend", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipient_id", "sender_id"], name: "index_requests_on_recipient_id_and_sender_id", unique: true
+    t.bigint "ride_id", null: false
+    t.bigint "user_id", null: false
+    t.date "ride_date"
     t.index ["recipient_id"], name: "index_requests_on_recipient_id"
-    t.index ["sender_id"], name: "index_requests_on_sender_id"
+    t.index ["ride_id"], name: "index_requests_on_ride_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "rides", force: :cascade do |t|
@@ -184,6 +185,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_102031) do
   add_foreign_key "friends", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "notifications", "users"
+  add_foreign_key "requests", "rides"
+  add_foreign_key "requests", "users"
   add_foreign_key "rides", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "trackings", "users"
