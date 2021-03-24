@@ -106,10 +106,9 @@
       <% end %>
 
       <% all_dates = requests.map { |r| r.ride_date }
-         my_dates = ride.available_dates.split(' ') + all_dates
-         counts = Hash.new(0)
-         my_dates.each { |v| counts[v] += 1 }
-         av_dates = counts.select { |v, count| count == 1 }.keys %>
+         my_dates = (ride.available_dates.split(' ') + all_dates)
+         av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
+       %>
 
       <%if av_dates.present? %>
         <a onclick='showForm(this)'>Send more</a>
