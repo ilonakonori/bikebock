@@ -1,5 +1,4 @@
 class Conversation < ApplicationRecord
-  belongs_to :request
   has_many :messages, dependent: :destroy
   after_create :create_friends
 

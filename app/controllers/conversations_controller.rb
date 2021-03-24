@@ -22,10 +22,7 @@ class ConversationsController < ApplicationController
   def create
     if !conversated
       @request = Request.find(params[:id])
-      @conversation = Conversation.create(
-                        request_id: @request.id,
-                        sender_id: @request.user_id,
-                        recipient_id: @request.recipient_id)
+      @conversation = Conversation.create(sender_id: @request.user_id, recipient_id: @request.recipient_id)
     end
 
     @request.update(accepted: true, friend: true)
