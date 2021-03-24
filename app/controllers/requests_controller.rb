@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   after_action :read_request_notification, only: :index
 
   def index # imp this!
-    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
+    @requests_sent = policy_scope(Request).where(accepted: false, user_id: current_user.id)
     @requests_received = current_user.notifications.where(read: false, action: 'Request').order(action_time: :desc)
     @requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     update_tracking
@@ -17,12 +17,8 @@ class RequestsController < ApplicationController
   def create
     #ride = Ride.find(params[:ride_id])
 
-    @request = Request.new(request_params)
-                #recipient_id: ride.user_id,
-                #sender_id: current_user.id,
-                #accepted: false,
-                #friend: false
-                #)
+    @request = current_user.requests.new(request_params)
+
     @request.accepted = false;
     @request.friend = false;
 
@@ -31,7 +27,7 @@ class RequestsController < ApplicationController
     if @request.save!
 
       r = Request.find(@request.id)
-      sender_name = User.find(r.sender_id).name
+      sender_name = User.find(r.user_id).name
       recipient = User.find(r.recipient_id)
 
       Notification.create!(
@@ -55,7 +51,7 @@ class RequestsController < ApplicationController
     @request.destroy
 
     sender_name = User.find(@request.recipient_id).name
-    recipient = User.find(@request.sender_id)
+    recipient = User.find(@request.user_id)
 
     Notification.create!(
         user: recipient,
@@ -91,6 +87,6 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:recipient_id, :sender_id, :first_message)
+    params.require(:request).permit(:recipient_id, :user_id, :ride_date, :ride_id, :accepted, :friend)
   end
 end

@@ -6,8 +6,11 @@ class User < ApplicationRecord
 
   has_one_attached :profile_photo
   has_one_attached :bike_photo
+
   has_many :rides, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :requests, dependent: :destroy
+
   has_one :tracking, dependent: :destroy
   has_many :friends, dependent: :destroy
 

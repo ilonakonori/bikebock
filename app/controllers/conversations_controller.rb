@@ -25,7 +25,7 @@ class ConversationsController < ApplicationController
     @request = Request.find(params[:id])
     @conversation = Conversation.new(
                       request_id: @request.id,
-                      sender_id: @request.sender_id,
+                      sender_id: @request.user_id,
                       recipient_id: @request.recipient_id)
     authorize @conversation
     @request.update(accepted: true, friend: true)

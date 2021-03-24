@@ -96,40 +96,40 @@
       <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
 
-     <% if Request.where(accepted: false, sender_id: current_user, recipient_id: ride.user_id).present? %>
-      <% request = Request.where(accepted: false, sender_id: current_user, recipient_id: ride.user_id).first %>
-      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
-    <% elsif Request.where(accepted: false, sender_id: ride.user_id, recipient_id: current_user).present? %>
-      <% request = Request.where(accepted: false, sender_id: ride.user_id, recipient_id: current_user).first %>
-      <%= link_to 'Check your request', request_path(request.id) %>
-    <% elsif Conversation.where(sender_id: current_user, recipient_id: ride.user_id).present? || Conversation.where(sender_id: ride.user_id, recipient_id: current_user).present? %>
-      <% room = Conversation.where(sender_id: current_user, recipient_id: ride.user.id).or(Conversation.where(sender_id: ride.user.id, recipient_id: current_user)).first %>
 
-      <% if room.messages.present? %>
-        <%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
-      <% else %>
-        <%= link_to 'Chat', conversation_path(room.id) %>
-      <% end %>
+<!-- change this 2 paths -->
+     <% if Request.where(accepted: false, user_id: current_user, recipient_id: ride.user_id).present? %>
+      <% request = Request.where(accepted: false, user_id: current_user, recipient_id: ride.user_id).first %>
+      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
+
+
+    <% elsif Request.where(accepted: false, user_id: ride.user_id, recipient_id: current_user).present? %>
+      <% request = Request.where(accepted: false, user_id: ride.user_id, recipient_id: current_user).first %>
+      <%= link_to 'Check your request', request_path(request.id) %>
+    <!--
+    <#% elsif Conversation.where(sender_id: current_user, recipient_id: ride.user_id).present? || Conversation.where(sender_id: ride.user_id, recipient_id: current_user).present? %>
+      <#% room = Conversation.where(sender_id: current_user, recipient_id: ride.user.id).or(Conversation.where(sender_id: ride.user.id, recipient_id: current_user)).first %>
+
+      <#% if room.messages.present? %>
+        <#%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
+      <#% else %>
+        <#%= link_to 'Chat', conversation_path(room.id) %>
+      <#% end %> -->
 
     <% elsif current_user.id != ride.user_id %>
-       <a onclick='showForm(this)'>I want to go</a>
-<!--
-      <form method="post" action="/requests" class=" ">
-        <input value="I want to go" type="submit" />
-        <%#= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <%#= hidden_field_tag :ride_id, ride.id %>
-      </form>
 
-    -->
-    <!-- wip-->
-  <div id='myForm' style='display:none;'>
-    <%= simple_form_for(@request) do |f| %>
-      <%= f.input :first_message, collection: ride.available_dates.split(' '), prompt: "Select date", selected: ride.available_dates.first %>
-      <%= f.hidden_field :sender_id, :value => current_user.id %>
-      <%= f.hidden_field :recipient_id, :value => ride.user_id %>
-      <%= f.submit value="Send",class: "" %>
-    <% end %>
-  </div>
+       <a onclick='showForm(this)'>I want to go</a>
+
+      <!-- wip-->
+      <div id='myForm' style='display:none;'>
+        <%= simple_form_for(@request) do |f| %>
+          <%= f.input :ride_date, collection: ride.available_dates.split(' '), prompt: "Select date", selected: ride.available_dates.first %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :recipient_id, :value => ride.user_id %>
+          <%= f.hidden_field :ride_id, :value => ride.id %>
+          <%= f.submit value="Send", class: "" %>
+        <% end %>
+      </div>
       <%#= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
 
