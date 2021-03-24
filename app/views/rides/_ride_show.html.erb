@@ -97,29 +97,35 @@
     <% end %>
 
 
-<!-- change this 2 paths -->
-     <% if Request.where(accepted: false, user_id: current_user, recipient_id: ride.user_id).present? %>
-      <% request = Request.where(accepted: false, user_id: current_user, recipient_id: ride.user_id).first %>
-      <%= link_to 'Request already sent, status: pending', request_path(request.id) %>
+     <!-- wip -->
+    <% if Request.where(accepted: false, user_id: current_user, ride_id: ride.id).present? %>
+      <% requests = Request.where(accepted: false, user_id: current_user, recipient_id: ride.user_id) %>
 
+      <% requests.each do |r| %>
+        <p>Request for <%= r.ride_date %> sent, status: pending'</p>
+      <% end %>
 
-    <% elsif Request.where(accepted: false, user_id: ride.user_id, recipient_id: current_user).present? %>
-      <% request = Request.where(accepted: false, user_id: ride.user_id, recipient_id: current_user).first %>
-      <%= link_to 'Check your request', request_path(request.id) %>
-    <!--
-    <#% elsif Conversation.where(sender_id: current_user, recipient_id: ride.user_id).present? || Conversation.where(sender_id: ride.user_id, recipient_id: current_user).present? %>
-      <#% room = Conversation.where(sender_id: current_user, recipient_id: ride.user.id).or(Conversation.where(sender_id: ride.user.id, recipient_id: current_user)).first %>
+      <% all_dates = requests.map { |r| r.ride_date }
+         my_dates = ride.available_dates.split(' ') + all_dates
+         counts = Hash.new(0)
+         my_dates.each { |v| counts[v] += 1 }
+         av_dates = counts.select { |v, count| count == 1 }.keys %>
 
-      <#% if room.messages.present? %>
-        <#%= link_to 'Chat', conversation_path(room.id, anchor: "message-#{room.messages.last.id}")%>
-      <#% else %>
-        <#%= link_to 'Chat', conversation_path(room.id) %>
-      <#% end %> -->
+      <%if av_dates.present? %>
+        <a onclick='showForm(this)'>Send more</a>
+         <div id='myForm' style='display:none;'>
+          <%= simple_form_for(@request) do |f| %>
+            <%= f.input :ride_date, collection: av_dates, prompt: "Select date", selected: ride.available_dates.first %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :recipient_id, :value => ride.user_id %>
+            <%= f.hidden_field :ride_id, :value => ride.id %>
+            <%= f.submit value="Send", class: "" %>
+          <% end %>
+        </div>
+      <% end %>
 
     <% elsif current_user.id != ride.user_id %>
-
-       <a onclick='showForm(this)'>I want to go</a>
-
+      <a onclick='showForm(this)'>I want to go</a>
       <!-- wip-->
       <div id='myForm' style='display:none;'>
         <%= simple_form_for(@request) do |f| %>
@@ -130,10 +136,7 @@
           <%= f.submit value="Send", class: "" %>
         <% end %>
       </div>
-      <%#= link_to "Send Message Request", new_request_path(sender_id: current_user, recipient_id: @user) %>
     <% end %>
-
-
 
   </div>
   <br>

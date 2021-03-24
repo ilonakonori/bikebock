@@ -1,4 +1,4 @@
-<h3><%= User.find(@request.recipient_id).name %></h3>
+<h3><%= User.find(@request.user_id).name %></h3>
 <small><%= @request.created_at %></small>
 <p><%#= @request.first_message %></p>
 <% if @request.recipient_id == current_user.id %>
