@@ -20,14 +20,14 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @request = Request.find(params[:request_id])
-    @conversation = Conversation.new(conversation_params)
+    if !conversated
+      @request = Request.find(params[:id])
+      @conversation = Conversation.create(sender_id: @request.user_id, recipient_id: @request.recipient_id)
+    end
+
     @request.update(accepted: true, friend: true)
-    authorize @conversation
-    if @conversation.save
 
       c = Conversation.find(@conversation.id)
-
       sender_name = User.find(c.recipient_id).name
       recipient = User.find(c.sender_id)
 
@@ -38,19 +38,13 @@ class ConversationsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} accepted your message request :)",
+        content: "#{sender_name} accepted your request :)",
         link: "/conversations/#{c.id}/"
       )
 
-      Message.create!(conversation_id: c.id, sender_id: c.sender_id, recipient_id: c.recipient_id, content: @request.first_message)
-
-      #ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
-      #redirect_to conversation_path(@conversation) #, anchor: "message-#{@message.id}")
-
-      redirect_to conversation_path(@conversation), notice: "Request accepted, start conversation :)"
-    else
-      render 'requests/show'
-    end
+    authorize @conversation
+    redirect_to request_path(@request), notice: "Request accepted"
+    #conversation_path(@conversation), notice: "Request accepted, start conversation :)"
     update_tracking
   end
 
@@ -69,12 +63,13 @@ class ConversationsController < ApplicationController
 
   private
 
+  def conversated
+    @request = Request.find(params[:id])
+    @conversation = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
+  end
+
   def set_conversation
     @conversation = Conversation.find(params[:id])
     authorize @conversation
-  end
-
-  def conversation_params
-    params.require(:conversation).permit(:request_id, :sender_id, :recipient_id)
   end
 end

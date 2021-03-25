@@ -38,6 +38,8 @@ import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachm
 import { initBookmarks } from '../components/init_bookmarks';
 import { initCloseAlert } from '../components/init_close_alert';
 import { initMsgAttachmentBtn } from '../components/init_msg_attachment_btn';
+import { initRequestForm } from '../components/init_request_form';
+
 
 
 
@@ -58,6 +60,7 @@ document.addEventListener('turbolinks:load', () => {
   hideIt();
   initCloseAlert();
   initSidebar();
+  initRequestForm();
   initPresence();
   initPresenceCurrent();
 

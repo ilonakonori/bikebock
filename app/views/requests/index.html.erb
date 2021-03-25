@@ -1,24 +1,32 @@
-<h3>Pending requests</h3>
-<h6>Received requests: <%= @requests_received.size %></h6>
-<% @requests_received.each do |r| %>
 
-  <% if r.link.present? %>
-    <p><%= link_to r.content, r.link %><small><%#= r.action_time%></small></p>
-  <% else %>
-    <p><%= r.content %>
-  <% end %>
-
+<h6>Received requests (<%= @requests_received_new.size %>) </h6>
+<% @requests_received_new.each do |r| %>
+  <p>
+    <%= link_to request_path(r) do %>
+      <%= r.user.name %> sent you request<small> (<%= r.created_at.to_date %>)</small>
+    <% end %>
+  </p>
 <% end %>
 
-<% @requests_read.each do |n| %>
-<% if n.link.present? %>
-  <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
-  <% else %>
-    <p style='color: #999;'><%= n.content %>
-  <% end %>
+<% @requests_received_old.each do |r| %>
+  <p style='background: #ddd;'>
+    <%= link_to request_path(r) do %>
+      <%= r.user.name %> sent you request<small> (<%= r.created_at.to_date %>)</small>
+    <% end %>
+  </p>
 <% end %>
 
-<h6>Sent requests: <%= @requests_sent.size %></h6>
+<!-- imp this -->
+<h6>Sent requests (<%= @requests_sent.where(accepted: false).size %>)</h6>
+
 <% @requests_sent.each do |r| %>
-  <p><%= link_to User.find(r.recipient_id).name, request_path(r) %></p>
+  <% if r.accepted %>
+    <p><%= r.ride.user.name %> accepted your request: <%= r.ride_date %> <%= r.ride.title %> </p>
+  <% else %>
+    <p>
+      <%= link_to ride_path(r.ride) do %>
+        <p><%= r.ride_date %> <%= r.ride.title %></p>
+      <% end %>
+    </p>
+  <% end %>
 <% end %>

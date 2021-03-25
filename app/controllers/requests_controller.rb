@@ -1,32 +1,35 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
-  after_action :read_request_notification, only: :index
+  #after_action :read_request_notification, only: :index
 
-  def index
-    @requests_sent = policy_scope(Request).where(accepted: false, sender_id: current_user.id)
-    @requests_received = current_user.notifications.where(read: false, action: 'Request').order(action_time: :desc)
-    @requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
+  def index # imp this!
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id)
+    @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id)
+    @requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
+    #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     update_tracking
-  end
-
-  def new
-    @request = Request.new
-    update_tracking
-    authorize @request
   end
 
   def show
-    update_tracking
+    notification = Notification.find_by(action_id: @request.id)
+    notification.update!(read: true)
+    @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
+    update_tracking
   end
 
   def create
-    @request = Request.new(request_params)
+    @request = current_user.requests.new(request_params)
+    @request.user_id = current_user.id
+    @request.accepted = false;
+    @request.friend = false;
+
     authorize @request
-    if @request.save
+
+    if @request.save!
 
       r = Request.find(@request.id)
-      sender_name = User.find(r.sender_id).name
+      sender_name = User.find(r.user_id).name
       recipient = User.find(r.recipient_id)
 
       Notification.create!(
@@ -36,13 +39,12 @@ class RequestsController < ApplicationController
         action_id: r.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} sent you message request",
-        link: "/requests/#{r.id}/"
+        link: "requests/#{r.id}",
+        content: "#{sender_name} sent you request"
       )
 
-      redirect_to user_path(@request.recipient_id), notice: 'Request was succesfully sent'
-    else
-      render :new
+      flash[:notice] = 'Request successfully sent'
+      redirect_to ride_path(@request.ride_id, anchor: "request")
     end
     update_tracking
   end
@@ -51,7 +53,7 @@ class RequestsController < ApplicationController
     @request.destroy
 
     sender_name = User.find(@request.recipient_id).name
-    recipient = User.find(@request.sender_id)
+    recipient = User.find(@request.user_id)
 
     Notification.create!(
         user: recipient,
@@ -60,10 +62,10 @@ class RequestsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} declined your message request :("
+        content: "#{sender_name} declined your request :("
       )
     update_tracking
-    redirect_to conversations_path(current_user), notice: 'You declined this message request!'
+    redirect_to requests_path, notice: 'You declined this request!'
   end
 
   def update_tracking
@@ -72,7 +74,7 @@ class RequestsController < ApplicationController
   end
 
   private
-
+=begin
   def read_request_notification
     if @requests_received.present?
       @requests_received.each do |n|
@@ -80,6 +82,7 @@ class RequestsController < ApplicationController
       end
     end
   end
+=end
 
   def set_request
     @request = Request.find(params[:id])
@@ -87,6 +90,6 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:first_message, :recipient_id, :sender_id)
+    params.require(:request).permit(:recipient_id, :user_id, :ride_date, :ride_id, :accepted, :friend)
   end
 end

@@ -1,20 +1,29 @@
 <div class='' style='padding-top: 12px; max-height: 92vh;'>
-  <small style=''><%= link_to 'Back', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'myLink' %></small>
-  <h3>You and <%= @conversation.opposed_user(current_user).name %></h3>
-  <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
-    <% @media.each do |m| %>
-      <div style='border: 3px solid #ccc;'>
-        <p style='background: #ccc; color: #fff; padding-left: 12px;'>
-          <%= m[0].year < Date.current.year ? m[0].strftime("%Y, %^B") : m[0].strftime("%^B") %>
-        </p>
-        <div style='text-align: left; padding-left: 8px; margin-bottom: 16px;'>
-          <% m[1].each do |media| %>
-            <%= cl_image_tag media.attachment.key, width: 70, height: 70, crop: :fill, class:'imgs', style: 'padding: 2px;' %>
-          <% end %>
-        </div>
-      </div>
+  <small style=''>
+    <% if @conversation.messages.present? %>
+      <%= link_to 'Back', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'myLink' %></small>
+    <% else %>
+      <%= link_to 'Back', conversation_path(@conversation), class: 'myLink' %></small>
     <% end %>
-  </div>
+  <h3>You and <%= @conversation.opposed_user(current_user).name %></h3>
+  <%if @media.blank? %>
+    <p>Nothing shared</p>
+  <% else %>
+    <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
+      <% @media.each do |m| %>
+        <div style='border: 3px solid #ccc;'>
+          <p style='background: #ccc; color: #fff; padding-left: 12px;'>
+            <%= m[0].year < Date.current.year ? m[0].strftime("%Y, %^B") : m[0].strftime("%^B") %>
+          </p>
+          <div style='text-align: left; padding-left: 8px; margin-bottom: 16px;'>
+            <% m[1].each do |media| %>
+              <%= cl_image_tag media.attachment.key, width: 70, height: 70, crop: :fill, class:'imgs', style: 'padding: 2px;' %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <!--
   <div class='row'>
       <div class="col">

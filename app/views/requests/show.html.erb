@@ -1,12 +1,52 @@
-<h3><%= @request.opposed_user(current_user).name %></h3>
-<small><%= @request.created_at %></small>
-<p><%= @request.first_message %></p>
+
+<small><%= @request.created_at.to_date %></small>
+<p>
+  <bold>
+    <%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: red;' %>
+  </bold> wants to join
+  <span style='color: white;background-color: #00917C;font-weight: bolder; border-radius: 16px; padding: .5vh 1vh;'>
+    <%= @request.ride_date %>
+  </span>
+  <!-- <#%= @request.ride.title %> -->
+</p>
+
+<%= render 'rides/ride', ride: @request.ride %>
+
 <% if @request.recipient_id == current_user.id %>
   <% if !@request.accepted %>
-    <%= render 'conversations/new' %>
+
+    <div style='display: flex; justify-content: center;'>
+      <form method="post" action="/requests/:id/conversations" class=" ">
+         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+         <%= hidden_field_tag :id, @request.id %>
+         <input value="Accept" type="submit" class="brown-btn" />
+      </form>
+
+      <% if policy(@request).destroy? %>
+        <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, class: "brown-btn" %>
+      <% end %>
+    </div>
+
+  <% else %>
+    <!-- wip: links here -->
+    <div style='display: flex; justify-content: center'>
+      <!-- build this one! -->
+      <%= link_to 'Book', conversation_path(@chat), class: 'brown-btn' %>
+      <% if @chat.messages.present? %>
+        <%= link_to 'Chat', conversation_path(@chat, anchor: "message-#{@chat.messages.last.id}"), class: 'brown-btn' %>
+      <% else %>
+        <%= link_to 'Chat', conversation_path(@chat), class: 'brown-btn' %>
+      <% end %>
+    </div>
   <% end %>
 
-  <% if policy(@request).destroy? %>
-    <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, style: 'color:red;' %>
+<% else %>
+  <% if !@request.accepted %>
+    <p> Status pending </p>
+  <% else %>
+    <!-- wip -->
+    <p> Request accepted :) <p>
   <% end %>
+
 <% end %>
+<!-- imp this! -->

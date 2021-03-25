@@ -1,3 +1,4 @@
+
 <div style="margin: -16px !important">
 
  <!--dropdown -->
@@ -10,13 +11,12 @@
           </a>
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
             <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
-            <%= link_to "Media and docs", media_conversation_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
+            <%= link_to "Media and docs", media_conversation_path(@conversation.id), class: "dropdown-item" %>
           </div>
         </div>
       </ul>
     </div>
   </div>
-
 
   <div style="text-align: center; padding-top: 16px;">
     <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 70, width: 70, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
@@ -49,6 +49,15 @@
   <div class='chatbox'>
 
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
+
+      <div class='user-not'>
+        <small>
+          <i class="fas fa-lock"></i>
+          <!-- not really, but it sounds good :D! smtng to work on :)-->
+          Messages are end-to-end encrypted. No one outside of this chat, not even BikeBock, can read them.
+        </small>
+      </div>
+
       <% @conversation.messages.each do |message| %>
 
         <% if message.sender_id == current_user.id %>

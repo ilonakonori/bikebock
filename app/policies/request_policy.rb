@@ -6,7 +6,7 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def show?
-    record.recipient_id == user.id || record.sender_id == user.id
+    record.recipient_id == user.id || record.user_id == user.id
   end
 
   def create?
@@ -14,6 +14,7 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.recipient_id == user.id && Conversation.find_by(request_id: record.id).nil?
+    #record.accepted == false &&
+    record.recipient_id == user.id
   end
 end
