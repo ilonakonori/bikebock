@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:show, :index] do
+    collection do
+      get :search
+    end
     resources :messages, only: :create
     member do
       get :media

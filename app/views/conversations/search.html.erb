@@ -1,0 +1,36 @@
+
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', conversations_path, style: 'color:#aaa; font-weight: bold;' %>
+</div>
+
+<div style='width: 313px;'>
+  <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control m-3",
+        id: 'mySearch',
+        placeholder: "Search by name"
+    %>
+    <% submit_tag "Search", id: 'mySubmit' %>
+  <% end %>
+</div>
+<% if @conversations.blank? %>
+  <!-- style this -->
+  <div><%= @query %> not found </div>
+<% end %>
+
+<div style='height: 84vh; overflow-y: scroll;'>
+  <% @conversations.each do |c| %>
+    <%= render 'conversations/conversation', c: c %>
+  <% end %>
+</div>
+
+<script>
+  document.getElementById('mySearch').addEventListener('keyup', triggerSubmit);
+  function triggerSubmit(event) {
+    if (event.keyCode === 13) {
+      // event.preventDefault();
+      document.getElementById('mySubmit').click();
+    }
+  }
+</script>

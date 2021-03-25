@@ -1,0 +1,55 @@
+<div>
+  <%
+    if c.opposed_user(current_user).online?
+      present_color = '#00917C;'
+    else
+      present_color = '#aaa;'
+    end
+  %>
+</div>
+
+<% if c.messages.present? %>
+  <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
+     msg_link =  new_msg.present? ? new_msg.first.link : "/conversations/#{c.id}#message-#{c.messages.last.id}" %>
+     <!-- "/conversations/#{c.id}#message-#{c.messages.last.id}" -->
+<% else %>
+  <% msg_link = "/conversations/#{c.id}" %>
+<% end %>
+
+<%= link_to "#{msg_link}", class: 'myLink' do %>
+  <div class="chat">
+    <div class="row chat-wrapper">
+      <div class="col-md-4">
+        <div class="compose-area">
+          <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
+            <ul class="chat-list">
+              <li class="new" style='padding-top: 8px;'>
+                <span class="pic">
+                  <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                </span>
+                <div class="body">
+                  <div class="header">
+                    <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
+                    <% if new_msg %>
+                      <span style='padding-left: 8px;'><%= new_msg.size unless new_msg.size.zero? %></span>
+                    <% end %>
+                    <small class="timestamp"><%= c.messages.present? ? c.messages.last.date_display : c.created_at.to_date %></small>
+                  </div>
+                  <% if c.messages.present? %>
+                    <% if c.messages.last.content.present? %>
+                      <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+                    <% else %>
+                      <p style="font-weight: 600;">** Attachment **</p>
+                    <% end %>
+                  <% else %>
+                    <p style="font-weight: 300;">Start conversation!</p>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
