@@ -43,7 +43,8 @@ class ConversationsController < ApplicationController
       )
 
     authorize @conversation
-    redirect_to conversation_path(@conversation), notice: "Request accepted, start conversation :)"
+    redirect_to request_path(@request), notice: "Request accepted"
+    #conversation_path(@conversation), notice: "Request accepted, start conversation :)"
     update_tracking
   end
 

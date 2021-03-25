@@ -29,7 +29,15 @@
 
   <% else %>
     <!-- wip: links here -->
-    <p>Request accepted. Make booking or go to chat!<p>
+    <div style='display: flex; justify-content: center'>
+      <!-- build this one! -->
+      <%= link_to 'Book', conversation_path(@chat), class: 'brown-btn' %>
+      <% if @chat.messages.present? %>
+        <%= link_to 'Chat', conversation_path(@chat, anchor: "message-#{@chat.messages.last.id}"), class: 'brown-btn' %>
+      <% else %>
+        <%= link_to 'Chat', conversation_path(@chat), class: 'brown-btn' %>
+      <% end %>
+    </div>
   <% end %>
 
 <% else %>

@@ -5,15 +5,17 @@ class RequestsController < ApplicationController
   def index # imp this!
     @requests_sent = policy_scope(Request).where(user_id: current_user.id)
     @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id)
-
     @requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     update_tracking
   end
 
   def show
-    update_tracking
+    notification = Notification.find_by(action_id: @request.id)
+    notification.update!(read: true)
+    @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
+    update_tracking
   end
 
   def create
@@ -63,7 +65,7 @@ class RequestsController < ApplicationController
         content: "#{sender_name} declined your request :("
       )
     update_tracking
-    redirect_to conversations_path(current_user), notice: 'You declined this request!'
+    redirect_to requests_path, notice: 'You declined this request!'
   end
 
   def update_tracking
