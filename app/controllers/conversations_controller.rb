@@ -64,7 +64,7 @@ class ConversationsController < ApplicationController
 
   def conversated
     @request = Request.find(params[:id])
-    @conversation = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id)
+    @conversation = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
   end
 
   def set_conversation

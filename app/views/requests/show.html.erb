@@ -1,29 +1,43 @@
-<h3><%= User.find(@request.user_id).name %></h3>
-<small><%= @request.created_at %></small>
-<p><%#= @request.first_message %></p>
+
+<small><%= @request.created_at.to_date %></small>
+<p>
+  <bold>
+    <%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: red;' %>
+  </bold> wants to join
+  <span style='color: white;background-color: #00917C;font-weight: bolder; border-radius: 16px; padding: .5vh 1vh;'>
+    <%= @request.ride_date %>
+  </span>
+  <!-- <#%= @request.ride.title %> -->
+</p>
+
+<%= render 'rides/ride', ride: @request.ride %>
+
 <% if @request.recipient_id == current_user.id %>
   <% if !@request.accepted %>
 
+    <div style='display: flex; justify-content: center;'>
       <form method="post" action="/requests/:id/conversations" class=" ">
-       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-       <%= hidden_field_tag :id, @request.id %>
-       <input value="Accept" type="submit" />
-     </form>"
+         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+         <%= hidden_field_tag :id, @request.id %>
+         <input value="Accept" type="submit" class="brown-btn" />
+      </form>
+
+      <% if policy(@request).destroy? %>
+        <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, class: "brown-btn" %>
+      <% end %>
+    </div>
+
   <% else %>
-    <p> Request accepted :) go to chat! <p>
-
-  <% end %>
-
-  <% if policy(@request).destroy? %>
-    <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, style: 'color:red;' %>
+    <!-- wip: links here -->
+    <p>Request accepted. Make booking or go to chat!<p>
   <% end %>
 
 <% else %>
   <% if !@request.accepted %>
     <p> Status pending </p>
   <% else %>
-    <p> Request accepted :) go to chat! <p>
-
+    <!-- wip -->
+    <p> Request accepted :) <p>
   <% end %>
 
 <% end %>
