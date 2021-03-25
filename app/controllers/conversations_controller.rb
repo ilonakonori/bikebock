@@ -3,8 +3,9 @@ class ConversationsController < ApplicationController
   after_action :read_message_notifications, only: :show
 
   def index
-    @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
-    update_tracking
+    conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
+    # don't display conversations w/o msgs + sort by last msg
+    @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse!
   end
 
   def search # imp => autocomplete!
@@ -17,7 +18,8 @@ class ConversationsController < ApplicationController
       id = @c3.select { |c| c.include?(@query.downcase) }
       @conversations = policy_scope(Conversation).where(id: id )
     else
-      @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
+      conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
+      @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse!
     end
     update_tracking
   end
