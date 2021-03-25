@@ -98,10 +98,10 @@
         <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"} %>
       <% end %>
     </div>
-       <!-- wip -->
+    <!-- request form -->
     <% if current_user.id != ride.user_id && @av_dates.present? %>
       <div class='btn-box' style='display: flex; justify-content: center;'>
-        <a id='request-btn' onclick='showForm(this)'>I want to go</a>
+        <a id='request-btn'>I want to go</a>
       </div>
       <div id='myForm' style='display: none;'>
         <button id='closeBtn'><span aria-hidden="true">&times;</span></button>
@@ -116,22 +116,3 @@
     <br id='request'>
   </div>
 </div>
-
-<script>
-  function showForm(_this) {
-    document.getElementById('myForm').style.display = 'inherit';
-    _this.style.display = 'none';
-  }
-
-  let closeBtn = document.getElementById('closeBtn');
-  closeBtn.addEventListener('click', function() {
-    let requestBox = document.getElementById('myForm');
-    let requestBtn = document.getElementById('request-btn');
-    if(requestBox) {
-      requestBox.style.display = 'none';
-      requestBtn.style.display = 'inherit';
-      requestBtn.scrollIntoView(false);
-    }
-  })
-
-</script>
