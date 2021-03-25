@@ -1,3 +1,4 @@
+
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <%= link_to '<<', conversations_path, style: 'color:#aaa; font-weight: bold;' %>
 </div>
@@ -17,16 +18,18 @@
   <!-- style this -->
   <div><%= @query %> not found </div>
 <% end %>
-<% @conversations.each do |c| %>
-  <div>
-    <%
-      if c.opposed_user(current_user).online?
-        present_color = '#00917C;'
-      else
-        present_color = '#aaa;'
-      end
-    %>
-  </div>
+
+<div style='height: 84vh; overflow-y: scroll;'>
+  <% @conversations.each do |c| %>
+    <div>
+      <%
+        if c.opposed_user(current_user).online?
+          present_color = '#00917C;'
+        else
+          present_color = '#aaa;'
+        end
+      %>
+    </div>
 
   <% if c.messages.present? %>
     <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
@@ -76,12 +79,13 @@
         </div>
       <% end %>
     <% end %>
+  </div>
 
 <script>
   document.getElementById('mySearch').addEventListener('keyup', triggerSubmit);
   function triggerSubmit(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();
+      // event.preventDefault();
       document.getElementById('mySubmit').click();
     }
   }

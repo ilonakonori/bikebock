@@ -11,7 +11,7 @@
   <% else %>
     <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
       <% @media.each do |m| %>
-        <div style='border: 3px solid #ccc;'>
+        <div style='border: 3px solid #ccc; border-radius: 8px;'>
           <p style='background: #ccc; color: #fff; padding-left: 12px;'>
             <%= m[0].year < Date.current.year ? m[0].strftime("%Y, %^B") : m[0].strftime("%^B") %>
           </p>
