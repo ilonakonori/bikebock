@@ -1,43 +1,42 @@
-<div style="padding-top: 24px;">
-  <% if @conversations.blank? %>
-    <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
-      <p style="font-size: 60px;"><i class="far fa-comments"></i></p>
-      <h6>No Messages Yet!</h6>
-      <br>
-      <!--
-        <p style="color: rgba(14, 0, 0, 0.38);">Get or send a message and it shows up here!</p>
-         -->
-      <p style="color: rgba(14, 0, 0, 0.38);">Connect with someone first!</p> <!-- write smtng nice here-->
-      <br>
-      <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
-    </div>
-  <% else %>
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', conversations_path, style: 'color:#aaa; font-weight: bold;' %>
+</div>
 
-  <div class="navbar fixed-top navbar-expand-sm navbar-light">
-    <%= link_to search_conversations_path, style: 'color: #aaa;' do %>
-      <i class="fas fa-search"></i>
-    <% end %>
+<div style='width: 313px;'>
+  <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control m-3",
+        id: 'mySearch',
+        placeholder: "Search by name"
+    %>
+    <% submit_tag "Search", id: 'mySubmit' %>
+  <% end %>
+</div>
+<% if @conversations.blank? %>
+  <!-- style this -->
+  <div><%= @query %> not found </div>
+<% end %>
+<% @conversations.each do |c| %>
+  <div>
+    <%
+      if c.opposed_user(current_user).online?
+        present_color = '#00917C;'
+      else
+        present_color = '#aaa;'
+      end
+    %>
   </div>
 
-    <% @conversations.each do |c| %>
-      <div>
-        <%
-          if c.opposed_user(current_user).online?
-            present_color = '#00917C;'
-          else
-            present_color = '#aaa;'
-          end
-        %>
-      </div>
+  <% if c.messages.present? %>
+    <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
+       msg_link =  new_msg.present? ? new_msg.first.link : "/conversations/#{c.id}#message-#{c.messages.last.id}" %>
+       <!-- "/conversations/#{c.id}#message-#{c.messages.last.id}" -->
+  <% else %>
+    <% msg_link = "/conversations/#{c.id}" %>
+  <% end %>
 
-      <% if c.messages.present? %>
-        <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
-           msg_link =  new_msg.present? ? new_msg.first.link : "/conversations/#{c.id}#message-#{c.messages.last.id}" %>
-          <!-- "/conversations/#{c.id}#message-#{c.messages.last.id}" -->
-      <% else %>
-        <% msg_link = "/conversations/#{c.id}" %>
-      <% end %>
-      <%= link_to "#{msg_link}", class: 'myLink' do %>
+    <%= link_to "#{msg_link}", class: 'myLink' do %>
       <%#= link_to conversation_path(c, anchor: "message-#{c.messages.last.id}"), class: 'myLink' do %>
         <div class="chat">
           <div class="row chat-wrapper">
@@ -77,5 +76,13 @@
         </div>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+
+<script>
+  document.getElementById('mySearch').addEventListener('keyup', triggerSubmit);
+  function triggerSubmit(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById('mySubmit').click();
+    }
+  }
+</script>

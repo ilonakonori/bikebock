@@ -3,8 +3,23 @@ class ConversationsController < ApplicationController
   after_action :read_message_notifications, only: :show
 
   def index
-    update_tracking
     @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
+    update_tracking
+  end
+
+  def search # imp => autocomplete!
+    c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).map { |c| [c.id, c.sender_id] }
+    c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).map { |c| [c.id, c.recipient_id] }
+    @c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
+
+    if params[:query].present?
+      @query = params[:query]
+      id = @c3.select { |c| c.include?(@query.downcase) }
+      @conversations = policy_scope(Conversation).where(id: id )
+    else
+      @conversations = policy_scope(Conversation).where(recipient_id: current_user).order(created_at: :desc) + policy_scope(Conversation).where(sender_id: current_user).order(created_at: :desc)
+    end
+    update_tracking
   end
 
   def show
@@ -17,6 +32,7 @@ class ConversationsController < ApplicationController
     #@media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
     #@media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
     @media = @conversation.messages.order(created_at: :desc).select { |m| m.attachment.attached? }.group_by { |m| m.created_at.beginning_of_month }
+    update_tracking
   end
 
   def create
