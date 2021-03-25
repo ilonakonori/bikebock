@@ -33,7 +33,7 @@
                     <% if new_msg %>
                       <span style='padding-left: 8px;'><%= new_msg.size unless new_msg.size.zero? %></span>
                     <% end %>
-                    <small class="timestamp"><%= c.messages.present? ? c.messages.last.created_at.to_date : c.created_at.to_date %></small>
+                    <small class="timestamp"><%= c.messages.present? ? c.messages.last.date_display : c.created_at.to_date %></small>
                   </div>
                   <% if c.messages.present? %>
                     <% if c.messages.last.content.present? %>
