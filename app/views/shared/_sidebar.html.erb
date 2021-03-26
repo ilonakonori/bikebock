@@ -35,8 +35,8 @@
      <!-- requests stimulus-->
       <span id='request-size' data-controller="requests">
         <span class='requests'>
-          <% if !@unread_requests.zero? %>
-            <span class='circle' data-requests-target="request"><%= @unread_requests unless @unread_requests.zero? %></span>
+          <% if @unread_requests.positive? %>
+            <span class='circle' data-requests-target="request"><%= @unread_requests %></span>
           <% end %>
         </span>
       </span>
@@ -49,8 +49,8 @@
       <!-- msg stimulus -->
       <span id='msg-size' data-controller="messages">
         <span class='messages'>
-          <% if !@unread_messages.zero? %>
-            <span class='circle' data-messages-target="message"><%= @unread_messages unless @unread_messages.zero? %></span>
+          <% if @unread_messages.positive? %>
+            <span class='circle' data-messages-target="message"><%= @unread_messages %></span>
           <% end %>
         </span>
       </span>
