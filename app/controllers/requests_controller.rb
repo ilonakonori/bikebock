@@ -1,12 +1,11 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :destroy]
-  #after_action :read_request_notification, only: :index
+  before_action :set_request, only: [:show, :destroy, :read_request_notification]
 
   def index # imp this!
     # sent => pending
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
-    @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
-    @requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id, accepted: false).order(created_at: :desc)
+    #@requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
+    #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     @requests_notifications = Notification.where(user: current_user.id, action: 'Request').order(created_at: :desc)
 
@@ -14,10 +13,10 @@ class RequestsController < ApplicationController
   end
 
   def show
-    notification = Notification.find_by(action_id: @request.id)
-    notification.update!(read: true)
+    Notification.find_by(user: current_user.id, action_id: @request.id).update(read: true)
     @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
+    Notification.find_by(action_id: @request.id).update(read: true)
     update_tracking
   end
 
@@ -42,7 +41,7 @@ class RequestsController < ApplicationController
         action_id: r.id,
         action_time: Time.now,
         read: false,
-        link: "requests/#{r.id}",
+        link: "/requests/#{r.id}",
         content: "#{sender_name} sent you request: #{r.ride_date}, #{r.ride.title}"
       )
 
@@ -78,15 +77,6 @@ class RequestsController < ApplicationController
   end
 
   private
-=begin
-  def read_request_notification
-    if @requests_received.present?
-      @requests_received.each do |n|
-        n.update(read: true, read_at: Time.now)
-      end
-    end
-  end
-=end
 
   def set_request
     @request = Request.find(params[:id])

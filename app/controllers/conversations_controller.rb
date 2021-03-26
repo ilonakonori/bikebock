@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
 
   def index
     conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
-    c = conversations.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
+    c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
     # sort by last msg, w/o msgs at the bottom
     @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse! + c
     update_tracking
@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
-  def show
+  def show # imp => autocomplete!
     @message = Message.new
     @unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
     update_tracking
@@ -71,7 +71,7 @@ class ConversationsController < ApplicationController
       action_time: Time.now,
       read: false,
       content: "#{sender_name} accepted your request: #{@request.ride_date}, #{@request.ride.title}",
-      link: "/conversations/#{@conversation.id}" # or w/o ?
+      link: "/requests/#{@request.id}"
     )
 
     authorize @conversation
@@ -85,6 +85,8 @@ class ConversationsController < ApplicationController
         n.update(read: true, read_at: Time.now)
       end
     end
+    Notification.find_by(user: current_user, action: 'Messages', action_id: @conversation.id, read: false).update(read: true, read_at: Time.now)
+
   end
 
   def update_tracking

@@ -1,43 +1,27 @@
 
-<h6>Received requests (<%= @requests_received_new.size %>) </h6>
-<% @requests_received_new.each do |r| %>
-  <p>
-    <%= link_to request_path(r) do %>
-      <%= r.user.name %> sent you request<small> (<%= r.created_at.to_date %>)</small>
-    <% end %>
-  </p>
-<% end %>
-
-<% @requests_received_old.each do |r| %>
-  <p style='background: #ddd;'>
-    <%= link_to request_path(r) do %>
-      <%= r.user.name %> sent you request<small> (<%= r.created_at.to_date %>)</small>
-    <% end %>
-  </p>
-<% end %>
-
-<!-- imp this -->
-<h6>Sent requests (<%= @requests_sent.where(accepted: false).size %>)</h6>
-
-<% @requests_sent.order(created_at: :desc).each do |r| %>
-  <% if r.accepted %>
-    <p><%= r.ride.user.name %> accepted your request: <%= r.ride_date %> <%= r.ride.title %> (<%= r.updated_at.to_date %>) </p>
-  <% else %>
-    <p>
-      <%= link_to ride_path(r.ride) do %>
-        <p><%= r.ride_date %> <%= r.ride.title %></p>
-      <% end %>
-    </p>
-  <% end %>
-<% end %>
-
 
 <!-- use this, read ? 'class1' : 'class2' -->
+<h3>Requests</h3>
 <% @requests_notifications.each do |r| %>
   <% if r.link %>
-    <p><%= link_to r.content, r.link %>, (<%= r.created_at.to_date %>)</p>
+    <p class="<%= r.read ? 'read' : 'not-read' %>"><%= link_to r.content, r.link %>, (<%= r.created_at.to_date %>)</p>
   <% else %>
-    <p><%= r.content %>, (<%= r.created_at.to_date %>)</p>
+    <p class="<%= r.read ? 'read' : 'not-read' %>"><%= r.content %>, (<%= r.created_at.to_date %>)</p>
   <% end %>
 <% end %>
 
+<h6>Pending requests (<%= @requests_sent.where(accepted: false).size %>)</h6>
+
+<% @requests_sent.order(created_at: :desc).each do |r| %>
+  <p>
+    <%= link_to ride_path(r.ride) do %>
+      <p><%= r.ride_date %> <%= r.ride.title %></p>
+    <% end %>
+  </p>
+<% end %>
+
+<style>
+  .read {
+    background-color: #eee;
+  }
+</style>

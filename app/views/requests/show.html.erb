@@ -1,16 +1,20 @@
-<div style="display: flex; justify-content: space-between; padding-top: 24px; padding-left: 8px;">
-<small><%= @request.created_at.to_date %> | </small>
-  <p style="font-size: 14px;"><%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: #00917C;' %>
-  wants to join</p>
-  <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
-  <%= @request.ride_date %>
-  </p>
-  <!-- <#%= @request.ride.title %> -->
-</p>
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', :back, style: 'color:#aaa; font-weight: bold;' %>
 </div>
-<%= render 'rides/ride', ride: @request.ride %>
 
 <% if @request.recipient_id == current_user.id %>
+
+  <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
+    <small><%= @request.created_at.to_date %> | </small>
+    <p style="font-size: 14px;"><%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: #00917C;' %>
+    wants to join</p>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+      <%= @request.ride_date %>
+    </p>
+  </div>
+
+  <%= render 'rides/ride', ride: @request.ride %>
+
   <% if !@request.accepted %>
 
     <div style='display: flex; justify-content: center;'>
@@ -39,12 +43,24 @@
   <% end %>
 
 <% else %>
-  <% if !@request.accepted %>
-    <p> Status pending </p>
-  <% else %>
-    <!-- wip -->
-    <p> Request accepted :) <p>
-  <% end %>
 
+  <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
+    <small><%= @request.created_at.to_date %> | </small>
+    <p style="font-size: 14px;"><%= @request.accepted ? 'Request is accepted' : 'Status pending...' %></p>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+    <%= @request.ride_date %>
+    </p>
+  </div>
+
+  <%= render 'rides/ride', ride: @request.ride %>
+
+  <% if @request.accepted %>
+    <div style='display: flex; justify-content: center'>
+      <% if @chat.messages.present? %>
+        <%= link_to 'Chat', conversation_path(@chat, anchor: "message-#{@chat.messages.last.id}"), class: 'brown-btn' %>
+      <% else %>
+        <%= link_to 'Chat', conversation_path(@chat), class: 'brown-btn' %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
-<!-- imp this! -->
