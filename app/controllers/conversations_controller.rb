@@ -39,6 +39,7 @@ class ConversationsController < ApplicationController
       @messages = @conversation.messages
     end
     authorize @conversation
+    update_tracking
   end
 
   def media
