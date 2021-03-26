@@ -1,5 +1,5 @@
 #myForm {
-  background-color: #f4f4f4de;
+  background-color: #f4f4f4;
   z-index: 1000;
   justify-content: center;
   position: absolute;
@@ -32,4 +32,8 @@
   color: #fff;
   font-weight: 400;
   margin: 3px;
+}
+
+#request_ride_date {
+  box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.2);
 }

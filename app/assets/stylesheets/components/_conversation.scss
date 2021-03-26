@@ -3,18 +3,16 @@
 }
 
 .user-not {
-  border: 1px solid #efefef;
-  font-size: 8px;
+  border: 2px solid #efefef;
+  font-size: 12px;
   margin-top: 8px;
-  padding: 10px;
-  width: 71%;
-  height: 11%;
-  margin-left: 15%;
+  padding: 8px 10px;
+  width: 90%;
+  color: #333;
+  border-radius: 8px;
 }
 
 #messages {
-  //height: 52vh;
-  //height: 58vh;
   height: 68vh;
   overflow-y: scroll;
 }

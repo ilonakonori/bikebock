@@ -53,11 +53,13 @@
 
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
 
-      <div class='user-not'>
-        <small>
-          <i class="fas fa-lock fa-m"> </i>
-          Messages in this chat are private and protected by Bike Bock's end-to-end encryption.
-        </small>
+      <div style='display: flex; justify-content: center;'>
+        <div class='user-not'>
+          <small>
+            <i class="fas fa-lock fa-m"> </i>
+            Messages in this chat are private and protected by Bike Bock's end-to-end encryption.
+          </small>
+        </div>
       </div>
 
       <% @conversation.messages.each do |message| %>
