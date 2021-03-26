@@ -30,6 +30,17 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
+  def search_messages
+    @conversation = Conversation.find(params[:id])
+    if params[:query].present?
+      @query = params[:query]
+      @messages = @conversation.messages.search_content(@query)
+    else
+      @messages = @conversation.messages
+    end
+    authorize @conversation
+  end
+
   def media
     #@media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
     #@media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }

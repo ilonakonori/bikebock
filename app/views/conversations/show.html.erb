@@ -12,6 +12,9 @@
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
             <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
             <%= link_to "Media and docs", media_conversation_path(@conversation.id), class: "dropdown-item" %>
+            <%= link_to search_messages_conversation_path(@conversation.id), class: "dropdown-item" do %>
+              <span>Search <i style='color: #666; font-size: 11px;' class="fas fa-search"></i></span>
+            <% end %>
           </div>
         </div>
       </ul>
@@ -82,3 +85,4 @@
     <% end %>
   </div>
 </div>
+

@@ -16,4 +16,8 @@ class ConversationPolicy < ApplicationPolicy
   def media?
     true
   end
+
+  def search_messages?
+    show?
+  end
 end

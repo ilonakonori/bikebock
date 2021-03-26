@@ -1,0 +1,42 @@
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <!-- anchor-->
+  <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), style: 'color:#aaa; font-weight: bold;' %>
+</div>
+
+<h5 style='text-align: center; padding-top: 24px;'>You and <%= @conversation.opposed_user(current_user).name %></h5>
+
+<div style='width: 313px;'>
+  <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control m-3",
+        id: 'mySearch',
+        placeholder: "Search messages"
+    %>
+    <% submit_tag "Search", id: 'mySubmit' %>
+  <% end %>
+</div>
+<% if @messages.blank? %>
+  <!-- style this -->
+  <div><%= @query %> not found </div>
+<% end %>
+
+<!-- scroll to last msg here -->
+  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
+    <% @messages.each do |message| %>
+      <% if message.sender_id == current_user.id %>
+        <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
+      <% else %>
+        <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      let lastMsg = document.querySelector("#message-<%= @conversation.messages.last.id %>");
+      if(lastMsg) {
+        lastMsg.scrollIntoView(false);
+      }
+    })
+  </script>
