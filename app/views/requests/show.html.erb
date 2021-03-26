@@ -1,15 +1,13 @@
-
-<small><%= @request.created_at.to_date %></small>
-<p>
-  <bold>
-    <%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: red;' %>
-  </bold> wants to join
-  <span style='color: white;background-color: #00917C;font-weight: bolder; border-radius: 16px; padding: .5vh 1vh;'>
-    <%= @request.ride_date %>
-  </span>
+<div style="display: flex; justify-content: space-between; padding-top: 24px; padding-left: 8px;">
+<small><%= @request.created_at.to_date %> | </small>
+  <p style="font-size: 14px;"><%= link_to User.find(@request.user_id).name, user_path(User.find(@request.user_id)), style: 'color: #00917C;' %>
+  wants to join</p>
+  <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+  <%= @request.ride_date %>
+  </p>
   <!-- <#%= @request.ride.title %> -->
 </p>
-
+</div>
 <%= render 'rides/ride', ride: @request.ride %>
 
 <% if @request.recipient_id == current_user.id %>
@@ -19,11 +17,11 @@
       <form method="post" action="/requests/:id/conversations" class=" ">
          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
          <%= hidden_field_tag :id, @request.id %>
-         <input value="Accept" type="submit" class="brown-btn" />
+         <input value="Accept" type="submit" class="brown-btn" style="padding: 4px 47px !important;"/>
       </form>
 
       <% if policy(@request).destroy? %>
-        <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, class: "brown-btn" %>
+        <%= link_to "Decline", @request, method: :delete, data: {confirm: "Are you sure?"}, class: "brown-btn", style: "padding: 4px 47px !important;" %>
       <% end %>
     </div>
 
