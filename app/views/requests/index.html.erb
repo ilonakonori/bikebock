@@ -19,9 +19,9 @@
 <!-- imp this -->
 <h6>Sent requests (<%= @requests_sent.where(accepted: false).size %>)</h6>
 
-<% @requests_sent.each do |r| %>
+<% @requests_sent.order(created_at: :desc).each do |r| %>
   <% if r.accepted %>
-    <p><%= r.ride.user.name %> accepted your request: <%= r.ride_date %> <%= r.ride.title %> </p>
+    <p><%= r.ride.user.name %> accepted your request: <%= r.ride_date %> <%= r.ride.title %> (<%= r.updated_at.to_date %>) </p>
   <% else %>
     <p>
       <%= link_to ride_path(r.ride) do %>
@@ -30,3 +30,14 @@
     </p>
   <% end %>
 <% end %>
+
+
+<!-- use this, read ? 'class1' : 'class2' -->
+<% @requests_notifications.each do |r| %>
+  <% if r.link %>
+    <p><%= link_to r.content, r.link %>, (<%= r.created_at.to_date %>)</p>
+  <% else %>
+    <p><%= r.content %>, (<%= r.created_at.to_date %>)</p>
+  <% end %>
+<% end %>
+

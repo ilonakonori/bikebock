@@ -12,6 +12,9 @@
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
             <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
             <%= link_to "Media and docs", media_conversation_path(@conversation.id), class: "dropdown-item" %>
+            <%= link_to search_messages_conversation_path(@conversation.id), class: "dropdown-item" do %>
+              <span>Search <i style='color: #666; font-size: 11px;' class="fas fa-search"></i></span>
+            <% end %>
           </div>
         </div>
       </ul>
@@ -50,11 +53,13 @@
 
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
 
-      <div class='user-not'>
-        <small>
-          <i class="fas fa-lock fa-m"> </i>
-          Messages in this chat are private and protected by Bike Bock's end-to-end encryption.
-        </small>
+      <div style='display: flex; justify-content: center;'>
+        <div class='user-not'>
+          <small>
+            <i class="fas fa-lock fa-m"> </i>
+            Messages in this chat are private and protected by Bike Bock's end-to-end encryption.
+          </small>
+        </div>
       </div>
 
       <% @conversation.messages.each do |message| %>
@@ -81,3 +86,4 @@
     <% end %>
   </div>
 </div>
+

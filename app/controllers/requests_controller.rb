@@ -3,10 +3,13 @@ class RequestsController < ApplicationController
   #after_action :read_request_notification, only: :index
 
   def index # imp this!
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id)
-    @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id)
+    # sent => pending
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
+    @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
     @requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
+    @requests_notifications = Notification.where(user: current_user.id, action: 'Request').order(created_at: :desc)
+
     update_tracking
   end
 
@@ -40,7 +43,7 @@ class RequestsController < ApplicationController
         action_time: Time.now,
         read: false,
         link: "requests/#{r.id}",
-        content: "#{sender_name} sent you request"
+        content: "#{sender_name} sent you request: #{r.ride_date}, #{r.ride.title}"
       )
 
       flash[:notice] = 'Request successfully sent'
@@ -50,8 +53,6 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    @request.destroy
-
     sender_name = User.find(@request.recipient_id).name
     recipient = User.find(@request.user_id)
 
@@ -62,8 +63,11 @@ class RequestsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} declined your request :("
+        content: "#{sender_name} declined your request: #{@request.ride_date}, #{@request.ride.title}"
       )
+
+    @request.destroy
+
     update_tracking
     redirect_to requests_path, notice: 'You declined this request!'
   end

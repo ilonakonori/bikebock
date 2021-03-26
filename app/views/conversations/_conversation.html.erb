@@ -1,12 +1,10 @@
-<div>
-  <%
-    if c.opposed_user(current_user).online?
-      present_color = '#00917C;'
-    else
-      present_color = '#aaa;'
-    end
-  %>
-</div>
+<%
+  if c.opposed_user(current_user).online?
+    present_color = '#00917C;'
+  else
+    present_color = '#aaa;'
+  end
+%>
 
 <% if c.messages.present? %>
   <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)

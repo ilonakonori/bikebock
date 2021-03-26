@@ -26,7 +26,7 @@
   right: 1.8%;
   font-size: 14px;
   top: 0.3%;
-  color: #2f2f2f; //rgba(0, 145, 124, 1);
+  color: #433520; //rgba(0, 145, 124, 1);
   z-index: 1000;
 }
 
@@ -86,7 +86,11 @@
 }
 */
 
-#request-size, #msg-size {
-  color: #2f2f2f;
-  font-weight: bold;
+span.circle {
+  color: #433520;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: #fff;
+  padding: 0px 4px 1px 4px;
+  border-radius: 50%;
 }

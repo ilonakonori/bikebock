@@ -30,13 +30,14 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:show, :index] do
+    member do
+      get :media
+      get :search_messages
+    end
     collection do
       get :search
     end
     resources :messages, only: :create
-    member do
-      get :media
-    end
   end
 
   resources :tags, only: :show

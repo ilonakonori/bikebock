@@ -4,8 +4,10 @@ class ConversationsController < ApplicationController
 
   def index
     conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
-    # don't display conversations w/o msgs + sort by last msg
-    @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse!
+    c = conversations.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
+    # sort by last msg, w/o msgs at the bottom
+    @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse! + c
+    update_tracking
   end
 
   def search # imp => autocomplete!
@@ -30,6 +32,18 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
+  def search_messages
+    @conversation = Conversation.find(params[:id])
+    if params[:query].present?
+      @query = params[:query]
+      @messages = @conversation.messages.search_content(@query)
+    else
+      @messages = @conversation.messages
+    end
+    authorize @conversation
+    update_tracking
+  end
+
   def media
     #@media_sent = @conversation.messages.where(sender_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
     #@media_received = @conversation.messages.where(recipient_id: current_user.id).order(created_at: :desc).select { |m| m.attachment.attached? }
@@ -38,31 +52,30 @@ class ConversationsController < ApplicationController
   end
 
   def create
+    @request = Request.find(params[:id])
+
     if !conversated
-      @request = Request.find(params[:id])
       @conversation = Conversation.create(sender_id: @request.user_id, recipient_id: @request.recipient_id)
     end
 
     @request.update(accepted: true, friend: true)
 
-      c = Conversation.find(@conversation.id)
-      sender_name = User.find(c.recipient_id).name
-      recipient = User.find(c.sender_id)
+    sender_name = User.find(@request.recipient_id).name
+    recipient = User.find(@request.user_id)
 
-      Notification.create!(
-        user: recipient,
-        sender_name: sender_name,
-        action: 'Request',
-        action_id: @request.id,
-        action_time: Time.now,
-        read: false,
-        content: "#{sender_name} accepted your request :)",
-        link: "/conversations/#{c.id}/"
-      )
+    Notification.create!(
+      user: recipient,
+      sender_name: sender_name,
+      action: 'Request',
+      action_id: @request.id,
+      action_time: Time.now,
+      read: false,
+      content: "#{sender_name} accepted your request: #{@request.ride_date}, #{@request.ride.title}",
+      link: "/conversations/#{@conversation.id}" # or w/o ?
+    )
 
     authorize @conversation
     redirect_to request_path(@request), notice: "Request accepted"
-    #conversation_path(@conversation), notice: "Request accepted, start conversation :)"
     update_tracking
   end
 

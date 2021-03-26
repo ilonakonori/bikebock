@@ -1,11 +1,16 @@
-<div class='' style='padding-top: 12px; max-height: 92vh;'>
-  <small style=''>
-    <% if @conversation.messages.present? %>
-      <%= link_to 'Back', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'myLink' %></small>
-    <% else %>
-      <%= link_to 'Back', conversation_path(@conversation), class: 'myLink' %></small>
-    <% end %>
-  <h3>You and <%= @conversation.opposed_user(current_user).name %></h3>
+
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <!-- anchor-->
+  <% if @conversation.messages.present? %>
+    <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), style: "color:#aaa; font-weight: bold;", class: 'myLink' %>
+  <% else %>
+    <%= link_to '<<', conversation_path(@conversation), class: 'myLink', style: "color:#aaa; font-weight: bold;" %>
+  <% end %>
+</div>
+
+<div class='' style='padding-top: 24px; max-height: 92vh;'>
+
+  <h5 style="text-align: center;">You and <%= @conversation.opposed_user(current_user).name %></h5>
   <%if @media.blank? %>
     <p>Nothing shared</p>
   <% else %>
