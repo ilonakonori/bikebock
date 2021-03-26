@@ -3,5 +3,6 @@ class TagsController < ApplicationController
     @tag = ActsAsTaggableOn::Tag.find(params[:id])
     @tagged = ActsAsTaggableOn::Tagging.where(tag_id: @tag.id).select(:taggable_id)
     authorize @tag
+    update_tracking
   end
 end

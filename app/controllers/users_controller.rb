@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def show
-    #@requests_received = Request.where(accepted: false, recipient_id: @user.id)
-    #@requests_sent = Request.where(accepted: false, sender_id: @user.id)
     update_tracking
   end
 
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-  def notifications # works good
+  def notifications # works good # just for msgs atm!
 
     @user = current_user
     msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
