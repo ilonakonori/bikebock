@@ -52,6 +52,7 @@ class RequestsController < ApplicationController
     update_tracking
   end
 
+  # change to update?
   def destroy # destroy || update (link) notification for this request
     sender_name = User.find(@request.recipient_id).name
     recipient = User.find(@request.user_id)
