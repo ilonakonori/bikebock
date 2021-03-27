@@ -85,8 +85,8 @@ class ConversationsController < ApplicationController
         n.update(read: true, read_at: Time.now)
       end
     end
-    Notification.find_by(user: current_user, action: 'Messages', action_id: @conversation.id, read: false).update(read: true, read_at: Time.now)
-
+    messages = Notification.find_by(user: current_user, action: 'Messages', action_id: @conversation.id, read: false)
+    messages.update(read: true, read_at: Time.now) unless messages.nil?
   end
 
   def update_tracking

@@ -39,11 +39,9 @@ class UsersController < ApplicationController
       @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).destroy_all
     end
     @notifications = Notification.where(user_id: @user.id).order(action_time: :desc)
-    #@notifications_read = @user.notifications.where(read: true).order(created_at: :desc).first(10)
 
     update_tracking
     authorize @user
-
   end
 
   def unread
@@ -51,10 +49,11 @@ class UsersController < ApplicationController
     @unread = @user.notifications.where(read: false).present?
     @unread_requests = @user.notifications.where(read: false, action: 'Request').count
     @unread_messages = @user.notifications.where(read: false, action: 'Message').count
+    @unread_notifications = @user.notifications.where(read: false).count
     authorize @user
      respond_to do |format|
       format.html
-      format.json { render json: { unread: @unread, requests: @unread_requests, messages: @unread_messages } }
+      format.json { render json: { unread: @unread, requests: @unread_requests, messages: @unread_messages, notifications: @unread_notifictions } }
     end
   end
 

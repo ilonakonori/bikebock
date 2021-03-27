@@ -1,11 +1,9 @@
 <div id='sidebar' class='sidebar-nav'>
-
   <div class="sidebar-box" >
     <i id='sidebar-toggler' class="fa fa-bars"></i>
     <p style="padding-left: 32px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;" %>
     <span style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
-
   <!-- notification bell stimulus part -->
   <div class='not-box' data-controller="counter">
     <div class="counter">
@@ -13,9 +11,7 @@
     </div>
   </div>
   <!-- end -->
-
   <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
-
   <div style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
       <%= link_to rides_path, class: "sidenav-link" do %>
@@ -55,8 +51,8 @@
         </span>
       </span>
       <!-- end -->
-
     </li>
+
     <li class="nav-item" style="margin-bottom: 24px;">
       <%= link_to bookmarks_users_path, class: "sidenav-link" do %>
         <i class="fas fa-bookmark"></i><span style="padding-left: 8px;">Bookmarks</span>
@@ -65,12 +61,19 @@
 
     <!-- just atm! -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <i class="fas fa-bell"></i><%= link_to "Notifications", notifications_users_path, class: "sidenav-link", style: "padding-left: 8px;" %>
-      <span id='not-size'><%= current_user.notifications.where(read: false).size %></span>
+      <%= link_to notifications_users_path, class: "sidenav-link" do %>
+        <i class="fas fa-bell"></i><span style="padding-left: 8px;">Notifications</span>
+      <% end %>
+      <!-- notifications stimulus -->
+      <span id='not-size' data-controller="notifications">
+        <span class='notifications'>
+          <% if @unread_notifications.positive? %>
+            <span class='circle' data-notifications-target="notification"><%= @unread_notifications %></span>
+          <% end %>
+        </span>
+      </span>
     </li>
-
   </div>
-
   <div class='sidebar-footer-box'>
     <li class="nav-item">
       <%= link_to destroy_user_session_path, method: :delete, class: "sidenav-link" do %>
