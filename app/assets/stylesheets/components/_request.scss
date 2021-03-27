@@ -37,3 +37,22 @@
 #request_ride_date {
   box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.2);
 }
+
+/* requests && notifications */
+.requests-box, .pending-box, .notifications-box {
+  padding: 12px 8px;
+  overflow-y: scroll;
+  height: 86vh;
+}
+
+p.read, p.not-read {
+  margin-bottom: 0.3em;
+}
+
+a.read, p.read {
+  color: #696969;
+}
+
+a.not-read, p.not-read{
+  color: rgb(0, 145, 124);
+}

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :presence, :unread]
-  # after_action :read_notification, only: :notifications
+  after_action :read_notifications, only: :notifications
   respond_to :html, :js
 
   def show
@@ -64,11 +64,10 @@ class UsersController < ApplicationController
 
   private
 
-  def read_notification
-    if @notifications.present?
-      @notifications.each do |n|
-        n.update(read: true, read_at: Time.now)
-      end
+  def read_notifications
+    unread = Notification.where(user: current_user, action: 'Request', read: false, link: nil)
+    if unread.length.positive?
+      unread.each { |n| n.update!(read: true, read: Time.now) }
     end
   end
 

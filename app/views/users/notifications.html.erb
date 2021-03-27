@@ -9,22 +9,16 @@
       <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
-    <h6>Notifications</h6>
+    <h5 style='text-align: center; padding-top: 24px;'>Notifications</h5>
+    <div class='notifications-box'>
     <% @notifications.each do |n| %>
+      <% css_class = n.read ? 'read' : 'not-read' %>
       <% if n.link.present? %>
-        <p class="<%= n.read ? 'read' : 'not-read' %>"><%= link_to n.content, n.link %><!--<#%= n.action_time%></small>--></p>
+        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
       <% else %>
-        <p class="<%= n.read ? 'read' : 'not-read' %>"><%= n.content %>
+        <p class="<%= css_class %>"><%= n.content %></p>
       <% end %>
     <% end %>
+    </div>
   <% end %>
 </div>
-
-<style>
-  .read {
-    background-color: #ccc;
-  }
-  .not-read {
-    background-color: pink;
-  }
-</style>

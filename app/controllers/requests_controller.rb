@@ -1,9 +1,10 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :destroy, :read_request_notification]
+  before_action :set_request, only: [:show, :destroy]
+  after_action :read_notifications, only: :index
 
   def index # imp this!
     # sent => pending
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id, accepted: false).order(created_at: :desc)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
     #@requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
     #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
@@ -13,10 +14,10 @@ class RequestsController < ApplicationController
   end
 
   def show
-    Notification.find_by(user: current_user.id, action_id: @request.id).update(read: true)
+    unread = Notification.find_by(user: current_user.id, action_id: @request.id, read: false)
+    unread.update(read: true) unless unread.nil?
     @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
-    Notification.find_by(action_id: @request.id).update(read: true)
     update_tracking
   end
 
@@ -77,6 +78,13 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def read_notifications
+    unread = Notification.where(user: current_user, read: false, link: nil)
+    if unread.length.positive?
+      unread.each { |n| n.update!(read: true, read_at: Time.now) }
+    end
+  end
 
   def set_request
     @request = Request.find(params[:id])
