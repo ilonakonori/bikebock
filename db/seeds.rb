@@ -45,7 +45,7 @@ Request.destroy_all
       start_location: "Deutsches Technik museum",
       end_location: "Kraftwerk Berlin",
       difficulty: '2',
-      available_dates: "13.03.2021, 14.03.2021")
+      available_dates: "13.03.2021, 14.03.2021, 18.04.2021, 25.04.2021, 09.05.2021, 23.05.2021, 13.06.2021, 26.06.2021, 18.07.2021, 16.07.2021, 13.08.2021, 29.08.2021")
   puts "New ride not saved!"
 
     # photos
@@ -97,7 +97,7 @@ end
       start_location: "Wannsee S-Bahn",
       end_location: "Wannsee S-Bahn",
       difficulty: "1",
-      available_dates: "27.04.2021, 28.04.2021")
+      available_dates: "27.04.2021, 28.04.2021, 15.04.2021, 17.04.2021, 14.05.2021, 29.05.2021, 26.06.2021, 27.06.2021, 24.07.2021, 29.07.2021, 01.08.2021, 15.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -149,7 +149,7 @@ end
       start_location: "Flottwell Berlin Hotel & Residenz am Park",
       end_location: "Kulturforum",
       difficulty: "1",
-      available_dates: "28.04.2021")
+      available_dates: "28.04.2021, 15.05.2021, 29.05.2021, 12.06.2021, 19.06.2021, 09.07.2021, 17.07.2021, 15.08.2021, 22.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -202,7 +202,7 @@ end
       start_location: "Akademie Berlin-Schmöckwitz",
       end_location: "Akademie Berlin-Schmöckwitz",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021")
+      available_dates: "17.04.2021, 18.04.2021, 24.04.2021, 15.05.2021, 30.05.2021, 12.06.2021, 20.06.2021, 17.07.2021, 31.07.2021, 21.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -255,7 +255,7 @@ end
       start_location: "Schlossplatz",
       end_location: "Glienicker Bridge",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021")
+      available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021, 03.05.2021, 09.05, 2021, 18.06.2021, 14.06.2021, 27.07.2021, 28.07.2021, 05.08.2021, 10.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -307,7 +307,7 @@ end
       start_location: "U-Bahnhof Borsigwerke",
       end_location: "U-Bahnhof Wittenau",
       difficulty: "3",
-      available_dates: "11.04.2021")
+      available_dates: "11.04.2021, 29.04.2021, 15.05.2021, 16.05.2021, 27.06.2021, 30.06.2021, 14.07.2021, 26.07.2021, 14.08.2021, 16.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -359,7 +359,7 @@ end
       start_location: "Nürnberger Straße 65, 10787",
       end_location: "Café am neuen See",
       difficulty: "4",
-      available_dates: "20.03.2021")
+      available_dates: "20.03.2021, 17.04.2021, 29.04.2021, 01.05.2021, 15.05.2021, 06.06.2021, 17.06.2021, 01.07.2021, 09.07.2021, 17.08.2021, 21.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -414,7 +414,7 @@ end
       start_location: "Treptower Park",
       end_location: "S-Bahn Erkner",
       difficulty: "1",
-      available_dates: "01.05.2021, 02.05.2021")
+      available_dates: "01.05.2021, 02.05.2021, 14.06.2021, 24.06.2021, 07.07.2021, 15.07.2021, 01.08.2021, 30.08.2021")
     puts "New ride not saved!"
 
     # photos
