@@ -29,13 +29,13 @@
                   <div class="header">
                     <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
 
-                    <% if new_msg.size.positive? %>
+                    <% if new_msg && new_msg.size.positive? %>
                       <% num = new_msg.last.content.match?(/\d+/) ? new_msg.last.content.match(/\d+/)[0] : new_msg.size %>
                       <span class='circle2' style=''><%= num %></span>
                     <% end %>
 
                     <small class="timestamp">
-                      <% if new_msg.size.positive? %>
+                      <% if new_msg && new_msg.size.positive? %>
                         <%= new_msg.last.date_display %>
                       <% elsif c.messages.present? %>
                         <%= c.messages.last.date_display %>
@@ -45,8 +45,8 @@
                     </small>
                   </div>
 
-                  <% if c.messages %>
-                    <% if new_msg.length.positive? %>
+                  <% if c.messages.present? %>
+                    <% if new_msg && new_msg.length.positive? %>
                       <% msg_display = Message.find(new_msg.first.link.match(/\d+$/)[0]) %>
                       <% if msg_display.content.present? %>
                         <p style="font-weight: 600;"><%= msg_display.content[0..35] %></p>

@@ -28,7 +28,6 @@ class ConversationsController < ApplicationController
 
   def show # imp => autocomplete!
     @message = Message.new
-    @unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
     update_tracking
   end
 
@@ -79,22 +78,21 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
-  def read_message_notifications
-    if @unread_msgs.present?
-      @unread_msgs.each do |n|
-        n.update(read: true, read_at: Time.now)
-      end
-    end
-    messages = Notification.find_by(user: current_user, action: 'Messages', action_id: @conversation.id, read: false)
-    messages.update(read: true, read_at: Time.now) unless messages.nil?
-  end
-
   def update_tracking
     tracking = Tracking.find_by(user: current_user.id)
     tracking.update!(location: request.url, location_time: Time.now)
   end
 
   private
+
+  def read_message_notifications
+    msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user) + Notification.where(user: current_user, action: 'Messages', action_id: @conversation.id, read: false)
+    if msgs.present?
+      msgs.each do |n|
+        n.update(read: true, read_at: Time.now)
+      end
+    end
+  end
 
   def conversated
     @request = Request.find(params[:id])
