@@ -45,7 +45,7 @@ Request.destroy_all
       start_location: "Deutsches Technik museum",
       end_location: "Kraftwerk Berlin",
       difficulty: '2',
-      available_dates: "13.03.2021, 14.03.2021")
+      available_dates: "13.03.2021, 14.03.2021, 18.04.2021, 25.04.2021, 09.05.2021, 23.05.2021, 13.06.2021, 26.06.2021, 18.07.2021, 16.07.2021, 13.08.2021, 29.08.2021")
   puts "New ride not saved!"
 
     # photos
@@ -97,7 +97,7 @@ end
       start_location: "Wannsee S-Bahn",
       end_location: "Wannsee S-Bahn",
       difficulty: "1",
-      available_dates: "27.04.2021, 28.04.2021")
+      available_dates: "27.04.2021, 28.04.2021, 15.04.2021, 17.04.2021, 14.05.2021, 29.05.2021, 26.06.2021, 27.06.2021, 24.07.2021, 29.07.2021, 11.08.2021, 15.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -149,7 +149,7 @@ end
       start_location: "Flottwell Berlin Hotel & Residenz am Park",
       end_location: "Kulturforum",
       difficulty: "1",
-      available_dates: "28.04.2021")
+      available_dates: "28.04.2021, 15.05.2021, 29.05.2021, 12.06.2021, 19.06.2021, 10.07.2021, 17.07.2021, 15.08.2021, 22.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -202,7 +202,7 @@ end
       start_location: "Akademie Berlin-Schmöckwitz",
       end_location: "Akademie Berlin-Schmöckwitz",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021")
+      available_dates: "17.04.2021, 18.04.2021, 24.04.2021, 15.05.2021, 30.05.2021, 12.06.2021, 20.06.2021, 17.07.2021, 31.07.2021, 21.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -255,7 +255,7 @@ end
       start_location: "Schlossplatz",
       end_location: "Glienicker Bridge",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021")
+      available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021, 13.05.2021, 19.05.2021, 18.06.2021, 14.06.2021, 27.07.2021, 28.07.2021, 15.08.2021, 10.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -307,7 +307,7 @@ end
       start_location: "U-Bahnhof Borsigwerke",
       end_location: "U-Bahnhof Wittenau",
       difficulty: "3",
-      available_dates: "11.04.2021")
+      available_dates: "11.04.2021, 29.04.2021, 15.05.2021, 16.05.2021, 27.06.2021, 30.06.2021, 14.07.2021, 26.07.2021, 14.08.2021, 16.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -359,7 +359,7 @@ end
       start_location: "Nürnberger Straße 65, 10787",
       end_location: "Café am neuen See",
       difficulty: "4",
-      available_dates: "20.03.2021")
+      available_dates: "20.03.2021, 17.04.2021, 29.04.2021, 12.05.2021, 15.05.2021, 16.06.2021, 17.06.2021, 11.07.2021, 14.07.2021, 17.08.2021, 21.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -407,14 +407,14 @@ end
       Treptow-Köpenick is blessed with plenty of water.
       This bike ride takes you along the River Spree, past the Müggelsee lake, through the canals of “New Venice” and then to Erkner.
       The highlights of the route include Köpenick’s old town, Treptower Park and the Archenhold Observatory.
-      Remember your swimsuits! ",
+      Remember your swimsuits!",
       number_of_people: "4",
       start_time: "10:00",
       end_time: "14:00",
       start_location: "Treptower Park",
       end_location: "S-Bahn Erkner",
       difficulty: "1",
-      available_dates: "01.05.2021, 02.05.2021")
+      available_dates: "19.05.2021, 22.05.2021, 14.06.2021, 24.06.2021, 17.07.2021, 15.07.2021, 11.08.2021, 30.08.2021")
     puts "New ride not saved!"
 
     # photos
@@ -423,6 +423,268 @@ end
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/mueggelsee10_c_visitBerlin_Foto_Dagmar_Schwelle_DL_PPT_0.jpg.webp?itok=aQl5KqLN')
     new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/koepenickaltstadt01_c_visitBerlin_Foto_Dagmar_Schwelle_DL_PPT_0.jpg.webp?h=06f6671c&itok=6xn_2eMr')
+    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+
+    new_ride.user = new_user
+    new_ride.save!
+  puts "Added 3 images!"
+
+  end
+end
+
+  # User_9
+
+  1.times do
+  new_user = User.new(
+    name: "Christiana",
+    email: "christiana2rivers5+@gmail.com",
+    password: "123456",
+    about_me: "I enjoy singing, dancing, riding a bike; I like painting the most. It is a way for me to express myself, my feelings and mood not by words but through art, which is understood only by a few people.",
+    interests: "SINGING DANCING NATURE YOGA ART FESTIVALS COOKING BAKING DJ",
+    last_seen: DateTime.now
+    )
+  puts "User not saved!"
+    image = URI.open("https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1649&q=80")
+    new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
+
+  puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_9.jpeg'), filename: 'bike_9.jpeg', content_type: 'image/jpeg')
+    new_user.save!
+  puts "User saved!"
+
+  1.times do
+    new_ride = Ride.new(
+      title: "Altlandsberg to Buckow",
+      short_description: "Bring your flip flops! 
+      This ride starts in the historic walled city of Altlandsberg and takes you through the pine forest east of Radebrück before venturing through multiple villages to get to Buckow. 
+      Garzau has a nice lake with a beach along the way, but the Schermützelsee in Buckow is where I would jump in. 
+      This trip is radweg the entire way and a relatively easy ride. 
+      Buckow also has several restaurants, parks, and a Kneipp area all within just a couple minutes of walking.",
+      number_of_people: "5",
+      start_time: "8:00",
+      end_time: "14:00",
+      start_location: "Schlossgut Altlandsberg",
+      end_location: "Buckow",
+      difficulty: "3",
+      available_dates: "14.05.2021, 12.05.2021, 24.06.2021, 29.06.2021, 19.07.2021, 25.07.2021, 11.08.2021, 29.08.2021")
+    puts "New ride not saved!"
+
+    # photos
+    image1 = File.open('app/assets/images/altlandsberg_to_buckow.png')
+    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = File.open('app/assets/images/buckow_1.png')
+    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = File.open('app/assets/images/buckow_2.png')
+    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+
+    new_ride.user = new_user
+    new_ride.save!
+  puts "Added 3 images!"
+
+  end
+end
+
+# User 10
+
+  1.times do
+  new_user = User.new(
+    name: "Ben",
+    email: "ben1engelsen4+@gmail.com",
+    password: "123456",
+    about_me: "I love watching movies and yes! you can call me a CINEPHILE. I love watching action movies more than any other genre. I am a big fan of Tiger Shroff.",
+    interests: "WINDSURFING MOVIES CINEMA JAZZ PHOTOGRAPHY TENNIS COFFEE COOKING TENNIS",
+    last_seen: DateTime.now
+    )
+  puts "User not saved!"
+    image = URI.open("https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80")
+    new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
+
+  puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_10.jpeg'), filename: 'bike_10.jpeg', content_type: 'image/jpeg')
+    new_user.save!
+  puts "User saved!"
+
+  1.times do
+    new_ride = Ride.new(
+      title: "Templiner See",
+      short_description: "Starting at the Potsdam Hauptbahnhof, this bike tour takes you south around the two lakes and back to the train station. 
+      It also includes the town of Caputh where Albert Einstein had his summer residence and a lovely restaurant on the water with outdoor seating. 
+      There are also multiple playgrounds along the way for the little ones.",
+      number_of_people: "5",
+      start_time: "10:00",
+      end_time: "14:00",
+      start_location: "Potsdam Hauptbahnhof",
+      end_location: "Potsdam Hauptbahnhof",
+      difficulty: "3",
+      available_dates: "12.05.2021, 22.05.2021, 24.06.2021, 19.06.2021, 10.07.2021, 23.07.2021, 09.08.2021, 20.08.2021")
+    puts "New ride not saved!"
+
+    # photos
+    image1 = File.open('app/assets/images/templiner_see_and_schwielowsee.png')
+    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = File.open('app/assets/images/templiner_see_1.jpeg')
+    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = File.open('app/assets/images/templiner_see_2.png')
+    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+
+    new_ride.user = new_user
+    new_ride.save!
+  puts "Added 3 images!"
+
+  end
+end
+
+  # User_11
+
+  1.times do
+  new_user = User.new(
+    name: "Omid",
+    email: "omid7armin2+@gmail.com",
+    password: "123456",
+    about_me: "I like traveling a lot, and I plan to take a trip every year. Majorly, the trips have been within the national boundaries only but I have an interest in exploring and traveling to other nations as well. I am the wordl traveler.",
+    interests: "EXPLORING DOGS TRAVEL DJ PHOTOGRAPHY CHESS READING COOKING",
+    last_seen: DateTime.now
+    )
+  puts "User not saved!"
+    image = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2850&q=80")
+    new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
+
+  puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_11.jpeg'), filename: 'bike_11.jpeg', content_type: 'image/jpeg')
+    new_user.save!
+  puts "User saved!"
+
+  1.times do
+    new_ride = Ride.new(
+      title: "Havelland-Radweg",
+      short_description: "There are two different long distance bike routes. 
+      This one is the Havelland-Radweg, which does not closely follow the Havel river, but rather connects small villages and towns somewhat aside. 
+      Among them is Nauen, the city which became well-known because of its early twentieth century radio stations connecting the emperor's Germany with its colonies. 
+      Also you pass Ribbeck, which became famous for its pear tree through a poem by Theodor Fontane.",
+      number_of_people: "2",
+      start_time: "8:00",
+      end_time: "18:00",
+      start_location: "Spandau Hauptbahnhof",
+      end_location: "Havelberg",
+      difficulty: "5",
+      available_dates: "13.05.2021, 27.05.2021, 14.06.2021, 24.06.2021, 17.07.2021, 25.07.2021, 11.08.2021, 30.08.2021")
+    puts "New ride not saved!"
+
+    # photos
+    image1 = File.open('app/assets/images/havelland_radweg.png')
+    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = URI.open('https://potsdamer-brandenburger-havelseen.de/tl_files/content/3spalten/image_rad_3.jpg')
+    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = URI.open('https://potsdamer-brandenburger-havelseen.de/tl_files/content/3spalten/image_rad_2.jpg')
+    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+
+    new_ride.user = new_user
+    new_ride.save!
+  puts "Added 3 images!"
+
+  end
+end
+
+  # User_12
+
+  1.times do
+  new_user = User.new(
+    name: "Jordan",
+    email: "jordan9whitfield4+@gmail.com",
+    password: "123456",
+    about_me: "Traveling is my passion. Whenever I have an opportunity to visit a new place, whether a village, city, mountain or seaside, I never miss it. It is so thrilling to see a new place and meet different kind of people.",
+    interests: "TRAVELING ADVENTURES COOKING WINE PHOTOGRAPHY BOOKS ART EXHIBITIONS DJ",
+    last_seen: DateTime.now
+    )
+  puts "User not saved!"
+    image = URI.open("https://images.unsplash.com/photo-1492447216082-4726bf04d1d1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80")
+    new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
+
+  puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_12.jpeg'), filename: 'bike_12.jpeg', content_type: 'image/jpeg')
+    new_user.save!
+  puts "User saved!"
+
+  1.times do
+    new_ride = Ride.new(
+      title: "Berlin Wall",
+      short_description: "A double row of cobblestones traces the Berlin Wall’s route over 5.7 kilometres through the city centre. 
+      This tour from the East Side Gallery to Bernauer Strasse via Potsdamer Platz passes memorials, Berlin Wall remnants, former border watchtowers and documentary panels with photos and details of the area’s history.",
+      number_of_people: "2",
+      start_time: "10:00",
+      end_time: "12:00",
+      start_location: " East Side Gallery",
+      end_location: "Potsdamer Platz",
+      difficulty: "1",
+      available_dates: "10.05.2021, 12.05.2021, 14.06.2021, 24.06.2021, 20.07.2021, 15.07.2021, 21.08.2021, 30.08.2021")
+    puts "New ride not saved!"
+
+    # photos
+    image1 = URI.open('https://www.berlin.de/binaries/asset/image_assets/4138048/ratio_2_1/1531212987/972x486/')
+    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = URI.open('https://www.fattiretours.com/uploads/7386/berlin%20wall%20bike%20tour%20hero-675x317.jpg')
+    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = URI.open('http://spinlister-blog.s3.amazonaws.com/2016/04/Berliner-Mauerweg-13.jpg')
+    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+
+    new_ride.user = new_user
+    new_ride.save!
+  puts "Added 3 images!"
+
+  end
+end
+
+  # User_13
+
+  1.times do
+  new_user = User.new(
+    name: "Logan",
+    email: "logan6weaver0+@gmail.com",
+    password: "123456",
+    about_me: "I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. And I always wanted to be a great writer, like Victor Hugo.",
+    interests: "DRAWING PAINTING COOKING GARDENING PHOTOGRAPHY TRAVELING RUNNING",
+    last_seen: DateTime.now
+    )
+  puts "User not saved!"
+    image = URI.open("https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2850&q=80")
+    new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
+
+  puts "User photo added!"
+
+  # bike
+    new_user.bike_photo.attach(io: File.open('app/assets/images/bike_13.jpeg'), filename: 'bike_13.jpeg', content_type: 'image/jpeg')
+    new_user.save!
+  puts "User saved!"
+
+  1.times do
+    new_ride = Ride.new(
+      title: "Berlin Wall South",
+      short_description: "And because the Berlin Wall bike path offers so many varied and beautiful routes, we think that the path can appear twice in our list. 
+      This time we go south on the Sonnenallee - Schönefeld - Lichtenrade section: From Sonnenallee you’ll ride continuously along the Teltow Canal via Schöneberg to Lichtenrade. 
+      The path is brand new and very beautiful.",
+      number_of_people: "2",
+      start_time: "10:00",
+      end_time: "12:00",
+      start_location: "Sonnenallee S-bahn",
+      end_location: "Potsdamer Platz",
+      difficulty: "1",
+      available_dates: "14.05.2021, 19.05.2021, 14.06.2021, 24.06.2021, 10.07.2021, 25.07.2021, 21.08.2021, 30.08.2021")
+    puts "New ride not saved!"
+
+    # photos
+    image1 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/TegelerSee_Fruehling_c_visitBerlin_Foto_DagmarSchwelle%20%289%29_DL_PPT_1.jpg.webp?itok=myhbD-iZ')
+    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/Lichterfelde%20am%20Teltowkanal_c_visumate_DL_PPT_0.jpg.webp?itok=cIsagarc')
+    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = URI.open('https://www.lichtenrade-berlin.de/images/lichtenrade-berlin-maelzerei.jpg')
     new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
