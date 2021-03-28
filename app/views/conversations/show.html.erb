@@ -86,4 +86,16 @@
     <% end %>
   </div>
 </div>
-
+<script>
+$(document).on('turbolinks:load',function(event){
+// scroll to matching element in hash
+  if(window.location.hash){
+    console.log(window.location.hash)
+    el = document.querySelector(window.location.hash)
+    console.log(el)
+    if(el){
+      el.scrollIntoView(true);
+    }
+  }
+});
+</script>
