@@ -103,10 +103,10 @@
     <!-- btns -->
     <div class='btn-box' style='display: flex; justify-content: center;'>
       <% if policy(ride).edit? %>
-        <%= link_to 'Edit', edit_ride_path(ride) %>
+        <%= link_to 'Edit', edit_ride_path(ride), class: 'brown-btn' %>
       <% end %>
       <% if policy(ride).destroy? %>
-        <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"} %>
+        <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"}, class: 'brown-btn' %>
       <% end %>
     </div>
     <!-- request form -->

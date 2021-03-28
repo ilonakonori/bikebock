@@ -13,10 +13,6 @@ class RidePolicy < ApplicationPolicy
     true
   end
 
-  def my_rides?
-    true
-  end
-
   def update?
     user_is_owner?
   end
