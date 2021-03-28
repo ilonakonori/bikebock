@@ -117,7 +117,7 @@
       <div id='myForm' style='display: none;'>
         <button id='closeBtn'><span aria-hidden="true">&times;</span></button>
         <%= simple_form_for(@request) do |f| %>
-          <%= f.input :ride_date, label: false, collection: @av_dates, selected: ride.available_dates.first %>
+          <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first %>
           <%= f.hidden_field :recipient_id, :value => ride.user_id %>
           <%= f.hidden_field :ride_id, :value => ride.id %>
           <%= f.submit value="Send", class: "brown-btn2" %>

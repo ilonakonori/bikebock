@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :destroy]
+  before_action :set_request, only: [:show, :update]
   after_action :read_notifications, only: :index
 
   def index # imp this!
@@ -21,11 +21,13 @@ class RequestsController < ApplicationController
     update_tracking
   end
 
+  def new
+  end
+
   def create
     @request = current_user.requests.new(request_params)
     @request.user_id = current_user.id
-    @request.accepted = false;
-    @request.friend = false;
+    @request.accepted = nil;
 
     authorize @request
 
@@ -52,8 +54,7 @@ class RequestsController < ApplicationController
     update_tracking
   end
 
-  # change to update?
-  def destroy # destroy || update (link) notification for this request
+  def update
     sender_name = User.find(@request.recipient_id).name
     recipient = User.find(@request.user_id)
 
@@ -64,13 +65,14 @@ class RequestsController < ApplicationController
         action_id: @request.id,
         action_time: Time.now,
         read: false,
+        link: "/requests/#{@request.id}",
         content: "#{sender_name} declined your request: #{@request.ride_date}, #{@request.ride.title}"
       )
 
-    @request.destroy
+    @request.update(accepted: false)
 
     update_tracking
-    redirect_to requests_path, notice: 'You declined this request!'
+    redirect_to request_path(@request), notice: 'You declined this request!'
   end
 
   def update_tracking

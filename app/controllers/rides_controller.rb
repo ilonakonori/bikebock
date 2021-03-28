@@ -17,8 +17,8 @@ class RidesController < ApplicationController
   end
 
   def show # imp!
-    requests = Request.where(accepted: false, user_id: current_user, recipient_id: @ride.user_id)
-    all_dates = requests.map { |r| r.ride_date }.select { |r| r >= Time.now }
+    requests = Request.where(ride_id: @ride.id, user_id: current_user, recipient_id: @ride.user_id)
+    all_dates = requests.map { |r| r.ride_date.to_date }.select { |r| r >= Time.now }
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }

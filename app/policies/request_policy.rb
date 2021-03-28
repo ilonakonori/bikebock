@@ -13,8 +13,7 @@ class RequestPolicy < ApplicationPolicy
     true
   end
 
-  def destroy?
-    #record.accepted == false &&
-    record.recipient_id == user.id
+  def update?
+    record.accepted == nil && record.recipient_id == user.id
   end
 end
