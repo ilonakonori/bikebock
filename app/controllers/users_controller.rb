@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :presence, :unread]
+  before_action :set_notifications, only: :notifications
   after_action :read_notifications, only: :notifications
   respond_to :html, :js
 
@@ -21,25 +22,8 @@ class UsersController < ApplicationController
   end
 
   def notifications # works good
-
     @user = current_user
-    msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
-
-    msgs.each do |m|
-      @user.notifications.create!(
-        user: @user,
-        sender_name: m[0],
-        action: 'Messages',
-        action_id: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.action_id,
-        action_time: @user.notifications.where(sender_name: m[0], action: 'Message').last.action_time,
-        read: false,
-        content: "#{m[0]} sent you #{m[1]} messages",
-        link: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.link
-      )
-      @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).destroy_all
-    end
     @notifications = Notification.where(user_id: @user.id).order(action_time: :desc)
-
     update_tracking
     authorize @user
   end
@@ -63,6 +47,26 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_notifications
+    @user = current_user
+    msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
+
+    msgs.each do |m|
+      @user.notifications.create!(
+        user: @user,
+        sender_name: m[0],
+        action: 'Messages',
+        action_id: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.action_id,
+        action_time: @user.notifications.where(sender_name: m[0], action: 'Message').last.action_time,
+        read: false,
+        content: "#{m[0]} sent you #{m[1]} messages",
+        link: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.link
+      )
+      @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).destroy_all
+    end
+    authorize @user
+  end
 
   def read_notifications
     unread = Notification.where(user: current_user, action: 'Request', read: false, link: nil)
