@@ -96,6 +96,7 @@ $(document).on('turbolinks:load',function(event) {
     console.log(el)
     if(el){
       el.scrollIntoView(false);
+      document.getElementById("messages").scrollTop += 24;
     }
   }
 });

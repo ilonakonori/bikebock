@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :media]
+  after_action :read_message_notifications, only: :show  # check read part
 
   def index
     conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
@@ -27,8 +28,7 @@ class ConversationsController < ApplicationController
 
   def show # imp => autocomplete!
     @message = Message.new
-    unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
-    read_message_notifications(unread_msgs) unless unread_msgs.length.zero?
+    @unread_msgs = Notification.where(read: false, action: 'Message', action_id: @conversation.id, user: current_user)
     update_tracking
   end
 
@@ -79,9 +79,11 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
-  def read_message_notifications(unread_msgs)
-    unread_msgs.each do |n|
-      n.update(read: true, read_at: Time.now)
+  def read_message_notifications
+    if @unread_msgs.present?
+      @unread_msgs.each do |n|
+        n.update(read: true, read_at: Time.now)
+      end
     end
     messages = Notification.find_by(user: current_user, action: 'Messages', action_id: @conversation.id, read: false)
     messages.update(read: true, read_at: Time.now) unless messages.nil?
