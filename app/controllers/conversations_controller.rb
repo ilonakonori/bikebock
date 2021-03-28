@@ -51,7 +51,7 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @request = Request.find(params[:id])
+    @request = Request.find(params[:request_id])
 
     if !conversated
       @conversation = Conversation.create(sender_id: @request.user_id, recipient_id: @request.recipient_id)
@@ -95,7 +95,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversated
-    @request = Request.find(params[:id])
+    @request = Request.find(params[:request_id])
     @conversation = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
   end
 

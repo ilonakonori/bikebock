@@ -11,14 +11,14 @@ class RidesController < ApplicationController
       when '1' # num of people asc
         @rides = policy_scope(Ride).order(:number_of_people).total_valid
     else # 2 => default => available_dates: :asc  => earliest
-      @rides = policy_scope(Ride).order(:slug).total_valid
+      @rides = policy_scope(Ride).total_valid.sort_by { |r| r.valid_dates.first }
     end
     update_tracking
   end
 
   def show # imp!
-    requests = Request.where(accepted: false, user_id: current_user, recipient_id: @ride.user_id)
-    all_dates = requests.map { |r| r.ride_date }.select { |r| r >= Time.now }
+    requests = Request.where(ride_id: @ride.id, user_id: current_user, recipient_id: @ride.user_id)
+    all_dates = requests.map { |r| r.ride_date.to_date }.select { |r| r >= Time.now }
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
