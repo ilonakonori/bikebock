@@ -1,12 +1,12 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
-  #after_action :read_request_notification, only: :index
+  after_action :read_notifications, only: :index
 
   def index # imp this!
     # sent => pending
     @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
-    @requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
-    @requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
+    #@requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
+    #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     @requests_notifications = Notification.where(user: current_user.id, action: 'Request').order(created_at: :desc)
 
@@ -14,8 +14,8 @@ class RequestsController < ApplicationController
   end
 
   def show
-    notification = Notification.find_by(action_id: @request.id)
-    notification.update!(read: true)
+    unread = Notification.find_by(user: current_user.id, action_id: @request.id, read: false)
+    unread.update(read: true) unless unread.nil?
     @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
     update_tracking
@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
         action_id: r.id,
         action_time: Time.now,
         read: false,
-        link: "requests/#{r.id}",
+        link: "/requests/#{r.id}",
         content: "#{sender_name} sent you request: #{r.ride_date}, #{r.ride.title}"
       )
 
@@ -52,7 +52,8 @@ class RequestsController < ApplicationController
     update_tracking
   end
 
-  def destroy
+  # change to update?
+  def destroy # destroy || update (link) notification for this request
     sender_name = User.find(@request.recipient_id).name
     recipient = User.find(@request.user_id)
 
@@ -78,15 +79,13 @@ class RequestsController < ApplicationController
   end
 
   private
-=begin
-  def read_request_notification
-    if @requests_received.present?
-      @requests_received.each do |n|
-        n.update(read: true, read_at: Time.now)
-      end
+
+  def read_notifications
+    unread = Notification.where(user: current_user, read: false, link: nil)
+    if unread.length.positive?
+      unread.each { |n| n.update!(read: true, read_at: Time.now) }
     end
   end
-=end
 
   def set_request
     @request = Request.find(params[:id])

@@ -48,4 +48,18 @@ class Ride < ApplicationRecord
   def duration
     (Time.parse(end_time.strftime("%H:%M")) - Time.parse(start_time.strftime("%H:%M"))) / 3600
   end
+
+  # valid dates
+  def valid_dates
+    self.available_dates.split(', ').map(&:to_date).select { |d| d >= Time.now }.sort
+  end
+
+  def self.total_valid
+    all.select do |i|
+      if i.valid_dates.present?
+        i
+      end
+    end
+  end
 end
+

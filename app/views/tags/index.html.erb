@@ -1,0 +1,9 @@
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', :back, style: 'color:#aaa; font-weight: bold;'%>
+</div>
+
+<div style='height: 96vh; padding-top: 24px; overflow-y: scroll;'>
+  <% @tags.each do |tag| %>
+    <small class="interests"><%= link_to tag.name, tag_path(tag) %></small>
+  <% end %>
+</div>

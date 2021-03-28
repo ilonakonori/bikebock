@@ -5,21 +5,22 @@ class RidesController < ApplicationController
   def index # filter
     case params[:select]
       when '3' # ratings # we don't have this atm!
-        @rides = policy_scope(Ride).order(ratings: :desc)
+        @rides = policy_scope(Ride).order(ratings: :desc).total_valid
       when '4' # difficulty asc
-        @rides = policy_scope(Ride).order(:difficulty)
+        @rides = policy_scope(Ride).order(:difficulty).total_valid
       when '1' # num of people asc
-        @rides = policy_scope(Ride).order(:number_of_people)
+        @rides = policy_scope(Ride).order(:number_of_people).total_valid
     else # 2 => default => available_dates: :asc  => earliest
-      @rides = policy_scope(Ride).order(:slug)
+      @rides = policy_scope(Ride).order(:slug).total_valid
     end
     update_tracking
   end
 
-  def show
+  def show # imp!
     requests = Request.where(accepted: false, user_id: current_user, recipient_id: @ride.user_id)
-    all_dates = requests.map { |r| r.ride_date }
-    my_dates = (@ride.available_dates.split(' ') + all_dates)
+    all_dates = requests.map { |r| r.ride_date }.select { |r| r >= Time.now }
+    ride_dates = @ride.valid_dates
+    my_dates = (ride_dates + all_dates)
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
     @request = Request.new
     update_tracking

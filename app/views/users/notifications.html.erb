@@ -1,6 +1,5 @@
 <div>
   <% if @notifications.blank? %>
-
     <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
       <p style="font-size: 60px;"><i class="far fa-bell"></i></p>
       <h6>No Notifications Here! </h6>
@@ -9,26 +8,17 @@
       <br>
       <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
-
   <% else %>
-    <h6>Unread notifications</h6>
+    <h5 style='text-align: center; padding-top: 24px;'>Notifications</h5>
+    <div class='notifications-box'>
     <% @notifications.each do |n| %>
-        <% if n.link.present? %>
-          <p><%= link_to n.content, n.link %><!--<#%= n.action_time%></small>--></p>
-        <% else %>
-          <p><%= n.content %>
-        <% end %>
+      <% css_class = n.read ? 'read' : 'not-read' %>
+      <% if n.link.present? %>
+        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
+      <% else %>
+        <p class="<%= css_class %>"><%= n.content %></p>
       <% end %>
-
-      <% if @notifications_read.present? %>
-        <h6>old notification</h6>
-        <% @notifications_read.each do |n| %>
-          <% if n.link.present? %>
-            <p ><%= link_to n.content, n.link, style: 'color: blue;' %><!--<small><#%= n.action_time%></small>--></p>
-          <% else %>
-            <p style='color: #999;'><%= n.content %>
-          <% end %>
-        <% end %>
-      <% end %>
+    <% end %>
+    </div>
   <% end %>
 </div>

@@ -7,9 +7,9 @@
 %>
 
 <% if c.messages.present? %>
-  <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user)
+<!-- action: 'Messages' -->
+  <% new_msg = Notification.where(read: false, action: 'Message', action_id: c.id, user: current_user) + Notification.where(read: false, action: 'Messages', action_id: c.id, user: current_user)
      msg_link =  new_msg.present? ? new_msg.first.link : "/conversations/#{c.id}#message-#{c.messages.last.id}" %>
-     <!-- "/conversations/#{c.id}#message-#{c.messages.last.id}" -->
 <% else %>
   <% msg_link = "/conversations/#{c.id}" %>
 <% end %>
@@ -28,16 +28,37 @@
                 <div class="body">
                   <div class="header">
                     <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
-                    <% if new_msg %>
-                      <span style='padding-left: 8px;'><%= new_msg.size unless new_msg.size.zero? %></span>
+
+                    <% if new_msg && new_msg.size.positive? %>
+                      <% num = new_msg.last.content.match?(/\d+/) ? new_msg.last.content.match(/\d+/)[0] : new_msg.size %>
+                      <span class='circle2' style=''><%= num %></span>
                     <% end %>
-                    <small class="timestamp"><%= c.messages.present? ? c.messages.last.date_display : c.created_at.to_date %></small>
+
+                    <small class="timestamp">
+                      <% if new_msg && new_msg.size.positive? %>
+                        <%= new_msg.last.date_display %>
+                      <% elsif c.messages.present? %>
+                        <%= c.messages.last.date_display %>
+                      <% else %>
+                        <%= c.created_at.to_date %>
+                      <% end %>
+                    </small>
                   </div>
+
                   <% if c.messages.present? %>
-                    <% if c.messages.last.content.present? %>
-                      <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+                    <% if new_msg && new_msg.length.positive? %>
+                      <% msg_display = Message.find(new_msg.first.link.match(/\d+$/)[0]) %>
+                      <% if msg_display.content.present? %>
+                        <p style="font-weight: 600;"><%= msg_display.content[0..35] %></p>
+                        <% else %>
+                        <p style="font-weight: 600;">** Attachment **</p>
+                      <% end %>
                     <% else %>
-                      <p style="font-weight: 600;">** Attachment **</p>
+                      <% if c.messages.last.content.present? %>
+                        <p style="font-weight: 600;"><%= c.messages.last.content[0..35] %></p>
+                      <% else %>
+                        <p style="font-weight: 600;">** Attachment **</p>
+                      <% end %>
                     <% end %>
                   <% else %>
                     <p style="font-weight: 300;">Start conversation!</p>

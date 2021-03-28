@@ -1,5 +1,5 @@
 <!-- carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='margin-top:16px;'>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='margin-top:24px;'>
   <div class="carousel-inner" style='border-radius: 16px; height: 37vw; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
     <% ride.photos.each_with_index do |photo, i| %>
       <div class="carousel-item <%= 'active' if i == 0 %>">
@@ -18,9 +18,12 @@
 </div>
 <br>
 
-<h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %></h5>
+<h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> |
+  <!-- check this! -->
+  <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
+</h5>
 <!-- ride details -->
-<div style='max-height: 64vh; overflow-y: scroll;'>
+<div style='max-height: 62vh; overflow-y: scroll;'>
   <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description %></p>
   <div class="card card-ride">
     <!-- location -->
@@ -78,16 +81,24 @@
       </div>
     </div>
     <!-- available dates -->
-    <p style='margin: 0; padding: 12px 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Dates:</p>
-    <div class="my-container" style="padding: 0;">
-      <div style="display: flex; flex-wrap: wrap;">
-        <% ride.available_dates.split(', ').map { |el| el.to_date }.sort.each do |d| %>
-          <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
-            <%= d.strftime('%e %B %Y') %>
-          </p>
-        <% end %>
+    <% if ride.valid_dates.present? %>
+      <p style='margin: 0; padding: 12px 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Dates:</p>
+      <div class="my-container" style="padding: 0;">
+        <div style="display: flex; flex-wrap: wrap;">
+          <% ride.valid_dates.each do |d| %>
+            <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+              <%= d.strftime('%e %B %Y') %>
+            </p>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <% if ride.user == current_user %>
+        <p>Please update your ride </p>
+      <% else %>
+        <p></p>
+      <% end %>
+    <% end %>
     <br>
     <!-- btns -->
     <div class='btn-box' style='display: flex; justify-content: center;'>

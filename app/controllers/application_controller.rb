@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
       @unread = current_user.notifications.where(read: false).present?
       @unread_requests = current_user.notifications.where(read: false, action: 'Request').count
       @unread_messages = current_user.notifications.where(read: false, action: 'Message').count
+      @unread_notifications = current_user.notifications.where(read: false).count
     end
   end
 

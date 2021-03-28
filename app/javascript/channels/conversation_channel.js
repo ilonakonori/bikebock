@@ -45,4 +45,18 @@ const submitAttachment = () => {
   }
 }
 
-export { initConversationCable, submitAttachment };
+
+// submit msg on enter (enter + shift = new line)
+const submitOnEnter = () => {
+  const messageInput = document.getElementById("message_content");
+  if(messageInput) {
+    messageInput.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        document.querySelector('#new_message > button').click();
+      }
+    })
+  }
+};
+
+export { initConversationCable, submitAttachment, submitOnEnter };

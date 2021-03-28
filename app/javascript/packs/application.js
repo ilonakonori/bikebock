@@ -29,7 +29,7 @@ import "flatpickr/dist/flatpickr.min.css";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { initConversationCable, submitAttachment } from '../channels/conversation_channel';
+import { initConversationCable, submitAttachment, submitOnEnter } from '../channels/conversation_channel';
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../components/init_presence';
 import { initPresenceCurrent } from '../components/init_presence_current';
@@ -56,6 +56,7 @@ document.addEventListener('turbolinks:load', () => {
   initBookmarks();
   initMsgAttachmentBtn();
   submitAttachment();
+  submitOnEnter();
   initMsgAttachmentPreview();
   hideIt();
   initCloseAlert();

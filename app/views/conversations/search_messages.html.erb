@@ -1,6 +1,7 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <!-- anchor-->
-  <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), style: 'color:#aaa; font-weight: bold;' %>
+  <% my_link = @conversation.messages.present? ? conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : conversation_path(@conversation.id) %>
+  <%= link_to '<<', my_link, style: 'color:#aaa; font-weight: bold;' %>
 </div>
 
 <h5 style='text-align: center; padding-top: 24px;'>You and <%= @conversation.opposed_user(current_user).name %></h5>
@@ -32,11 +33,15 @@
     <% end %>
   </div>
 
-  <script>
-    window.addEventListener('load', function() {
-      let lastMsg = document.querySelector("#message-<%= @conversation.messages.last.id %>");
-      if(lastMsg) {
-        lastMsg.scrollIntoView(false);
-      }
-    })
-  </script>
+<script>
+$(document).on('turbolinks:load',function(event) {
+  // scroll to matching element in hash
+  if(window.location.hash) {
+    console.log(window.location.hash);
+    el = document.querySelector(window.location.hash);
+    if(el){
+      el.scrollIntoView(false);
+    }
+  }
+});
+</script>
