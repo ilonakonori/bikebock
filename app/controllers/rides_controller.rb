@@ -11,7 +11,7 @@ class RidesController < ApplicationController
       when '1' # num of people asc
         @rides = policy_scope(Ride).order(:number_of_people).total_valid
     else # 2 => default => available_dates: :asc  => earliest
-      @rides = policy_scope(Ride).order(:slug).total_valid
+      @rides = policy_scope(Ride).total_valid.sort_by { |r| r.valid_dates.first }
     end
     update_tracking
   end
