@@ -18,6 +18,10 @@ class RequestsController < ApplicationController
     unread.update(read: true) unless unread.nil?
     @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
+    # find all bookings for given ride and given date
+    @all_bookings = Booking.where(ride_id: @request.ride_id, ride_date: @request.ride_date.to_date).length < @request.ride.number_of_people.to_i
+    @check_book = Booking.find_by(participant: @request.user_id, ride_id: @request.ride_id, ride_date: @request.ride_date.to_date)
+    @booking = Booking.new
     update_tracking
   end
 
