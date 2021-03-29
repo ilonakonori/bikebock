@@ -1,5 +1,5 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
-  <%= link_to '<<', rides_path, style: 'color:#aaa; font-weight: bold;'%>
+  <%= link_to '<<', rides_path, class: 'back-link' %>
 </div>
 
 <%= render 'rides/ride_show', ride: @ride %>

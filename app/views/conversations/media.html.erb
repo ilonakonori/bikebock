@@ -2,9 +2,9 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <!-- anchor-->
   <% if @conversation.messages.present? %>
-    <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), style: "color:#aaa; font-weight: bold;", class: 'myLink' %>
+    <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'back-link' %>
   <% else %>
-    <%= link_to '<<', conversation_path(@conversation), class: 'myLink', style: "color:#aaa; font-weight: bold;" %>
+    <%= link_to '<<', conversation_path(@conversation), class: 'back-link' %>
   <% end %>
 </div>
 
