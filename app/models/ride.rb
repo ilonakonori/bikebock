@@ -2,6 +2,8 @@ class Ride < ApplicationRecord
   belongs_to :user
   has_many_attached :photos #maximum: 3
   has_many :requests, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
 
   before_save :build_slug
   before_update :build_slug
