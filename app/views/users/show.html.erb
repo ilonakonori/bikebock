@@ -1,7 +1,8 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
-  <%= link_to '<<', :back, style: 'color:#aaa; font-weight: bold;'%>
+  <%= link_to '<<', :back, id: 'back-link' %>
 </div>
 
+<div style='max-height: 92vh; overflow-y: scroll;'>
 <div class="my-card" id='user' data-online-id="<%= @user.id %>">
   <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
     <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
@@ -33,7 +34,7 @@
   </div>
 </div>
 
-<div style='max-height: 64vh; overflow-y: scroll;'>
+
   <div class="card" style="border:none;">
     <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
   </div>
