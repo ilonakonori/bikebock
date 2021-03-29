@@ -1,7 +1,7 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <!-- anchor-->
   <% my_link = @conversation.messages.present? ? conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : conversation_path(@conversation.id) %>
-  <%= link_to '<<', my_link, style: 'color:#aaa; font-weight: bold;' %>
+  <%= link_to '<<', my_link, class: 'back-link' %>
 </div>
 
 <h5 style='text-align: center; padding-top: 24px;'>You and <%= @conversation.opposed_user(current_user).name %></h5>
