@@ -21,7 +21,7 @@
 
 <div class="<%= @r_num <= @s_num ? 'show' : 'hide' %>">
   <h5 style='padding-top: 24px; text-align: center;'>
-    Sent requests (<%= @requests_sent.where(accepted: true).size %>/<%= @requests_sent.size %>)
+    Sent requests (<%= @requests_sent.where.not(accepted: nil).size %>/<%= @requests_sent.size %>)
   </h5>
   <div class='requests-box'>
     <% @requests_sent.each do |r| %>
