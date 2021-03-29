@@ -53,7 +53,9 @@ class Ride < ApplicationRecord
 
   # valid dates
   def valid_dates
-    self.available_dates.split(', ').map(&:to_date).select { |d| d >= Time.now }.sort
+    b = self.bookings.select(:ride_date).group(:ride_date).having("count(*) >= #{self.number_of_people.to_i}").select(:ride_date).size.map { |d| d[0] }
+    s = self.available_dates.split(', ').map(&:to_date).select { |d| d >= Time.now }
+    (b + s).select { |d| (b + s).count(d) == 1 }.sort
   end
 
   def self.total_valid
