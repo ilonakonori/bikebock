@@ -2,7 +2,7 @@
   <%= link_to '<<', :back, class: 'back-link' %>
 </div>
 
-<div style='max-height: 92vh; overflow-y: scroll;'>
+<div style='max-height: 95vh; overflow-y: scroll;'>
 <div class="my-card" id='user' data-online-id="<%= @user.id %>">
   <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
     <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
