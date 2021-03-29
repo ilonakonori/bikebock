@@ -3,13 +3,17 @@ class RequestsController < ApplicationController
   after_action :read_notifications, only: :index
 
   def index # imp this!
-    # sent => pending
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
-    #@requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(:accepted).order(updated_at: :desc)
+    @requests_received = policy_scope(Request).where(recipient_id: current_user.id).order(updated_at: :desc)
+
+
     #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
-    @requests_notifications = Notification.where(user: current_user.id, action: 'Request').order(created_at: :desc)
+    notifications = Notification.where(read: false, user: current_user.id, action: 'Request').order(created_at: :desc)
+    @r_num = notifications.select { |n| n[:content].match?(/sent/) }.size
+    @s_num = notifications.reject { |n| n[:content].match?(/sent/) }.size
 
+    # check notification for user vs to user
     update_tracking
   end
 

@@ -1,43 +1,57 @@
-<div id='requests'>
-  <div class="navbar fixed-top navbar-expand-sm navbar-light">
-    <!-- some icon here :/ -->
-    <a id='show-sent' style='color:#aaa; font-weight: bold;'> >> </a>
-  </div>
-  <h5 style='padding-top: 24px; text-align: center;'>Requests</h5>
+
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <!-- some icon here :/ -->
+  <a id='show-requests' style='color:#aaa; font-weight: bold;'> >> </a>
+</div>
+
+<div class="<%= @r_num <= @s_num ? 'hide' : 'show' %>">
+  <h5 style='padding-top: 24px; text-align: center;'>
+    Requests received (<%= @requests_received.where(accepted: true).size %>/<%= @requests_received.size %>)
+  </h5>
   <div class='requests-box'>
-    <% @requests_notifications.each do |r| %>
-      <% css_class = r.read ? 'read' : 'not-read' %>
-      <% if r.link %>
-        <p class="<%= css_class %>"><%= link_to r.content, r.link, class: "#{css_class}" %>, (<%= r.created_at.to_date %>)</p>
-      <% else %>
-        <p class="<%= css_class %>"><%= r.content %>, (<%= r.created_at.to_date %>)</p>
+    <% @requests_received.each do |r| %>
+      <%= link_to request_path(r), class: "not-read" do %>
+        <div class='rides'>
+          <%= render 'requests/request', request: r %>
+        </div>
       <% end %>
     <% end %>
   </div>
 </div>
 
-<!-- new page for this? -->
-<div id='sent' style='position: absolute; top: 5%; display: none;'>
-  <div class="navbar fixed-top navbar-expand-sm navbar-light">
-    <%= link_to '<<', requests_path, style: 'color:#aaa; font-weight: bold;' %>
-  </div>
-  <h5 style='padding: 44px; text-align: center;'>
+<div class="<%= @r_num <= @s_num ? 'show' : 'hide' %>">
+  <h5 style='padding-top: 24px; text-align: center;'>
     Sent requests (<%= @requests_sent.where(accepted: true).size %>/<%= @requests_sent.size %>)
   </h5>
-  <div class='sent-box'>
-    <% @requests_sent.order(created_at: :desc).each do |r| %>
-      <p>
-        <%= link_to request_path(r.id), class: "not-read" do %>
-          <%= r.ride_date %>, <%= r.ride.title %> (sent <%= r.created_at.to_date %>)
-        <% end %>
-      </p>
+  <div class='requests-box'>
+    <% @requests_sent.each do |r| %>
+      <%= link_to request_path(r.id), class: "not-read" do %>
+        <div class='rides'>
+          <%= render 'requests/request', request: r %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
 
-<script>
-  document.getElementById('show-sent').onclick = function() {
-    document.getElementById('requests').style.display = 'none';
-    document.getElementById('sent').style.display = 'inherit';
+<style>
+  .hide {
+    display:none;
   }
+</style>
+
+<script>
+
+  document.getElementById('show-requests').onclick = function() {
+    const show = document.querySelector('.show');
+    const hide = document.querySelector('.hide')
+    if(hide.style.display === 'none') {
+      show.style.display = 'none';
+      hide.style.display = 'inherit';
+    } else {
+      show.style.display = 'inherit';
+      hide.style.display = 'none';
+    }
+  }
+
 </script>

@@ -1,0 +1,63 @@
+<%
+  @all_bookings = Booking.where(ride_id: request.ride_id, ride_date: request.ride_date.to_date).length < request.ride.number_of_people.to_i
+  @check_book = Booking.find_by(participant: request.user_id, ride_id: request.ride_id, ride_date: request.ride_date.to_date)
+  notification = Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false)
+%>
+
+
+<% if request.recipient_id == current_user.id %>
+
+  <% if !@all_bookings %>
+    <p style='text-align: center;'>This date is already full booked!</p><!--imp!-->
+  <% end %>
+  <% if notification %>
+    <i style='color: #aaa; padding-left: 8px;' class="fas fa-exclamation-circle"></i>
+  <% end %>
+  <div style="display: flex; justify-content: space-between; padding-top: 8px; padding-left: 8px;">
+    <small><%= request.created_at.to_date %> | </small>
+    <% user = User.find(request.user_id) %>
+    <% if request.accepted.nil? %>
+      <p style="font-size: 14px;"><span style='color:#00917C;'> <%= user.name %></span>
+    wants to join</p>
+    <% elsif request.accepted && @check_book.nil? %>
+      <p style="font-size: 14px;">Accepted: <span style='color:#00917C;'> <%= user.name %></span></p>
+    <% elsif @check_book.present? %>
+      <p style="font-size: 14px;">Booked: <span style='color:#00917C;'> <%= user.name %></span>
+      </p>
+    <% else %>
+      <p style="font-size: 14px;">Declined: <span style='color:#00917C;'> <%= user.name %></span>
+    </p>
+    <% end %>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+      <%= request.ride_date %>
+    </p>
+  </div>
+
+  <%= render 'requests/ride_request', request: request %>
+
+<% else %>
+
+  <% if notification %>
+    <i style='color: #aaa; padding-left: 8px;' class="fas fa-exclamation-circle"></i>
+  <% end %>
+
+  <div style="display: flex; justify-content: space-between; padding-top: 8px; padding-left: 8px;">
+    <small><%= request.created_at.to_date %> | </small>
+    <% if request.accepted.nil? %>
+      <p style="font-size: 14px;">Status: pending...</p>
+    <% elsif request.accepted && @check_book.nil? %>
+      <p style="font-size: 14px;">Status: accepted</p>
+    <% elsif @check_book.present? %>
+      <p style="font-size: 14px;">Status: booked</p>
+    <% else %>
+      <p style="font-size: 14px;">Status: declined</p>
+    <% end %>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+      <%= request.ride_date %>
+    </p>
+  </div>
+
+  <%= render 'requests/ride_request', request: request %>
+
+<% end %>
+

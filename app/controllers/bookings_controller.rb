@@ -10,6 +10,8 @@ class BookingsController < ApplicationController
 
     if @booking.save
 
+      @request.update(updated_at: Time.now)
+
       sender_name = User.find(@request.recipient_id).name
       recipient = User.find(@request.user_id)
 
