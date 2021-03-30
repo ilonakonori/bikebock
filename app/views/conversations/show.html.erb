@@ -72,13 +72,11 @@
       </div>
 
       <% @conversation.messages.each do |message| %>
-
         <% if message.sender_id == current_user.id %>
             <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
         <% else %>
             <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
         <% end %>
-
       <% end %>
     </div>
 
