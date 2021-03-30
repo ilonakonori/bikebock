@@ -6,12 +6,14 @@
   <% if !@all_bookings %>
     <p style='text-align: center;'>This date is already full booked!</p>
   <% end %>
-  <!-- center this -->
-  <% @participants.each do |p| %>
-    <%= link_to user_path(p) do %>
-      <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+
+  <div style='display:flex; justify-content: center;'>
+    <% @participants.each do |p| %>
+      <%= link_to user_path(p) do %>
+        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
     <small><%= @request.created_at.to_date %> | </small>
@@ -69,11 +71,13 @@
     <p style='text-align: center;'>This date is already full booked!</p>
   <% end %>
 
-  <% @participants.each do |p| %>
-    <%= link_to user_path(p) do %>
-      <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+  <div style='display:flex; justify-content: center;'>
+    <% @participants.each do |p| %>
+      <%= link_to user_path(p) do %>
+        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
     <small><%= @request.created_at.to_date %> | </small>
