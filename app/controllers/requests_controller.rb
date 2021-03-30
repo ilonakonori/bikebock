@@ -3,13 +3,31 @@ class RequestsController < ApplicationController
   after_action :read_notifications, only: :index
 
   def index # imp this!
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(:accepted).order(updated_at: :desc)
-    @requests_received = policy_scope(Request).where(recipient_id: current_user.id).order(updated_at: :desc)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id)
+    @requests_received = policy_scope(Request).where(recipient_id: current_user.id)
     #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     notifications = Notification.where(read: false, user: current_user.id, action: 'Request').order(created_at: :desc)
     @r_num = notifications.select { |n| n[:content].match?(/sent/) }.size
     @s_num = notifications.reject { |n| n[:content].match?(/sent/) }.size
+
+
+    @rs = @requests_sent.map do |request|
+      { request: request,
+        notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
+        all_bookings: Booking.where(ride_id: request.ride_id, ride_date: request.ride_date.to_date).length < request.ride.number_of_people.to_i,
+        check_book: Booking.find_by(participant: request.user_id, ride_id: request.ride_id, ride_date: request.ride_date.to_date)
+      }
+    end.sort_by { |r| r[:request].updated_at }.sort_by {|r| r[:notification].to_s }.reverse!
+
+    @rr = @requests_received.map do |request|
+      { request: request,
+        notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
+        all_bookings: Booking.where(ride_id: request.ride_id, ride_date: request.ride_date.to_date).length < request.ride.number_of_people.to_i,
+        check_book: Booking.find_by(participant: request.user_id, ride_id: request.ride_id, ride_date: request.ride_date.to_date)
+      }
+    end.sort_by { |r| r[:request].updated_at }.sort_by {|r| r[:notification].to_s }.reverse!
+
     update_tracking
   end
 
