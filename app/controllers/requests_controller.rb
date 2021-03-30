@@ -22,6 +22,7 @@ class RequestsController < ApplicationController
     @all_bookings = Booking.where(ride_id: @request.ride_id, ride_date: @request.ride_date.to_date).length < @request.ride.number_of_people.to_i
     @check_book = Booking.find_by(participant: @request.user_id, ride_id: @request.ride_id, ride_date: @request.ride_date.to_date)
     @booking = Booking.new
+    @participants = Booking.where(ride_id: @request.ride_id, ride_date: @request.ride_date.to_date).reject {|b| b.participant == current_user.id }.map { |b| User.find(b.participant) }
     update_tracking
   end
 
