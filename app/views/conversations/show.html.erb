@@ -63,6 +63,14 @@
         </div>
       </div>
 
+      <div id='prevDiv'></div>
+
+      <div id='loadDiv' style='display: none;'>
+        <div class='line-load'></div>
+        <div class='progress-load'></div>
+        <p style='padding-top: 12px; color: #262626;'>Uploading</p>
+      </div>
+
       <% @conversation.messages.each do |message| %>
 
         <% if message.sender_id == current_user.id %>
@@ -97,6 +105,12 @@ $(document).on('turbolinks:load',function(event) {
     if(el){
       el.scrollIntoView(false);
       document.getElementById("messages").scrollTop += 24;
+    }
+  } else {
+    el = document.getElementById("messages");
+    if(el){
+      el.lastElementChild.scrollIntoView(false);
+      el.scrollTop += 24;
     }
   }
 });
