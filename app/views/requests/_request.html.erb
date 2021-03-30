@@ -1,0 +1,57 @@
+
+<% if r[:request].recipient_id == current_user.id %>
+
+  <% if !r[:all_bookings] %>
+    <p style='text-align: center;'>This date is already full booked!</p><!--imp!-->
+  <% end %>
+  <% if r[:notification] %>
+    <i style='color: #aaa; padding-left: 8px;' class="fas fa-exclamation-circle"></i>
+  <% end %>
+  <div style="display: flex; justify-content: space-between; padding-top: 8px; padding-left: 8px;">
+    <small><%= r[:request].created_at.to_date %> | </small>
+    <% user = User.find(r[:request].user_id) %>
+    <% if r[:request].accepted.nil? %>
+      <p style="font-size: 14px;"><span style='color:#00917C;'> <%= user.name %></span>
+    wants to join</p>
+    <% elsif r[:request].accepted && r[:check_book].nil? %>
+      <p style="font-size: 14px;">Accepted: <span style='color:#00917C;'> <%= user.name %></span></p>
+    <% elsif r[:check_book].present? %>
+      <p style="font-size: 14px;">Booked: <span style='color:#00917C;'> <%= user.name %></span>
+      </p>
+    <% else %>
+      <p style="font-size: 14px;">Declined: <span style='color:#00917C;'> <%= user.name %></span>
+    </p>
+    <% end %>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+      <%= r[:request].ride_date %>
+    </p>
+  </div>
+
+  <%= render 'requests/ride_request', request: r[:request] %>
+
+<% else %>
+
+  <% if r[:notification] %>
+    <i style='color: #aaa; padding-left: 8px;' class="fas fa-exclamation-circle"></i>
+  <% end %>
+
+  <div style="display: flex; justify-content: space-between; padding-top: 8px; padding-left: 8px;">
+    <small><%= r[:request].created_at.to_date %> | </small>
+    <% if r[:request].accepted.nil? %>
+      <p style="font-size: 14px;">Status: pending...</p>
+    <% elsif r[:request].accepted && r[:check_book].nil? %>
+      <p style="font-size: 14px;">Status: accepted</p>
+    <% elsif r[:check_book].present? %>
+      <p style="font-size: 14px;">Status: booked</p>
+    <% else %>
+      <p style="font-size: 14px;">Status: declined</p>
+    <% end %>
+    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+      <%= r[:request].ride_date %>
+    </p>
+  </div>
+
+  <%= render 'requests/ride_request', request: r[:request] %>
+
+<% end %>
+

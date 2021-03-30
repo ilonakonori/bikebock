@@ -34,7 +34,6 @@
   </div>
 </div>
 
-
   <div class="card" style="border:none;">
     <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
   </div>
@@ -49,11 +48,9 @@
     <% if @user.rides.empty? %>
       <p class="text-secondary"> Still don't have any bike rides</p>
     <% else %>
-      <div class='scroll-box'>
-        <% @user.rides.each do |ride| %>
-          <%= render 'rides/ride', ride: ride %>
-        <% end %>
-      </div>
+      <% @user.rides.each do |ride| %>
+        <%= render 'rides/ride', ride: ride %>
+      <% end %>
     <% end %>
     <div style="padding-top: 32px;">
       <% if @user == current_user %>
