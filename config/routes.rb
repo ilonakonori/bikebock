@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :requests, only: [:index, :new, :create, :update, :show] do
     resources :conversations, only: :create
+    resources :bookings, only: :create
   end
 
   resources :conversations, only: [:show, :index] do

@@ -3,12 +3,30 @@ class RequestsController < ApplicationController
   after_action :read_notifications, only: :index
 
   def index # imp this!
-    # sent => pending
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id).order(created_at: :desc)
-    #@requests_received_new = policy_scope(Request).where(accepted: false, recipient_id: current_user.id).order(created_at: :desc)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id)
+    @requests_received = policy_scope(Request).where(recipient_id: current_user.id)
     #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
-    @requests_notifications = Notification.where(user: current_user.id, action: 'Request').order(created_at: :desc)
+    notifications = Notification.where(read: false, user: current_user.id, action: 'Request').order(created_at: :desc)
+    @r_num = notifications.select { |n| n[:content].match?(/sent/) }.size
+    @s_num = notifications.reject { |n| n[:content].match?(/sent/) }.size
+
+
+    @rs = @requests_sent.map do |request|
+      { request: request,
+        notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
+        all_bookings: Booking.where(ride_id: request.ride_id, ride_date: request.ride_date.to_date).length < request.ride.number_of_people.to_i,
+        check_book: Booking.find_by(participant: request.user_id, ride_id: request.ride_id, ride_date: request.ride_date.to_date)
+      }
+    end.sort_by { |r| r[:request].updated_at }.sort_by {|r| r[:notification].to_s }.reverse!
+
+    @rr = @requests_received.map do |request|
+      { request: request,
+        notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
+        all_bookings: Booking.where(ride_id: request.ride_id, ride_date: request.ride_date.to_date).length < request.ride.number_of_people.to_i,
+        check_book: Booking.find_by(participant: request.user_id, ride_id: request.ride_id, ride_date: request.ride_date.to_date)
+      }
+    end.sort_by { |r| r[:request].updated_at }.sort_by {|r| r[:notification].to_s }.reverse!
 
     update_tracking
   end
@@ -18,6 +36,11 @@ class RequestsController < ApplicationController
     unread.update(read: true) unless unread.nil?
     @chat = Conversation.find_by(sender_id: @request.user_id, recipient_id: @request.recipient_id) || Conversation.find_by(recipient_id: @request.user_id, sender_id: @request.recipient_id)
     @conversation = Conversation.new
+    # find all bookings for given ride and given date
+    @all_bookings = Booking.where(ride_id: @request.ride_id, ride_date: @request.ride_date.to_date).length < @request.ride.number_of_people.to_i
+    @check_book = Booking.find_by(participant: @request.user_id, ride_id: @request.ride_id, ride_date: @request.ride_date.to_date)
+    @booking = Booking.new
+    @participants = Booking.where(ride_id: @request.ride_id, ride_date: @request.ride_date.to_date).reject {|b| b.participant == current_user.id }.map { |b| User.find(b.participant) }
     update_tracking
   end
 

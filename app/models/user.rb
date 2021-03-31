@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :rides, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :requests, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
 
   has_one :tracking, dependent: :destroy
   has_many :friends, dependent: :destroy

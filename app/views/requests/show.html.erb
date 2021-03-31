@@ -1,8 +1,19 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
-  <%= link_to '<<', requests_path, style: 'color:#aaa; font-weight: bold;' %>
+  <%= link_to '<<', requests_path, class: 'back-link' %>
 </div>
 
 <% if @request.recipient_id == current_user.id %>
+  <% if !@all_bookings %>
+    <p style='text-align: center;'>This date is already full booked!</p>
+  <% end %>
+
+  <div style='display:flex; justify-content: center;'>
+    <% @participants.each do |p| %>
+      <%= link_to user_path(p) do %>
+        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+      <% end %>
+    <% end %>
+  </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
     <small><%= @request.created_at.to_date %> | </small>
@@ -10,9 +21,12 @@
     <% if @request.accepted.nil? %>
       <p style="font-size: 14px;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
     wants to join</p>
-    <% elsif @request.accepted %>
+    <% elsif @request.accepted && @check_book.nil? %>
       <p style="font-size: 14px;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
     is joined</p>
+    <% elsif @check_book.present? %>
+      <p style="font-size: 14px;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      </p>
     <% else %>
       <p style="font-size: 14px;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
     </p>
@@ -21,6 +35,7 @@
       <%= @request.ride_date %>
     </p>
   </div>
+
 
   <%= render 'rides/ride', ride: @request.ride %>
 
@@ -34,10 +49,11 @@
     </div>
 
   <% elsif @request.accepted %>
-    <!-- wip: links here -->
+    <!-- links here -->
     <div style='display: flex; justify-content: center'>
-      <!-- build this one! -->
-      <%= link_to 'Book', conversation_path(@chat), class: 'brown-btn' %>
+      <% if @check_book.nil? && @all_bookings %>
+        <%= link_to 'Book', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
+      <% end %>
       <% if @chat.messages.present? %>
         <%= link_to 'Chat', conversation_path(@chat, anchor: "message-#{@chat.messages.last.id}"), class: 'brown-btn' %>
       <% else %>
@@ -51,12 +67,26 @@
 
 <% else %>
 
+  <% if !@all_bookings %>
+    <p style='text-align: center;'>This date is already full booked!</p>
+  <% end %>
+
+  <div style='display:flex; justify-content: center;'>
+    <% @participants.each do |p| %>
+      <%= link_to user_path(p) do %>
+        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
     <small><%= @request.created_at.to_date %> | </small>
     <% if @request.accepted.nil? %>
       <p style="font-size: 14px;">Status pending...</p>
-    <% elsif @request.accepted %>
+    <% elsif @request.accepted && @check_book.nil? %>
       <p style="font-size: 14px;">Request is accepted</p>
+    <% elsif @check_book.present? %>
+      <p style="font-size: 14px;">Request is booked</p>
     <% else %>
       <p style="font-size: 14px;">Request is declined</p>
     <% end %>
