@@ -1,5 +1,6 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
-  <%= link_to '<<', requests_path, class: 'back-link' %>
+  <% my_requests = @request.recipient_id == current_user.id ? received_requests_path : sent_requests_path %>
+  <%= link_to '<<', my_requests, class: 'back-link' %>
 </div>
 
 <% if @request.recipient_id == current_user.id %>
