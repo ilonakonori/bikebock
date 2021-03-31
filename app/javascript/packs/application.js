@@ -42,6 +42,7 @@ import { initRequestForm } from '../components/init_request_form';
 import { initProfilePhotoBtn } from '../components/init_profile_photo_btn';
 import { initSearchMsgBtn } from '../components/init_search_msg_btn';
 import { initConversationSearch } from '../components/init_conversation_search';
+import { initRequestsDropdown } from '../components/init_requests_dropdown';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -52,6 +53,7 @@ document.addEventListener('turbolinks:load', () => {
   initProfilePhotoBtn();
   initSearchMsgBtn();
   initConversationSearch();
+  initRequestsDropdown();
 
   initConversationCable();
 

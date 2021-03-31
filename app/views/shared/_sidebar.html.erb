@@ -24,11 +24,9 @@
       <% end %>
     </li>
     <!-- requests -->
-    <li class="nav-item" style="margin-bottom: 24px;">
-     <!-- dropdown here <#%= link_to requests_path, class: "sidenav-link" do %> -->
-        <i class="fas fa-plus"></i><span style="padding-left: 8px;">Requests</span>
-      <!--<#% end %> -->
-     <!-- requests stimulus-->
+    <li class="nav-item mb" id='myDropdown' style="">
+      <i class="fas fa-plus"></i><span style="padding-left: 8px;">Requests</span>
+      <!-- requests stimulus-->
       <span id='request-size' data-controller="requests">
         <span class='requests'>
           <% if @unread_requests.positive? %>
@@ -37,16 +35,11 @@
         </span>
       </span>
     </li>
-
-   <li class="nav-item" style="margin-bottom: 24px;">
-     <%= link_to 'received', received_requests_path, class: 'sidenav-link' %>
-   </li>
-   <li class="nav-item" style="margin-bottom: 24px;">
-     <%= link_to 'sent', sent_requests_path, class: 'sidenav-link' %>
-   </li>
-
-
-
+    <ul id='myDropdownMenu'>
+      <li class="" style=""><%= link_to 'Received', received_requests_path, class: '' %></li>
+      <li class="" style="margin-bottom: 0px;"><%= link_to 'Sent', sent_requests_path, class: '' %></li>
+    </ul>
+    <!-- end of requests -->
     <li class="nav-item" style="margin-bottom: 24px;">
       <%= link_to conversations_path, class: "sidenav-link" do%>
         <i class="fas fa-comment-alt"></i><span style="padding-left: 8px;">Messages</span>
@@ -91,5 +84,3 @@
     </li>
   </div>
 </div>
-
-
