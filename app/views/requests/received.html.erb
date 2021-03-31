@@ -1,6 +1,6 @@
 <div class="">
   <h5 style='padding-top: 24px; text-align: center;'>
-    Requests received (<%= @requests_received.where(accepted: true).size %>/<%= @requests_received.size %>)
+    Requests received (<%= @requests_received.where.not(accepted: nil).size %>/<%= @requests_received.size %>)
   </h5>
   <div class='requests-box'>
     <% @rr.each do |r| %>
