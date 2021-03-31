@@ -314,7 +314,7 @@ a.myLink {
   margin: 0 6px;
 }
 
-// search msgs
+// search conversations && msgs
 .search-input-container {
   border: 1px #ccc solid;
   border-radius: 24px;
@@ -326,7 +326,7 @@ a.myLink {
   line-height: 2em;
 }
 
-#mySearch {
+#mySearch, #myConversationSearch {
   outline: none;
   border: none;
   margin-left: 12px;
@@ -334,7 +334,7 @@ a.myLink {
   width: 86%;
 }
 
-#search-msg-btn {
+#search-msg-btn, #search-conversation-btn {
   color: #aaa;
   line-height: 2em;
   padding-right: 12px;

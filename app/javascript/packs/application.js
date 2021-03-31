@@ -41,7 +41,7 @@ import { initMsgAttachmentBtn } from '../components/init_msg_attachment_btn';
 import { initRequestForm } from '../components/init_request_form';
 import { initProfilePhotoBtn } from '../components/init_profile_photo_btn';
 import { initSearchMsgBtn } from '../components/init_search_msg_btn';
-
+import { initConversationSearch } from '../components/init_conversation_search';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -51,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
   fileInputPreviewBike();
   initProfilePhotoBtn();
   initSearchMsgBtn();
+  initConversationSearch();
 
   initConversationCable();
 

@@ -3,34 +3,27 @@
   <%= link_to '<<', conversations_path, class: 'back-link' %>
 </div>
 
-<div style='width: 313px;'>
+<div style='width: 313px; padding: 24px 0px;'>
   <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
-    <%= text_field_tag :query,
-        params[:query],
-        class: "form-control m-3",
-        id: 'mySearch',
-        placeholder: "Search by name"
-    %>
-    <% submit_tag "Search", id: 'mySubmit' %>
+    <div class='search-input-container'>
+      <%= text_field_tag :query,
+          params[:query],
+          id: 'myConversationSearch',
+          placeholder: "Search by name"
+      %>
+      <i id="search-conversation-btn" class="fas fa-search"></i>
+    </div>
+    <%= submit_tag "Search", id: 'myConversationSubmit', style: "display: none;" %>
   <% end %>
 </div>
+
 <% if @conversations.blank? %>
   <!-- style this -->
   <div><%= @query %> not found </div>
 <% end %>
 
-<div style='height: 84vh; overflow-y: scroll;'>
+<div style='height: 82vh; overflow-y: scroll;'>
   <% @conversations.each do |c| %>
     <%= render 'conversations/conversation', c: c %>
   <% end %>
 </div>
-
-<script>
-  document.getElementById('mySearch').addEventListener('keyup', triggerSubmit);
-  function triggerSubmit(event) {
-    if (event.keyCode === 13) {
-      // event.preventDefault();
-      document.getElementById('mySubmit').click();
-    }
-  }
-</script>
