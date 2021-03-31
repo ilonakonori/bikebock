@@ -43,10 +43,13 @@ $(document).on('turbolinks:load',function(event) {
       el.scrollIntoView(false);
     }
   } else {
-    el = document.getElementById("messages");
-    if(el){
-      el.lastElementChild.scrollIntoView(false);
-      el.scrollTop += 24;
+    msgBox = document.getElementById("messages");
+    if(msgBox){
+      el = msgBox.lastElementChild;
+      if(el) {
+        el.scrollIntoView(false);
+        msgBox.scrollTop += 24;
+      }
     }
   }
 });
