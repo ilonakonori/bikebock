@@ -4,54 +4,58 @@
   <%= link_to '<<', my_link, class: 'back-link' %>
 </div>
 
-<div style='width: 313px; text-align: center; padding-top: 24px;'>
-  <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
-    <div class='search-input-container'>
-       <%= text_field_tag :query,
-        params[:query],
-        id: 'mySearch',
-        placeholder: "Search messages"
-      %>
-      <i id="search-msg-btn" class="fas fa-search"></i>
-    </div>
-    <%= submit_tag "Search", id: 'mySubmit', style: 'display: none;' %>
-  <% end %>
-</div>
-<% if @messages.blank? %>
-  <!-- style this -->
-  <div><%= @query %> not found </div>
-<% end %>
-
-<!-- scroll to last msg here -->
-  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>" style='height: 86vh;'>
-    <% @messages.each do |message| %>
-      <% if message.sender_id == current_user.id %>
-        <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
-      <% else %>
-        <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
-      <% end %>
+<% if @conversation.messages.present? %>
+  <div style='width: 313px; text-align: center; padding-top: 24px;'>
+    <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
+      <div class='search-input-container'>
+         <%= text_field_tag :query,
+          params[:query],
+          id: 'mySearch',
+          placeholder: "Search messages"
+        %>
+        <i id="search-msg-btn" class="fas fa-search"></i>
+      </div>
+      <%= submit_tag "Search", id: 'mySubmit', style: 'display: none;' %>
     <% end %>
   </div>
+  <% if @messages.blank? %>
+    <!-- style this -->
+    <div><%= @query %> not found </div>
+  <% end %>
 
-<script>
-$(document).on('turbolinks:load',function(event) {
-  // scroll to matching element in hash
-  if(window.location.hash) {
-    console.log(window.location.hash);
-    el = document.querySelector(window.location.hash);
-    if(el){
-      el.scrollIntoView(false);
-    }
-  } else {
-    msgBox = document.getElementById("messages");
-    if(msgBox){
-      el = msgBox.lastElementChild;
-      if(el) {
+  <!-- scroll to last msg here -->
+    <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>" style='height: 86vh;'>
+      <% @messages.each do |message| %>
+        <% if message.sender_id == current_user.id %>
+          <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
+        <% else %>
+          <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <script>
+  $(document).on('turbolinks:load',function(event) {
+    // scroll to matching element in hash
+    if(window.location.hash) {
+      console.log(window.location.hash);
+      el = document.querySelector(window.location.hash);
+      if(el){
         el.scrollIntoView(false);
-        msgBox.scrollTop += 24;
+      }
+    } else {
+      msgBox = document.getElementById("messages");
+      if(msgBox){
+        el = msgBox.lastElementChild;
+        if(el) {
+          el.scrollIntoView(false);
+          msgBox.scrollTop += 24;
+        }
       }
     }
-  }
-});
-</script>
+  });
+  </script>
+<% else %>
+  <p style='text-align:center; padding: 44px 0px;'>No messages in this chat!</p>
+<% end %>
 

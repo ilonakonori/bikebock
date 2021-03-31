@@ -21,17 +21,18 @@ class ConversationsController < ApplicationController
       @conversations = policy_scope(Conversation).where(id: id )
     else
       conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
-      @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse!
+      c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
+      @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse! + c
     end
     update_tracking
   end
 
-  def show # imp => autocomplete!
+  def show
     @message = Message.new
     update_tracking
   end
 
-  def search_messages
+  def search_messages # imp => autocomplete!
     @conversation = Conversation.find(params[:id])
     if params[:query].present?
       @query = params[:query]

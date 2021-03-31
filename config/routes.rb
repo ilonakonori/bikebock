@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :requests, only: [:index, :new, :create, :update, :show] do
+  resources :requests, only: [:new, :create, :update, :show] do
+    collection do
+      get :received
+      get :sent
+    end
     resources :conversations, only: :create
     resources :bookings, only: :create
   end

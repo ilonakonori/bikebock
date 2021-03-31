@@ -10,9 +10,8 @@
 
 <div class='' style='padding-top: 24px; max-height: 92vh;'>
 
-  <h5 style="text-align: center;">You and <%= @conversation.opposed_user(current_user).name %></h5>
   <%if @media.blank? %>
-    <p>Nothing shared</p>
+    <p style="text-align: center;">Nothing shared!</p>
   <% else %>
     <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
       <% @media.each do |m| %>
