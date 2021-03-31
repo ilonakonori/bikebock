@@ -14,7 +14,7 @@
       %>
       <i id="search-msg-btn" class="fas fa-search"></i>
     </div>
-    <% submit_tag "Search", id: 'mySubmit' %>
+    <%= submit_tag "Search", id: 'mySubmit', style: 'display: none;' %>
   <% end %>
 </div>
 <% if @messages.blank? %>
