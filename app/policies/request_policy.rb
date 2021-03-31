@@ -10,7 +10,7 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.ride.user != user
   end
 
   def update?

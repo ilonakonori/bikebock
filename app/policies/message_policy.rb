@@ -6,6 +6,6 @@ class MessagePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.conversation.sender_id == user.id || record.conversation.recipient_id == user.id
   end
 end

@@ -48,7 +48,7 @@
       <div class='row'>
         <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 3vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.start_time.strftime("%H:%M") %></p>
-        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 2vw; padding: 1vh 3vh; margin-right: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
+        <p style="z-index: 2; border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 3vh; margin-right: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
           <%= ride.end_time.strftime("%H:%M") %>
         </p>
       </div>
@@ -114,13 +114,12 @@
       <div class='btn-box' style='display: flex; justify-content: center;'>
         <a id='request-btn'>I want to go</a>
       </div>
-
     <% end %>
     <br id='request'>
   </div>
 </div>
 
- <div id='myForm' style='display: none;'>
+<div id='myForm' style='display: none;'>
   <button id='closeBtn'><span aria-hidden="true">&times;</span></button>
   <%= simple_form_for(@request) do |f| %>
     <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first %>
