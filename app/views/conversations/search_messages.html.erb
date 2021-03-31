@@ -4,16 +4,16 @@
   <%= link_to '<<', my_link, class: 'back-link' %>
 </div>
 
-<h5 style='text-align: center; padding-top: 24px;'>You and <%= @conversation.opposed_user(current_user).name %></h5>
-
-<div style='width: 313px;'>
+<div style='width: 313px; text-align: center; padding-top: 24px;'>
   <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
-    <%= text_field_tag :query,
+    <div class='search-input-container'>
+       <%= text_field_tag :query,
         params[:query],
-        class: "form-control m-3",
         id: 'mySearch',
         placeholder: "Search messages"
-    %>
+      %>
+      <i id="search-msg-btn" class="fas fa-search"></i>
+    </div>
     <% submit_tag "Search", id: 'mySubmit' %>
   <% end %>
 </div>
@@ -23,7 +23,7 @@
 <% end %>
 
 <!-- scroll to last msg here -->
-  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
+  <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>" style='height: 86vh;'>
     <% @messages.each do |message| %>
       <% if message.sender_id == current_user.id %>
         <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
@@ -45,3 +45,4 @@ $(document).on('turbolinks:load',function(event) {
   }
 });
 </script>
+

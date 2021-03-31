@@ -313,3 +313,29 @@ a.myLink {
   padding: 12px;
   margin: 0 6px;
 }
+
+// search msgs
+.search-input-container {
+  border: 1px #ccc solid;
+  border-radius: 24px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  line-height: 2em;
+}
+
+#mySearch {
+  outline: none;
+  border: none;
+  margin-left: 12px;
+  background: transparent;
+  width: 86%;
+}
+
+#search-msg-btn {
+  color: #aaa;
+  line-height: 2em;
+  padding-right: 12px;
+}
