@@ -1,34 +1,23 @@
 <div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
-  <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
-    <h3>Edit Profile!</h3>
-      <div id='currentUserPhoto'>
-        <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
-      </div>
-      <!-- why?
-      <p style="padding-top: 16px; color: #000;">PROFILE PHOTO</p>
-    -->
-      <div id="previewAvatar"></div>
 
-<!--
-    <hr style="width: 95%; text-align: left; margin-left: 0;"> -->
-  </div>
-  <br>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
 
-
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
 
-       <%= f.input :profile_photo,
-                  as: :file,
-                  required: false,
-                  input_html: { class: 'custom-file-input'},
-                  label_html: { class: 'custom-file-label' },
-                  wrapper_html: { class: 'custom-file' } %>
+      <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
+        <h3 style="padding-bottom: 4px;">Edit Profile!</h3>
+          <div id='currentUserPhoto' >
+            <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+          </div>
+          <div id="previewAvatar"></div>
+          <i id="photo-btn" class="fas fa-plus-circle" style="background-color: #fff; border-radius: 50%; color: #00917C; font-size: 28px; position: absolute; left: 60%; top: 12.5%;"></i>
+          <%= f.input :profile_photo, as: :file, label: false, input_html: { hidden: true } %>
+      </div>
 
       <%= f.input :name,
                   required: false,
@@ -88,6 +77,6 @@
         <%= f.button :submit, "Update", class: "brown-btn" %>
       </div>
   <% end %>
-  
+
   <p style="text-align: center; color: #fff !important; margin-bottom: 0 !important;">Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p><br />
 </div>

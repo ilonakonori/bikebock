@@ -3,7 +3,6 @@
     <div style='margin-top: -20px; font-weight: 200; font-size: 10px; padding-left: 4px; text-align: right;'>
       <%= message.date_display %>
     </div>
-
     <div class="<%= local_assigns[:css_msg] %> " >
       <div style=''>
       <% if message.attachment.present? %>
@@ -13,15 +12,5 @@
       <%= message.content %>
       </div>
     </div>
-
   </ul>
-
-</div>
-
-<div id='prevDiv'></div>
-
-<div id='loadDiv' style='display: none;'>
-  <div class='line-load'></div>
-  <div class='progress-load'></div>
-  <p style='padding-top: 12px; color: #262626;'>Uploading</p>
 </div>

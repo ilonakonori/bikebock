@@ -14,6 +14,14 @@ const insertIntoDOM = (messageHTML, currentUserId, messages) => {
   }
 
   messages.insertAdjacentElement('beforeend', message);
+
+  // blinking... :/
+  //setTimeout(function() {
+    //messages.lastChild.scrollIntoView(false);
+    message.scrollIntoView(false);
+    messages.scrollTop += 40;
+  //}, 400)
+
   const uploading = document.getElementById('loadDiv');
   if(uploading) {
     uploading.style.display = 'none';
