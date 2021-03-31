@@ -42,6 +42,12 @@ $(document).on('turbolinks:load',function(event) {
     if(el){
       el.scrollIntoView(false);
     }
+  } else {
+    el = document.getElementById("messages");
+    if(el){
+      el.lastElementChild.scrollIntoView(false);
+      el.scrollTop += 24;
+    }
   }
 });
 </script>
