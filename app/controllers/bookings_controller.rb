@@ -12,18 +12,12 @@ class BookingsController < ApplicationController
 
       @request.update(updated_at: Time.now)
 
-      sender_name = User.find(@request.recipient_id).name
-      recipient = User.find(@request.user_id)
+      notification = Notification.find_by(user: @request.user_id, action_id: @request.id, action: 'Request')
 
-      Notification.create!(
-        user: recipient,
-        sender_name: sender_name,
-        action: 'Request',
-        action_id: @request.id,
+      notification.update!(
         action_time: Time.now,
         read: false,
         content: "#{sender_name} booked your request: #{@request.ride_date}, #{@request.ride.title}",
-        link: "/requests/#{@request.id}"
       )
 
       redirect_to request_path(@request), notice: "Request booked!"
