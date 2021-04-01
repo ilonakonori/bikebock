@@ -53,8 +53,9 @@ document.addEventListener('turbolinks:load', () => {
   fileInputPreviewAvatar();
   fileInputPreviewBike();
   initProfilePhotoBtn();
-  initSearchMsgBtn();
-  initConversationSearch();
+  // don't need this 2 at all
+  //initSearchMsgBtn();
+  //initConversationSearch();
   initRequestsDropdown();
   initReviewForm();
   initStarRating();

@@ -13,15 +13,16 @@ class ConversationsController < ApplicationController
   def search # imp => autocomplete!
     c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).map { |c| [c.id, c.sender_id] }
     c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).map { |c| [c.id, c.recipient_id] }
-    @c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
+    c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
+
+    conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
+    c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
 
     if params[:query].present?
       @query = params[:query]
-      id = @c3.select { |c| c.include?(@query.downcase) }
-      @conversations = policy_scope(Conversation).where(id: id )
+      ids = c3.select { |c| c[0].match?(@query.downcase) }
+      @conversations = ids.present? ? ids.map { |i| policy_scope(Conversation).find(i[1]) } : []
     else
-      conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
-      c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
       @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse! + c
     end
     update_tracking
