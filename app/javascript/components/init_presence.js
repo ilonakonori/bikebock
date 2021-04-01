@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const initPresence = () => {
   const user = document.getElementById('user');
   if(user) {

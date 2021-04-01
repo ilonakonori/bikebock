@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to request_path(@booking.action_id), notice: 'Thank you for your review!'
     else
-      redirect_to request_path(@booking.action_id)
+      redirect_to request_path(@booking.action_id), notice: 'Something went wrong, please try again.'
     end
   end
 
