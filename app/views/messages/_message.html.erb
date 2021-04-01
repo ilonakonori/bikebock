@@ -1,8 +1,5 @@
 <div class="<%= local_assigns[:css_message] %> message-container " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
   <ul>
-    <div style='margin-top: -20px; font-weight: 200; font-size: 10px; padding-left: 4px; text-align: right;'>
-      <%= message.date_display %>
-    </div>
     <div class="<%= local_assigns[:css_msg] %> " >
       <div style=''>
       <% if message.attachment.present? %>
@@ -11,6 +8,9 @@
       <% end %>
       <%= message.content %>
       </div>
+        <div style='font-weight: 200; font-size: 10px; line-height: 1vh; float: right; margin-top: 16px;'>
+      <%= message.date_display %>
     </div>
   </ul>
+
 </div>
