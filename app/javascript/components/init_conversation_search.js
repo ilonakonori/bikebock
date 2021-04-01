@@ -8,13 +8,14 @@
       }
     });
   }
-  // trigger on btn click
+
+  /* trigger on btn click => don't need this
   const searchBtn = document.getElementById('search-conversation-btn');
   if(searchBtn) {
     searchBtn.addEventListener('click', function() {
       document.getElementById('myConversationSubmit').click();
     })
-  }
+  } */
 }
 
 export { initConversationSearch };

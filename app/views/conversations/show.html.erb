@@ -95,21 +95,21 @@
 </div>
 
 <script>
-$(document).on('turbolinks:load',function(event) {
-  // scroll to matching element in hash
-  if(window.location.hash) {
-    el = document.querySelector(window.location.hash);
-    console.log(el)
-    if(el){
-      el.scrollIntoView(false);
-      document.getElementById("messages").scrollTop += 24;
+  document.addEventListener('turbolinks:load',function(event) {
+    // scroll to matching element in hash
+    if(window.location.hash) {
+      el = document.querySelector(window.location.hash);
+      console.log(el)
+      if(el){
+        el.scrollIntoView(false);
+        document.getElementById("messages").scrollTop += 24;
+      }
+    } else {
+      el = document.getElementById("messages");
+      if(el){
+        el.lastElementChild.scrollIntoView(false);
+        el.scrollTop += 24;
+      }
     }
-  } else {
-    el = document.getElementById("messages");
-    if(el){
-      el.lastElementChild.scrollIntoView(false);
-      el.scrollTop += 24;
-    }
-  }
-});
+  });
 </script>
