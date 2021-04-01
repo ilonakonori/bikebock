@@ -6,12 +6,12 @@
 <div style='width: 313px; padding: 24px 0px;'>
   <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
     <div class='search-input-container'>
+      <i id="search-conversation-btn" class="fas fa-search"></i>
       <%= text_field_tag :query,
           params[:query],
           id: 'myConversationSearch',
-          placeholder: "Search by name"
+          placeholder: "Search"
       %>
-      <i id="search-conversation-btn" class="fas fa-search"></i>
     </div>
     <%= submit_tag "Search", id: 'myConversationSubmit', style: "display: none;" %>
   <% end %>
