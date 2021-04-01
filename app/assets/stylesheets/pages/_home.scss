@@ -4,7 +4,7 @@
   padding-top: 84px;
 }
 
-.search{
+.search {
   border: 1px solid grey;
   height: 35px;
   width: 6%;
@@ -27,4 +27,8 @@
 
 body {
   background-color:#f6f6f6;
+}
+
+#select2-select-container {
+  border-radius: 16px;
 }

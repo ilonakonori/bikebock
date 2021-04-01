@@ -45,11 +45,12 @@ import { initConversationSearch } from '../components/init_conversation_search';
 import { initRequestsDropdown } from '../components/init_requests_dropdown';
 import { initReviewForm } from '../components/init_review_form';
 import { initStarRating } from '../plugins/init_star_rating';
+import { initSelect2 } from '../plugins/init_select2';
 
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initSelect2();
   fileInputPreviewAvatar();
   fileInputPreviewBike();
   initProfilePhotoBtn();

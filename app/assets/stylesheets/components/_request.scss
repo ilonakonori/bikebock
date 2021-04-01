@@ -1,6 +1,6 @@
 #myForm {
   background-color: #f4f4f4;
-  z-index: 1000;
+  z-index: 800;
   justify-content: center;
   position: absolute;
   top: 40%;
@@ -9,7 +9,7 @@
   transform: translate(-50%, 0);
   border-radius: 8px;
   box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.3);
-  padding: 48px 32px;
+
   border: 1px solid #efefef;
 }
 
@@ -57,4 +57,14 @@ a.read, p.read {
 
 a.not-read, p.not-read{
   color: rgb(0, 145, 124);
+}
+
+
+// select2
+#select2-request_ride_date-container {
+  width: 230px;
+}
+
+#request_ride_date {
+  //margin-top: -24px;
 }
