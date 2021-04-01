@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     resources :bookings, only: :create
   end
 
+  resources :bookings do
+    resources :reviews, only: [:new, :create]
+  end
+
   resources :conversations, only: [:show, :index] do
     member do
       get :media

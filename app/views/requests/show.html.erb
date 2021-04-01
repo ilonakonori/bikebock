@@ -86,8 +86,27 @@
       <p style="font-size: 14px;">Status pending...</p>
     <% elsif @request.accepted && @check_book.nil? %>
       <p style="font-size: 14px;">Request is accepted</p>
+
+   <!-- review -->
     <% elsif @check_book.present? %>
-      <p style="font-size: 14px;">Request is booked</p>
+      <% if @check_book.review.nil? %>
+        <% if @check_book.ride_date < Date.today %>
+          <a id='review-btn'>Leave review</a>
+          <!-- review pop-up -->
+          <div id='myReviewForm' style=''>
+            <button id='closeReviewBtn'><span aria-hidden="true">&times;</span></button>
+            <%= render 'reviews/form', booking: @check_book, review: @review %>
+          </div>
+        <% else %>
+        <p style="font-size: 14px;">Request is booked</p>
+        <% end %>
+      <% else %>
+        <% @check_book.review.rating.times do %>
+          <i style='color: orange;' class="fas fa-star"></i>
+        <% end %>
+        <!-- view your review? view all...? -->
+      <% end %>
+      <!-- end of review part -->
     <% else %>
       <p style="font-size: 14px;">Request is declined</p>
     <% end %>

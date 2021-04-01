@@ -3,6 +3,7 @@ class Ride < ApplicationRecord
   has_many_attached :photos #maximum: 3
   has_many :requests, dependent: :destroy
   has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
 
 
   before_save :build_slug
@@ -32,6 +33,10 @@ class Ride < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def avg_rating
+    reviews.empty? ? '' : '★' * reviews.average(:rating).round
+  end
 
   def build_slug
     self.slug = available_dates.split(', ').map { |el| DateTime.parse(el) }.sort.first

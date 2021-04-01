@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
       notification.update!(
         action_time: Time.now,
         read: false,
-        content: "#{sender_name} booked your request: #{@request.ride_date}, #{@request.ride.title}",
+        content: "#{notification.sender_name} booked your request: #{@request.ride_date}, #{@request.ride.title}",
       )
 
       redirect_to request_path(@request), notice: "Request booked!"
