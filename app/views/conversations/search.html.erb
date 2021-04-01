@@ -18,8 +18,9 @@
 </div>
 
 <% if @conversations.blank? %>
-  <!-- style this -->
-  <div><%= @query %> not found </div>
+  <div style="margin-left: 8px; font-weight: 600; color: #ccc; font-size: 16px;">
+    <p><i class="far fa-frown-open"></i> Sorry, no results found for '<%= @query %>'</p>
+  </div>
 <% end %>
 
 <div style='height: 82vh; overflow-y: scroll;'>
