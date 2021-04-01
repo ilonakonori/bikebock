@@ -329,7 +329,6 @@ a.myLink {
 #mySearch, #myConversationSearch {
   outline: none;
   border: none;
-  margin-left: 12px;
   background: transparent;
   width: 91%;
 }
@@ -337,5 +336,5 @@ a.myLink {
 #search-msg-btn, #search-conversation-btn {
   color: #aaa;
   line-height: 2em;
-  padding-right: 8px;
+  padding-left: 8px;
 }
