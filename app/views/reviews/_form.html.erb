@@ -1,9 +1,9 @@
 <%= simple_form_for [ booking, review ] do |f| %>
   <%= f.input :content, label: "Describe your experience" %>
-  <%= f.input :rating, collection: [["1 Star", 1], ["2 Stars", 2], ["3 Stars", 3], ["4 Stars", 4], ["5 Stars", 5]], input_html: { class: 'ratingwidth' } %>
+  <%= f.input :rating, collection: 1..5, class: 'vote-stars' %>
   <% if review.persisted? %>
-    <%= f.submit "Save", class: ''%>
+    <%= f.submit "Save", class: 'brown-btn' %>
   <% else %>
-    <%= f.submit "Add review", class: ''%>
+    <%= f.submit "Add review", class: 'brown-btn' %>
   <% end %>
 <% end%>

@@ -13,6 +13,13 @@
   border: 1px solid #efefef;
 }
 
+#review_content {
+  max-height: 16vh;
+  min-height: 16vh;
+  resize: none;
+  border: 1px solid #ccc !important;
+}
+
 
 #closeReviewBtn {
   position: absolute;
