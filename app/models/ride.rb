@@ -34,7 +34,11 @@ class Ride < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  def avg_rating
+  def rating # sort
+    reviews.empty? ? 0 : reviews.average(:rating).round
+  end
+
+  def avg_rating # view
     reviews.empty? ? '' : '★' * reviews.average(:rating).round
   end
 
