@@ -17,6 +17,9 @@ const autocompleteSearchConversations = function() {
           if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
         suggest(matches);
       },
+      onSelect: function(e, term, item) {
+        document.getElementById('myConversationSubmit').click();
+      }
     });
   }
 };
