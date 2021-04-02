@@ -15,7 +15,7 @@
             <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
           </div>
           <div id="previewAvatar"></div>
-          <i id="photo-btn" class="fas fa-plus-circle" style="font-size: 21px; position: absolute; left: 60%; top: 12.5%;"></i>
+          <i id="photo-btn" class="fas fa-plus-circle" style="font-size: 21px; position: absolute; left: 60%; top: 12.5%; border-radius: 50%;background-color: #d2d2d2; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
           <%= f.input :profile_photo, as: :file, label: false, input_html: { hidden: true } %>
       </div>
 
