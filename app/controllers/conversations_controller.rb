@@ -41,7 +41,7 @@ class ConversationsController < ApplicationController
     else
       @messages = @conversation.messages
     end
-    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }
+    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }.uniq!
     authorize @conversation
     update_tracking
   end
