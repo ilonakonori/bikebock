@@ -3,14 +3,14 @@
   <% my_link = @conversation.messages.present? ? conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : conversation_path(@conversation.id) %>
   <%= link_to '<<', my_link, class: 'back-link' %>
 </div>
-
 <% if @conversation.messages.present? %>
   <div style='width: 313px; text-align: center; padding-top: 24px;'>
     <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
-      <div class='search-input-container'>
+      <div id='search-msgs-data' class='search-input-container' data-messages="<%= @autocomplete %>">
         <i id="search-conversation-btn" class="fas fa-search"></i>
          <%= text_field_tag :query,
-          params[:query],
+          nil,
+          autocomplete: :off,
           id: 'mySearch',
           placeholder: "Search"
         %>

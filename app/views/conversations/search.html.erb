@@ -2,13 +2,13 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <%= link_to '<<', conversations_path, class: 'back-link' %>
 </div>
-
 <div style='width: 313px; padding: 24px 0px;'>
   <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
-    <div class='search-input-container'>
+    <div id='search-data' class='search-input-container' data-conversations="<%= @autocomplete.to_json %>">
       <i id="search-conversation-btn" class="fas fa-search"></i>
       <%= text_field_tag :query,
           params[:query],
+          autocomplete: :off,
           id: 'myConversationSearch',
           placeholder: "Search"
       %>
