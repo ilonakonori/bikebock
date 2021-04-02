@@ -9,7 +9,7 @@
       <div id='search-msgs-data' class='search-input-container' data-messages="<%= @autocomplete %>">
         <i id="search-conversation-btn" class="fas fa-search"></i>
          <%= text_field_tag :query,
-          params[:query],
+          nil,
           autocomplete: :off,
           id: 'mySearch',
           placeholder: "Search"
