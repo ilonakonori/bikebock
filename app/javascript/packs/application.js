@@ -47,7 +47,7 @@ import { initReviewForm } from '../components/init_review_form';
 import { initStarRating } from '../plugins/init_star_rating';
 import { initSelect2 } from '../plugins/init_select2';
 import { autocompleteSearchConversations } from '../plugins/autocomplete_search_conversations';
-
+import { autocompleteSearchMessages } from '../plugins/autocomplete_search_messages';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -63,6 +63,7 @@ document.addEventListener('turbolinks:load', () => {
   initReviewForm();
   initStarRating();
   autocompleteSearchConversations();
+  autocompleteSearchMessages();
 
   initConversationCable();
 

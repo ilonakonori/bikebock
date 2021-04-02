@@ -10,11 +10,11 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
-  def search # imp => autocomplete!
+  def search
     c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).map { |c| [c.id, c.sender_id] }
     c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).map { |c| [c.id, c.recipient_id] }
     c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
-    @c4 = c3.map { |c| c[0] }
+    @autocomplete = c3.map { |c| c[0] }
     conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
     c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
 
@@ -33,7 +33,7 @@ class ConversationsController < ApplicationController
     update_tracking
   end
 
-  def search_messages # imp => autocomplete!
+  def search_messages
     @conversation = Conversation.find(params[:id])
     if params[:query].present?
       @query = params[:query]
@@ -41,6 +41,7 @@ class ConversationsController < ApplicationController
     else
       @messages = @conversation.messages
     end
+    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }
     authorize @conversation
     update_tracking
   end
