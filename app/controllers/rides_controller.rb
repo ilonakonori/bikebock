@@ -4,8 +4,8 @@ class RidesController < ApplicationController
 
   def index # filter
     case params[:select]
-      when '3' # ratings # we don't have this atm!
-        @rides = policy_scope(Ride).order(ratings: :desc).total_valid
+      when '3' # ratings
+        @rides = policy_scope(Ride).total_valid.sort_by { |r| r.rating }.reverse!
       when '4' # difficulty asc
         @rides = policy_scope(Ride).order(:difficulty).total_valid
       when '1' # num of people asc
