@@ -6,14 +6,13 @@ const insertIntoDOM = (messageHTML, currentUserId, messages) => {
 
   if (message.dataset.senderId === currentUserId) {
     message.firstChild.classList.add('message-sent');
-    message.firstChild.querySelector(':nth-child(1)').classList.add('msg-sent');
-
+    message.querySelector('#msg-body').classList.add('msg-sent');
   } else {
     message.firstChild.classList.add('message-received');
-    message.firstChild.querySelector(':nth-child(1)').classList.add('msg-received');
+    message.querySelector('#msg-body').classList.add('msg-received');
   }
 
-  messages.insertAdjacentElement('beforeend', message);
+    messages.insertAdjacentElement('beforeend', message);
 
   // blinking... :/
   //setTimeout(function() {
