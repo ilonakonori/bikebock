@@ -31,7 +31,6 @@ class MessagesController < ApplicationController
       ConversationChannel.broadcast_to(
         @conversation,
         sender: sender, receiver: receiver, message: @message
-        #render_to_string(partial: "message", locals: { message: @message })
       )
       redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")
     else

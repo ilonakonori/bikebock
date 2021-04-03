@@ -1,16 +1,16 @@
- <div class="message-container message-received " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
-      <ul>
-         <div class="msg-received" id="receiver" data-message-id="<%= message.recipient_id %>" data-user-id="<%= current_user.id %>">
-          <div style=''>
-            <% if message.attachment.present? %>
-              <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, class: 'imgs', style: 'box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);' %>
-              <br>
-            <% end %>
-            <%= message.content %>
-          </div>
-          <div style='font-weight: 200; font-size: 10px; line-height: 1vh; float: right; margin-top: 16px;'>
-            <%= message.date_display %>
-          </div>
-        </div>
-      </ul>
-     </div>
+<div class="message-container message-received " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
+  <ul>
+    <div class="msg-received" id="receiver" data-message-id="<%= message.recipient_id %>" data-user-id="<%= current_user.id %>">
+      <div style=''>
+        <% if message.attachment.present? %>
+          <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, class: 'imgs', style: 'box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);' %>
+          <br>
+        <% end %>
+        <%= message.content %>
+      </div>
+      <div style='font-weight: 200; font-size: 10px; line-height: 1vh; float: right; margin-top: 16px;'>
+        <%= message.date_display %>
+      </div>
+    </div>
+  </ul>
+</div>
