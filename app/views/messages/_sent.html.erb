@@ -1,6 +1,6 @@
 <div class="message-container message-sent" id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
   <ul>
-    <div class="msg-sent" id="sender" data-message-id="<%= message.sender_id %>" data-user-id="<%= current_user.id %>">
+    <div class="msg-sent" id="sender" data-user-id="<%= current_user.id %>">
       <div style=''>
         <% if message.attachment.present? %>
           <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, class: 'imgs', style: 'box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);' %>
