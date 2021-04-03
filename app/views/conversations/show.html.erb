@@ -73,11 +73,13 @@
       </div>
 
       <% @conversation.messages.each do |message| %>
-        <% if message.sender_id == current_user.id %>
-            <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
-        <% else %>
-            <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
-        <% end %>
+          <div class='' data-conversation-id="<%= @conversation.id %>">
+            <% if message.sender_id == current_user.id %>
+              <%= render 'messages/sent', message: message %>
+            <% else %>
+              <%= render 'messages/received', message: message %>
+            <% end %>
+          </div>
       <% end %>
     </div>
 

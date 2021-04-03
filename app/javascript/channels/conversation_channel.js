@@ -1,5 +1,33 @@
 import consumer from "./consumer";
+const initConversationCable = () => {
+  const messagesContainer = document.getElementById('messages');
 
+  if (messagesContainer) {
+    const id = messagesContainer.dataset.conversationId;
+    consumer.subscriptions.create({ channel: "ConversationChannel", id: id }, {
+      received(data) {
+        console.log(data); // called when data is broadcast in the cable
+        //const messageElement = document.getElementById('user-id');
+        //const currentUserId =  Number(messageElement.getAttribute("data-user-id"));
+        const currentUserId = Number(messagesContainer.getAttribute("data-current-user-id"));
+        let html = "";
+        if (currentUserId === data.message.sender_id) {
+          html = data.sender
+        } else {
+          html = data.receiver
+        }
+        messagesContainer.insertAdjacentHTML('beforeend', html);
+
+        messagesContainer.scrollTop += 70;
+        // if (senderId !== current_user.id) {
+        //   receivedMessage.classList.remove("chat-box-sender")
+        // }
+      },
+    });
+  }
+}
+
+/*
 const insertIntoDOM = (messageHTML, currentUserId, messages) => {
   const message = document.createElement('div');
   message.innerHTML = messageHTML;
@@ -32,7 +60,8 @@ const initConversationCable = () => {
   const messagesContainer = document.getElementById('messages');
   if (messagesContainer) {
     const id = messagesContainer.dataset.conversationId;
-    const currentUserId = messagesContainer.dataset.currentUserId;
+    //const currentUserId = messagesContainer.dataset.currentUserId;
+    const currentUserId = Number(messageContainer.getAttribute("data-current-user-id"));
 
     consumer.subscriptions.create({ channel: "ConversationChannel", id: id }, {
       received(messageHTML) {
@@ -41,7 +70,7 @@ const initConversationCable = () => {
     });
   }
 }
-
+*/
 // submit attachment on attachment input
 const submitAttachment = () => {
   const attachmentInput = document.getElementById('message_attachment');
