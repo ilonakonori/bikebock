@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+
 const initConversationCable = () => {
   const messagesContainer = document.getElementById('messages');
 
