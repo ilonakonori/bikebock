@@ -1,14 +1,13 @@
-<div class="">
-  <h5 style='padding-top: 24px; text-align: center;'>
-    Requests received (<%= @requests_received.where.not(accepted: nil).size %>/<%= @requests_received.size %>)
-  </h5>
-  <div class='requests-box'>
-    <% @rr.each do |r| %>
-      <%= link_to request_path(r[:request].id), class: "not-read" do %>
-        <div class='rides'>
-          <%= render 'requests/request', r: r %>
-        </div>
-      <% end %>
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', rides_path, class: 'back-link' %>
+</div>
+
+<div class='requests-box'>
+  <% @rr.each do |r| %>
+    <%= link_to request_path(r[:request].id), class: "not-read" do %>
+      <div class='rides'>
+        <%= render 'requests/request', r: r %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
 </div>
