@@ -5,31 +5,30 @@
 
 <% if @request.recipient_id == current_user.id %>
   <% if !@all_bookings %>
-    <p style='text-align: center;'>This date is already fully booked!</p>
+    <p style='text-align: center; padding-top: 8px; font-family: monospace;'>Already fully booked!</p>
   <% end %>
 
   <div style='display:flex; justify-content: center;'>
     <% @participants.each do |p| %>
       <%= link_to user_path(p) do %>
-        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+        <%= cl_image_tag p.profile_photo.key, height: 50, width: 50, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
       <% end %>
     <% end %>
   </div>
-
+  
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
     <p style="font-size: 75%;"><%= @request.created_at.to_date %> | </p>
     <% user = User.find(@request.user_id) %>
     <% if @request.accepted.nil? %>
-      <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
-    wants to join</p>
+      <p style="font-size: 12px; font-family: monospace;">Add <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %></p>
     <% elsif @request.accepted && @check_book.nil? %>
-      <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
     joined</p>
     <% elsif @check_book.present? %>
-      <p style="font-size: 12px; font-family: monospace;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
       </p>
     <% else %>
-      <p style="font-size: 12px; font-family: monospace;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
     </p>
     <% end %>
     <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
@@ -69,13 +68,13 @@
 <% else %>
 
   <% if !@all_bookings %>
-    <p style='text-align: center;'>This date is already full booked!</p>
+    <p style='text-align: center; padding-top: 8px; font-family: monospace;'>Already fully booked!</p>
   <% end %>
 
   <div style='display:flex; justify-content: center;'>
     <% @participants.each do |p| %>
       <%= link_to user_path(p) do %>
-        <%= cl_image_tag p.profile_photo.key, height: 40, width: 40, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+        <%= cl_image_tag p.profile_photo.key, height: 50, width: 50, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
       <% end %>
     <% end %>
   </div>
