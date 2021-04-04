@@ -1,6 +1,7 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <%= link_to '<<', rides_path, class: 'back-link' %>
 </div>
+
   <div class='requests-box'>
     <% @rs.each do |r| %>
       <%= link_to request_path(r[:request].id), class: "not-read" do %>

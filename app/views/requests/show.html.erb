@@ -5,7 +5,7 @@
 
 <% if @request.recipient_id == current_user.id %>
   <% if !@all_bookings %>
-    <p style='text-align: center;'>This date is already full booked!</p>
+    <p style='text-align: center;'>This date is already fully booked!</p>
   <% end %>
 
   <div style='display:flex; justify-content: center;'>
@@ -17,22 +17,22 @@
   </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
-    <small><%= @request.created_at.to_date %> | </small>
+    <p style="font-size: 75%;"><%= @request.created_at.to_date %> | </p>
     <% user = User.find(@request.user_id) %>
     <% if @request.accepted.nil? %>
-      <p style="font-size: 14px;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
     wants to join</p>
     <% elsif @request.accepted && @check_book.nil? %>
-      <p style="font-size: 14px;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
-    is joined</p>
+      <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+    joined</p>
     <% elsif @check_book.present? %>
-      <p style="font-size: 14px;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
       </p>
     <% else %>
-      <p style="font-size: 14px;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
+      <p style="font-size: 12px; font-family: monospace;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C;' %>
     </p>
     <% end %>
-    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+    <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
       <%= @request.ride_date %>
     </p>
   </div>
@@ -81,11 +81,11 @@
   </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
-    <small><%= @request.created_at.to_date %> | </small>
+    <p style="font-size: 75%;"><%= @request.created_at.to_date %> | </p>
     <% if @request.accepted.nil? %>
-      <p style="font-size: 14px;">Status pending...</p>
+      <p style="font-size: 12px; font-family: monospace;">Pending request</p>
     <% elsif @request.accepted && @check_book.nil? %>
-      <p style="font-size: 14px;">Request is accepted</p>
+      <p style="font-size: 12px; font-family: monospace;">Accepted</p>
 
    <!-- review -->
     <% elsif @check_book.present? %>
@@ -110,7 +110,7 @@
     <% else %>
       <p style="font-size: 14px;">Request is declined</p>
     <% end %>
-    <p style='color: #fff; font-size: 12px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
+    <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
       <%= @request.ride_date %>
     </p>
   </div>
