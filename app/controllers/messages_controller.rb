@@ -25,7 +25,13 @@ class MessagesController < ApplicationController
         )
       end
 
-      ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "message", locals: { message: @message }))
+      sender = render_to_string(partial: "messages/sent", locals: { message: @message })
+      receiver = render_to_string(partial: "messages/received", locals: { message: @message })
+
+      ConversationChannel.broadcast_to(
+        @conversation,
+        sender: sender, receiver: receiver, message: @message
+      )
       redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")
     else
       render "conversations/show"

@@ -1,6 +1,6 @@
-<div class="<%= local_assigns[:css_message] %> message-container" id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
+<div class="message-container message-received " id="message-<%= message.id %>" data-sender-id="<%= message.sender_id %>">
   <ul>
-    <div id='msg-body' class="<%= local_assigns[:css_msg] %>" >
+    <div class="msg-received" id="receiver" data-user-id="<%= current_user.id %>">
       <div style=''>
         <% if message.attachment.present? %>
           <%= cl_image_tag message.attachment.key, width: 220, crop: :fit, class: 'imgs', style: 'box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);' %>
