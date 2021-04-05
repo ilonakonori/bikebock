@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   after_action :read_message_notifications, only: :show  # check read part
 
   def index
-    conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
+    conversations = policy_scope(Conversation).where(recipient_id: current_user).includes([:messages]) + policy_scope(Conversation).where(sender_id: current_user).includes([:messages])
     c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
     # sort by last msg, w/o msgs at the bottom
     @conversations = conversations.select { |c| c.messages.present? }.sort_by.with_index { |c,i| [c.messages.last["created_at"], i] }.reverse! + c
@@ -11,11 +11,11 @@ class ConversationsController < ApplicationController
   end
 
   def search
-    c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).map { |c| [c.id, c.sender_id] }
-    c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).map { |c| [c.id, c.recipient_id] }
+    c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).includes([:messages]).map { |c| [c.id, c.sender_id] }
+    c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).includes([:messages]).map { |c| [c.id, c.recipient_id] }
     c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
     @autocomplete = c3.map { |c| c[0] }
-    conversations = policy_scope(Conversation).where(recipient_id: current_user) + policy_scope(Conversation).where(sender_id: current_user)
+    conversations = policy_scope(Conversation).where(recipient_id: current_user).includes([:messages]) + policy_scope(Conversation).where(sender_id: current_user).includes([:messages])
     c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
 
     if params[:query].present?

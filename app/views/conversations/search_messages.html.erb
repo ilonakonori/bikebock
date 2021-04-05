@@ -28,9 +28,9 @@
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>" style='height: 86vh;'>
       <% @messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
-          <%= render 'messages/message', message: message, css_message: 'message-sent', css_msg: 'msg-sent' %>
+          <%= render 'messages/sent', message: message %>
         <% else %>
-          <%= render 'messages/message', message: message, css_message: 'message-received', css_msg: 'msg-received' %>
+          <%= render 'messages/received', message: message %>
         <% end %>
       <% end %>
     </div>
