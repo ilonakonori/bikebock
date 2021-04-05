@@ -7,7 +7,7 @@
 <div style='text-align: center; padding: 24px 0px 12px 0px;'>
   <h1 class="interests" style='font-size: 24px; line-height: 1;'><%= @tag.name %></h1>
 </div>
-<div class='scroll-box' style='padding-left: 6px;'>
+<div class='scroll-box' style='padding-left: 6px; margin-top: 2px;'>
   <% @tagged.each do |t| %>
     <% user = User.find(t.taggable_id) %>
     <%= link_to user_path(user) do %>
