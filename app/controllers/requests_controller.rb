@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   after_action :read_notifications, only: :index
 
   def received
-    @requests_received = policy_scope(Request).where(recipient_id: current_user.id)
+    @requests_received = policy_scope(Request).where(recipient_id: current_user.id).includes([:ride])
     #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
     #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
     #notifications = Notification.where(read: false, user: current_user.id, action: 'Request').order(created_at: :desc)
@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
   end
 
   def sent
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id)
+    @requests_sent = policy_scope(Request).where(user_id: current_user.id).includes([:ride])
     @rs = @requests_sent.map do |request|
       { request: request,
         notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
