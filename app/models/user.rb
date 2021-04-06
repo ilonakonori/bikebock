@@ -22,6 +22,7 @@ class User < ApplicationRecord
   before_save :set_tags
 
   after_create :create_tracking
+  after_create :send_welcome
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -31,6 +32,10 @@ class User < ApplicationRecord
   validates :bike_photo, presence: true
 
   acts_as_favoritor
+
+  def send_welcome
+    BikeBockMailer.welcome_email(self).deliver_now!
+  end
 
   def destroy_as_friend
     Friend.where(friend_id: self.id).destroy_all
