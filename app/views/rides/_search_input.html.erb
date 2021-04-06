@@ -1,10 +1,10 @@
 <div style="display: flex; justify-content: center; width: 313px; position: absolute; top: 5%; left: 50%; transform: translateX(-50%);">
   <%= form_tag rides_path, class: "", method: :get do %>
     <%= select_tag(:select, options_for_select([
-      ["Sort by Date", 2],
-      ['Sort by Size', 1],
-      ["Sort by Rating", 3],
-      ["Sort by Difficulty", 4],
+      ["Sort by earliest date", 2],
+      ['Sort by group size', 1],
+      ['Sort by difficulty', 4],
+      ['Sort by ratings', 3],
       ], selected: params[:select]), {class: 'select2', onchange: 'this.form.submit();'})
     %>
   <% end %>
