@@ -2,7 +2,7 @@
   <%= link_to '<<', :back, class: 'back-link' %>
 </div>
 
-<div style='height: 96vh; padding-top: 24px; overflow-y: scroll;'>
+<div style='height: 96vh; padding-top: 24px; overflow-y: scroll; line-height: 5vh;'>
   <% @tags.each do |tag| %>
     <small class="interests"><%= link_to tag.name, tag_path(tag) %></small>
   <% end %>
