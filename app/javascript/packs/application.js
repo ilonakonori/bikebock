@@ -40,8 +40,6 @@ import { initCloseAlert } from '../components/init_close_alert';
 import { initMsgAttachmentBtn } from '../components/init_msg_attachment_btn';
 import { initRequestForm } from '../components/init_request_form';
 import { initProfilePhotoBtn } from '../components/init_profile_photo_btn';
-import { initSearchMsgBtn } from '../components/init_search_msg_btn';
-import { initConversationSearch } from '../components/init_conversation_search';
 import { initRequestsDropdown } from '../components/init_requests_dropdown';
 import { initReviewForm } from '../components/init_review_form';
 import { initStarRating } from '../plugins/init_star_rating';
@@ -58,9 +56,6 @@ document.addEventListener('turbolinks:load', () => {
   fileInputPreviewAvatar();
   fileInputPreviewBike();
   initProfilePhotoBtn();
-  // don't need this 2 at all
-  //initSearchMsgBtn();
-  //initConversationSearch();
   initRequestsDropdown();
   initReviewForm();
   initStarRating();
