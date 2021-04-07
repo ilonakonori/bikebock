@@ -65,6 +65,6 @@ class User < ApplicationRecord
   end
 
   def set_tags
-    self.tag_list = self.interests.split(/\W+/).map { |i| i.gsub(/#/, '')}
+    self.tag_list = self.interests.split(/\W+/).map { |i| i.gsub(/#/, '').upcase! }
   end
 end
