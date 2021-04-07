@@ -76,3 +76,29 @@
   color: #00917C !important;
 }
 
+// my review
+#myReview {
+  background-color: #f4f4f4;
+  z-index: 800;
+  justify-content: center;
+  position: absolute;
+  top: 16%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 8px;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.3);
+  border: 1px solid #efefef;
+}
+
+
+#closeReview {
+  position: absolute;
+  top: -4%;
+  left: 92%;
+  border: none;
+  background-color: transparent;
+  color: #433520;
+  font-weight: 900;
+  font-size: 24px;
+}
