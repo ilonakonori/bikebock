@@ -89,7 +89,7 @@
    <!-- review -->
     <% elsif @check_book.present? %>
       <% if @check_book.review.nil? %>
-        <% if @check_book.ride_date < Date.today %>
+        <% if @check_book.ride_date > Date.today %>
           <a id='review-btn'>Leave review</a>
           <!-- review pop-up -->
           <div id='myReviewForm' style=''>
