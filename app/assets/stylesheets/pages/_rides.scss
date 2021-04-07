@@ -56,6 +56,31 @@
   z-index: 2;
 }
 
+/* edit ride */
+
+#edit_ride > div.form-group.string.optional.ride_start_location.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_ride > div.form-group.string.optional.ride_end_location.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_ride > div.form-group.time.optional.ride_start_time.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_ride > div.form-group.time.optional.ride_end_time.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_ride > div.form-group.string.required.ride_available_dates.form-group-valid > label {
+  padding-left: 8px;
+}
+
+#edit_ride > div.multi-upload > div > label {
+  border-radius: 16px;
+}
 
 /* ride index */
 
