@@ -6,6 +6,22 @@ class ReviewsController < ApplicationController
     @review.booking = @booking
     authorize @review
     if @review.save
+
+      r = Review.find(@review.id)
+      sender_name = User.find(r.booking.participant).name
+      recipient = User.find(r.booking.user_id)
+
+      Notification.create!(
+        user: recipient,
+        sender_name: sender_name,
+        action: 'Review',
+        action_id: r.id,
+        action_time: Time.now,
+        read: false,
+        link: "/rides/#{r.booking.ride.id}", # build page for this? # update notification to read: true..
+        content: "#{sender_name} wrote review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%e %B %Y')}"
+      )
+
       redirect_to request_path(@booking.action_id), notice: 'Thank you for your review!'
     else
       redirect_to request_path(@booking.action_id), notice: 'Something went wrong, please try again.'

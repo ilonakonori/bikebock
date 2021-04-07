@@ -34,7 +34,7 @@
 }
 
 .r-btn {
-  background-color: #bbb;
+  background-color: #433520; /*#bbb; */
   padding: 8px 0px;
   width: 100%;
   box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 38%);
@@ -76,3 +76,62 @@
   color: #00917C !important;
 }
 
+// my review
+#myReview {
+  background-color: #f4f4f4;
+  z-index: 800;
+  justify-content: center;
+  position: absolute;
+  top: 12%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 8px;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.3);
+  border: 1px solid #efefef;
+}
+
+
+#closeReview {
+  position: absolute;
+  top: -4%;
+  left: 92%;
+  border: none;
+  background-color: transparent;
+  color: #433520;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+/* all reviews */
+#reviews {
+  background-color: #f4f4f4;
+  z-index: 800;
+  justify-content: center;
+  position: absolute;
+  top: 16%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 8px;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.3);
+  border: 1px solid #efefef;
+}
+
+#closeReviews {
+  position: absolute;
+  top: -2%;
+  left: 92%;
+  border: none;
+  background-color: transparent;
+  color: #433520;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.review-card {
+  border: 1px solid #00917c;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 8px;
+}

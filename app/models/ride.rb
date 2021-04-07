@@ -5,10 +5,6 @@ class Ride < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
 
-
-  before_save :build_slug
-  before_update :build_slug
-
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..26 }, format: { with: /[[:alpha:]]/ }
   validates :short_description, presence: true, length: { in: 50..900 }
@@ -23,27 +19,12 @@ class Ride < ApplicationRecord
 
   acts_as_favoritable
 
-  include PgSearch::Model
-  pg_search_scope :search_rides, against: [
-    [:title, 'A',
-    :start_location,'B',
-    :end_location, 'C',
-    :short_description, 'D']
-  ],
-    using: {
-      tsearch: { prefix: true }
-    }
-
   def rating # sort
     reviews.empty? ? 0 : reviews.average(:rating).round
   end
 
   def avg_rating # view
     reviews.empty? ? '' : '★' * reviews.average(:rating).round
-  end
-
-  def build_slug
-    self.slug = available_dates.split(', ').map { |el| DateTime.parse(el) }.sort.first
   end
 
   # validate time => custom method
