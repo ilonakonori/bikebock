@@ -15,9 +15,27 @@ const showMyReview = () => {
     closeBtn.addEventListener('click', function() {
       reviewBox.style.display = 'none';
       reviewBtn.style.display = 'inherit';
-      //requestBtn.scrollIntoView(false);
     })
   }
 }
 
-export { showMyReview };
+const showAllReviews = () => {
+  const reviewBtn = document.getElementById('reviews-btn');
+
+  if(reviewBtn) {
+    reviewBtn.addEventListener('click', function() {
+      document.getElementById('reviews').style.display = 'inherit';
+    })
+  }
+
+  const reviewBox = document.getElementById('reviews');
+  const closeBtn = document.getElementById('closeReviews');
+
+  if(reviewBox && closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      reviewBox.style.display = 'none';
+    })
+  }
+}
+
+export { showMyReview, showAllReviews };

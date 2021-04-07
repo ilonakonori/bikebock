@@ -20,7 +20,8 @@
 
 <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> |
   <!-- check this! -->
-  <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
+  <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %> |
+  <a id='reviews-btn'>Reviews</a>
 </h5>
 <!-- ride details -->
 <div style='max-height: 62vh; overflow-y: scroll;'>
@@ -128,6 +129,23 @@
       <%= f.hidden_field :recipient_id, :value => ride.user_id %>
       <%= f.hidden_field :ride_id, :value => ride.id %>
       <%= f.submit value="Send", class: "brown-btn2" %>
+    <% end %>
+  </div>
+</div>
+
+<div id='reviews' style='display: none;'>
+  <br>
+  <button id='closeReviews'><span aria-hidden="true">&times;</span></button>
+  <div style="max-height: 400px; padding: 16px; width: 300px; overflow-y: scroll;">
+    <h6>Reviews</h6>
+    <% ride.reviews.each do |review| %>
+      <div class='review-card'>
+        <small><%= review.date_display %></small>
+        <p><%= review.content %></p>
+        <% review.rating.times do %>
+          <i style='color: #00917c;' class="fas fa-star"></i>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

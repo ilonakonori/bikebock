@@ -102,3 +102,36 @@
   font-weight: 900;
   font-size: 24px;
 }
+
+/* all reviews */
+#reviews {
+  background-color: #f4f4f4;
+  z-index: 800;
+  justify-content: center;
+  position: absolute;
+  top: 16%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 8px;
+  box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.3);
+  border: 1px solid #efefef;
+}
+
+#closeReviews {
+  position: absolute;
+  top: -2%;
+  left: 92%;
+  border: none;
+  background-color: transparent;
+  color: #433520;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.review-card {
+  border: 1px solid #00917c;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 8px;
+}
