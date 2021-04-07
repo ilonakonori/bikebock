@@ -24,7 +24,6 @@
     </div>
   <% end %>
 
-  <!-- scroll to last msg here -->
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>" style='height: 86vh;'>
       <% @messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
@@ -35,6 +34,7 @@
       <% end %>
     </div>
 
+  <!-- no scroll to last!
   <script>
     document.addEventListener('turbolinks:load',function(event) {
       // scroll to matching element in hash
@@ -55,7 +55,8 @@
         }
       }
     });
-  </script>
+  </script> -->
+
 <% else %>
   <p style='text-align:center; padding: 44px 0px;'>No messages in this chat!</p>
 <% end %>

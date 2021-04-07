@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/mailjet/mailjet-gem.git
+  revision: 675f75f5e402632f4d6a0ab017b680c752fa9ff9
+  specs:
+    mailjet (1.6.0)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client (>= 2.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -280,6 +289,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  mailjet!
   pg (>= 0.18, < 2.0)
   pg_search (~> 2.3.0)
   pry-byebug

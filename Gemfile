@@ -33,6 +33,8 @@ gem 'pundit'
 gem 'acts_as_favoritor'
 gem 'pg_search', '~> 2.3.0'
 gem 'acts-as-taggable-on', '~> 7.0'
+# mailer
+gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
