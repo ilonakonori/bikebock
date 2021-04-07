@@ -20,8 +20,10 @@
 
 <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> |
   <!-- check this! -->
-  <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %> |
-  <a id='reviews-btn'>Reviews</a>
+  <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
+  <% if ride.reviews.present? %>
+     | <a id='reviews-btn'>Reviews</a>
+  <% end %>
 </h5>
 <!-- ride details -->
 <div style='max-height: 62vh; overflow-y: scroll;'>
@@ -140,7 +142,7 @@
     <h6>Reviews</h6>
     <% ride.reviews.each do |review| %>
       <div class='review-card'>
-        <small><%= review.date_display %></small>
+        <span><%= User.find(review.booking.participant).name %>, <small><%= review.created_at.strftime('%e %B %Y')%></small></span>
         <p><%= review.content %></p>
         <% review.rating.times do %>
           <i style='color: #00917c;' class="fas fa-star"></i>

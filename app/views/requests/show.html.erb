@@ -89,7 +89,7 @@
    <!-- review -->
     <% elsif @check_book.present? %>
       <% if @check_book.review.nil? %>
-        <% if @check_book.ride_date < Date.today %>
+        <% if @check_book.ride_date > Date.today %>
           <a id='review-btn'>Leave review</a>
           <!-- review pop-up -->
           <div id='myReviewForm' style=''>
@@ -102,6 +102,19 @@
       <% else %>
         <!-- view your review -->
         <a style="font-size: 14px;" id='my-review-btn'>Show my review</a>
+
+        <div id='myReview' style='display: none;'>
+          <br>
+          <button id='closeReview'><span aria-hidden="true">&times;</span></button>
+          <div style="height: 156px; padding: 16px; width: 300px;">
+            <small><%= @check_book.review.created_at.strftime('%e %B %Y') %></small>
+            <p><%= @check_book.review.content %></p>
+            <% @check_book.review.rating.times do %>
+              <i style='color: #00917c;' class="fas fa-star"></i>
+            <% end %>
+          </div>
+        </div>
+
       <% end %>
       <!-- end of review part -->
     <% else %>
@@ -124,15 +137,3 @@
     </div>
   <% end %>
 <% end %>
-
-<div id='myReview' style='display: none;'>
-  <br>
-  <button id='closeReview'><span aria-hidden="true">&times;</span></button>
-  <div style="height: 156px; padding: 16px; width: 300px;">
-    <small><%= @check_book.review.date_display %></small>
-    <p><%= @check_book.review.content %></p>
-    <% @check_book.review.rating.times do %>
-      <i style='color: #00917c;' class="fas fa-star"></i>
-    <% end %>
-  </div>
-</div>
