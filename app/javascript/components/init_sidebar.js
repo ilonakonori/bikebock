@@ -24,7 +24,6 @@ const initSidebar = () => {
     // close sidebar when clicking outside
     document.addEventListener('click', function(event) {
       let el = event.target;
-      console.log(el)
       const ids = [`sidebar`,`sidebar-toggler`, `s-el`,`myDropdown`, `myDropdownMenu`, `nav-item`, `nav-item active`, `sidebar-box`, `sidebar-footer-box`];
 
       if(ids.includes(el.id) || ids.includes(el.className)) {
