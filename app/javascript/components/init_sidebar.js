@@ -1,5 +1,6 @@
 const initSidebar = () => {
   const sidebar = document.getElementById('sidebar');
+
   if(sidebar) {
     const toggle = document.getElementById('sidebar-toggler');
     const box = document.querySelector('.sidebar-box');
@@ -19,6 +20,20 @@ const initSidebar = () => {
         footerBox.classList.add('active');
       }
     });
+
+    // close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+      let el = event.target;
+      const ids = [`sidebar`,`sidebar-toggler`, `s-el`,`myDropdown`, `myDropdownMenu`, `nav-item`, `nav-item active`, `sidebar-box`, `sidebar-footer-box`];
+
+      if(ids.includes(el.id) || ids.includes(el.className)) {
+        // do nothing
+      } else {
+        sidebar.classList.remove('active');
+        box.classList.remove('active');
+        footerBox.classList.remove('active');
+      }
+    })
   }
 }
 
