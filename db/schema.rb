@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_123957) do
+ActiveRecord::Schema.define(version: 2021_04_09_124727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_123957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "content_ciphertext"
+    t.string "content_bidx"
+    t.index ["content_bidx"], name: "index_messages_on_content_bidx"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
