@@ -7,14 +7,6 @@ class Message < ApplicationRecord
   validates :content, presence: true, unless: ->(message){message.attachment.present?}
   validates :attachment, presence: true, unless: ->(message){message.content.present?}
 
-  # pg_search
-  include PgSearch::Model
-  pg_search_scope :search_content,
-  against: [:content],
-  using: {
-    tsearch: { prefix: true }
-  }
-
   def date_display # localtime
     created_at.localtime.year == Time.now.year ? no_year : created_at.localtime.strftime("%Y, %b %e at %l:%M %p")
   end
