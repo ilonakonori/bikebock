@@ -9,6 +9,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    record.id == user.id
+  end
+
   def presence?
     true
   end
