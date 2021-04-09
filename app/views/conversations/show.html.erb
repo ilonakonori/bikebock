@@ -98,24 +98,3 @@
     <% end %>
   </div>
 </div>
-
-<script>
-  document.addEventListener('turbolinks:load',function(event) {
-    // scroll to matching element in hash
-    if(window.location.hash) {
-      el = document.querySelector(window.location.hash);
-      console.log(el)
-      if(el){
-        el.scrollIntoView(false);
-        document.getElementById("messages").scrollTop += 24;
-      }
-    } else {
-      showPage = document.getElementById("c-show");
-      el = document.getElementById("messages");
-      if(showPage && el){
-        el.lastElementChild.scrollIntoView(false);
-        //el.scrollTop += 24;
-      }
-    }
-  });
-</script>
