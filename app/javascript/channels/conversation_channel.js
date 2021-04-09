@@ -15,9 +15,10 @@ const initConversationCable = () => {
         } else {
           html = data.receiver
         }
+
         messagesContainer.insertAdjacentHTML('beforeend', html);
         messagesContainer.lastElementChild.scrollIntoView(false);
-        messagesContainer.scrollTop += 24;
+        //messagesContainer.scrollTop += 24;
 
         /*
         const uploading = document.getElementById('loadDiv');

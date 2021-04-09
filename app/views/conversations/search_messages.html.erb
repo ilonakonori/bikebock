@@ -34,29 +34,6 @@
       <% end %>
     </div>
 
-  <!-- no scroll to last!
-  <script>
-    document.addEventListener('turbolinks:load',function(event) {
-      // scroll to matching element in hash
-      if(window.location.hash) {
-        console.log(window.location.hash);
-        el = document.querySelector(window.location.hash);
-        if(el){
-          el.scrollIntoView(false);
-        }
-      } else {
-        msgBox = document.getElementById("messages");
-        if(msgBox){
-          el = msgBox.lastElementChild;
-          if(el) {
-            el.scrollIntoView(false);
-            msgBox.scrollTop += 24;
-          }
-        }
-      }
-    });
-  </script> -->
-
 <% else %>
   <p style='text-align:center; padding: 44px 0px;'>No messages in this chat!</p>
 <% end %>
