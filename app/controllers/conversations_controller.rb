@@ -37,11 +37,11 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     if params[:query].present?
       @query = params[:query]
-      @messages = @conversation.messages.search_content(@query)
+      @messages = @conversation.messages.search_content(@query) #select { |m| m.content =~ /@query/i }
     else
       @messages = @conversation.messages
     end
-    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }.uniq!
+    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }.uniq.to_json
     authorize @conversation
     update_tracking
   end
