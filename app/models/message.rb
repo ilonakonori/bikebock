@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :conversation
   has_one_attached :attachment
-  encrypts :content
+  encrypts :content #, type: :text => argument error: unknown type text
   blind_index :content, slow: true
 
   validates :content, presence: true, unless: ->(message){message.attachment.present?}
