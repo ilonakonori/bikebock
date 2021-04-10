@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #encrypts :email
+  encrypts :email
+  blind_index :email
+
   has_one_attached :profile_photo
   has_one_attached :bike_photo
 
@@ -65,6 +69,6 @@ class User < ApplicationRecord
   end
 
   def set_tags
-    self.tag_list = self.interests.split(/\W+/).map { |i| i.gsub(/#/, '').upcase! }
+    self.tag_list = self.interests.split(/\W+/).map { |i| i.upcase.gsub(/#/, '') }
   end
 end

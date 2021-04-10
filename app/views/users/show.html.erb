@@ -46,7 +46,9 @@
   </div>
   <div>
     <% if @user.rides.empty? %>
-      <p class="text-secondary"> Still don't have any bike rides</p>
+      <p class="text-secondary"> You still don't have any bike rides, go and
+        <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+      </p>
     <% else %>
       <% @user.rides.each do |ride| %>
         <%= render 'rides/ride', ride: ride %>
