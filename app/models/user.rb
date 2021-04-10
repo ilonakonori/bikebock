@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #encrypts :email
   encrypts :email
   blind_index :email
 
@@ -16,11 +15,7 @@ class User < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
-
   has_one :tracking, dependent: :destroy
-  has_many :friends, dependent: :destroy
-
-  after_destroy :destroy_as_friend
 
   acts_as_taggable_on :tags
   before_save :set_tags
