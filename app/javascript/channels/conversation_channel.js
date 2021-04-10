@@ -1,5 +1,26 @@
 import consumer from "./consumer";
 
+const initMsgAttachmentPreview = () => {
+  const imgs = document.getElementsByClassName('imgs');
+  const prevDiv = document.getElementById('prevDiv');
+
+  if(imgs && prevDiv) {
+    for(let i = 0; i < imgs.length; i++) {
+      imgs[i].addEventListener('click', function() {
+        if(prevDiv.hasChildNodes()) {
+          prevDiv.removeChild(prevDiv.childNodes[0]);
+        } else {
+          const image = document.createElement('img');
+          image.src = imgs[i].src.replace(/c_fill,h_70,w_70/g, 'c_fit,w_220');
+          image.classList.add('prev');
+          prevDiv.appendChild(image);
+        }
+      });
+    }
+  }
+}
+
+
 const initConversationCable = () => {
   const messagesContainer = document.getElementById('messages');
 
@@ -17,9 +38,9 @@ const initConversationCable = () => {
         }
 
         messagesContainer.insertAdjacentHTML('beforeend', html);
+        initMsgAttachmentPreview();
         messagesContainer.lastElementChild.scrollIntoView(false);
         //messagesContainer.scrollTop += 24;
-
         /*
         const uploading = document.getElementById('loadDiv');
         if(uploading) {
