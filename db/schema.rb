@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_183450) do
+ActiveRecord::Schema.define(version: 2021_04_10_093548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,12 +83,14 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "content"
     t.integer "recipient_id"
     t.integer "sender_id"
     t.bigint "conversation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "content_ciphertext"
+    t.string "content_bidx"
+    t.index ["content_bidx"], name: "index_messages_on_content_bidx"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
@@ -184,7 +186,6 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -195,7 +196,9 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
     t.string "about_me"
     t.string "interests"
     t.datetime "last_seen"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.text "email_ciphertext"
+    t.string "email_bidx"
+    t.index ["email_bidx"], name: "index_users_on_email_bidx", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

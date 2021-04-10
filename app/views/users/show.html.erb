@@ -46,14 +46,16 @@
   </div>
   <div>
     <% if @user.rides.empty? %>
-      <p class="text-secondary"> Still don't have any bike rides</p>
+      <p class="text-secondary"> You still don't have any bike rides, go and
+        <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+      </p>
     <% else %>
       <% @user.rides.each do |ride| %>
         <%= render 'rides/ride', ride: ride %>
       <% end %>
     <% end %>
     <div style="padding-top: 32px;">
-      <% if @user == current_user %>
+      <% if policy(@user).edit? %>
         <%= link_to "Edit Profile", edit_user_registration_path(@user), style: "background-color: #433520; padding: 8px 55px; margin-left: 60px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
       <% end %>
     </div>

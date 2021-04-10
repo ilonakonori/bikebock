@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
     c1 = Conversation.where(recipient_id: current_user).order(created_at: :desc).includes([:messages]).map { |c| [c.id, c.sender_id] }
     c2 = Conversation.where(sender_id: current_user).order(created_at: :desc).includes([:messages]).map { |c| [c.id, c.recipient_id] }
     c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
-    @autocomplete = c3.map { |c| c[0] }
+    @autocomplete = c3.map { |c| c[0] }.to_json
     conversations = policy_scope(Conversation).where(recipient_id: current_user).includes([:messages]) + policy_scope(Conversation).where(sender_id: current_user).includes([:messages])
     c = conversations.reject { |c| c.messages.present? }.sort_by.with_index { |c,i| [c["created_at"], i] }.reverse!
 
@@ -37,11 +37,11 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     if params[:query].present?
       @query = params[:query]
-      @messages = @conversation.messages.search_content(@query)
+      @messages = @conversation.messages.select { |m| m.content =~ /#{@query}/i }
     else
       @messages = @conversation.messages
     end
-    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }.uniq!
+    @autocomplete = @conversation.messages.map { |m| m.content }.reject { |c| c == '' }.uniq.to_json
     authorize @conversation
     update_tracking
   end
