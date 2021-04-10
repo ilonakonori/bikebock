@@ -1,6 +1,6 @@
 class BlockingsController < ApplicationController
   def index
-    @blocked_users = current_user.blockings
+    #@blocked_users = policy_scope(Blocking)
   end
 
   def create
