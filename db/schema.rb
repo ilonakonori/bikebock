@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_10_093548) do
+ActiveRecord::Schema.define(version: 2021_04_10_141900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2021_04_10_093548) do
     t.string "start_location"
     t.string "end_location"
     t.string "difficulty"
-    t.string "short_description"
+    t.text "short_description"
     t.text "available_dates"
     t.time "start_time"
     t.time "end_time"
@@ -193,8 +193,8 @@ ActiveRecord::Schema.define(version: 2021_04_10_093548) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "about_me"
-    t.string "interests"
+    t.text "about_me"
+    t.text "interests"
     t.datetime "last_seen"
     t.text "email_ciphertext"
     t.string "email_bidx"

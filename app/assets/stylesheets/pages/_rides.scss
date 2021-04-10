@@ -82,6 +82,10 @@
   border-radius: 16px;
 }
 
+#ride_short_description, #user_about_me, #user_interests {
+  min-height: 12vh;
+}
+
 /* ride index */
 
 .card-ride-index {
