@@ -4,7 +4,7 @@ const initAnchorScroll = () => {
     const el = document.querySelector(window.location.hash);
     if(el){
       el.scrollIntoView(false);
-      document.getElementById("messages").scrollTop += 24;
+      //document.getElementById("messages").scrollTop += 24;
     }
   } else {
     const showPage = document.getElementById("c-show");
