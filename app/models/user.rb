@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable
 
   encrypts :email
   blind_index :email
@@ -22,7 +23,7 @@ class User < ApplicationRecord
   before_save :set_tags
 
   after_create :create_tracking
-  after_create :send_welcome
+  #after_create :send_welcome
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -33,7 +34,7 @@ class User < ApplicationRecord
 
   acts_as_favoritor
 
-  def send_welcome
+  def after_confirmation #send_welcome
     BikeBockMailer.welcome_email(self).deliver_now!
   end
 
