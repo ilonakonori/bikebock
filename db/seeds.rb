@@ -16,7 +16,7 @@ Request.destroy_all
   new_user = User.new(
     name: "Luis",
     email: "luis7villasmil1+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "To me it doesn’t matter whether it’s raining or the sun is shining or whatever: as long as I’m riding a bike, I know I’m the luckiest guy in the world. Cycling is my passion.",
     interests: "LANGUAGES SNOWBOARDING CLIMBING HIKING COOKING",
     last_seen: DateTime.now
@@ -69,7 +69,7 @@ end
   new_user = User.new(
     name: "Fiona",
     email: "fiona3schlender2+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I am a deltiologist or simply, a person who collects postcard and I absolutely love cooking. I can merrily state that my kitchen is my playground in every sense!",
     interests: "SCIENE POLITICS LITERATURE CONCERTS THEATRES EXHIBITIONS",
     last_seen: DateTime.now
@@ -121,7 +121,7 @@ end
   new_user = User.new(
     name: "Eden",
     email: "eden9ooms8+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I love learning new languages. I am a fluent speaker of 4 languages and I want to learn a few more. At present, I am learning Spanish and German. And I enjoy cycling and swimming.",
     interests: "LITERATURE TRAVEL MUSIC CULTURE ARTS SKATEBORDING",
     last_seen: DateTime.now
@@ -173,7 +173,7 @@ end
   new_user = User.new(
     name: "Panitan",
     email: "panitan4punpuang0+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I take pleasure in listening to music. I listen to music every morning before I leave for work and when I return home every night. I also take pleasure in reading and travelling to new places.",
     interests: "PHILOSOPHY SCIENCE STARTUPS YOGA TRAVEL DJ",
     last_seen: DateTime.now
@@ -226,7 +226,7 @@ end
   new_user = User.new(
     name: "Ronan",
     email: "ronant6kruithof3+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I am a bird-watching enthusiast. I love the outdoors and enjoy going for hikes during weekends. Also, I often spend time reading nature books and also keep digging information on the internet about birds.",
     interests: "ART ARCHITECTURE DESIGN MUSIC MEDIA TECH TRAVEL",
     last_seen: DateTime.now
@@ -279,7 +279,7 @@ end
   new_user = User.new(
     name: "Martina",
     email: "martina5guido9+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I enjoyed travelling the most. Yes, I am a wandering soul. Visiting new places, traveling new roads, trying new cuisines and learning about new cultures excites me!",
     interests: "SUSTAINABILITY POLITICS ECONOMY CLUBING ICE-DIPPING yoga travel",
     last_seen: DateTime.now
@@ -331,7 +331,7 @@ end
   new_user = User.new(
     name: "JC",
     email: "jc1gellidon2+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I love to write in my free time. I have tons of notebooks filled with plots, character sketches, and obviously some random doodles. I take delight in writing short stories about my experiences.",
     interests: "TRAVELING COOKING LANGUAGES FITNESS MEDITATION YOGA",
     last_seen: DateTime.now
@@ -383,7 +383,7 @@ end
   new_user = User.new(
     name: "Joy",
     email: "joy0aragon6+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I am fond of dancing, it is both my hobby and passion. Sometimes even during the day, I play music on my phone and dance my heart out, even if its for just 5 minutes! Dance helps me relax.",
     interests: "COFEE TRAVEL VINTAGE NATURE CHESS WINDSURFING",
     last_seen: DateTime.now
@@ -438,7 +438,7 @@ end
   new_user = User.new(
     name: "Christiana",
     email: "christiana2rivers5+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I enjoy singing, dancing, riding a bike; I like painting the most. It is a way for me to express myself, my feelings and mood not by words but through art, which is understood only by a few people.",
     interests: "SINGING DANCING NATURE YOGA ART FESTIVALS COOKING BAKING DJ",
     last_seen: DateTime.now
@@ -457,10 +457,10 @@ end
   1.times do
     new_ride = Ride.new(
       title: "Altlandsberg to Buckow",
-      short_description: "Bring your flip flops! 
-      This ride starts in the historic walled city of Altlandsberg and takes you through the pine forest east of Radebrück before venturing through multiple villages to get to Buckow. 
-      Garzau has a nice lake with a beach along the way, but the Schermützelsee in Buckow is where I would jump in. 
-      This trip is radweg the entire way and a relatively easy ride. 
+      short_description: "Bring your flip flops!
+      This ride starts in the historic walled city of Altlandsberg and takes you through the pine forest east of Radebrück before venturing through multiple villages to get to Buckow.
+      Garzau has a nice lake with a beach along the way, but the Schermützelsee in Buckow is where I would jump in.
+      This trip is radweg the entire way and a relatively easy ride.
       Buckow also has several restaurants, parks, and a Kneipp area all within just a couple minutes of walking.",
       number_of_people: "5",
       start_time: "8:00",
@@ -492,7 +492,7 @@ end
   new_user = User.new(
     name: "Ben",
     email: "ben1engelsen4+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I love watching movies and yes! you can call me a CINEPHILE. I love watching action movies more than any other genre. I am a big fan of Tiger Shroff.",
     interests: "WINDSURFING MOVIES CINEMA JAZZ PHOTOGRAPHY TENNIS COFFEE COOKING TENNIS",
     last_seen: DateTime.now
@@ -511,8 +511,8 @@ end
   1.times do
     new_ride = Ride.new(
       title: "Templiner See",
-      short_description: "Starting at the Potsdam Hauptbahnhof, this bike tour takes you south around the two lakes and back to the train station. 
-      It also includes the town of Caputh where Albert Einstein had his summer residence and a lovely restaurant on the water with outdoor seating. 
+      short_description: "Starting at the Potsdam Hauptbahnhof, this bike tour takes you south around the two lakes and back to the train station.
+      It also includes the town of Caputh where Albert Einstein had his summer residence and a lovely restaurant on the water with outdoor seating.
       There are also multiple playgrounds along the way for the little ones.",
       number_of_people: "5",
       start_time: "10:00",
@@ -544,7 +544,7 @@ end
   new_user = User.new(
     name: "Omid",
     email: "omid7armin2+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I like traveling a lot, and I plan to take a trip every year. Majorly, the trips have been within the national boundaries only but I have an interest in exploring and traveling to other nations as well. I am the wordl traveler.",
     interests: "EXPLORING DOGS TRAVEL DJ PHOTOGRAPHY CHESS READING COOKING",
     last_seen: DateTime.now
@@ -563,9 +563,9 @@ end
   1.times do
     new_ride = Ride.new(
       title: "Havelland-Radweg",
-      short_description: "There are two different long distance bike routes. 
-      This one is the Havelland-Radweg, which does not closely follow the Havel river, but rather connects small villages and towns somewhat aside. 
-      Among them is Nauen, the city which became well-known because of its early twentieth century radio stations connecting the emperor's Germany with its colonies. 
+      short_description: "There are two different long distance bike routes.
+      This one is the Havelland-Radweg, which does not closely follow the Havel river, but rather connects small villages and towns somewhat aside.
+      Among them is Nauen, the city which became well-known because of its early twentieth century radio stations connecting the emperor's Germany with its colonies.
       Also you pass Ribbeck, which became famous for its pear tree through a poem by Theodor Fontane.",
       number_of_people: "2",
       start_time: "8:00",
@@ -597,7 +597,7 @@ end
   new_user = User.new(
     name: "Jordan",
     email: "jordan9whitfield4+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "Traveling is my passion. Whenever I have an opportunity to visit a new place, whether a village, city, mountain or seaside, I never miss it. It is so thrilling to see a new place and meet different kind of people.",
     interests: "TRAVELING ADVENTURES COOKING WINE PHOTOGRAPHY BOOKS ART EXHIBITIONS DJ",
     last_seen: DateTime.now
@@ -616,7 +616,7 @@ end
   1.times do
     new_ride = Ride.new(
       title: "Berlin Wall",
-      short_description: "A double row of cobblestones traces the Berlin Wall’s route over 5.7 kilometres through the city centre. 
+      short_description: "A double row of cobblestones traces the Berlin Wall’s route over 5.7 kilometres through the city centre.
       This tour from the East Side Gallery to Bernauer Strasse via Potsdamer Platz passes memorials, Berlin Wall remnants, former border watchtowers and documentary panels with photos and details of the area’s history.",
       number_of_people: "2",
       start_time: "10:00",
@@ -648,7 +648,7 @@ end
   new_user = User.new(
     name: "Logan",
     email: "logan6weaver0+@gmail.com",
-    password: "123456",
+    password: "12345678",
     about_me: "I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. And I always wanted to be a great writer, like Victor Hugo.",
     interests: "DRAWING PAINTING COOKING GARDENING PHOTOGRAPHY TRAVELING RUNNING",
     last_seen: DateTime.now
@@ -667,8 +667,8 @@ end
   1.times do
     new_ride = Ride.new(
       title: "Berlin Wall South",
-      short_description: "And because the Berlin Wall bike path offers so many varied and beautiful routes, we think that the path can appear twice in our list. 
-      This time we go south on the Sonnenallee - Schönefeld - Lichtenrade section: From Sonnenallee you’ll ride continuously along the Teltow Canal via Schöneberg to Lichtenrade. 
+      short_description: "And because the Berlin Wall bike path offers so many varied and beautiful routes, we think that the path can appear twice in our list.
+      This time we go south on the Sonnenallee - Schönefeld - Lichtenrade section: From Sonnenallee you’ll ride continuously along the Teltow Canal via Schöneberg to Lichtenrade.
       The path is brand new and very beautiful.",
       number_of_people: "2",
       start_time: "10:00",
