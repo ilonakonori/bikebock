@@ -23,7 +23,6 @@ class User < ApplicationRecord
   before_save :set_tags
 
   after_create :create_tracking
-  #after_create :send_welcome
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
