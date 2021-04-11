@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable
+         :confirmable, :lockable
 
   encrypts :email
   blind_index :email
@@ -35,10 +35,6 @@ class User < ApplicationRecord
 
   def after_confirmation #send_welcome
     BikeBockMailer.welcome_email(self).deliver_now!
-  end
-
-  def destroy_as_friend
-    Friend.where(friend_id: self.id).destroy_all
   end
 
   def self.create_tracking
