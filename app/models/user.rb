@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable
 
-  encrypts :email
-  blind_index :email
+  encrypts :email, :unconfirmed_email
+  blind_index :email, :unconfirmed_email
 
   has_one_attached :profile_photo
   has_one_attached :bike_photo
