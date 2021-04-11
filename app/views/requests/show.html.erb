@@ -90,7 +90,7 @@
     <% elsif @check_book.present? %>
       <% if @check_book.review.nil? %>
         <% if @check_book.ride_date > Date.today %>
-          <a id='review-btn'>Leave review</a>
+          <a id='review-btn' style="font-size: 12px; font-family: monospace;">Leave review</a>
           <!-- review pop-up -->
           <div id='myReviewForm' style=''>
             <button id='closeReviewBtn'><span aria-hidden="true">&times;</span></button>
@@ -101,17 +101,23 @@
         <% end %>
       <% else %>
         <!-- view your review -->
-        <a style="font-size: 14px;" id='my-review-btn'>Show my review</a>
+        <a style="font-size: 12px; font-family: monospace;" id='my-review-btn'>Show my review</a>
 
         <div id='myReview' style='display: none;'>
-          <br>
           <button id='closeReview'><span aria-hidden="true">&times;</span></button>
-          <div class='mr' style="height: 156px; padding: 16px; width: 300px;">
-            <small class='mr' ><%= @check_book.review.created_at.strftime('%e %B %Y') %></small>
-            <p class='mr' ><%= @check_book.review.content %></p>
-            <% @check_book.review.rating.times do %>
-              <i style='color: #00917c;' class="fas fa-star"></i>
-            <% end %>
+          <div style="height: 156px; padding: 16px; width: 300px; font-size: 12px;">
+            <div style="display: flex; justify-content: flex-start;">
+                <% @participants.each do |p| %>
+                  <%= link_to user_path(p) do %>
+                    <%= cl_image_tag p.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
+                  <% end %>
+              <% end %>
+              <p style="font-size: 75%; margin: 8px;"><%= @check_book.review.created_at.strftime('%e %B %Y') %>
+              <% @check_book.review.rating.times do %>
+                <i style='color: #00917c;' class="fas fa-star"></i>
+              <% end %></p>
+              </div>
+            <%= @check_book.review.content %>
           </div>
         </div>
 

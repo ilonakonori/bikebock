@@ -17,7 +17,9 @@
 #review_content {
   max-height: 16vh;
   min-height: 16vh;
+  text-align: left;
   resize: none;
+  font-size: smaller;
   box-shadow: 0px 1px 6px 1px rgba(0,0,0,0.3);
 }
 
@@ -45,6 +47,13 @@
   border: none;
 }
 
+.text {
+  text-align: center; 
+  font-weight: 600;
+  padding-bottom: 8px;
+  font-size: 16px;
+}
+
 #new_review > div.form-group.select.required.review_rating > label {
   margin-bottom: -1.4em;
 }
@@ -56,11 +65,12 @@
 
 .br-theme-css-stars .br-widget a {
   text-decoration: none;
-  height: 18px;
-  width: 38px;
+  height: 8px;
+  width: 30px;
   float: left;
-  font-size: 40px;
-  margin-right: 8px;
+  font-size: 26px;
+  margin-right: 16px;
+  padding-left: 8px;
 }
 
 .br-theme-css-stars .br-widget a::after {
