@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_183450) do
+ActiveRecord::Schema.define(version: 2021_04_11_114533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blockings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "blocked_user"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_blockings_on_user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -72,23 +80,15 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
-  create_table "friends", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.integer "friend_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["friend_id"], name: "index_friends_on_friend_id"
-    t.index ["user_id", "friend_id"], name: "index_friends_on_user_id_and_friend_id", unique: true
-    t.index ["user_id"], name: "index_friends_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
-    t.text "content"
     t.integer "recipient_id"
     t.integer "sender_id"
     t.bigint "conversation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "content_ciphertext"
+    t.string "content_bidx"
+    t.index ["content_bidx"], name: "index_messages_on_content_bidx"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
     t.string "start_location"
     t.string "end_location"
     t.string "difficulty"
-    t.string "short_description"
+    t.text "short_description"
     t.text "available_dates"
     t.time "start_time"
     t.time "end_time"
@@ -184,7 +184,6 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -192,17 +191,31 @@ ActiveRecord::Schema.define(version: 2021_03_31_183450) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "about_me"
-    t.string "interests"
+    t.text "about_me"
+    t.text "interests"
     t.datetime "last_seen"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.text "email_ciphertext"
+    t.string "email_bidx"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer "failed_attempts", default: 0, null: false
+    t.datetime "locked_at"
+    t.string "unlock_token"
+    t.string "unconfirmed_email"
+    t.text "unconfirmed_email_ciphertext"
+    t.string "unconfirmed_email_bidx"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email_bidx"], name: "index_users_on_email_bidx", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unconfirmed_email_bidx"], name: "index_users_on_unconfirmed_email_bidx"
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blockings", "users"
   add_foreign_key "bookings", "rides"
   add_foreign_key "bookings", "users"
-  add_foreign_key "friends", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "notifications", "users"
   add_foreign_key "requests", "rides"

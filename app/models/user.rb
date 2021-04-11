@@ -2,7 +2,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable, :lockable
+
+  encrypts :email, :unconfirmed_email
+  blind_index :email, :unconfirmed_email
 
   has_one_attached :profile_photo
   has_one_attached :bike_photo
@@ -11,18 +15,14 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :bookings, dependent: :destroy
-
+  has_many :blockings, dependent: :destroy
 
   has_one :tracking, dependent: :destroy
-  has_many :friends, dependent: :destroy
-
-  after_destroy :destroy_as_friend
 
   acts_as_taggable_on :tags
   before_save :set_tags
 
   after_create :create_tracking
-  after_create :send_welcome
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -33,12 +33,8 @@ class User < ApplicationRecord
 
   acts_as_favoritor
 
-  def send_welcome
+  def after_confirmation #send_welcome
     BikeBockMailer.welcome_email(self).deliver_now!
-  end
-
-  def destroy_as_friend
-    Friend.where(friend_id: self.id).destroy_all
   end
 
   def self.create_tracking
@@ -65,6 +61,6 @@ class User < ApplicationRecord
   end
 
   def set_tags
-    self.tag_list = self.interests.split(/\W+/).map { |i| i.gsub(/#/, '').upcase! }
+    self.tag_list = self.interests.split(/\W+/).map { |i| i.upcase.gsub(/#/, '') }
   end
 end

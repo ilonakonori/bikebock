@@ -1,43 +1,47 @@
 <div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
   <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
-    <h3 style="padding-bottom: 4px;">Edit Your Ride!</h3>
+    <% if ride.persisted? %>
+      <h3 style="padding-bottom: 4px;">Edit Your Ride!</h3>
+    <% else %>
+      <h3 style="padding-bottom: 4px;">Add Ride!</h3>
+    <% end %>
   </div>
 
   <%= simple_form_for(ride) do |f| %>
 
-    <%= f.input :title, 
-                required: false,
-                label: false,
+    <%= f.input :title,
+                required: true,
+                label: 'Title',
                 input_html: { autocomplete: "title" } %>
 
     <%= f.input :short_description,
-                required: false,
-                label: false,
+                required: true,
+                label: 'Description',
                 input_html: { autocomplete: "short_description" } %>
 
     <%= f.input :start_location,
-                required: false,
+                required: true,
                 label: "Start location:",
                 input_html: { autocomplete: "start_location" } %>
 
     <%= f.input :end_location,
-                 required: false,
-                 label: "End location:" %>
+                required: true,
+                label: "End location:" %>
 
     <%= f.input :start_time,
-                required: false,
+                required: true,
                 label: "Start time:" %>
 
     <%= f.input :end_time,
-                required: false,
+                required: true,
                 label: "End time:" %>
-                
+
     <%= f.input :difficulty, collection: (1..5).to_a, as: :radio_buttons %>
     <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
     <%= f.input :available_dates,
-                as: :string, 
-                input_html: { class: 'flatpickr' }, 
-                required: false,
+                as: :string,
+                input_html: { class: 'flatpickr' },
+                required: true,
                 label: "Available dates:" %>
 
     <div data-controller="multi-upload" data-action ="input->multi-upload#addFile" style='padding-bottom: 0.2em;'>
@@ -45,10 +49,10 @@
 
         <%= f.input :photos,
                   as: :file,
-                  required: false,
+                  required: true,
                   autofocus: true,
                   input_html: { class: 'custom-file-input'},
-                  label_html: { class: 'custom-file-label' },
+                  label_html: { class: 'custom-file-label', style: 'border-radius: 16px;' },
                   wrapper_html: { class: 'custom-file' } %>
       </div>
       <div data-multi-upload-target="files"></div>
@@ -65,7 +69,7 @@
 
       <div id="previewRide" class=''></div>
 
-      <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">  
+      <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
         <%= f.submit value="Save", class: "brown-btn" %>
       </div>
 
@@ -73,7 +77,9 @@
       <!-- preview -->
       <br>
       <div id="previewRide" class=''></div>
-      <%= f.submit value="Add", class: "" %>
+      <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
+        <%= f.submit value="Add", class: "brown-btn" %>
+      </div>
     <% end %>
   <% end %>
   <br>

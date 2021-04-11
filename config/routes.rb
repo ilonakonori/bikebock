@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get :bookmarks
       get :notifications
     end
+    resources :blockings, only: [:index, :create, :destroy]
   end
 
   resources :rides do

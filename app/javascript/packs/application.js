@@ -47,6 +47,8 @@ import { initSelect2 } from '../plugins/init_select2';
 import { autocompleteSearchConversations } from '../plugins/autocomplete_search_conversations';
 import { autocompleteSearchMessages } from '../plugins/autocomplete_search_messages';
 import { showMyReview, showAllReviews } from '../components/init_reviews';
+import { initAnchorScroll } from '../components/init_anchor_scroll';
+
 
 
 
@@ -65,6 +67,8 @@ document.addEventListener('turbolinks:load', () => {
   showAllReviews();
 
   initConversationCable();
+
+  initAnchorScroll();
 
   initBookmarks();
   initMsgAttachmentBtn();

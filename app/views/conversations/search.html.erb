@@ -4,7 +4,7 @@
 </div>
 <div style='width: 313px; padding: 24px 0px;'>
   <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
-    <div id='search-data' class='search-input-container' data-conversations="<%= @autocomplete.to_json %>">
+    <div id='search-data' class='search-input-container' data-conversations="<%= @autocomplete %>">
       <i id="search-conversation-btn" class="fas fa-search"></i>
       <%= text_field_tag :query,
           params[:query],
