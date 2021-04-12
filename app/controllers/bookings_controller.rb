@@ -25,5 +25,11 @@ class BookingsController < ApplicationController
       render 'request#show'
     end
     authorize @booking
+    update_tracking
+  end
+
+  def update_tracking
+    tracking = Tracking.find_by(user: current_user.id)
+    tracking.update!(location: request.url, location_time: Time.now)
   end
 end

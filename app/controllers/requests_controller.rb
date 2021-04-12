@@ -4,11 +4,6 @@ class RequestsController < ApplicationController
 
   def received
     @requests_received = policy_scope(Request).where(recipient_id: current_user.id).includes([:ride])
-    #@requests_received_old = policy_scope(Request).where(accepted: true, recipient_id: current_user.id)
-    #@requests_read = current_user.notifications.where(read: true, action: 'Request').order(action_time: :desc).first(10)
-    #notifications = Notification.where(read: false, user: current_user.id, action: 'Request').order(created_at: :desc)
-    #@r_num = notifications.select { |n| n[:content].match?(/sent/) }.size
-    #@s_num = notifications.reject { |n| n[:content].match?(/sent/) }.size
 
     @rr = @requests_received.map do |request|
       { request: request,
