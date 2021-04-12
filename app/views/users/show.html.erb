@@ -31,7 +31,7 @@
       <hr style="width: 95%; text-align: left; margin-left: 0;">
       <p style="font-size: 3vw;"><%= @user.about_me %></p>
 
-      <!-- block/unblock -->
+      <!-- block/unblock => imp this!! -->
       <% if @user != current_user %>
         <% if @blocked %>
           <% if policy(@blocked).destroy? %>

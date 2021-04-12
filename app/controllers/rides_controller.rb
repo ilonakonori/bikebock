@@ -5,13 +5,13 @@ class RidesController < ApplicationController
   def index # filter
     case params[:select]
       when '3' # ratings
-        @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid.sort_by { |r| r.rating }.reverse!
+        @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid(current_user).sort_by { |r| r.rating }.reverse!
       when '4' # difficulty asc
-        @rides = policy_scope(Ride).order(:difficulty).includes([:user, :reviews]).total_valid
+        @rides = policy_scope(Ride).order(:difficulty).includes([:user, :reviews]).total_valid(current_user)
       when '1' # num of people asc
-        @rides = policy_scope(Ride).order(:number_of_people).includes([:user, :reviews]).total_valid
+        @rides = policy_scope(Ride).order(:number_of_people).includes([:user, :reviews]).total_valid(current_user)
     else # 2 => default => available_dates: :asc  => earliest
-      @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid.sort_by { |r| r.valid_dates.first }
+      @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid(current_user).sort_by { |r| r.valid_dates.first }
     end
     update_tracking
   end
