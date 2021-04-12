@@ -3,7 +3,8 @@ class RequestsController < ApplicationController
   after_action :read_notifications, only: :index
 
   def received
-    @requests_received = policy_scope(Request).where(recipient_id: current_user.id).includes([:ride])
+    received = filter_blocked(policy_scope(Request).where(recipient_id: current_user.id).includes([:ride]), 'recipient_id')
+    @requests_received = filter_blocked(received, 'user_id')
 
     @rr = @requests_received.map do |request|
       { request: request,
@@ -17,7 +18,9 @@ class RequestsController < ApplicationController
   end
 
   def sent
-    @requests_sent = policy_scope(Request).where(user_id: current_user.id).includes([:ride])
+    sent = filter_blocked(policy_scope(Request).where(user_id: current_user.id).includes([:ride]), 'recipient_id')
+    @requests_sent = filter_blocked(sent, 'user_id')
+
     @rs = @requests_sent.map do |request|
       { request: request,
         notification: Notification.find_by(user: current_user.id, action_id: request.id, action: 'Request', read: false).present?,
@@ -99,6 +102,23 @@ class RequestsController < ApplicationController
   def update_tracking
     tracking = Tracking.find_by(user: current_user.id)
     tracking.update!(location: request.url, location_time: Time.now)
+  end
+
+  def filter_blocked(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
+        t
+      end
+    end
   end
 
   private
