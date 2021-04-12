@@ -21,7 +21,7 @@
 <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> |
   <!-- check this! -->
   <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
-  <% if ride.reviews.present? %>
+  <% if @reviews %>
      | <a id='reviews-btn'>Reviews</a>
   <% end %>
 </h5>
@@ -140,14 +140,17 @@
   <button id='closeReviews'><span aria-hidden="true">&times;</span></button>
   <div id='r-box' style="max-height: 400px; padding: 16px; width: 300px; overflow-y: scroll;">
     <h6 class='rd'>Reviews</h6>
-    <% ride.reviews.each do |review| %>
-      <div class='review-card'>
-        <span class='rd'><%= User.find(review.booking.participant).name %>, <small class='rd'><%= review.created_at.strftime('%e %B %Y')%></small></span>
-        <p class='rd'><%= review.content %></p>
-        <% review.rating.times do %>
-          <i style='color: #00917c;' class="fas fa-star"></i>
-        <% end %>
-      </div>
+    <p class=""><%= ride.avg_rating %> (<%= pluralize ride.reviews.size, "review" %>)</p>
+    <% if @reviews %>
+      <% @reviews.each do |review| %>
+        <div class='review-card'>
+          <span class='rd'><%= User.find(review.booking.participant).name %>, <small class='rd'><%= review.created_at.strftime('%e %B %Y')%></small></span>
+          <p class='rd'><%= review.content %></p>
+          <% review.rating.times do %>
+            <i style='color: #00917c;' class="fas fa-star"></i>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

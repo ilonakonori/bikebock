@@ -25,6 +25,11 @@ class RidesController < ApplicationController
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
+    # remove reviews from blocked
+    if @ride.reviews.present?
+      @reviews = filter_blocked(@ride.reviews, 'participant')
+    end
+
     @request = Request.new
     update_tracking
   end
@@ -76,6 +81,23 @@ class RidesController < ApplicationController
   def update_tracking
     tracking = Tracking.find_by(user: current_user.id)
     tracking.update!(location: request.url, location_time: Time.now)
+  end
+
+  def filter_blocked(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t.booking[this_id]) || user_blocked_by.include?(t.booking[this_id])
+        t
+      end
+    end
   end
 
   private

@@ -53,8 +53,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @blocked = Blocking.find_by(blocked_user: @conversation.sender_id) || Blocking.find_by(blocked_user: @conversation.recipient_id)
-
+    @blocked = Blocking.find_by(blocked_user: @conversation.sender_id, user_id: @conversation.recipient_id) || Blocking.find_by(blocked_user: @conversation.recipient_id, user_id: @conversation.sender_id)
     @message = Message.new
     update_tracking
   end
