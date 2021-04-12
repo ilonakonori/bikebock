@@ -8,7 +8,7 @@
   <% end %>
 </div>
 
-<div class='' style='padding-top: 24px; max-height: 92vh;'>
+<div class='' style='padding-top: 24px; max-height: 98vh;'>
 
   <%if @media.blank? %>
     <p style="text-align: center;">Nothing shared!</p>
@@ -19,11 +19,23 @@
           <p style='background: #efefef; padding-left: 12px; font-weight: 500; border-top-left-radius: 8px; border-top-right-radius: 8px;'>
             <%= m[0].year < Date.current.year ? m[0].strftime("%Y, %^B") : m[0].strftime("%^B") %>
           </p>
-          <div style='text-align: left; padding-left: 8px; margin-bottom: 16px;'>
-            <% m[1].each do |media| %>
-              <%= cl_image_tag media.attachment.key, width: 70, height: 70, crop: :fill, class:'imgs', style: 'padding: 2px;' %>
-            <% end %>
+
+          <div class='container' style='margin-top:0; padding-top:0; text-align: center;'>
+            <div class='row' style='margin: 0 auto; margin-bottom: 16px;'>
+              <% m[1].each do |media| %>
+                <div class='col' style='width: 70px; height: 70px; padding-left: 0px;'>
+                  <%= cl_image_tag media.attachment.key, width: 70, height: 70, crop: :fill, class:'imgs', style: 'padding: 2px;' %>
+                  <%  p = cl_image_path(media.attachment.key).split(/upload/)
+                    d_link = p[0] + 'upload/fl_attachment' + p[1]
+                  %>
+                  <a href="<%= d_link %>" style="position: relative; left:56%; top: -24px; margin:0;">
+                    <i class="fas fa-arrow-circle-down" style="font-size: 12px; border-radius: 50%; background-color: #696969; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
+                  </a>
+                </div>
+              <% end %>
+            </div>
           </div>
+
         </div>
       <% end %>
     </div>
