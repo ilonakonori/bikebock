@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   respond_to :html, :js
 
   def show
-    @blocked = current_user.blockings.find_by(blocked_user: @user.id )
+    @blocked = current_user.blockings.find_by(blocked_user: @user.id)
+    @blocked_current = @user.blockings.find_by(blocked_user: current_user.id)
     update_tracking
   end
 

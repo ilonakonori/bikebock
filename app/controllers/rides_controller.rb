@@ -17,6 +17,9 @@ class RidesController < ApplicationController
   end
 
   def show # imp!
+    @blocked = current_user.blockings.find_by(blocked_user: @ride.user.id)
+    @blocked_current = @ride.user.blockings.find_by(blocked_user: current_user.id)
+
     requests = Request.where(ride_id: @ride.id, user_id: current_user, recipient_id: @ride.user_id)
     all_dates = requests.map { |r| r.ride_date.to_date }.select { |r| r >= Time.now }
     ride_dates = @ride.valid_dates
