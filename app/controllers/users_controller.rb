@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def bookmarks
     @user = current_user
-    @bookmarks = @user.favorites.order(created_at: :desc)
+    @bookmarks = filter_bookmarks(@user.favorites.order(created_at: :desc), 'user_id')
     update_tracking
     authorize @user
   end
@@ -65,6 +65,23 @@ class UsersController < ApplicationController
 
     this_users.reject do |t|
       if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
+        t
+      end
+    end
+  end
+
+  def filter_bookmarks(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t.favoritable[this_id]) || user_blocked_by.include?(t.favoritable[this_id])
         t
       end
     end
