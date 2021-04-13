@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
       Notification.create!(
         user: recipient,
         sender_name: sender_name,
+        sender_id: r.booking.participant,
         action: 'Review',
         action_id: r.id,
         action_time: Time.now,

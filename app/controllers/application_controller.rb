@@ -20,10 +20,31 @@ class ApplicationController < ActionController::Base
 
   def unread
     if user_signed_in?
-      @unread = current_user.notifications.where(read: false).present?
-      @unread_requests = current_user.notifications.where(read: false, action: 'Request').count
-      @unread_messages = current_user.notifications.where(read: false, action: 'Message').count
-      @unread_notifications = current_user.notifications.where(read: false).count
+      unread_f = filter_blocked_u(current_user.notifications.where(read: false), 'sender_id')
+      @unread = filter_blocked_u(unread_f, 'user_id').present?
+      unread_requests_f = filter_blocked_u(current_user.notifications.where(read: false, action: 'Request'), 'sender_id')
+      @unread_requests = filter_blocked_u(unread_requests_f, 'user_id').count
+      unread_messages_f = filter_blocked_u(current_user.notifications.where(read: false, action: 'Message'), 'sender_id')
+      @unread_messages = filter_blocked_u(unread_messages_f, 'user_id').count
+      unread_notifications_f = filter_blocked_u(current_user.notifications.where(read: false), 'sender_id')
+      @unread_notifications = filter_blocked_u(unread_notifications_f, 'user_id').count
+    end
+  end
+
+  def filter_blocked_u(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
+        t
+      end
     end
   end
 

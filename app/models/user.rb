@@ -23,6 +23,7 @@ class User < ApplicationRecord
   before_save :set_tags
 
   after_create :create_tracking
+  after_destroy :photos_destroy
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -62,5 +63,10 @@ class User < ApplicationRecord
 
   def set_tags
     self.tag_list = self.interests.split(/\W+/).map { |i| i.upcase.gsub(/#/, '') }
+  end
+
+  def photos_destroy
+    profile_photo.purge
+    bike_photo.purge
   end
 end
