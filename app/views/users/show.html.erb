@@ -2,75 +2,86 @@
   <%= link_to '<<', :back, class: 'back-link' %>
 </div>
 
-<div style='max-height: 95vh; overflow-y: scroll;'>
-<div class="my-card" id='user' data-online-id="<%= @user.id %>">
-  <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
-    <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
-    <div class="my-card-body" style="padding: 0 16px;">
-      <h6 style="font-size: 4vw;"><%= @user.name %></h6>
-      <!-- render part -->
-      <div id='online-<%= @user.id %>'>
-        <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px; font-weight: 300; margin-bottom: 0 !important;">
-          Online
-          <%
-            if @user.online?
-              present_color = '#00917C;'
-            else
-              present_color = '#aaa;'
-            end
-          %>
-          <span>
-            <i class='fas fa-circle' style="color: <%= present_color %>"></i>
-          </span>
-          <% if !@user.online? %>
-            <span style="font-size: 11px;"> <%= @user.last_online %></span>
-          <% end %>
-        </p>
-      </div>
-      <!-- end of render part -->
-      <hr style="width: 95%; text-align: left; margin-left: 0;">
-      <p style="font-size: 3vw;"><%= @user.about_me %></p>
+<% if @blocked_current || @blocked %>
+  <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
+    <p style="font-size: 60px; color: #433520"><i class="fas fa-walking"></i><i class="fas fa-walking"></i></p>
+    <h6>There is nothing here for you</h6>
+    <br>
+    <p style="color: rgba(14, 0, 0, 0.38);">Please go </p> <!-- write smtng nice here-->
+    <br>
+    <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+  </div>
+<% else %>
+  <div style='max-height: 95vh; overflow-y: scroll;'>
+    <div class="my-card" id='user' data-online-id="<%= @user.id %>">
+      <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
+        <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+        <div class="my-card-body" style="padding: 0 16px;">
+          <h6 style="font-size: 4vw;"><%= @user.name %></h6>
+          <!-- render part -->
+          <div id='online-<%= @user.id %>'>
+            <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px; font-weight: 300; margin-bottom: 0 !important;">
+              Online
+              <%
+                if @user.online?
+                  present_color = '#00917C;'
+                else
+                  present_color = '#aaa;'
+                end
+              %>
+              <span>
+                <i class='fas fa-circle' style="color: <%= present_color %>"></i>
+              </span>
+              <% if !@user.online? %>
+                <span style="font-size: 11px;"> <%= @user.last_online %></span>
+              <% end %>
+            </p>
+          </div>
+          <!-- end of render part -->
+          <hr style="width: 95%; text-align: left; margin-left: 0;">
+          <p style="font-size: 3vw;"><%= @user.about_me %></p>
 
-      <!-- block/unblock -->
-      <% if @user != current_user %>
-        <% if @blocked %>
-          <% if policy(@blocked).destroy? %>
-            <%= link_to "Unblock this user!", user_blocking_path(@user, @blocked), method: :delete, style: 'color:red;' %>
+          <!-- block/unblock => imp this!! -->
+          <% if @user != current_user %>
+            <% if @blocked %>
+              <% if policy(@blocked).destroy? %>
+                <%= link_to "Unblock this user!", user_blocking_path(@user, @blocked), method: :delete, style: 'color:red;' %>
+              <% end %>
+            <% else %>
+              <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border:none;">
+      <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
+    </div>
+    <div class="my-container" style="padding: 20px 0;">
+      <div style="display: flex; flex-wrap: wrap;">
+        <% @user.tags.each do |tag| %>
+          <p class="interests"><%= link_to tag.name, tag_path(tag) %></p>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <% if @user.rides.empty? %>
+        <p class="text-secondary"> You still don't have any bike rides, go and
+          <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+        </p>
+      <% else %>
+        <% @user.rides.each do |ride| %>
+          <%= render 'rides/ride', ride: ride %>
         <% end %>
       <% end %>
-
+      <div style="padding-top: 32px;">
+        <% if policy(@user).edit? %>
+          <%= link_to "Edit Profile", edit_user_registration_path(@user), style: "background-color: #433520; padding: 8px 55px; margin-left: 60px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
+        <% end %>
+      </div>
+      <br>
     </div>
   </div>
-</div>
-
-  <div class="card" style="border:none;">
-    <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
-  </div>
-  <div class="my-container" style="padding: 20px 0;">
-    <div style="display: flex; flex-wrap: wrap;">
-      <% @user.tags.each do |tag| %>
-        <p class="interests"><%= link_to tag.name, tag_path(tag) %></p>
-      <% end %>
-    </div>
-  </div>
-  <div>
-    <% if @user.rides.empty? %>
-      <p class="text-secondary"> You still don't have any bike rides, go and
-        <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
-      </p>
-    <% else %>
-      <% @user.rides.each do |ride| %>
-        <%= render 'rides/ride', ride: ride %>
-      <% end %>
-    <% end %>
-    <div style="padding-top: 32px;">
-      <% if policy(@user).edit? %>
-        <%= link_to "Edit Profile", edit_user_registration_path(@user), style: "background-color: #433520; padding: 8px 55px; margin-left: 60px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
-      <% end %>
-    </div>
-    <br>
-  </div>
-</div>
+<% end %>

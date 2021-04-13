@@ -17,6 +17,8 @@ class Ride < ApplicationRecord
   validates :available_dates, presence: true
   validates :photos, presence: true
 
+  after_destroy :photos_destroy
+
   acts_as_favoritable
 
   def rating # sort
@@ -48,12 +50,34 @@ class Ride < ApplicationRecord
     (b + s).select { |d| (b + s).count(d) == 1 }.sort
   end
 
-  def self.total_valid
-    all.select do |i|
-      if i.valid_dates.present?
-        i
+  def self.total_valid(user) # don't display current_user ride, don't display rides with invalid dates
+    # don't display rides of users that current_user blocked
+    blocked_users = user.blockings.map { |b| b.blocked_user }
+    # don't display rides of a users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+    all.reject do |r|
+      if r.user_id == user.id || !r.valid_dates.present? || blocked_users.include?(r.user_id) || user_blocked_by.include?(r.user_id)
+        r
       end
     end
   end
+
+   def photos_destroy
+    photos.all.each do |photo|
+      photo.purge
+    end
+  end
+
+  # def self.total_valid
+  #  all.select do |i|
+  #    if i.valid_dates.present?
+  #      i
+  #   end
+  #  end
+  # end
 end
 

@@ -6,7 +6,7 @@ class BlockingsController < ApplicationController
   def create
     @blocking = current_user.blockings.create(blocked_user: params[:user_id])
     authorize @blocking
-    redirect_to user_path(@blocking.blocked_user), notice: 'User successfully blocked!'
+    redirect_to rides_path, notice: 'User successfully blocked!'
     update_tracking
   end
 

@@ -3,6 +3,7 @@ class Message < ApplicationRecord
   has_one_attached :attachment
   encrypts :content #, type: :text => argument error: unknown type text
   blind_index :content, slow: true
+  after_destroy :attachment_destroy
 
   validates :content, presence: true, unless: ->(message){message.attachment.present?}
   validates :attachment, presence: true, unless: ->(message){message.content.present?}
@@ -18,6 +19,12 @@ class Message < ApplicationRecord
       created_at.localtime.strftime("Yesterday at %l:%M %p")
     else
       created_at.localtime.strftime("%b %e at %l:%M %p")
+    end
+  end
+
+  def attachment_destroy
+    if attachment.attached?
+      attachment.purge
     end
   end
 end

@@ -25,10 +25,7 @@
               <% m[1].each do |media| %>
                 <div class='col' style='width: 70px; height: 70px; padding-left: 0px;'>
                   <%= cl_image_tag media.attachment.key, width: 70, height: 70, crop: :fill, class:'imgs', style: 'padding: 2px;' %>
-                  <%  p = cl_image_path(media.attachment.key).split(/upload/)
-                    d_link = p[0] + 'upload/fl_attachment' + p[1]
-                  %>
-                  <a href="<%= d_link %>" style="position: relative; left:56%; top: -24px; margin:0;">
+                  <a href="<%= download_link(cl_image_path(media.attachment.key)) %>" style="position: relative; left:56%; top: -24px; margin:0;">
                     <i class="fas fa-arrow-circle-down" style="font-size: 12px; border-radius: 50%; background-color: #696969; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
                   </a>
                 </div>

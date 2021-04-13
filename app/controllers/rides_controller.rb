@@ -5,23 +5,31 @@ class RidesController < ApplicationController
   def index # filter
     case params[:select]
       when '3' # ratings
-        @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid.sort_by { |r| r.rating }.reverse!
+        @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid(current_user).sort_by { |r| r.rating }.reverse!
       when '4' # difficulty asc
-        @rides = policy_scope(Ride).order(:difficulty).includes([:user, :reviews]).total_valid
+        @rides = policy_scope(Ride).order(:difficulty).includes([:user, :reviews]).total_valid(current_user)
       when '1' # num of people asc
-        @rides = policy_scope(Ride).order(:number_of_people).includes([:user, :reviews]).total_valid
+        @rides = policy_scope(Ride).order(:number_of_people).includes([:user, :reviews]).total_valid(current_user)
     else # 2 => default => available_dates: :asc  => earliest
-      @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid.sort_by { |r| r.valid_dates.first }
+      @rides = policy_scope(Ride).includes([:user, :reviews]).total_valid(current_user).sort_by { |r| r.valid_dates.first }
     end
     update_tracking
   end
 
   def show # imp!
+    @blocked = current_user.blockings.find_by(blocked_user: @ride.user.id)
+    @blocked_current = @ride.user.blockings.find_by(blocked_user: current_user.id)
+
     requests = Request.where(ride_id: @ride.id, user_id: current_user, recipient_id: @ride.user_id)
     all_dates = requests.map { |r| r.ride_date.to_date }.select { |r| r >= Time.now }
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
+    # remove reviews from blocked
+    if @ride.reviews.present?
+      @reviews = filter_blocked(@ride.reviews, 'participant')
+    end
+
     @request = Request.new
     update_tracking
   end
@@ -73,6 +81,23 @@ class RidesController < ApplicationController
   def update_tracking
     tracking = Tracking.find_by(user: current_user.id)
     tracking.update!(location: request.url, location_time: Time.now)
+  end
+
+  def filter_blocked(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t.booking[this_id]) || user_blocked_by.include?(t.booking[this_id])
+        t
+      end
+    end
   end
 
   private

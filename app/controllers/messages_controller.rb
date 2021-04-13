@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
         Notification.create!(
           user: recipient,
           sender_name: sender_name,
+          sender_id: m.sender_id,
           action: 'Message',
           action_id: @conversation.id,
           action_time: Time.now,
