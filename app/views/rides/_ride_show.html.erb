@@ -1,9 +1,9 @@
 <!-- carousel -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style='margin-top:24px;'>
-  <div class="carousel-inner" style='border-radius: 16px; height: 37vw; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
+  <div class="carousel-inner" style='border-radius: 16px; height: 148px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);'>
     <% ride.photos.each_with_index do |photo, i| %>
       <div class="carousel-item <%= 'active' if i == 0 %>">
-        <%= cl_image_tag photo.key, class: "d-block w-100" %>
+        <%= cl_image_tag photo.key, width: 315, height: 148, class: "" %>
       </div>
     <% end %>
   </div>

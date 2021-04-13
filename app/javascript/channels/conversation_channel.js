@@ -66,6 +66,7 @@ const submitAttachment = () => {
 const submitOnEnter = () => {
   const messageInput = document.getElementById("message_content");
   if(messageInput) {
+    messageInput.focus();
     messageInput.addEventListener("keydown", (e) => {
       if(e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
