@@ -12,13 +12,43 @@
     <h5 style='text-align: center; padding-top: 24px;'>Notifications</h5>
     <div class='notifications-box'>
     <% @notifications.each do |n| %>
-      <% css_class = n.read ? 'read' : 'not-read' %>
-      <% if n.link.present? %>
-        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
-      <% else %>
-        <p class="<%= css_class %>"><%= n.content %></p>
-      <% end %>
+      <div class='n-box'>
+        <% css_class = n.read ? 'read' : 'not-read' %>
+
+        <% if n.action == "Message" || n.action == "Messages" %>
+          <div class='n-icon'><i class="far fa-comment-alt"></i></div>
+        <% elsif n.action == "Request" %>
+          <div class='n-icon'><i class="fas fa-user-plus"></i></div>
+        <% else %>
+          <div class='n-icon'><i class="fas fa-star"></i></div>
+        <% end %>
+
+        <div>
+          <div style="display:flex; justify-content: center;">
+          <h6><%= n.sender_name %>,</h6>
+          <small style='padding-left: 12px;'><%= n.date_display %></small>
+          </div>
+          <p style="padding-left: 8px;" class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
+        </div>
+      </div>
     <% end %>
+
     </div>
   <% end %>
 </div>
+
+<style>
+  .n-box {
+    display: flex;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #fbfbfb;
+    padding: 8px 4px;
+    box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 38%);
+  }
+  .n-icon {
+    font-size: 32px;
+    padding: 8px;
+    color: #696969;
+  }
+</style>
