@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :media]
-  after_action :read_message_notifications, only: :show  # check read part
+  after_action :read_message_notifications, only: :show  # check read part!!
 
   def index
     conversations = policy_scope(Conversation).where(recipient_id: current_user).includes([:messages]) + policy_scope(Conversation).where(sender_id: current_user).includes([:messages])
@@ -14,7 +14,7 @@ class ConversationsController < ApplicationController
     c2 = filter_blocked(msgs_present, 'recipient_id')
     msgs_present_filtered = filter_blocked(c2, 'sender_id')
 
-    @conversations = no_msgs_filtered + msgs_present_filtered
+    @conversations = msgs_present_filtered + no_msgs_filtered
 
     update_tracking
   end
@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
       ids = c3.select { |c| c[0].match?(@query.downcase) }
       @conversations = ids.present? ? ids.map { |i| policy_scope(Conversation).find(i[1]) } : []
     else
-      @conversations = no_msgs_filtered + msgs_present_filtered
+      @conversations = msgs_present_filtered + no_msgs_filtered
     end
     update_tracking
   end
@@ -93,6 +93,7 @@ class ConversationsController < ApplicationController
     Notification.create!(
       user: recipient,
       sender_name: sender_name,
+      sender_id: @request.recipient_id,
       action: 'Request',
       action_id: @request.id,
       action_time: Time.now,

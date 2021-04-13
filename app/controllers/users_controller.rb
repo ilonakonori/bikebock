@@ -25,17 +25,22 @@ class UsersController < ApplicationController
 
   def notifications # works good
     @user = current_user
-    @notifications = Notification.where(user_id: @user.id).order(action_time: :desc)
+    notifications_f = filter_blocked(@user.notifications.order(action_time: :desc), 'sender_id')
+    @notifications = filter_blocked(notifications_f, 'user_id')
     update_tracking
     authorize @user
   end
 
   def unread
     @user = current_user
-    @unread = @user.notifications.where(read: false).present?
-    @unread_requests = @user.notifications.where(read: false, action: 'Request').count
-    @unread_messages = @user.notifications.where(read: false, action: 'Message').count
-    @unread_notifications = @user.notifications.where(read: false).count
+    unread_f = filter_blocked(@user.notifications.where(read: false), 'sender_id')
+    @unread = filter_blocked(unread_f, 'user_id').present?
+    unread_requests_f = filter_blocked(@user.notifications.where(read: false, action: 'Request'), 'sender_id')
+    @unread_requests = filter_blocked(unread_requests_f, 'user_id').count
+    unread_messages_f = filter_blocked(@user.notifications.where(read: false, action: 'Message'), 'sender_id')
+    @unread_messages = filter_blocked(unread_messages_f, 'user_id').count
+    unread_notifications_f = filter_blocked(@user.notifications.where(read: false), 'sender_id')
+    @unread_notifications = filter_blocked(unread_notifications_f, 'user_id').count
     authorize @user
      respond_to do |format|
       format.html
@@ -48,24 +53,43 @@ class UsersController < ApplicationController
     tracking.update!(location: request.url, location_time: Time.now)
   end
 
+  def filter_blocked(this_users, this_id)
+    # don't display users that current_user blocked
+    blocked_users = current_user.blockings.map { |b| b.blocked_user }
+    # don't display users that blocked current_user
+    user_blocked_by = Blocking.all.select do |b|
+                        if b.blocked_user == current_user.id
+                          b
+                        end
+                      end.map { |b| b.user_id }
+
+    this_users.reject do |t|
+      if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
+        t
+      end
+    end
+  end
+
   private
 
   def set_notifications
     @user = current_user
-    msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_name).group(:sender_name).having("count(*) > 1").select(:sender_name).size
+    msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_id).group(:sender_id).having("count(*) > 1").select(:sender_id).size
 
     msgs.each do |m|
+      sender_name = User.find(m[0]).name
       @user.notifications.create!(
         user: @user,
-        sender_name: m[0],
+        sender_name: sender_name,
+        sender_id: m[0],
         action: 'Messages',
-        action_id: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.action_id,
-        action_time: @user.notifications.where(sender_name: m[0], action: 'Message').last.action_time,
+        action_id: @user.notifications.where(read: false, action: 'Message', sender_id: m[0]).first.action_id,
+        action_time: @user.notifications.where(sender_id: m[0], action: 'Message').last.action_time,
         read: false,
-        content: "#{m[0]} sent you #{m[1]} messages",
-        link: @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).first.link
+        content: "#{sender_name} sent you #{m[1]} messages",
+        link: @user.notifications.where(read: false, action: 'Message', sender_name: sender_name).first.link
       )
-      @user.notifications.where(read: false, action: 'Message', sender_name: m[0]).destroy_all
+      @user.notifications.where(read: false, action: 'Message', sender_id: m[0]).destroy_all
     end
     authorize @user
   end

@@ -64,6 +64,7 @@ class RequestsController < ApplicationController
       Notification.create!(
         user: recipient,
         sender_name: sender_name,
+        sender_id: r.user_id,
         action: 'Request',
         action_id: r.id,
         action_time: Time.now,
@@ -85,6 +86,7 @@ class RequestsController < ApplicationController
     Notification.create!(
         user: recipient,
         sender_name: sender_name,
+        sender_id: @request.recipient_id,
         action: 'Request',
         action_id: @request.id,
         action_time: Time.now,
