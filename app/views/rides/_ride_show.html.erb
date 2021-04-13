@@ -18,11 +18,10 @@
 </div>
 <br>
 
-<h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> |
-  <!-- check this! -->
+<h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %> 
   <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
-  <% if @reviews %>
-     | <a id='reviews-btn'>Reviews</a>
+    <% if @reviews %>
+     <a id='reviews-btn' style="font-size: 3vw; margin: 2px; color: #00917C;"><%= ride.avg_rating %></a>
   <% end %>
 </h5>
 <!-- ride details -->
@@ -139,18 +138,21 @@
   <br>
   <button id='closeReviews'><span aria-hidden="true">&times;</span></button>
   <div id='r-box' style="max-height: 400px; padding: 16px; width: 300px; overflow-y: scroll;">
-    <h6 class='rd'>Reviews</h6>
-    <p class=""><%= ride.avg_rating %> (<%= pluralize ride.reviews.size, "review" %>)</p>
-    <% if @reviews %>
-      <% @reviews.each do |review| %>
-        <div class='review-card'>
-          <span class='rd'><%= User.find(review.booking.participant).name %>, <small class='rd'><%= review.created_at.strftime('%e %B %Y')%></small></span>
-          <p class='rd'><%= review.content %></p>
-          <% review.rating.times do %>
-            <i style='color: #00917c;' class="fas fa-star"></i>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
+     <h6 style="text-align: center; font-size: 16px; line-height: 3vh; padding-top: 0 !important; font-weight: 600;">Overall Rating</h6>
+     <a id='reviews-btn' style="font-size: 5vw; margin: 13.5vh; color: #00917C; margin-bottom: 16px;"><%= ride.avg_rating %></a>
+     <p style="font-size: 2vw; text-align: center; line-height: 3vh;">Based on 23 reviews</p>
+     <% ride.reviews.each do |review| %>
+      <div style="display: flex; justify-content: flex-start;">
+        <%= cl_image_tag User.find(review.booking.participant).profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: -3px 2px;" %>
+        <p style="font-size: 12px; line-height: 3vh; padding-left: 2px;"><%= User.find(review.booking.participant).name %>,</p>
+        <p style="font-size: 75%; padding-left: 2px; line-height: 3vh;"> <%= review.created_at.strftime('%e %B %Y')%>
+        <% review.rating.times do %>
+          <i style='color: #00917c;' class="fas fa-star"></i>
+        <% end %>
+      </div>
+        <p style= "font-size: 12px;"><%= review.content %></p>
+        <% end %>
+        <br>
+    </div>
   </div>
 </div>
