@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     collection do
       get :bookmarks
       get :notifications
+      get :privacy
     end
-    resources :blockings, only: [:index, :create, :destroy]
+    resources :blockings, only: [:create, :destroy]
   end
 
   resources :rides do

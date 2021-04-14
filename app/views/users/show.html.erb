@@ -41,15 +41,9 @@
           <hr style="width: 95%; text-align: left; margin-left: 0;">
           <p style="font-size: 3vw;"><%= @user.about_me %></p>
 
-          <!-- block/unblock => imp this!! -->
+          <!-- block -->
           <% if @user != current_user %>
-            <% if @blocked %>
-              <% if policy(@blocked).destroy? %>
-                <%= link_to "Unblock this user!", user_blocking_path(@user, @blocked), method: :delete, style: 'color:red;' %>
-              <% end %>
-            <% else %>
-              <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
-            <% end %>
+            <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
           <% end %>
 
         </div>
@@ -68,13 +62,16 @@
     </div>
     <div>
       <% if @user.rides.empty? %>
-        <p class="text-secondary"> You still don't have any bike rides, go and
-          <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
-        </p>
+        <% if @user == current_user %>
+          <p class="text-secondary"> You still don't have any bike rides, go and
+            <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+          </p>
+        <% end %>
       <% else %>
-        <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
-        <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>
-
+        <% if @user == current_user %>
+          <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
+          <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>
+        <% end %>
         <% @user.rides.each do |ride| %>
           <%= render 'rides/ride', ride: ride %>
         <% end %>

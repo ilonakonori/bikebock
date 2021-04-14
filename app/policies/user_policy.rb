@@ -28,4 +28,8 @@ class UserPolicy < ApplicationPolicy
   def unread?
     true
   end
+
+  def privacy?
+    true
+  end
 end
