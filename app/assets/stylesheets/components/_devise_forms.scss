@@ -137,3 +137,12 @@ input[type="file"] {
 #new_user > div > div.form-group.email.optional.user_email {
   padding-bottom: 2px;
 }
+
+#edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid,
+#edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid > label,
+#edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid,
+#edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > label,
+#user_about_me, #user_interests {
+  text-align: left;
+  font-weight: normal;
+}

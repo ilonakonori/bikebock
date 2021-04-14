@@ -303,3 +303,58 @@ body > span > span > span.select2-search.select2-search--dropdown > input {
 #select2-select-results li {
   padding-left: 16px;
 }
+
+/* sweetalert */
+a:hover {
+  text-decoration: none;
+}
+
+.swal-footer {
+  text-align:center;
+}
+
+.swal-button {
+  background-color: #433520;
+  color: #fff;
+  border-radius: 16px;
+}
+
+.swal-button:not([disabled]):hover {
+  background-color:  #433520;
+}
+
+.swal-button:active {
+  background-color: #433520 !important;
+}
+
+.swal-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.swal-icon--warning {
+  border-color: #00917c !important;
+}
+
+.swal-icon--warning__body, .swal-icon--warning__dot {
+  position: absolute;
+  left: 50%;
+  background-color: #00917c;
+}
+
+.swal-icon--warning__dot {
+  margin-left: -3px;
+  bottom: -10px;
+}
+.swal-icon--warning__body {
+    width: 5px;
+    height: 27px;
+    top: 10px;
+    border-radius: 2px;
+    margin-left: -2px;
+}
+
+.swal-modal {
+  transform: scale(0.9);
+  border-radius: 16px;
+}

@@ -108,7 +108,8 @@
         <%= link_to 'Edit', edit_ride_path(ride), class: 'brown-btn' %>
       <% end %>
       <% if policy(ride).destroy? %>
-        <%= link_to "Delete", ride, method: :delete, data: {confirm: "Are you sure?"}, class: 'brown-btn' %>
+        <a id="sweet-alert-demo" class="brown-btn">Delete</a>
+        <%= link_to "", ride, method: :delete, class: 'hidden' %>
       <% end %>
     </div>
     <!-- request form -->
@@ -145,7 +146,7 @@
       <div style="display: flex; justify-content: flex-start;">
         <%= cl_image_tag User.find(review.booking.participant).profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: -3px 2px;" %>
         <p style="font-size: 12px; line-height: 3vh; padding-left: 2px;"><%= User.find(review.booking.participant).name %>,</p>
-        <p style="font-size: 75%; padding-left: 2px; line-height: 3vh;"> <%= review.created_at.strftime('%e %B %Y')%>
+        <p style="font-size: 75%; padding-left: 2px; line-height: 3vh;"> <%= review.created_at.strftime('%e %B %Y')%></p>
         <% review.rating.times do %>
           <i style='color: #00917c;' class="fas fa-star"></i>
         <% end %>
@@ -155,4 +156,5 @@
         <br>
     </div>
   </div>
+
 </div>
