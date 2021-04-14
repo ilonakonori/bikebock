@@ -1,0 +1,54 @@
+<div>
+  <h5 style='text-align: center; padding: 24px 0px;'>Privacy</h5>
+  <p class="nav-item m" id='blockedDropdown' style='padding-left: 16px; margin: 0;'>
+    <i class="fas fa-ban" style='font-size: 16px; color: #00917C;'></i>
+    Blocked users <!-- (<#%= pluralize @blocked.size, 'user' %>)-->
+  </p>
+  <ul id='blockedDropdownMenu' class='hide' style=''>
+    <% if @blocked.present? %>
+      <div class='notifications-box' style='overflow-y:auto; height: 76vh; padding: 0px 8px;'>
+        <% @blocked.each do |b| %>
+          <% if policy(b).destroy? %>
+            <div class="chat" id="<%= b.id %>">
+              <div class="row chat-wrapper">
+                <div class="col-md-4">
+                  <div class="compose-area">
+                    <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
+                      <ul class="chat-list">
+                        <li class="new" style='padding-top: 8px;'>
+                          <span class="pic" >
+                            <%= cl_image_tag User.find(b.blocked_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                          </span>
+                          <div class="body">
+                            <div class="header">
+                              <p class="username" style="padding-bottom: 0px; line-height: 1em;"><%= User.find(b.blocked_user).name %></p>
+                              <small style="font-size: 12px;">blocked since: <%= b.updated_at.localtime.strftime("%b %e %Y") %></small><br>
+                              <small class=""><%= link_to "Unblock this user!", user_blocking_path(@user, b), method: :delete, remote: true, style: 'color: #00917C;' %></small>
+                          </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- write smtng? or maybe nothing-->
+      <small style='padding-left: 34px; color: #696969;'>You don't have any blocked users.</small>
+    <% end %>
+  </ul>
+</div>
+
+<style>
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: inherit;
+  }
+</style>

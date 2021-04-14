@@ -1,7 +1,5 @@
 class BlockingsController < ApplicationController
-  def index
-    #@blocked_users = policy_scope(Blocking)
-  end
+  respond_to :html, :js
 
   def create
     @blocking = current_user.blockings.create(blocked_user: params[:user_id])
@@ -15,7 +13,6 @@ class BlockingsController < ApplicationController
     user = @blocking.blocked_user
     @blocking.destroy
     authorize @blocking
-    redirect_to user_path(user), notice: 'User succesfully unblocked!'
     update_tracking
   end
 

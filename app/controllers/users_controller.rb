@@ -31,6 +31,13 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def privacy
+    @user = current_user
+    @blocked = @user.blockings.order(created_at: :desc)
+    update_tracking
+    authorize @user
+  end
+
   def unread
     @user = current_user
     unread_f = filter_blocked(@user.notifications.where(read: false), 'sender_id')

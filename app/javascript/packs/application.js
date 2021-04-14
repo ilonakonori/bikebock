@@ -48,6 +48,8 @@ import { autocompleteSearchConversations } from '../plugins/autocomplete_search_
 import { autocompleteSearchMessages } from '../plugins/autocomplete_search_messages';
 import { showMyReview, showAllReviews } from '../components/init_reviews';
 import { initAnchorScroll } from '../components/init_anchor_scroll';
+import { initBlockingsDropdown } from '../components/init_blockings_dropdown';
+
 
 
 
@@ -69,6 +71,8 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
 
   initAnchorScroll();
+
+  initBlockingsDropdown();
 
   initBookmarks();
   initMsgAttachmentBtn();

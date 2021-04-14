@@ -41,15 +41,9 @@
           <hr style="width: 95%; text-align: left; margin-left: 0;">
           <p style="font-size: 3vw;"><%= @user.about_me %></p>
 
-          <!-- block/unblock => imp this!! -->
+          <!-- block -->
           <% if @user != current_user %>
-            <% if @blocked %>
-              <% if policy(@blocked).destroy? %>
-                <%= link_to "Unblock this user!", user_blocking_path(@user, @blocked), method: :delete, style: 'color:red;' %>
-              <% end %>
-            <% else %>
-              <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
-            <% end %>
+            <%= link_to 'Block this user!', user_blockings_path(@user), method: :post, style: 'color:red;' %>
           <% end %>
 
         </div>
