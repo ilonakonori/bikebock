@@ -78,5 +78,7 @@
       </div>
   <% end %>
 
-  <p style="text-align: center; color: #fff !important; margin-bottom: 0 !important;">Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p><br />
+  <p style="text-align: center; color: #fff !important; margin-bottom: 0 !important;">Unhappy?
+    <a id="sweet-alert-demo" class="">Cancel my account</a>
+    <%= link_to "", registration_path(resource_name), class: "hidden", method: :delete %></p><br />
 </div>

@@ -49,9 +49,7 @@ import { autocompleteSearchMessages } from '../plugins/autocomplete_search_messa
 import { showMyReview, showAllReviews } from '../components/init_reviews';
 import { initAnchorScroll } from '../components/init_anchor_scroll';
 import { initBlockingsDropdown } from '../components/init_blockings_dropdown';
-
-
-
+import { initSweetalert } from '../plugins/init_sweetalert';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -92,6 +90,18 @@ document.addEventListener('turbolinks:load', () => {
     minDate: new Date().fp_incr(1),
     maxDate: new Date().fp_incr(200)
   })
+
+  initSweetalert('#sweet-alert-demo', {
+    title: "Are you sure?",
+    text: "This action cannot be reversed",
+    icon: "warning",
+    buttons: [true, "Do it!"]
+  }, (value) => {
+    if (value) {
+      const link = document.querySelector('#delete-link');
+      link.click();
+    }
+  });
 });
 
 import "controllers"
