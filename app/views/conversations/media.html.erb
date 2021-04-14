@@ -11,7 +11,15 @@
 <div class='' style='padding-top: 24px; max-height: 98vh;'>
 
   <%if @media.blank? %>
-    <p style="text-align: center;">Nothing shared!</p>
+    <div style ="position: fixed; left: 20%; top: 15%; width: 60%; text-align: center;">
+       <!-- write here smtng nice -->
+      <p style="font-size: 60px;"><i class="far fa-folder-open"></i></p>
+      <h6> No Documents!</h6>
+      <br>
+      <p style="color: rgba(14, 0, 0, 0.38);"> Sorry, you have not yet shared files!</p>
+      <br>
+      <%= link_to "Chat", conversation_path(@conversation), class: 'back-link', style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+    </div>
   <% else %>
     <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
       <% @media.each do |m| %>
