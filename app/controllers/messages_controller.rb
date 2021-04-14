@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
           action_id: @conversation.id,
           action_time: Time.now,
           read: false,
-          content: "#{sender_name} sent you message",
+          content: "Sent you message",
           link: "/conversations/#{@conversation.id}#message-#{m.id}"
         )
       end

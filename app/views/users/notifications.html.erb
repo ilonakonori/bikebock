@@ -10,15 +10,55 @@
     </div>
   <% else %>
     <h5 style='text-align: center; padding-top: 24px;'>Notifications</h5>
+
     <div class='notifications-box'>
-    <% @notifications.each do |n| %>
-      <% css_class = n.read ? 'read' : 'not-read' %>
-      <% if n.link.present? %>
-        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
-      <% else %>
-        <p class="<%= css_class %>"><%= n.content %></p>
+      <% @notifications.each do |n| %>
+        <% css_class = n.read ? 'read' : 'not-read' %>
+
+        <div class="chat"> <!-- style="margin-bottom: 8px; background-color: #fbfbfb; border-radius: 8px; box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 28%);">-->
+          <div class="row chat-wrapper">
+            <div class="col-md-4">
+              <div class="compose-area">
+                <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
+                  <ul class="chat-list">
+                    <li class="new" style='padding-top: 8px;'>
+                      <span class="pic" >
+
+                        <% if n.action == "Message" || n.action == "Messages" %>
+                          <div class='n-icon' style='padding-right: 16px;'><i class="far fa-comment-alt"></i></div>
+                        <% elsif n.action == "Request" %>
+                          <div class='n-icon' style='padding-right: 12px;'><i class="fas fa-user-plus"></i></div>
+                        <% else %>
+                          <div class='n-icon' style='padding-right: 16px;'><i class="fas fa-star"></i></div>
+                        <% end %>
+
+                      </span>
+
+                      <div class="body">
+                        <div class="header">
+                          <span class="username" id="last-online"><%= n.sender_name %></span>
+                          <small class="timestamp"><%= n.date_display %></small>
+                        </div>
+                        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <% end %>
-    <% end %>
+
     </div>
   <% end %>
 </div>
+
+<style>
+  .n-icon {
+    font-size: 24px;
+    padding: 8px;
+    color: #696969;
+  }
+</style>

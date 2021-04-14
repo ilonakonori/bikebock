@@ -1,6 +1,7 @@
 class RidesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_ride, only: [:show, :edit, :update, :destroy, :fav, :unfav]
+  after_action :read_review_notifications, only: :show
 
   def index # filter
     case params[:select]
@@ -16,7 +17,7 @@ class RidesController < ApplicationController
     update_tracking
   end
 
-  def show # imp!
+  def show # imp
     @blocked = current_user.blockings.find_by(blocked_user: @ride.user.id)
     @blocked_current = @ride.user.blockings.find_by(blocked_user: current_user.id)
 
@@ -96,6 +97,15 @@ class RidesController < ApplicationController
     this_users.reject do |t|
       if blocked_users.include?(t.booking[this_id]) || user_blocked_by.include?(t.booking[this_id])
         t
+      end
+    end
+  end
+
+  def read_review_notifications
+    reviews = Notification.where(read: false, action: 'Review', link: "/rides/#{@ride.id}", user: current_user)
+    if reviews.present?
+      reviews.each do |n|
+        n.update(read: true, read_at: Time.now)
       end
     end
   end

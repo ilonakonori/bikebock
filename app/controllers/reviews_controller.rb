@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
         action_time: Time.now,
         read: false,
         link: "/rides/#{r.booking.ride.id}", # build page for this? # update notification to read: true..
-        content: "#{sender_name} wrote review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%e %B %Y')}"
+        content: "Wrote a review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%e %B %Y')}"
       )
 
       redirect_to request_path(@booking.action_id), notice: 'Thank you for your review!'

@@ -86,6 +86,20 @@
   min-height: 12vh;
 }
 
+#new_ride > div.form-group.text.required.ride_short_description > label {
+  font-weight: normal;
+  padding-bottom: 0;
+}
+
+#ride_short_description, #new_ride > div.form-group.text.required.ride_short_description {
+  text-align: left;
+  font-weight: normal;
+}
+
+#ride_available_dates {
+  background-color: #fff;
+}
+
 /* custom radio btns */
 input[type="radio" i] {
   background-color: #00917C !important;

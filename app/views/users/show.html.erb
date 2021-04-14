@@ -72,6 +72,8 @@
           <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
         </p>
       <% else %>
+        <%= link_to 'Add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+
         <% @user.rides.each do |ride| %>
           <%= render 'rides/ride', ride: ride %>
         <% end %>

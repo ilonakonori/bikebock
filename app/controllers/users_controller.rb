@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :presence, :unread]
-  before_action :set_notifications, only: :notifications
+  before_action :set_notifications, only: [:notifications, :unread]
   after_action :read_notifications, only: :notifications
   respond_to :html, :js
 
@@ -37,8 +37,13 @@ class UsersController < ApplicationController
     @unread = filter_blocked(unread_f, 'user_id').present?
     unread_requests_f = filter_blocked(@user.notifications.where(read: false, action: 'Request'), 'sender_id')
     @unread_requests = filter_blocked(unread_requests_f, 'user_id').count
+
+    unread_msgs = filter_blocked(@user.notifications.where(read: false, action: 'Messages'), 'sender_id')
+    unread_msgs_u = filter_blocked(unread_msgs, 'user_id')
+    unread_msgs_c = unread_msgs.map { |n| n.content.match(/\d+/)[0].to_i }.sum
     unread_messages_f = filter_blocked(@user.notifications.where(read: false, action: 'Message'), 'sender_id')
-    @unread_messages = filter_blocked(unread_messages_f, 'user_id').count
+    @unread_messages = filter_blocked(unread_messages_f, 'user_id').count + unread_msgs_c
+
     unread_notifications_f = filter_blocked(@user.notifications.where(read: false), 'sender_id')
     @unread_notifications = filter_blocked(unread_notifications_f, 'user_id').count
     authorize @user
@@ -87,8 +92,6 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
   def set_notifications
     @user = current_user
     msgs = @user.notifications.where(read: false, action: 'Message').select(:sender_id).group(:sender_id).having("count(*) > 1").select(:sender_id).size
@@ -103,7 +106,7 @@ class UsersController < ApplicationController
         action_id: @user.notifications.where(read: false, action: 'Message', sender_id: m[0]).first.action_id,
         action_time: @user.notifications.where(sender_id: m[0], action: 'Message').last.action_time,
         read: false,
-        content: "#{sender_name} sent you #{m[1]} messages",
+        content: "Sent you #{m[1]} messages",
         link: @user.notifications.where(read: false, action: 'Message', sender_name: sender_name).first.link
       )
       @user.notifications.where(read: false, action: 'Message', sender_id: m[0]).destroy_all
@@ -117,6 +120,8 @@ class UsersController < ApplicationController
       unread.each { |n| n.update!(read: true, read: Time.now) }
     end
   end
+
+  private
 
   def set_user
     @user = User.find(params[:id])
