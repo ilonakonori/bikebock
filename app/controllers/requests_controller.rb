@@ -70,7 +70,7 @@ class RequestsController < ApplicationController
         action_time: Time.now,
         read: false,
         link: "/requests/#{r.id}",
-        content: "#{sender_name} sent you request: #{r.ride_date}, #{r.ride.title}"
+        content: "Sent you request: #{r.ride_date}, #{r.ride.title}"
       )
 
       flash[:notice] = 'Request successfully sent'
@@ -92,7 +92,7 @@ class RequestsController < ApplicationController
         action_time: Time.now,
         read: false,
         link: "/requests/#{@request.id}",
-        content: "#{sender_name} declined your request: #{@request.ride_date}, #{@request.ride.title}"
+        content: "Declined your request: #{@request.ride_date}, #{@request.ride.title}"
       )
 
     @request.update(accepted: false)

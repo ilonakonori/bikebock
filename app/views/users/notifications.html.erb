@@ -25,11 +25,11 @@
                       <span class="pic" >
 
                         <% if n.action == "Message" || n.action == "Messages" %>
-                          <div class='n-icon'><i class="far fa-comment-alt"></i></div>
+                          <div class='n-icon' style='padding-right: 16px;'><i class="far fa-comment-alt"></i></div>
                         <% elsif n.action == "Request" %>
-                          <div class='n-icon'><i class="fas fa-user-plus"></i></div>
+                          <div class='n-icon' style='padding-right: 12px;'><i class="fas fa-user-plus"></i></div>
                         <% else %>
-                          <div class='n-icon'><i class="fas fa-star"></i></div>
+                          <div class='n-icon' style='padding-right: 16px;'><i class="fas fa-star"></i></div>
                         <% end %>
 
                       </span>
@@ -57,7 +57,7 @@
 
 <style>
   .n-icon {
-    font-size: 32px;
+    font-size: 24px;
     padding: 8px;
     color: #696969;
   }

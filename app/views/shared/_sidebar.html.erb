@@ -37,14 +37,14 @@
     </li>
     <ul id='myDropdownMenu'>
       <li class="" style=""><%= link_to 'Received', received_requests_path, class: '' %>
-        <% received = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/sent/) }.size %>
+        <% received = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/Sent/) }.size %>
         <% if received.positive? %>
           <span class='circle'><%= received %></span>
         <% end %>
       </li>
 
       <li class="s-el" style="margin-bottom: 0px;"><%= link_to 'Sent', sent_requests_path, class: '' %>
-        <% sent = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/(declined)|(accepted)|(booked)/) }.size %>
+        <% sent = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/(Declined)|(Accepted)|(Booked)/) }.size %>
         <% if sent.positive? %>
           <span class='circle'><%= sent %></span>
         <% end %>

@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :unread
+  before_action :set_notifications_u, only: :unread
+
 
   include Pundit
 
@@ -24,10 +26,34 @@ class ApplicationController < ActionController::Base
       @unread = filter_blocked_u(unread_f, 'user_id').present?
       unread_requests_f = filter_blocked_u(current_user.notifications.where(read: false, action: 'Request'), 'sender_id')
       @unread_requests = filter_blocked_u(unread_requests_f, 'user_id').count
+
+      unread_msgs = filter_blocked_u(current_user.notifications.where(read: false, action: 'Messages'), 'sender_id')
+      unread_msgs_u = filter_blocked_u(unread_msgs, 'user_id')
+      unread_msgs_c = unread_msgs.map { |n| n.content.match(/\d+/)[0].to_i }.sum
+
       unread_messages_f = filter_blocked_u(current_user.notifications.where(read: false, action: 'Message'), 'sender_id')
-      @unread_messages = filter_blocked_u(unread_messages_f, 'user_id').count
+      @unread_messages = filter_blocked_u(unread_messages_f, 'user_id').count + unread_msgs_c
       unread_notifications_f = filter_blocked_u(current_user.notifications.where(read: false), 'sender_id')
       @unread_notifications = filter_blocked_u(unread_notifications_f, 'user_id').count
+    end
+  end
+
+  def set_notifications_u
+    msgs = current_user.notifications.where(read: false, action: 'Message').select(:sender_id).group(:sender_id).having("count(*) > 1").select(:sender_id).size
+    msgs.each do |m|
+      sender_name = User.find(m[0]).name
+      current_user.notifications.create!(
+        user: current_user,
+        sender_name: sender_name,
+        sender_id: m[0],
+        action: 'Messages',
+        action_id: current_user.notifications.where(read: false, action: 'Message', sender_id: m[0]).first.action_id,
+        action_time: current_user.notifications.where(sender_id: m[0], action: 'Message').last.action_time,
+        read: false,
+        content: "Sent you #{m[1]} messages",
+        link: current_user.notifications.where(read: false, action: 'Message', sender_name: sender_name).first.link
+      )
+      current_user.notifications.where(read: false, action: 'Message', sender_id: m[0]).destroy_all
     end
   end
 
