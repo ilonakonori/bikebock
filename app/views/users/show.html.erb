@@ -62,13 +62,16 @@
     </div>
     <div>
       <% if @user.rides.empty? %>
-        <p class="text-secondary"> You still don't have any bike rides, go and
-          <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
-        </p>
+        <% if @user == current_user %>
+          <p class="text-secondary"> You still don't have any bike rides, go and
+            <%= link_to 'add ride!', new_ride_path, style: "color: #00917C; font-weight: 700;" %>
+          </p>
+        <% end %>
       <% else %>
-        <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
-        <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>
-
+        <% if @user == current_user %>
+          <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
+          <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>
+        <% end %>
         <% @user.rides.each do |ride| %>
           <%= render 'rides/ride', ride: ride %>
         <% end %>
