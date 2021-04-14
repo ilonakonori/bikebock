@@ -10,7 +10,6 @@ class BlockingsController < ApplicationController
 
   def destroy
     @blocking = Blocking.find(params[:id])
-    user = @blocking.blocked_user
     @blocking.destroy
     authorize @blocking
     update_tracking
