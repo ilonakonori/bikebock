@@ -9,19 +9,18 @@
       <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
-    <h5 style='text-align: center; padding-top: 24px;'>Notifications</h5>
 
     <div class='notifications-box'>
       <% @notifications.each do |n| %>
         <% css_class = n.read ? 'read' : 'not-read' %>
 
-        <div class="chat"> <!-- style="margin-bottom: 8px; background-color: #fbfbfb; border-radius: 8px; box-shadow: 2px 2px 4px 1px rgb(0 0 0 / 28%);">-->
+        <div class="chat">
           <div class="row chat-wrapper">
             <div class="col-md-4">
               <div class="compose-area">
                 <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
                   <ul class="chat-list">
-                    <li class="new" style='padding-top: 8px;'>
+                    <li class="new" style='padding-top: 8px; margin-bottom: 8px; background-color: #fbfbfb; border-radius: 8px; padding-right: 8px;'>
                       <span class="pic" >
 
                         <% if n.action == "Message" || n.action == "Messages" %>
