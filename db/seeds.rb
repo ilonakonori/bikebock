@@ -8,7 +8,7 @@
 require "open-uri"
 
 User.destroy_all
-Request.destroy_all
+# Request.destroy_all
 
 # user_1
 

@@ -4,11 +4,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.booking = @booking
+    @review.author_id = @booking.participant
+    @review.author = User.find(@booking.participant).name
+
     authorize @review
     if @review.save
 
       r = Review.find(@review.id)
-      sender_name = User.find(r.booking.participant).name
+      sender_name = r.author
       recipient = User.find(r.booking.user_id)
 
       Notification.create!(
@@ -19,7 +22,7 @@ class ReviewsController < ApplicationController
         action_id: r.id,
         action_time: Time.now,
         read: false,
-        link: "/rides/#{r.booking.ride.id}", # build page for this? # update notification to read: true..
+        link: "/rides/#{r.booking.ride.id}",
         content: "Wrote a review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%e %B %Y')}"
       )
 

@@ -20,8 +20,8 @@
 
 <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 4px; color: #333333;"><%= ride.title %>
   <%= link_to ride.user.name, user_path(ride.user), style: 'color: #00917C;' %>
-    <% if @reviews %>
-     <a id='reviews-btn' style="font-size: 3vw; margin: 2px; color: #00917C;"><%= ride.avg_rating %> (<%= pluralize ride.reviews.size, "review" %>)</a>
+  <% if @reviews %>
+    <a id='reviews-btn' style="font-size: 4vw; margin: 2px; color: #00917C;"><%= ride.avg_rating %></a>
   <% end %>
 </h5>
 <!-- ride details -->
@@ -109,7 +109,7 @@
       <% end %>
       <% if policy(ride).destroy? %>
         <a id="sweet-alert-demo" class="brown-btn">Delete</a>
-        <%= link_to "", ride, method: :delete, class: 'hidden' %>
+        <%= link_to "", ride, method: :delete, id: "delete-link", class: 'hidden' %>
       <% end %>
     </div>
     <!-- request form -->
@@ -135,26 +135,32 @@
   </div>
 </div>
 
-<div id='reviews' style='display: none;'>
-  <br>
-  <button id='closeReviews'><span aria-hidden="true">&times;</span></button>
-  <div id='r-box' style="max-height: 400px; padding: 16px; width: 300px; overflow-y: scroll;">
-     <h6 style="text-align: center; font-size: 16px; line-height: 3vh; padding-top: 0 !important; font-weight: 600;">Overall Rating</h6>
-     <a id='reviews-btn' style="font-size: 5vw; margin: 13.5vh; color: #00917C; margin-bottom: 16px;"><%= ride.avg_rating %></a>
-     <p style="font-size: 2vw; text-align: center; line-height: 3vh;">Based on 23 reviews</p>
-     <% ride.reviews.each do |review| %>
-      <div style="display: flex; justify-content: flex-start;">
-        <%= cl_image_tag User.find(review.booking.participant).profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: -3px 2px;" %>
-        <p style="font-size: 12px; line-height: 3vh; padding-left: 2px;"><%= User.find(review.booking.participant).name %>,</p>
-        <p style="font-size: 75%; padding-left: 2px; line-height: 3vh;"> <%= review.created_at.strftime('%e %B %Y')%></p>
-        <% review.rating.times do %>
-          <i style='color: #00917c;' class="fas fa-star"></i>
-        <% end %>
-      </div>
-        <p style="padding-left: 36px; font-size: 12px;"><%= review.content %></p>
-        <% end %>
-        <br>
+<% if @reviews %>
+  <div id='reviews' style='display: none;'>
+    <br>
+    <button id='closeReviews'><span aria-hidden="true">&times;</span></button>
+    <div id='r-box' style="max-height: 400px; padding: 16px; width: 300px; overflow-y: scroll;">
+      <h6 style="text-align: center; font-size: 16px; line-height: 3vh; padding-top: 0 !important; font-weight: 600;">Overall Rating</h6>
+      <p style="text-align: center; font-size: 6vw; margin-top: 1.5vh; color: #00917C; margin-bottom: 6px;"><%= ride.avg_rating %></p>
+      <p style="font-size: 2.5vw; text-align: center; margin-bottom: 32px;">Based on <%= pluralize ride.reviews.size, "review" %></p>
+      <% @reviews.each do |review| %>
+        <div style="display: flex; justify-content: flex-start;">
+          <% if User.where(id: review.author_id).present? %>
+            <%= cl_image_tag User.find(review.author_id).profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: -3px 2px;" %>
+          <% else %>
+            <p style="background-color: #fff; text-align: center; font-size: 16px; height: 25px; width: 25px; color: #ccc; border-radius: 50%; border: 2px solid #ccc; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: -3px 2px;">
+              <i class="fas fa-user"></i>
+            </p>
+          <% end %>
+          <p style="font-size: 12px; line-height: 3vh; padding-left: 2px;"><%= review.author %>, </p>
+          <p style="font-size: 75%; padding-left: 2px; padding-right: 4px; line-height: 3vh;"> <%= review.created_at.strftime('%e %B %Y')%></p>
+          <% review.rating.times do %>
+            <i style='color: #00917c;' class="fas fa-star"></i>
+          <% end %>
+        </div>
+          <p style="padding-left: 36px; font-size: 12px;"><%= review.content %></p>
+          <hr><br>
+      <% end %>
     </div>
   </div>
-
-</div>
+<% end %>

@@ -21,14 +21,15 @@ class ConversationsController < ApplicationController
 
   def search
     cr = filter_blocked(Conversation.where(recipient_id: current_user).order(created_at: :desc).includes([:messages]), 'recipient_id')
+    #cr1 = filter_vanished(cr)
     cr2 = filter_blocked(cr, 'sender_id')
-    c1 = cr2.map { |c| [c.id, c.sender_id] }
+    c1 = cr2.map { |c| [c.id, c.sender_name] }
 
     cs = filter_blocked(Conversation.where(sender_id: current_user).order(created_at: :desc).includes([:messages]), 'recipient_id')
     cs2 = filter_blocked(cs, 'sender_id')
-    c2 = cs2.map { |c| [c.id, c.recipient_id] }
+    c2 = cs2.map { |c| [c.id, c.recipient_name] }
 
-    c3 = (c1 + c2).map { |c| [User.find(c[1]).name.downcase, c[0]] }.sort!
+    c3 = (c1 + c2).map { |c| [c[1].downcase, c[0]] }.sort!
     @autocomplete = c3.map { |c| c[0] }.to_json
 
     conversations = policy_scope(Conversation).where(recipient_id: current_user).includes([:messages]) + policy_scope(Conversation).where(sender_id: current_user).includes([:messages])
@@ -82,7 +83,12 @@ class ConversationsController < ApplicationController
     @request = Request.find(params[:request_id])
 
     if !conversated
-      @conversation = Conversation.create(sender_id: @request.user_id, recipient_id: @request.recipient_id)
+      @conversation = Conversation.create(
+                        sender_id: @request.user_id,
+                        sender_name: User.find(@request.user_id).name,
+                        recipient_id: @request.recipient_id,
+                        recipient_name: User.find(@request.recipient_id).name
+                      )
     end
 
     @request.update(accepted: true, friend: true)
@@ -126,6 +132,12 @@ class ConversationsController < ApplicationController
       if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
         t
       end
+    end
+  end
+
+  def filter_vanished(this_users)
+    this_users.select do |c|
+      User.where(id: c.sender_id).present?
     end
   end
 
