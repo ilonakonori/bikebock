@@ -1,9 +1,11 @@
 <%
+if c.user_present(current_user)
   if c.opposed_user(current_user).online?
     present_color = '#00917C;'
   else
     present_color = '#aaa;'
   end
+end
 %>
 
 <% if c.messages.present? %>
@@ -23,12 +25,22 @@
             <ul class="chat-list">
               <li class="new" style='padding-top: 8px;'>
                 <span class="pic">
-                  <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                  <% if c.user_present(current_user) %>
+                    <%= cl_image_tag c.opposed_user(current_user).profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; border: 2px solid #fff;" %>
+                  <% else %>
+                    <p style="background-color: #fff; text-align: center; font-size: 34px; height: 60px; width: 60px; color: #ccc; border-radius: 50%; border: 2px solid #ccc;">
+                      <i class="fas fa-user"></i>
+                    </p>
+                  <% end %>
                 </span>
                 <div class="body">
                   <div class="header">
-                    <span class="username" id="last-online"><%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
-
+                    <span class="username" id="last-online">
+                      <% if c.user_present(current_user) %>
+                        <%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
+                      <% else %>
+                        <span>Deleted profile</span>
+                      <% end %>
                     <% if new_msg && new_msg.size.positive? %>
                       <% num = new_msg.last.content.match?(/\d+/) ? new_msg.last.content.match(/\d+/)[0] : new_msg.size %>
                       <span class='circle2' style=''><%= num %></span>

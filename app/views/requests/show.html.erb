@@ -73,9 +73,15 @@
 
   <div style='display:flex; justify-content: center;'>
     <% @participants.each do |p| %>
+    <% if User.where(id: participant).present? %>
       <%= link_to user_path(p) do %>
         <%= cl_image_tag p.profile_photo.key, height: 50, width: 50, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
       <% end %>
+    <% else %>
+      <p style="background-color: #fff; text-align: center; font-size: 28px; height: 50px; width: 50px; color: #ccc; border-radius: 50%; border: 2px solid #ccc; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;">
+        <i class="fas fa-user"></i>
+      </p>
+    <% end %>
     <% end %>
   </div>
 

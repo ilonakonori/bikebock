@@ -12,9 +12,11 @@ class User < ApplicationRecord
   has_one_attached :bike_photo
 
   has_many :rides, dependent: :destroy
+
   has_many :notifications, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :bookings, dependent: :destroy
+
   has_many :blockings, dependent: :destroy
 
   has_one :tracking, dependent: :destroy
@@ -24,6 +26,8 @@ class User < ApplicationRecord
 
   after_create :create_tracking
   after_destroy :photos_destroy
+  after_destroy :destroy_where_sender
+  after_destroy :destroy_tags
 
   # validations
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
@@ -68,5 +72,17 @@ class User < ApplicationRecord
   def photos_destroy
     profile_photo.purge
     bike_photo.purge
+  end
+
+  def destroy_where_sender
+    Notification.where(action: 'Request', sender_id: id).destroy_all
+    Booking.where(participant: id).each { |b| b.destroy unless b.ride_date > Time.now }
+    Blocking.where(blocked_user: id).destroy_all
+    Conversation.where(sender_id: id).each { |c| c.destroy unless User.where(id: c.recipient_id).present? }
+    Conversation.where(recipient_id: id).each { |c| c.destroy unless User.where(id: c.sender_id).present? }
+  end
+
+  def destroy_tags
+    ActsAsTaggableOn::Tag.where(taggings_count: 0).destroy_all
   end
 end

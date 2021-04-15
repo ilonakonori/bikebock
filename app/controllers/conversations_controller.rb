@@ -21,7 +21,8 @@ class ConversationsController < ApplicationController
 
   def search
     cr = filter_blocked(Conversation.where(recipient_id: current_user).order(created_at: :desc).includes([:messages]), 'recipient_id')
-    cr2 = filter_blocked(cr, 'sender_id')
+    cr1 = filter_vanished(cr)
+    cr2 = filter_blocked(cr1, 'sender_id')
     c1 = cr2.map { |c| [c.id, c.sender_id] }
 
     cs = filter_blocked(Conversation.where(sender_id: current_user).order(created_at: :desc).includes([:messages]), 'recipient_id')
@@ -126,6 +127,12 @@ class ConversationsController < ApplicationController
       if blocked_users.include?(t[this_id]) || user_blocked_by.include?(t[this_id])
         t
       end
+    end
+  end
+
+  def filter_vanished(this_users)
+    this_users.select do |c|
+      User.where(id: c.sender_id).present?
     end
   end
 

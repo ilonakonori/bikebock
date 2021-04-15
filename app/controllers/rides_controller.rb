@@ -22,13 +22,14 @@ class RidesController < ApplicationController
     @blocked_current = @ride.user.blockings.find_by(blocked_user: current_user.id)
 
     requests = Request.where(ride_id: @ride.id, user_id: current_user, recipient_id: @ride.user_id)
-    all_dates = requests.map { |r| r.ride_date.to_date }.select { |r| r >= Time.now }
+    all_dates = requests.map { |r| r.ride_date.to_date }
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
+
     @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
     # remove reviews from blocked
     if @ride.reviews.present?
-      @reviews = filter_blocked(@ride.reviews, 'participant')
+      @reviews = filter_blocked(@ride.reviews.order(created_at: :desc), 'participant')
     end
 
     @request = Request.new
