@@ -35,11 +35,10 @@ end
                 </span>
                 <div class="body">
                   <div class="header">
-                    <span class="username" id="last-online">
-                      <% if c.user_present(current_user) %>
-                        <%= c.opposed_user(current_user).name %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
-                      <% else %>
-                        <span>Deleted profile</span>
+                    <% if c.user_present(current_user) %>
+                      <span class="username" id="last-online"><%= c.opposed_name(current_user) %> <i class='fas fa-circle' style="color:<%= present_color %>"></i></span>
+                    <% else %>
+                      <span style='font-weight: 600;'><%= c.opposed_name(current_user) %><small> (Deleted profile)</small></span>
                       <% end %>
                     <% if new_msg && new_msg.size.positive? %>
                       <% num = new_msg.last.content.match?(/\d+/) ? new_msg.last.content.match(/\d+/)[0] : new_msg.size %>

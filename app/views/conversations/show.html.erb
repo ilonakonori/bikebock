@@ -26,9 +26,7 @@
               <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
             <% end %>
             <%= link_to "Media & docs", media_conversation_path(@conversation.id), class: "dropdown-item" %>
-
             <% my_link = @conversation.messages.present? ? search_messages_conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : search_messages_conversation_path(@conversation.id) %>
-
             <%= link_to search_messages_conversation_path(@conversation.id), class: "dropdown-item" do %>
               <span>Search <i style='color: #666; font-size: 11px;' class="fas fa-search"></i></span>
             <% end %>
@@ -43,47 +41,54 @@
       <%= cl_image_tag @conversation.opposed_user(current_user).profile_photo.key, height: 70, width: 70, crop: :fill, style: 'border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);' %>
     <% else %>
       <div style='display: flex; justify-content: center;'>
-        <p style="background-color: #fff; text-align: center; font-size: 36px; height: 70px; width: 70px; color: #ccc; border-radius: 50%; border: 2px solid #ccc;">
+        <p style="margin-bottom: 2px; background-color: #fff; text-align: center; font-size: 36px; height: 70px; width: 70px; color: #ccc; border-radius: 50%; border: 2px solid #ccc;">
           <i class="fas fa-user"></i>
         </p>
       </div>
     <% end %>
   </div>
 
-  <div style="text-align: center; font-size: 3vw; font-weight: 400; padding-top: 8px;">
-    <% if @conversation.user_present(current_user) %>
-    <%= @conversation.opposed_user(current_user).name %>
-    <!-- render part -->
-    <div id='online-<%= @conversation.opposed_user(current_user).id %>'>
-      <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 11px;font-weight: 300;">
-        Online
-        <%
-          if @conversation.opposed_user(current_user).online?
-            present_color = '#00917C;'
-          else
-            present_color = '#aaa;'
-          end
-        %>
-        <span>
-          <i class='fas fa-circle' style="color:<%= present_color %>"></i>
-        </span>
-        <% if !@conversation.opposed_user(current_user).online? %>
-          <span style="font-size: 11px;"> <%= @conversation.opposed_user(current_user).last_online %></span>
-        <% end %>
-      </p>
+  <% if @conversation.user_present(current_user) %>
+
+    <div style="text-align: center; font-size: 4vw; font-weight: 600; padding-top: 8px;">
+      <%= @conversation.opposed_user(current_user).name %>
+      <!-- render part -->
+      <div id='online-<%= @conversation.opposed_user(current_user).id %>'>
+        <p id='user' data-online-id="<%= @conversation.opposed_user(current_user).id %>" style="font-size: 11px;font-weight: 300;">
+          Online
+          <%
+            if @conversation.opposed_user(current_user).online?
+              present_color = '#00917C;'
+            else
+              present_color = '#aaa;'
+            end
+          %>
+          <span>
+            <i class='fas fa-circle' style="color:<%= present_color %>"></i>
+          </span>
+          <% if !@conversation.opposed_user(current_user).online? %>
+            <span style="font-size: 11px;"> <%= @conversation.opposed_user(current_user).last_online %></span>
+          <% end %>
+        </p>
+      </div>
+      <!-- end of render part -->
     </div>
-    <!-- end of render part -->
-    <% else %>
-      <p>Deleted profile</p>
-    <% end %>
-  </div>
 
+  <% else %>
 
+    <div style="text-align: center; font-size: 4vw; margin:0; margin-bottom: 16px;">
+      <p style="font-weight: 600; margin:0;"><%= @conversation.opposed_name(current_user) %></p>
+      <small> (Deleted profile)</small>
+    </div>
+
+  <% end %>
+
+</div>
 
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
 
       <div style='display: flex; justify-content: center;'>
-        <div class='user-not'>
+        <div class='user-not' style='margin-top: 16px; width: 94%;'>
           <small>
             <i class="fas fa-lock fa-m"> </i>
             Bike Bock Protects and Secures Your Personal Messages.
