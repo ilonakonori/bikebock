@@ -50,6 +50,7 @@ import { showMyReview, showAllReviews } from '../components/init_reviews';
 import { initAnchorScroll } from '../components/init_anchor_scroll';
 import { initBlockingsDropdown } from '../components/init_blockings_dropdown';
 import { initSweetalert } from '../plugins/init_sweetalert';
+import { initLoadPopup } from '../components/init_load_popup';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -71,7 +72,7 @@ document.addEventListener('turbolinks:load', () => {
   initAnchorScroll();
 
   initBlockingsDropdown();
-
+  initLoadPopup();
   initBookmarks();
   initMsgAttachmentBtn();
   submitAttachment();
