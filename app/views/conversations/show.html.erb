@@ -123,7 +123,7 @@
         <i id="upload-btn" class="fas fa-paperclip"></i>
         <%= f.input :attachment, as: :file, label: false, input_html: { hidden: true } %>
       </div>
-      <button type="submit" class='myBtn' style="">
+      <button type="submit" class='myBtn' onclick=playAudio(); style="">
         <i class="fas fa-paper-plane"></i>
       </button>
       <!-- end of msg-input-container  -->
@@ -131,3 +131,9 @@
 <% end %>
 </div>
 <% end %>
+<%= audio_tag "bubble.wav", id: "oof-audio" %>
+<script>
+  function playAudio() {
+    document.getElementById('oof-audio').play();
+  }
+</script>
