@@ -33,7 +33,7 @@ import { initConversationCable, submitAttachment, submitOnEnter } from '../chann
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../components/init_presence';
 import { initPresenceCurrent } from '../components/init_presence_current';
-import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
+import { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRide1 } from '../components/file_input_preview';
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
 import { initBookmarks } from '../components/init_bookmarks';
 import { initCloseAlert } from '../components/init_close_alert';
@@ -58,6 +58,9 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2();
   fileInputPreviewAvatar();
   fileInputPreviewBike();
+
+  fileInputPreviewRide1();
+
   initProfilePhotoBtn();
   initRequestsDropdown();
   initReviewForm();

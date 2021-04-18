@@ -5,6 +5,11 @@ class Ride < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
 
+  has_one_attached :photo_1
+  has_one_attached :photo_2
+  has_one_attached :photo_3
+
+
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..26 }, format: { with: /[[:alpha:]]/ }
   validates :short_description, presence: true, length: { in: 50..900 }

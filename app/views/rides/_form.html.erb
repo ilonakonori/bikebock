@@ -44,10 +44,61 @@
                 required: true,
                 label: "Available dates:" %>
 
+    <div id='photo_1' style=''>
+    <%= f.input :photo_1,
+                  as: :file,
+                  label: 'photo',
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+    </div>
+
+
+    <div id='photo_2' style='display:none;'>
+    <%= f.input :photo_2,
+                  as: :file,
+                  label: 'photo',
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+   </div>
+
+    <div id='photo_3' style='display:none;'>
+    <%= f.input :photo_3,
+                  as: :file,
+                  label: 'photo',
+                  required: true,
+                  autofocus: true,
+                  input_html: { class: 'custom-file-input'},
+                  label_html: { class: 'custom-file-label' },
+                  wrapper_html: { class: 'custom-file' } %>
+    </div>
+
+
+      <p id='photo_done' style='display:none;'>All set up!</p>
+
+
+    <div class='row' style='display:flex; justify-content: flex-start; margin-left: -6px;'>
+    <div id="previewPhoto1" class='my-3' ></div>
+    <div id="previewPhoto2" class='my-3'></div>
+    <div id="previewPhoto3" class='my-3'></div>
+
+   </div>
+
+
+
+
+
+
+<!--
     <div data-controller="multi-upload" data-action ="input->multi-upload#addFile" style='padding-bottom: 0.2em;'>
       <div class="multi-upload">
 
-        <%= f.input :photos,
+        <#%= f.input :photos,
                   as: :file,
                   required: true,
                   autofocus: true,
@@ -58,7 +109,7 @@
       <div data-multi-upload-target="files"></div>
     </div>
 
-
+-->
     <% if ride.persisted? %>
 
       <div class="my-row current-photos">
