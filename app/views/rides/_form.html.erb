@@ -44,26 +44,32 @@
                 required: true,
                 label: "Available dates:" %>
 
-
     <% if ride.persisted? %>
 
+      <p>Photos: <abbr title="required">*</abbr></p>
       <div class="my-row current-photos">
+        <div class='photo-box'>
         <div id="previewPhoto1"><%= cl_image_tag ride.photo_1.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_1" %>
           <i id="upload_photo_1" class="fas fa-times-circle pr"></i>
         </div>
+        </div>
         <%= f.input :photo_1, as: :file, label: false, input_html: { hidden: true } %>
+        <div class='photo-box'>
         <div id="previewPhoto2"><%= cl_image_tag ride.photo_2.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_2" %>
           <i id="upload_photo_2" class="fas fa-times-circle pr"></i>
         </div>
+        </div>
         <%= f.input :photo_2, as: :file, label: false, input_html: { hidden: true } %>
+        <div class='photo-box'>
         <div id="previewPhoto3"><%= cl_image_tag ride.photo_3.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_3" %>
           <i id="upload_photo_3" class="fas fa-times-circle pr"></i>
+        </div>
         </div>
         <%= f.input :photo_3, as: :file, label: false, input_html: { hidden: true } %>
       </div>
 
       <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
-        <%= f.submit value="Save", class: "brown-btn" %>
+        <%= f.submit value="Save", id: 'updated-ride', class: "brown-btn" %>
       </div>
 
     <% else %>
@@ -104,9 +110,9 @@
       <p id='photo_done' style='display:none;'>All set up!</p>
 
       <div class="my-row current-photos">
-        <div id="previewPhoto1"></div>
-        <div id="previewPhoto2"></div>
-        <div id="previewPhoto3"></div>
+        <div class='photo-box'><div id="previewPhoto1"></div></div>
+        <div class='photo-box'><div id="previewPhoto2"></div></div>
+        <div class='photo-box'><div id="previewPhoto3"></div></div>
       </div>
 
       <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
@@ -122,18 +128,3 @@
   <div id='load-box-ride' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
   <br><p style='font-weight: 700;color: #495057;'>Hold tight, you are almost there!</p><br>
 </div>
-
-<style>
-  #photo_1 > div > label, #photo_2 > div > label, #photo_3 > div > label {
-    border-radius: 16px;
-  }
-  #photo_1 > div, #photo_2 > div, #photo_3 > div {
-   margin-bottom: 8px;
-  }
-
-  /* style this somehow
-  .pr {
-
-  }
-  */
-</style>
