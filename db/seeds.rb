@@ -50,11 +50,11 @@ User.destroy_all
 
     # photos
     image1 = File.open('app/assets/images/deutsches_technik_museum.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://d2exd72xrrp1s7.cloudfront.net/www/000/1k3/1w/1w39xmc1bguji1p8z1qgjsxfj82ysh8mvw-uhi5702063/0?width=3072&height=2304&crop=&q=70')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://d2exd72xrrp1s7.cloudfront.net/www/000/1k3/1c/1ccf1rzzfhrw9a4zg08ori032yshew3r-uhi5702118/0?width=3072&height=2304&crop=&q=70')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -102,11 +102,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/nikolassee_route.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Museumsdorf%20D%C3%BCppel_DL_PPT_2.jpg.webp?itok=8HCQ9TQf')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -154,11 +154,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/along_the_river_spree.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/regierungsviertel51_DL_PPT_2.jpg.webp?itok=sYeJd9Af')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/brandenburger_tor_fruehling_650696492_gettyimages_sborisov.jpg.webp?itok=DdbLFtHJ')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -207,11 +207,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/always_follow_the_water.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Mueggelturm_2018_Sonnenterrasse_c_Berliner_Mueggelturm_UG_Foto_Swen_Bernitz_DL_PPT_0.jpg.webp?itok=2TnIotUO')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Mueggelturm_c_visitBerlin_Foto_Kneiske%20%283%29_DL_PPT_0.jpg.webp?h=d1f6bb1a&itok=4sERW_54')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -260,11 +260,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/wansee_cycle_route.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0353_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_0.jpg.webp?itok=Ssjcvgmi')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Schloss_Pfaueninsel_c_SPSG_Foto_Michael_L%C3%BCder_F0019018_DL_PPT_0.jpg.webp?h=ab7dd816&itok=sQ3bv-Qz')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -312,11 +312,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/bicycle_ride_through_reinickendorf.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/tegelersee14_c_visitBerlin_Foto_Dagmar_Schwelle_DL_PPT_1.jpg.webp?itok=FvdwLWHi')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://d2exd72xrrp1s7.cloudfront.net/www/000/1k4/1a/1azon53nuewbl6pt9aaqok7vw3al9o7bn-uhi10788341/0?width=3072&height=2304&crop=&q=70')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -364,11 +364,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/cycling_tour_at_tiegarten.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Tiergarten_c_Maxi-Lena_Schuleit%20%289%29_DL_PPT_0.jpg.webp?itok=JmuOXJ-V')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Siegess%C3%A4ule_iStock_c_SHansche_DL_PPT_0.jpg.webp?h=31459d7b&itok=WmKgJ-cp')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -419,11 +419,11 @@ end
 
     # photos
     image1 = File.open('app/assets/images/bike_ride_through_treptow_kopenick.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/mueggelsee10_c_visitBerlin_Foto_Dagmar_Schwelle_DL_PPT_0.jpg.webp?itok=aQl5KqLN')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/koepenickaltstadt01_c_visitBerlin_Foto_Dagmar_Schwelle_DL_PPT_0.jpg.webp?h=06f6671c&itok=6xn_2eMr')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -472,12 +472,12 @@ end
     puts "New ride not saved!"
 
     # photos
-    image1 = File.open('app/assets/images/altlandsberg_to_buckow.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image1 = URI.open('https://media.bikemap.net/routes/2989516/staticmaps/2989516_400x400.jpg')
+    new_ride.photo_1.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = File.open('app/assets/images/buckow_1.png')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = File.open('app/assets/images/buckow_2.png')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -524,12 +524,12 @@ end
     puts "New ride not saved!"
 
     # photos
-    image1 = File.open('app/assets/images/templiner_see_and_schwielowsee.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = File.open('app/assets/images/templiner_see_1.jpeg')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = File.open('app/assets/images/templiner_see_2.png')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    image1 = URI.open('https://www.tagesspiegel.de/images/rund-um-den-schwielowsee/13511562/2-format43.png')
+    new_ride.photo_1.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image2 = URI.open('https://upload.wikimedia.org/wikipedia/commons/5/54/Potsdam_view_from_above.jpg')
+    new_ride.photo_2.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = URI.open('https://img.fotocommunity.com/abendstimmung-am-templiner-see-1278beb1-82e4-4b47-baff-8e2379f5c60c.jpg?height=1080')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -577,12 +577,12 @@ end
     puts "New ride not saved!"
 
     # photos
-    image1 = File.open('app/assets/images/havelland_radweg.png')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    image1 = URI.open('https://media.bikemap.net/routes/2322155/staticmaps/2322155_400x400.jpg')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://potsdamer-brandenburger-havelseen.de/tl_files/content/3spalten/image_rad_3.jpg')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://potsdamer-brandenburger-havelseen.de/tl_files/content/3spalten/image_rad_2.jpg')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -629,11 +629,11 @@ end
 
     # photos
     image1 = URI.open('https://www.berlin.de/binaries/asset/image_assets/4138048/ratio_2_1/1531212987/972x486/')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.fattiretours.com/uploads/7386/berlin%20wall%20bike%20tour%20hero-675x317.jpg')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('http://spinlister-blog.s3.amazonaws.com/2016/04/Berliner-Mauerweg-13.jpg')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
@@ -681,11 +681,11 @@ end
 
     # photos
     image1 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/TegelerSee_Fruehling_c_visitBerlin_Foto_DagmarSchwelle%20%289%29_DL_PPT_1.jpg.webp?itok=myhbD-iZ')
-    new_ride.photos.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
+    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/Lichterfelde%20am%20Teltowkanal_c_visumate_DL_PPT_0.jpg.webp?itok=cIsagarc')
-    new_ride.photos.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.lichtenrade-berlin.de/images/lichtenrade-berlin-maelzerei.jpg')
-    new_ride.photos.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
