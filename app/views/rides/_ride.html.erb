@@ -1,5 +1,5 @@
 
-<div id='ride-<%= ride.id %>' class="rides">
+<div id='ride-<%= ride.id %>' class="rides <%= current_user.account.theme %>">
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
     <div>
       <% if policy(ride).fav? %>
@@ -29,13 +29,13 @@
       <br>
       <div style="display: flex; justify-content: start;">
         <div style="display: flex; justify-content: start; color: #00917C; font-size: 12px;">
-          <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 8px; color: #333333;"><%= ride.title[0..25] %></h5>
+          <h5 class="r-h5 <%= current_user.account.theme %>"><%= ride.title[0..25] %></h5>
           <% if ride.reviews.present? %>
             <p class=""><%= ride.avg_rating %> (<%= pluralize ride.reviews.size, "review" %>)</p>
           <% end %>
         </div>
       </div>
-        <p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= ride.short_description[0..200] %>...</p>
+        <p class="r-p <%= current_user.account.theme %>"><%= ride.short_description[0..200] %>...</p>
 
         <!-- ride dates -->
         <div class="my-container" style="padding: 0;">

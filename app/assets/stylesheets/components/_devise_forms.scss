@@ -173,15 +173,30 @@ input[type="file"] {
 /* edit */
 .edit-container {
   margin-top: 24px;
-  background-color: #E5E5E5; /* dark-mode: #4d4d4d */
   padding-top: 16px !important;
+}
+
+.edit-container.light-mode {
+  background-color: #E5E5E5;
+}
+
+.edit-container.dark-mode {
+  background-color: #4d4d4d;
 }
 
 .user-box {
   margin: 16px;
   text-align: center;
-  color: #fff; /* #e4e4e4 */
   font-weight: 600;
+}
+
+.user-box.light-mode {
+  color: #fff;
+}
+
+.user-box.dark-mode {
+  color: #e4e4e4;
+  background-color: #4d4d4d;
 }
 
 .user-photo {
@@ -191,18 +206,31 @@ input[type="file"] {
 
 #photo-btn {
   font-size: 21px;
-  position: absolute;
-  left: 61%;
-  top: 11.5%;
+  position: relative;
+  left: 16%;
+  top: -29px;
   border-radius: 50%;
-  background-color: #d2d2d2; /* #4d4d4d */
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 38%);
 }
 
-/* .form-control {
-  background-color: #ddd;
+.fas.fa-plus-circle.light-mode {
+  background-color: #d2d2d2;
 }
 
+.fas.fa-plus-circle.dark-mode {
+  background-color: #4d4d4d;
+}
+
+.form-control.dark-mode {
+  background-color: #ddd;
+  color: #495057;
+}
+
+.form-control.light-mode {
+  background-color: #fff;
+  color: #495057;
+}
+/*
 .text-muted {
   color: #ccc !important;
 }

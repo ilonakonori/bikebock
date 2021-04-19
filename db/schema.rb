@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_154956) do
+ActiveRecord::Schema.define(version: 2021_04_19_192753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.boolean "subscribed", default: false
+    t.string "theme", default: "light-mode"
+    t.boolean "email_notification", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -108,6 +118,13 @@ ActiveRecord::Schema.define(version: 2021_04_15_154956) do
     t.string "link"
     t.integer "sender_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.bigint "ride_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ride_id"], name: "index_photos_on_ride_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -216,12 +233,14 @@ ActiveRecord::Schema.define(version: 2021_04_15_154956) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blockings", "users"
   add_foreign_key "bookings", "rides"
   add_foreign_key "bookings", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "notifications", "users"
+  add_foreign_key "photos", "rides"
   add_foreign_key "requests", "rides"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "bookings"
