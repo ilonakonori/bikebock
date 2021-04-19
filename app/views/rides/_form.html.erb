@@ -44,43 +44,87 @@
                 required: true,
                 label: "Available dates:" %>
 
-    <div data-controller="multi-upload" data-action ="input->multi-upload#addFile" style='padding-bottom: 0.2em;'>
-      <div class="multi-upload">
-
-        <%= f.input :photos,
-                  as: :file,
-                  required: true,
-                  autofocus: true,
-                  input_html: { class: 'custom-file-input', multiple: true },
-                  label_html: { class: 'custom-file-label', style: 'border-radius: 16px;' },
-                  wrapper_html: { class: 'custom-file' } %>
-      </div>
-      <div data-multi-upload-target="files"></div>
-    </div>
-
-
     <% if ride.persisted? %>
 
+      <p>Photos: <abbr title="required">*</abbr></p>
       <div class="my-row current-photos">
-        <% ride.photos.each do |photo| %>
-          <div><%= cl_image_tag photo.key, height: 70, width: 95, crop: :fill, style: "border-radius: 16px;" %></div>
-        <% end %>
+        <div class='photo-box'>
+        <div id="previewPhoto1"><%= cl_image_tag ride.photo_1.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_1" %>
+          <i id="upload_photo_1" class="fas fa-times-circle pr"></i>
+        </div>
+        </div>
+        <%= f.input :photo_1, as: :file, label: false, input_html: { hidden: true } %>
+        <div class='photo-box'>
+        <div id="previewPhoto2"><%= cl_image_tag ride.photo_2.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_2" %>
+          <i id="upload_photo_2" class="fas fa-times-circle pr"></i>
+        </div>
+        </div>
+        <%= f.input :photo_2, as: :file, label: false, input_html: { hidden: true } %>
+        <div class='photo-box'>
+        <div id="previewPhoto3"><%= cl_image_tag ride.photo_3.key, height: 70, width: 95, style: "border-radius: 8px;", id: "ph_3" %>
+          <i id="upload_photo_3" class="fas fa-times-circle pr"></i>
+        </div>
+        </div>
+        <%= f.input :photo_3, as: :file, label: false, input_html: { hidden: true } %>
       </div>
 
-      <div id="previewRide" class=''></div>
-
       <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
-        <%= f.submit value="Save", class: "brown-btn" %>
+        <%= f.submit value="Save", id: 'updated-ride', class: "brown-btn" %>
       </div>
 
     <% else %>
-      <!-- preview -->
-      <br>
-      <div id="previewRide" class=''></div>
-      <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
-        <%= f.submit value="Add", class: "brown-btn" %>
+
+      <div id='photo_1' style=''>
+        <%= f.input :photo_1,
+                    as: :file,
+                    label: 'photo',
+                    required: true,
+                    autofocus: true,
+                    input_html: { class: 'custom-file-input'},
+                    label_html: { class: 'custom-file-label' },
+                    wrapper_html: { class: 'custom-file' } %>
       </div>
+
+      <div id='photo_2'  style='display:none;'>
+        <%= f.input :photo_2,
+                    as: :file,
+                    label: 'photo',
+                    required: true,
+                    autofocus: true,
+                    input_html: { class: 'custom-file-input'},
+                    label_html: { class: 'custom-file-label' },
+                    wrapper_html: { class: 'custom-file' } %>
+      </div>
+
+      <div id='photo_3' style='display:none;'>
+        <%= f.input :photo_3,
+                    as: :file,
+                    label: 'photo',
+                    required: true,
+                    autofocus: true,
+                    input_html: { class: 'custom-file-input'},
+                    label_html: { class: 'custom-file-label' },
+                    wrapper_html: { class: 'custom-file' } %>
+      </div>
+
+      <p id='photo_done' style='display:none;'>All set up!</p>
+
+      <div class="my-row current-photos">
+        <div class='photo-box'><div id="previewPhoto1"></div></div>
+        <div class='photo-box'><div id="previewPhoto2"></div></div>
+        <div class='photo-box'><div id="previewPhoto3"></div></div>
+      </div>
+
+      <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 48px;">
+          <%= f.submit value="Add", id:'new-ride', class: "brown-btn" %>
+      </div>
+
     <% end %>
   <% end %>
   <br>
+</div>
+
+<div id='load-pop-ride'>
+  <div id='load-box-ride' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
+  <br><p style='font-weight: 700;color: #495057;'>Hold tight, you are almost there!</p><br>
 </div>

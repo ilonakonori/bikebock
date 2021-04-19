@@ -39,6 +39,7 @@ const initConversationCable = () => {
 
         messagesContainer.insertAdjacentHTML('beforeend', html);
         initMsgAttachmentPreview();
+        document.getElementById('oof-audio').play();
         messagesContainer.lastElementChild.scrollIntoView(false);
         //messagesContainer.scrollTop += 24;
         /*

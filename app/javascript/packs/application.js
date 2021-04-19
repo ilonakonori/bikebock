@@ -33,7 +33,7 @@ import { initConversationCable, submitAttachment, submitOnEnter } from '../chann
 import { initSidebar } from '../components/init_sidebar';
 import { initPresence } from '../components/init_presence';
 import { initPresenceCurrent } from '../components/init_presence_current';
-import { fileInputPreviewAvatar, fileInputPreviewBike } from '../components/file_input_preview';
+import { fileInputPreviewAvatar, fileInputPreviewBike, fileInputPreviewRidePhotos } from '../components/file_input_preview';
 import { initMsgAttachmentPreview, hideIt } from '../components/init_msg_attachment_preview';
 import { initBookmarks } from '../components/init_bookmarks';
 import { initCloseAlert } from '../components/init_close_alert';
@@ -50,6 +50,7 @@ import { showMyReview, showAllReviews } from '../components/init_reviews';
 import { initAnchorScroll } from '../components/init_anchor_scroll';
 import { initBlockingsDropdown } from '../components/init_blockings_dropdown';
 import { initSweetalert } from '../plugins/init_sweetalert';
+import { initLoadPopup } from '../components/init_load_popup';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -57,6 +58,9 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2();
   fileInputPreviewAvatar();
   fileInputPreviewBike();
+
+  fileInputPreviewRidePhotos();
+
   initProfilePhotoBtn();
   initRequestsDropdown();
   initReviewForm();
@@ -71,7 +75,7 @@ document.addEventListener('turbolinks:load', () => {
   initAnchorScroll();
 
   initBlockingsDropdown();
-
+  initLoadPopup();
   initBookmarks();
   initMsgAttachmentBtn();
   submitAttachment();

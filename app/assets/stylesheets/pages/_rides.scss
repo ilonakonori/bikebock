@@ -91,7 +91,9 @@
   padding-bottom: 0;
 }
 
-#ride_short_description, #new_ride > div.form-group.text.required.ride_short_description {
+#ride_short_description, #new_ride > div.form-group.text.required.ride_short_description,
+div.form-group.text.required.ride_short_description.form-group-valid > label,
+div.form-group.text.required.ride_short_description {
   text-align: left;
   font-weight: normal;
 }
@@ -99,6 +101,7 @@
 #ride_available_dates {
   background-color: #fff;
 }
+
 
 /* custom radio btns */
 input[type="radio" i] {
@@ -357,4 +360,58 @@ a:hover {
 .swal-modal {
   transform: scale(0.9);
   border-radius: 16px;
+}
+
+/* load popup */
+#load-pop-ride {
+  display: none;
+  text-align: center;
+  background-color: #fff;
+  width: 84%;
+  height: 220px;
+  padding: 24px;
+  padding-top: 48px;
+  box-shadow: 0px 10px 50px 600px rgba(0,0,0,0.4);
+  position: absolute;
+  top: 50%;
+  z-index: 3000;
+}
+
+#load-box-ride {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* photos forms + preview */
+#photo_1 > div > label, #photo_2 > div > label, #photo_3 > div > label {
+  border-radius: 16px;
+}
+
+#photo_1 > div, #photo_2 > div, #photo_3 > div {
+  margin-bottom: 8px;
+}
+
+i.fas.fa-times-circle.pr {
+  position: relative;
+  left: 82%;
+  top: -23px;
+  margin: 0;
+  font-size: 14px;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #696969;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 38%);
+}
+
+#previewPhoto1 > img, #previewPhoto2 > img, #previewPhoto3 > img {
+  padding: 2px;
+}
+
+.photo-box {
+  width: 95px;
+  height: 70px;
+  padding-left: 0px;
 }

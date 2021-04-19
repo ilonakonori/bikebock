@@ -68,7 +68,7 @@
                   :value => DateTime.now %>
       <br>
       <div class="form-actions" style="text-align: center; margin-bottom: 48px;">
-        <%= f.button :submit, "Create account", class: "brown-btn" %>
+        <%= f.button :submit, "Create account", id: 'new-profile', class: "brown-btn" %>
         <br>
         <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' BikeBock! Terms of service' %></small>
       </div>
@@ -76,4 +76,9 @@
   <% end %>
 
   <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
+</div>
+
+<div id='load-pop'>
+  <div id='load-box' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
+  <br><p style='font-weight: 700; color: #495057;'>Hold tight! You are almost there!</p><br>
 </div>

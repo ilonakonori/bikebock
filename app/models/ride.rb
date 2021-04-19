@@ -1,9 +1,13 @@
 class Ride < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos #maximum: 3
+
   has_many :requests, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
+
+  has_one_attached :photo_1
+  has_one_attached :photo_2
+  has_one_attached :photo_3
 
   # validations
   validates :title, presence: true, uniqueness: true, length: { in: 2..26 }, format: { with: /[[:alpha:]]/ }
@@ -15,11 +19,18 @@ class Ride < ApplicationRecord
   validates :end_location, presence: true
   validates :difficulty, presence: true, inclusion: { in: (1..5).map(&:to_s) }
   validates :available_dates, presence: true
-  validates :photos, presence: true
+  validates :photo_1, presence: true
+  validates :photo_2, presence: true
+  validates :photo_3, presence: true
+
 
   after_destroy :photos_destroy
 
   acts_as_favoritable
+
+  def photos
+    [photo_1, photo_2, photo_3]
+  end
 
   def rating # sort
     reviews.empty? ? 0 : reviews.average(:rating).round
@@ -67,9 +78,9 @@ class Ride < ApplicationRecord
   end
 
    def photos_destroy
-    photos.all.each do |photo|
-      photo.purge
-    end
+    photo_1.purge
+    photo_2.purge
+    photo_3.purge
   end
 
   # def self.total_valid
