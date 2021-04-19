@@ -169,3 +169,41 @@ input[type="file"] {
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
+
+/* edit */
+.edit-container {
+  margin-top: 24px;
+  background-color: #E5E5E5; /* dark-mode: #4d4d4d */
+  padding-top: 16px !important;
+}
+
+.user-box {
+  margin: 16px;
+  text-align: center;
+  color: #fff; /* #e4e4e4 */
+  font-weight: 600;
+}
+
+.user-photo {
+  border-radius: 50%;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); /* */
+}
+
+#photo-btn {
+  font-size: 21px;
+  position: absolute;
+  left: 61%;
+  top: 11.5%;
+  border-radius: 50%;
+  background-color: #d2d2d2; /* #4d4d4d */
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 38%);
+}
+
+/* .form-control {
+  background-color: #ddd;
+}
+
+.text-muted {
+  color: #ccc !important;
+}
+ */

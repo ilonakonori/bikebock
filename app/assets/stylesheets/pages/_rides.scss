@@ -14,8 +14,8 @@
 .rides {
   margin-bottom: 24px;
   padding: 8px;
-  background-color: #fff;
-  color: #000;
+  background-color: #fff; /* #4d4d4d */
+  color: #000; /* #f4f4f4 #fefefe */
   border-radius: 16px;
   border: 1px solid #efefef;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -39,7 +39,7 @@
 }
 
 .line {
-  border-bottom: .4vw solid #433520;
+  border-bottom: .4vw solid #433520; // #ccc
   position: absolute;
   width: 94%;
   top: 50%;

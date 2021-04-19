@@ -1,4 +1,4 @@
-<div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
+<div class="container edit-container">
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -9,13 +9,13 @@
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
 
-      <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
+      <div class='user-box'>
         <h3 style="padding-bottom: 4px;">Edit Profile!</h3>
           <div id='currentUserPhoto' >
-            <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+            <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, class: 'user-photo' %>
           </div>
           <div id="previewAvatar"></div>
-          <i id="photo-btn" class="fas fa-plus-circle" style="font-size: 21px; position: absolute; left: 61%; top: 11.5%; border-radius: 50%;background-color: #d2d2d2; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
+          <i id="photo-btn" class="fas fa-plus-circle"></i>
           <%= f.input :profile_photo, as: :file, label: false, input_html: { hidden: true } %>
       </div>
 
