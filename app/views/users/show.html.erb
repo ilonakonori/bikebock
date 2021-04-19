@@ -20,7 +20,8 @@
           <!-- block -->
           <% if @user != current_user %>
             <%= link_to user_blockings_path(@user), method: :post do %>
-              <i id="" class="fas fa-ban" style="color: #00917c; font-size: 22px; position: relative; left: 80%; top: -16.5%; border-radius: 50%;background-color: #fff; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
+              <i id="" class="far fa-user" style="font-size: 10px; position: relative; color: #000; font-weight: 600; left: 82%; top: -23%; border-radius: 50%; background-color: #fff; padding: 6px; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
+              <i id="" class="fas fa-ban" style="font-size: 24px; position: relative; left: 60%; top: -20%; color: #fd1015; font-weight: 600; padding: 1px;"></i>
             <% end %>
           <% end %>
         </div>
@@ -49,11 +50,6 @@
           <!-- end of render part -->
           <hr style="width: 95%; text-align: left; margin-left: 0;">
           <p style="font-size: 3vw;"><%= @user.about_me %></p>
-         <!-- block -->
-          <% if @user != current_user %>
-            <%= link_to '', user_blockings_path(@user), method: :post, class: 'far fa-user', style:'font-size: 10px; position: relative; color: #000; font-weight: 600; left: -28%; top: -36%; border-radius: 50%; background-color: #fff; padding: 8px;' %>
-            <%= link_to '', user_blockings_path(@user), method: :post, class: 'fas fa-ban', style: 'font-size: 22px; position: relative; left: -46%; top: -34%; color: #fd1015; font-weight: 600; margin-bottom: 7%;' %>
-          <% end %>
         </div>
       </div>
     </div>
