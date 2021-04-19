@@ -1,5 +1,14 @@
 <div>
   <h5 style='text-align: center; padding: 24px 0px;'>Privacy</h5>
+
+  <p>Set theme</p>
+  <%= simple_form_for(@account) do |f| %>
+    <%= f.input :theme, collection: ['light-mode', 'dark-mode'], as: :radio_buttons %>
+
+
+    <%= f.submit value="Save" %> <!-- trigger on radio -->
+  <% end %>
+
   <p class="nav-item m" id='blockedDropdown' style='padding-left: 16px; margin: 0;'>
     <i class="fas fa-ban" style='font-size: 16px; color: #00917C;'></i>
     Blocked users <!-- (<#%= pluralize @blocked.size, 'user' %>)-->

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :blockings, only: [:create, :destroy]
   end
 
+  resources :accounts, only: :update
+
   resources :rides do
     member do
       get :fav
