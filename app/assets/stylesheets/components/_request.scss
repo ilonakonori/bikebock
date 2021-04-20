@@ -41,9 +41,16 @@
 }
 
 /* requests && notifications */
+.requests-box {
+  height: 96vh;
+}
+
 .requests-box, .pending-box, .notifications-box {
   padding: 12px 8px;
   overflow-y: scroll;
+}
+
+.pending-box, .notifications-box {
   height: 86vh;
 }
 
