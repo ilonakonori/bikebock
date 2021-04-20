@@ -37,11 +37,16 @@
 
 .r-h5.light-mode, .r-p.light-mode, .rs-h5.light-mode, .rp.light-mode {
   color: #333333;
+  background-color: transparent;
 }
 
 .r-h5.dark-mode, .r-p.dark-mode {
   color: #fefefe;
   background-color: #363636; //#4d4d4d;
+}
+
+.rp.dark-mode  {
+  background-color: transparent;
 }
 
 .r-p {

@@ -16,7 +16,7 @@
   <div class='requests-box'>
     <% @rs.each do |r| %>
       <%= link_to request_path(r[:request].id), class: "not-read" do %>
-        <div class='rides'>
+        <div class='rides <%= current_user.account.theme %>'>
           <%= render 'requests/request', r: r %>
         </div>
       <% end %>
