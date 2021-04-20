@@ -119,3 +119,14 @@ span.circle2 {
   .mb-o {
     margin-bottom: 0px;
   }
+
+.sidenav-link.light-mode, .s-el.light-mode, .rl.light-mode,, .nav-item.mb.light-mode, .nav-item.mb-o.light-mode   {
+  color: #fff;
+  background-color: transparent;
+}
+
+.sidenav-link.dark-mode, .s-el.dark-mode, .rl.dark-mode, .nav-item.mb.dark-mode, .nav-item.mb-o.dark-mode   {
+  color: #2d2c2c;
+  background-color: transparent;
+  font-weight: bold;
+}
