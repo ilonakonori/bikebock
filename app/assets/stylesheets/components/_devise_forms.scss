@@ -181,7 +181,7 @@ input[type="file"] {
 }
 
 .edit-container.dark-mode {
-  background-color: #4d4d4d;
+  background-color: #363636;
 }
 
 .user-box {
@@ -196,7 +196,7 @@ input[type="file"] {
 
 .user-box.dark-mode {
   color: #e4e4e4;
-  background-color: #4d4d4d;
+  background-color: transparent;
 }
 
 .user-photo {
@@ -218,12 +218,12 @@ input[type="file"] {
 }
 
 .fas.fa-plus-circle.dark-mode {
-  background-color: #4d4d4d;
+  background-color: #363636;
 }
 
 .form-control.dark-mode {
-  background-color: #ddd;
-  color: #495057;
+  background-color: #4d4d4d;
+  color: #f4f4f4;
 }
 
 .form-control.light-mode {

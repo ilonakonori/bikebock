@@ -1,4 +1,4 @@
-<div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
+<div class="container ride-form-box <%= current_user.account.theme %>">
   <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
     <% if ride.persisted? %>
       <h3 style="padding-bottom: 4px;">Edit Your Ride!</h3>
@@ -12,35 +12,38 @@
     <%= f.input :title,
                 required: true,
                 label: 'Title',
-                input_html: { autocomplete: "title" } %>
+                input_html: { autocomplete: "title", class: "#{current_user.account.theme}" } %>
 
     <%= f.input :short_description,
                 required: true,
                 label: 'Description',
-                input_html: { autocomplete: "short_description" } %>
+                input_html: { autocomplete: "short_description", class: "#{current_user.account.theme}"  } %>
 
     <%= f.input :start_location,
                 required: true,
                 label: "Start location:",
-                input_html: { autocomplete: "start_location" } %>
+                input_html: { autocomplete: "start_location", class: "#{current_user.account.theme}"  } %>
 
     <%= f.input :end_location,
                 required: true,
-                label: "End location:" %>
+                label: "End location:",
+                input_html: { class: "#{current_user.account.theme}" } %>
 
     <%= f.input :start_time,
                 required: true,
-                label: "Start time:" %>
+                label: "Start time:",
+                input_html: { class: "#{current_user.account.theme}" } %>
 
     <%= f.input :end_time,
                 required: true,
-                label: "End time:" %>
+                label: "End time:",
+                input_html: { class: "#{current_user.account.theme}" } %>
 
     <%= f.input :difficulty, collection: (1..5).to_a, as: :radio_buttons %>
     <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
     <%= f.input :available_dates,
                 as: :string,
-                input_html: { class: 'flatpickr' },
+                input_html: { class: "flatpickr #{current_user.account.theme}" },
                 required: true,
                 label: "Available dates:" %>
 

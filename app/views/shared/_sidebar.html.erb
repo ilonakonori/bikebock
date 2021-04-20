@@ -5,7 +5,7 @@
     <span class='s-el <%= current_user.account.theme %>' style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
   <!-- notification bell stimulus part -->
-  <div class='not-box' data-controller="counter">
+  <div class='not-box <%= current_user.account.theme %>' data-controller="counter">
     <div class="counter">
       <i data-counter-target="count" class="<%= @unread ? 'fas fa-bell' :'' %>"></i>
     </div>

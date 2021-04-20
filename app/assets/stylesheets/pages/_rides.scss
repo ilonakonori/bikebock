@@ -113,29 +113,14 @@
 
 /* edit ride */
 
-#edit_ride > div.form-group.string.optional.ride_start_location.form-group-valid > label {
-  padding-left: 8px;
-}
-
-#edit_ride > div.form-group.string.optional.ride_end_location.form-group-valid > label {
-  padding-left: 8px;
-}
-
-#edit_ride > div.form-group.time.optional.ride_start_time.form-group-valid > label {
-  padding-left: 8px;
-}
-
-#edit_ride > div.form-group.time.optional.ride_end_time.form-group-valid > label {
-  padding-left: 8px;
-}
-
+#edit_ride > div.form-group.string.optional.ride_start_location.form-group-valid > label,
+#edit_ride > div.form-group.string.optional.ride_end_location.form-group-valid > label,
+#edit_ride > div.form-group.time.optional.ride_start_time.form-group-valid > label,
+#edit_ride > div.form-group.time.optional.ride_end_time.form-group-valid > label,
 #edit_ride > div.form-group.string.required.ride_available_dates.form-group-valid > label {
   padding-left: 8px;
 }
 
-#edit_ride > div.multi-upload > div > label {
-  border-radius: 16px;
-}
 
 #ride_short_description, #user_about_me, #user_interests {
   min-height: 12vh;
@@ -153,10 +138,13 @@ div.form-group.text.required.ride_short_description {
   font-weight: normal;
 }
 
-#ride_available_dates {
+#ride_available_dates.light-mode {
   background-color: #fff;
 }
 
+#ride_available_dates.dark-mode {
+  background-color: #4d4d4d;
+}
 
 /* custom radio btns */
 input[type="radio" i] {
@@ -196,6 +184,19 @@ input[type="radio"]:after {
 
 input[type="radio"]:checked:after {
   background: #00917C;
+}
+
+.ride-form-box {
+  padding-top: 16px !important;
+  margin-top: 14px;
+}
+
+.ride-form-box.light-mode {
+  background-color: #E5E5E5;
+}
+
+.ride-form-box.dark-mode {
+  background-color: #363636;
 }
 
 fieldset.form-group.radio_buttons.required.ride_difficulty.form-group-valid > div > label,
