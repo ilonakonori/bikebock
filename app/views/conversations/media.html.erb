@@ -16,15 +16,15 @@
       <p style="font-size: 60px;"><i class="far fa-folder-open"></i></p>
       <h6> No Documents!</h6>
       <br>
-      <p style="color: rgba(14, 0, 0, 0.38);"> Sorry, you have not yet shared files!</p>
+      <p style=""> Sorry, you have not yet shared files!</p>
       <br>
-      <%= link_to "Chat", conversation_path(@conversation), class: 'back-link', style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+      <%= link_to "Chat", conversation_path(@conversation), class: 'back-link', style: "background-color: #00917C; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
     <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
       <% @media.each do |m| %>
-        <div style='background-color: #fff; border-radius: 16px; border: 1px solid #efefef; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; margin-bottom: 10px;'>
-          <p style='background: #efefef; padding-left: 12px; font-weight: 500; border-top-left-radius: 8px; border-top-right-radius: 8px;'>
+        <div class="m-box <%= current_user.account.theme %>">
+          <p class="m-p <%= current_user.account.theme %>">
             <%= m[0].year < Date.current.year ? m[0].strftime("%Y, %^B") : m[0].strftime("%^B") %>
           </p>
 

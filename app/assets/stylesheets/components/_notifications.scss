@@ -1,0 +1,18 @@
+.new.n-card {
+  padding-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  padding-right: 8px;
+  padding-left: 6px;
+  padding-bottom: 0px;
+}
+
+.new.n-card.light-mode, .read.light-mode {
+  background-color: #fbfbfb;
+  color: #262626;
+}
+
+.new.n-card.dark-mode, .read.dark-mode {
+  background-color: #363636; //#4d4d4d;
+  color: #f4f4f4;
+}

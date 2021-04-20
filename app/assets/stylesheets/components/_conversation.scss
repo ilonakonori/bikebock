@@ -330,6 +330,36 @@ a.myLink {
   margin: 0 6px;
 }
 
+.m-box {
+  border-radius: 8px;
+  border: 1px solid #efefef;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  margin-bottom: 10px;
+}
+
+.m-box.light-mode {
+  background-color: #fff;
+}
+
+.m-box.dark-mode {
+  background-color: #2d2d2d; //#4d4d4d;
+}
+
+.m-p {
+  padding-left: 12px;
+  font-weight: 500;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.m-p.light-mode {
+  background: #efefef;
+}
+
+.m-p.dark-mode {
+  background: #363636;
+}
+
 // search conversations && msgs
 .search-input-container {
   border: 1px #ccc solid;

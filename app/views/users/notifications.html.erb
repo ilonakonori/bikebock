@@ -12,7 +12,7 @@
 
     <div class='notifications-box'>
       <% @notifications.each do |n| %>
-        <% css_class = n.read ? 'read' : 'not-read' %>
+        <% css_class = n.read ? "read #{current_user.account.theme}" : 'not-read' %>
 
         <div class="chat">
           <div class="row chat-wrapper">
@@ -20,7 +20,7 @@
               <div class="compose-area">
                 <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
                   <ul class="chat-list">
-                    <li class="new" style='padding-top: 8px; margin-bottom: 8px; background-color: #fbfbfb; border-radius: 8px; padding-right: 8px; padding-left: 6px;'>
+                    <li class="new n-card <%= current_user.account.theme %>">
                       <span class="pic">
 
                         <% if n.action == "Message" || n.action == "Messages" %>
@@ -38,7 +38,7 @@
                           <span class="username" id="last-online" style="font-size: 15px;"><%= n.sender_name %></span>
                           <small class="timestamp" style="font-size: 10px !important; line-height: 23px !important;"><%= n.date_display %></small>
                         </div>
-                        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
+                        <p class=""><%= link_to n.content, n.link, class: "#{css_class}" %></p>
                       </div>
                     </li>
                   </ul>
