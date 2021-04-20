@@ -88,7 +88,7 @@
     <div class="message" id="messages" data-conversation-id="<%= @conversation.id %>" data-current-user-id="<%= current_user.id %>">
 
       <div style='display: flex; justify-content: center;'>
-        <div class='user-not' style='margin-top: 16px; width: 94%;'>
+        <div class='user-not <%= current_user.account.theme %>'>
           <small>
             <i class="fas fa-lock fa-m"> </i>
             Bike Bock Protects and Secures Your Personal Messages.
@@ -119,7 +119,7 @@
 <% if @conversation.user_present(current_user) %>
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
       <div class='msg-input-container'>
-        <%= f.text_area :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }" %>
+        <%= f.text_area :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }", class: "#{current_user.account.theme}" %>
         <i id="upload-btn" class="fas fa-paperclip"></i>
         <%= f.input :attachment, as: :file, label: false, input_html: { hidden: true } %>
       </div>

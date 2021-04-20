@@ -1,11 +1,19 @@
 .user-not {
-  border: 2px solid #efefef;
   font-size: 12px;
-  margin-top: 8px;
   padding: 8px 10px;
-  width: 90%;
-  color: #333;
   border-radius: 8px;
+  margin-top: 16px;
+  width: 94%;
+}
+
+.user-not.dark-mode {
+  color: #f6f6f6;
+  border: 1px solid #efefef;
+}
+
+.user-not.light-mode {
+  border: 2px solid #efefef;
+  color: #333;
 }
 
 #messages {
@@ -18,7 +26,6 @@
 .msg-input-container {
   border: 1px #ccc solid;
   border-radius: 24px;
-  background: #fff;
   display: flex;
   justify-content: space-between;
   width: 85%;
@@ -56,6 +63,7 @@
   background-color: transparent;
   padding-top: 6px;
 }
+
 
 #new_message > div > div.form-group.text.optional.message_content {
   margin-bottom: 0 !important;
@@ -109,7 +117,6 @@ ul {
 }
 
 .msg-sent {
-  background-color: rgba(0, 195, 85, 0.2);
   box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
   padding: 8px;
   border-top-right-radius: 8px;
@@ -119,6 +126,14 @@ ul {
   max-width: 240px;
   font-size: 12px;
   word-break: break-word;
+}
+
+.msg-sent.light-mode {
+  background-color: rgba(0, 195, 85, 0.2);
+}
+
+.msg-sent.dark-mode {
+  background-color: rgba(0, 145, 125, 0.6);
 }
 
 .msg-received {
@@ -132,6 +147,14 @@ ul {
   max-width: 240px;
   font-size: 12px;
   word-break: break-word;
+}
+
+.msg-received.light-mode {
+  background-color: #fff;
+}
+
+.msg-received.dark-mode {
+  background-color: #4d4d4d;
 }
 
 //links > wip
@@ -359,6 +382,19 @@ a.myLink {
 .m-p.dark-mode {
   background: #363636;
 }
+
+// conversations index page
+.cp {
+  font-weight: 600;
+}
+.cp.light-mode {
+  //color: #
+}
+
+.cp.dark-mode {
+  color: #f4f4f4;
+}
+
 
 // search conversations && msgs
 .search-input-container {
