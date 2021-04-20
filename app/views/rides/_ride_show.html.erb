@@ -122,9 +122,9 @@
   </div>
 </div>
 
-<div id='myForm' style='display: none;'>
+<div id='myForm' class="myF <%= current_user.account.theme %>" style='display: none;'>
   <br>
-  <button id='closeBtn'><span aria-hidden="true">&times;</span></button>
+  <button id='closeBtn' class="closeB <%= current_user.account.theme %>"><span aria-hidden="true">&times;</span></button>
   <div id='f-box' style="display:flex;justify-content: center; height: 156px; padding-top: 16px; width: 300px;">
     <%= simple_form_for(@request) do |f| %>
       <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first, input_html: { class: 'select2 re' } %>

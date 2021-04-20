@@ -39,8 +39,12 @@
                 label: "End time:",
                 input_html: { class: "#{current_user.account.theme}" } %>
 
-    <%= f.input :difficulty, collection: (1..5).to_a, as: :radio_buttons %>
-    <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons %>
+    <%= f.input :difficulty, collection: (1..5).to_a, as: :radio_buttons,
+                item_label_class: "#{current_user.account.theme}" %>
+
+    <%= f.input :number_of_people, collection: (1..5).to_a, as: :radio_buttons,
+                item_label_class: "#{current_user.account.theme}" %>
+
     <%= f.input :available_dates,
                 as: :string,
                 input_html: { class: "flatpickr #{current_user.account.theme}" },

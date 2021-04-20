@@ -142,9 +142,6 @@ div.form-group.text.required.ride_short_description {
   background-color: #fff;
 }
 
-#ride_available_dates.dark-mode {
-  background-color: #4d4d4d;
-}
 
 /* custom radio btns */
 input[type="radio" i] {
@@ -164,7 +161,7 @@ input[type="radio"] {
           appearance: none;
   width: .8em;
   height: .8em;
-  background: #E5E5E5;
+  background: transparent; //#E5E5E5;
   border-radius: 3em !important;
   position: relative;
   cursor: pointer;
@@ -177,13 +174,23 @@ input[type="radio"]:after {
   width: .8em;
   height: .8em;
   border-radius: 50%;
-  background: #E5E5E5;
+  background: #E5E5E5; //#363636
   -webkit-transform: scale(.7);
           transform: scale(.7);
 }
 
 input[type="radio"]:checked:after {
   background: #00917C;
+}
+
+.dark-mode.collection_radio_buttons {
+  color: #FFF;
+  background: #363636;
+}
+
+.light-mode.collection_radio_buttons {
+  color: #000;
+  background-color: #E5E5E5;
 }
 
 .ride-form-box {
