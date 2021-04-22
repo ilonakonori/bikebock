@@ -463,7 +463,7 @@ a.myLink {
   cursor: default;
   border: 1px solid #ccc;
   border-top: 0;
-  background: #fff;
+  //background: #fff;
   box-shadow: -1px 1px 3px rgba(0, 0, 0, 10%);
   position: absolute;
   display: none;
@@ -475,6 +475,20 @@ a.myLink {
   box-sizing: border-box;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+.autocomplete-suggestions.light-mode {
+  background: #fff;
+  .autocomplete-suggestion {
+    color: #333 !important;
+  }
+}
+
+.autocomplete-suggestions.dark-mode {
+  background: #4d4d4d;
+  .autocomplete-suggestion {
+    color: #fff !important;
+  }
 }
 
 .autocomplete-suggestion b {
