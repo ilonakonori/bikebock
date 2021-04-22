@@ -2,14 +2,15 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light">
   <%= link_to '<<', conversations_path, class: 'back-link' %>
 </div>
-<div style='width: 313px; padding: 24px 0px;'>
+<div style='width: 313px; padding: 24px 0px 16px 0px;'>
   <%= form_tag search_conversations_path, class: "form-inline", method: :get do %>
-    <div id='search-data' class='search-input-container' data-conversations="<%= @autocomplete %>">
+    <div id='search-data' class='search-input-container <%= current_user.account.theme %>' data-conversations="<%= @autocomplete %>">
       <i id="search-conversation-btn" class="fas fa-search"></i>
       <%= text_field_tag :query,
           params[:query],
           autocomplete: :off,
           id: 'myConversationSearch',
+          class: "mySearch #{current_user.account.theme}",
           placeholder: "Search"
       %>
     </div>
@@ -17,7 +18,7 @@
   <% end %>
 </div>
 <% if @conversations.blank? %>
-  <div style="margin-left: 8px; color: rgba(14, 0, 0, 0.38); font-size: 14px;">
+  <div class="q-msg <%= current_user.account.theme %>">
     <p><i class="far fa-frown-open"></i> Sorry, no results found for '<%= @query %>'</p>
   </div>
 <% end %>

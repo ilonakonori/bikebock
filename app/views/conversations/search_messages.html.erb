@@ -6,12 +6,13 @@
 <% if @conversation.messages.present? %>
   <div style='width: 313px; text-align: center; padding-top: 24px;'>
     <%= form_tag search_messages_conversation_path, class: "form-inline", method: :get do %>
-      <div id='search-msgs-data' class='search-input-container' data-messages="<%= @autocomplete %>">
+      <div id='search-msgs-data' class='search-input-container <%= current_user.account.theme %>' data-messages="<%= @autocomplete %>">
         <i id="search-conversation-btn" class="fas fa-search"></i>
          <%= text_field_tag :query,
           nil,
           autocomplete: :off,
           id: 'mySearch',
+          class: "mySearch #{current_user.account.theme}",
           placeholder: "Search"
         %>
       </div>
@@ -19,7 +20,7 @@
     <% end %>
   </div>
   <% if @messages.blank? %>
-    <div style="margin-left: 8px; color: rgba(14, 0, 0, 0.38); font-size: 14px;">
+    <div class="q-msg <%= current_user.account.theme %>">
       <p style='margin-top: 0.7rem;'><i class="far fa-frown-open"></i> Sorry, no results found for '<%= @query %>'</p>
     </div>
   <% end %>

@@ -258,8 +258,7 @@ a.myLink {
 }
 
 // Ilona  check this pls :)
-#loadDiv {
-  background-color: #eee;
+.loadDiv {
   //display: flex;
   justify-content: center;
   position:absolute;
@@ -270,6 +269,16 @@ a.myLink {
   border-radius: 12px;
   box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
   padding: 24px 56px 8px 40px;
+}
+
+.loadDiv.light-mode {
+  background-color: #eee;
+  color: #262626;
+}
+
+.loadDiv.dark-mode {
+  background-color: #4d4d4d;
+  color: #fff;
 }
 
 .line-load, .progress-load {
@@ -400,12 +409,18 @@ a.myLink {
 .search-input-container {
   border: 1px #ccc solid;
   border-radius: 24px;
-  background: #fff;
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0;
   line-height: 2em;
+}
+.search-input-container.light-mode {
+  background: #fff;
+}
+
+.search-input-container.dark-mode {
+  background: #4d4d4d;
 }
 
 #mySearch, #myConversationSearch {
@@ -421,7 +436,26 @@ a.myLink {
   padding-left: 8px;
 }
 
+.mySearch.light-mode {
+  color: #000;
+}
 
+.mySearch.dark-mode {
+  color: #fff;
+}
+
+.q-msg {
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.q-msg.light-mode {
+  color: rgba(14, 0, 0, 0.38);
+}
+
+.q-msg.dark-mode {
+  color: #aaa;
+}
 /* autocomplete */
 .autocomplete-suggestions {
   text-align: left;

@@ -1,6 +1,5 @@
-#myReviewForm {
+.myReviewForm {
   display: none;
-  background-color: #fff;
   z-index: 1000;
   justify-content: center;
   position: absolute;
@@ -15,6 +14,14 @@
   box-shadow: 0px 90px 50px 240px rgba(0,0,0,0.4);
 }
 
+.myReviewForm.light-mode, .myReview.light-mode, .reviews.light-mode {
+  background-color: #fff;
+}
+
+.myReviewForm.dark-mode, .myReview.dark-mode, .reviews.dark-mode {
+  background-color: #4d4d4d;
+}
+
 #review_content {
   max-height: 16vh;
   min-height: 16vh;
@@ -25,15 +32,23 @@
 }
 
 
-#closeReviewBtn {
+.closeReviewBtn {
   position: absolute;
   top: -3%;
   left: 92%;
   border: none;
-  background-color: transparent;
-  color: #666;
   font-weight: 900;
   font-size: 28px;
+}
+
+.closeReviewBtn.light-mode, .closeReview.light-mode, .closeReviews.light-mode {
+  color: #666;
+  background-color: transparent;
+}
+
+.closeReviewBtn.dark-mode, .closeReview.dark-mode, .closeReviews.dark-mode {
+  color: #aaa;
+  background-color: transparent;
 }
 
 .r-btn {
@@ -88,8 +103,7 @@
 }
 
 // my review
-#myReview {
-  background-color: #fff;
+.myReview {
   z-index: 800;
   justify-content: center;
   position: absolute;
@@ -104,20 +118,18 @@
 }
 
 
-#closeReview {
+.closeReview {
   position: absolute;
   top: -4%;
   left: 92%;
   border: none;
   background-color: transparent;
-  color: #433520;
   font-weight: 900;
   font-size: 24px;
 }
 
 /* all reviews */
-#reviews {
-  background-color: #fff;
+.reviews {
   z-index: 3000;
   justify-content: center;
   position: absolute;
@@ -131,13 +143,11 @@
   box-shadow: 0px 90px 50px 240px rgba(0,0,0,0.4);
 }
 
-#closeReviews {
+.closeReviews {
   position: absolute;
   top: -2%;
   left: 92%;
   border: none;
-  background-color: transparent;
-  color: #433520;
   font-weight: 900;
   font-size: 24px;
 }

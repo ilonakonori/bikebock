@@ -1,5 +1,5 @@
 <%= simple_form_for [ booking, review ] do |f| %>
-  <%= f.input :content, label: "Share your experience:", class: "text" %>
+  <%= f.input :content, label: "Share your experience:", class: "text #{current_user.account.theme}" %> <!-- ? -->
   <%= f.input :rating, collection: 1..5, label: false %>
   <% if review.persisted? %>
     <%= f.submit "Save", class: 'r-btn' %>

@@ -448,10 +448,10 @@ a:hover {
 }
 
 /* load popup */
-#load-pop-ride {
+.load-pop-ride {
   display: none;
+  border: 1px solid #efefef;
   text-align: center;
-  background-color: #fff;
   width: 84%;
   height: 220px;
   padding: 24px;
@@ -460,6 +460,28 @@ a:hover {
   position: absolute;
   top: 50%;
   z-index: 3000;
+}
+
+.load-pop-ride.light-mode {
+  background-color: #fff;
+}
+
+.rpl {
+  font-weight: 600;
+  background: transparent;
+}
+
+.rpl.light-mode {
+  color: #666;
+  background: transparent;
+}
+
+.load-pop-ride.dark-mode {
+  background-color: #4d4d4d;
+}
+
+.rpl.dark-mode {
+  color: #efefef;
 }
 
 #load-box-ride {

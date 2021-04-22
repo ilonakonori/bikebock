@@ -82,3 +82,8 @@
     <a id="sweet-alert-demo" class="">Cancel my account</a>
     <%= link_to "", registration_path(resource_name), id: "delete-link", class: "hidden", method: :delete %></p><br />
 </div>
+
+<div id='load-pop' class="load-pop-ride <%= current_user.account.theme %>">
+  <div id='load-box' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
+  <br><p class="rpl <%= current_user.account.theme %>">Hold tight, you are almost there!</p><br>
+</div>
