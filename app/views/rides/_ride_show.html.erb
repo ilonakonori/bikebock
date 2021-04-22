@@ -95,11 +95,12 @@
         </div>
       </div>
     <% else %>
-      <% if ride.user == current_user %>
+      <!--
+      <#% if ride.user == current_user %>
         <p>Please update your ride </p>
-      <% else %>
+      <#% else %>
         <p></p>
-      <% end %>
+      <#% end %> -->
     <% end %>
     <br>
     <!-- btns -->
@@ -127,7 +128,7 @@
   <button id='closeBtn' class="closeB <%= current_user.account.theme %>"><span aria-hidden="true">&times;</span></button>
   <div id='f-box' style="display:flex;justify-content: center; height: 156px; padding-top: 16px; width: 300px;">
     <%= simple_form_for(@request) do |f| %>
-      <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first, input_html: { class: 'select2 re' } %>
+      <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first, input_html: { class: "select2 re" } %>
       <%= f.hidden_field :recipient_id, :value => ride.user_id %>
       <%= f.hidden_field :ride_id, :value => ride.id %>
       <%= f.submit value="Send", class: "brown-btn2" %>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :unread
   before_action :set_notifications_u, only: :unread
-
+  before_action :set_theme
 
   include Pundit
 
@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def set_theme
+    if user_signed_in?
+      cookies[:theme] = current_user.account.theme
+    end
+  end
 
   def unread
     if user_signed_in?

@@ -312,7 +312,6 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
   //background-color: #f4f4f4;
 }
 
-
 .select2-container .select2-selection--single {
   box-sizing: border-box;
   cursor: pointer;
@@ -396,6 +395,16 @@ a:hover {
   background-color: #433520;
   color: #fff;
   border-radius: 16px;
+}
+
+.swal-modal.dark-mode {
+  background-color: #4f4f4f;
+  .swal-title {
+    color: #fff;
+  }
+  .swal-text {
+    color: #fff;
+  }
 }
 
 .swal-button:not([disabled]):hover {
