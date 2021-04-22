@@ -21,6 +21,12 @@ const autocompleteSearchMessages = function() {
         document.getElementById('mySubmit').click();
       }
     });
+    const autocomp = document.querySelector('.autocomplete-suggestions');
+    const theme = document.querySelector('body').classList[0];
+
+    if(autocomp) {
+      autocomp.classList.add(theme);
+    }
   }
 };
 

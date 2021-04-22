@@ -21,6 +21,12 @@ const autocompleteSearchConversations = function() {
         document.getElementById('myConversationSubmit').click();
       }
     });
+    const autoc = document.querySelector('.autocomplete-suggestions');
+    const theme = document.querySelector('body').classList[0];
+
+    if(autoc) {
+      autoc.classList.add(theme);
+    }
   }
 };
 
