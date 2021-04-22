@@ -2,10 +2,10 @@
   <div class="sidebar-box" >
     <i id='sidebar-toggler' class="fa fa-bars"></i>
     <p class='s-el' style="padding-left: 32px; font-weight: 600; font-size: 16px;"><%= cl_image_tag current_user.profile_photo.key, height: 60, width: 60, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38), border-radius: 100%; border: 2px solid #fff;", class: 's-el' %>
-    <span class='s-el' style="margin-left: 4px;"><%= current_user.name %></span>
+    <span class='s-el <%= current_user.account.theme %>' style="margin-left: 4px;"><%= current_user.name %></span>
   </div>
   <!-- notification bell stimulus part -->
-  <div class='not-box' data-controller="counter">
+  <div class='not-box <%= current_user.account.theme %>' data-controller="counter">
     <div class="counter">
       <i data-counter-target="count" class="<%= @unread ? 'fas fa-bell' :'' %>"></i>
     </div>
@@ -14,17 +14,17 @@
   <p id='c_user' data-conline-id="<%= current_user.id %>"></p>
   <div class='s-el' style="height: 70vh; list-style-type: none; padding-left: 30px; padding-top: 20px; font-weight: 600;">
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <%= link_to rides_path, class: "sidenav-link" do %>
+      <%= link_to rides_path, class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-home"></i><span style="padding-left: 8px;">Home</span>
       <% end %>
     </li>
     <li class="nav-item active" style="margin-bottom: 24px;">
-      <%= link_to user_path(current_user), class: "sidenav-link" do %>
+      <%= link_to user_path(current_user), class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-user"></i><span style="padding-left: 8px;">My Profile</span>
       <% end %>
     </li>
     <!-- requests -->
-    <li class="nav-item mb" id='myDropdown' style="">
+    <li class="nav-item mb <%= current_user.account.theme %>" id='myDropdown' style="">
       <i class="fas fa-plus"></i><span class='s-el' style="padding-left: 8px;">Requests</span>
       <!-- requests stimulus-->
       <span id='request-size' data-controller="requests">
@@ -36,14 +36,14 @@
       </span>
     </li>
     <ul id='myDropdownMenu'>
-      <li class="" style=""><%= link_to 'Received', received_requests_path, class: '' %>
+      <li class="s-el <%= current_user.account.theme %>" style=""><%= link_to 'Received', received_requests_path, class: "rl #{current_user.account.theme }"  %>
         <% received = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/Sent/) }.size %>
         <% if received.positive? %>
           <span class='circle'><%= received %></span>
         <% end %>
       </li>
 
-      <li class="s-el" style="margin-bottom: 0px;"><%= link_to 'Sent', sent_requests_path, class: '' %>
+      <li class="s-el <%= current_user.account.theme %>" style="margin-bottom: 0px;"><%= link_to 'Sent', sent_requests_path, class: "rl #{current_user.account.theme }" %>
         <% sent = current_user.notifications.where(read: false, action: 'Request').select { |r| r.content.match?(/(Declined)|(Accepted)|(Booked)/) }.size %>
         <% if sent.positive? %>
           <span class='circle'><%= sent %></span>
@@ -52,7 +52,7 @@
     </ul>
     <!-- end of requests -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <%= link_to conversations_path, class: "sidenav-link" do%>
+      <%= link_to conversations_path, class: "sidenav-link #{current_user.account.theme}" do%>
         <i class="fas fa-comment-alt"></i><span style="padding-left: 8px;">Messages</span>
       <% end %>
       <!-- msg stimulus -->
@@ -67,14 +67,14 @@
     </li>
 
     <li class="nav-item" style="margin-bottom: 24px;">
-      <%= link_to bookmarks_users_path, class: "sidenav-link" do %>
+      <%= link_to bookmarks_users_path, class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-bookmark"></i><span style="padding-left: 8px;">Bookmarks</span>
       <% end %>
     </li>
 
     <!-- just atm! -->
     <li class="nav-item" style="margin-bottom: 24px;">
-      <%= link_to notifications_users_path, class: "sidenav-link" do %>
+      <%= link_to notifications_users_path, class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-bell"></i><span style="padding-left: 8px;">Notifications</span>
       <% end %>
       <!-- notifications stimulus -->
@@ -88,7 +88,7 @@
     </li>
 
     <li class="nav-item" style="margin-bottom: 24px;">
-      <%= link_to privacy_users_path, class: "sidenav-link" do %>
+      <%= link_to privacy_users_path, class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-lock"></i><span style="padding-left: 8px;">Privacy</span>
       <% end %>
     </li>
@@ -96,7 +96,7 @@
   </div>
   <div class='sidebar-footer-box'>
     <li class="nav-item">
-      <%= link_to destroy_user_session_path, method: :delete, class: "sidenav-link" do %>
+      <%= link_to destroy_user_session_path, method: :delete, class: "sidenav-link #{current_user.account.theme}" do %>
         <i class="fas fa-sign-out-alt"></i><span style="padding-left: 8px;">Logout</span>
       <% end %>
     </li>

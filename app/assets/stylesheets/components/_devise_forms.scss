@@ -148,6 +148,7 @@ input[type="file"] {
 }
 
 /* load popup*/
+/*
 #load-pop {
   display: none;
   text-align: center;
@@ -161,7 +162,7 @@ input[type="file"] {
   top: 44%;
   z-index: 3000;
 }
-
+*/
 #load-box {
   animation: spin 1s linear infinite;
 }
@@ -169,3 +170,70 @@ input[type="file"] {
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
+
+/* edit */
+.edit-container {
+  margin-top: 24px;
+  padding-top: 16px !important;
+}
+
+.edit-container.light-mode {
+  background-color: #E5E5E5;
+}
+
+.edit-container.dark-mode {
+  background-color: #363636;
+}
+
+.user-box {
+  margin: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.user-box.light-mode {
+  color: #fff;
+  background-color: transparent;
+}
+
+.user-box.dark-mode {
+  color: #e4e4e4;
+  background-color: transparent;
+}
+
+.user-photo {
+  border-radius: 50%;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); /* */
+}
+
+#photo-btn {
+  font-size: 21px;
+  position: relative;
+  left: 16%;
+  top: -29px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 38%);
+}
+
+.fas.fa-plus-circle.light-mode {
+  background-color: #d2d2d2;
+}
+
+.fas.fa-plus-circle.dark-mode {
+  background-color: #363636;
+}
+
+.form-control.dark-mode {
+  background-color: #4d4d4d;
+  color: #f4f4f4;
+}
+
+.form-control.light-mode {
+  background-color: #fff;
+  color: #495057;
+}
+/*
+.text-muted {
+  color: #ccc !important;
+}
+ */

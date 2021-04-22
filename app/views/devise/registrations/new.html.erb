@@ -20,7 +20,6 @@
                   label: false,
                   placeholder: "Your Email",
                   input_html: { autocomplete: "email" } %>
-                  <!-- <br> => why? -->
       <%= f.input :about_me,
                   required: true,
                   autofocus: true,
@@ -78,7 +77,7 @@
   <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
 </div>
 
-<div id='load-pop'>
+<div id='load-pop' class="load-pop-ride <%= current_user.account.theme %>">
   <div id='load-box' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
-  <br><p style='font-weight: 700; color: #495057;'>Hold tight! You are almost there!</p><br>
+  <br><p class="rpl <%= current_user.account.theme %>">Hold tight, you are almost there!</p><br>
 </div>

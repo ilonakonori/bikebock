@@ -4,15 +4,15 @@
       <p style="font-size: 60px;"><i class="far fa-bell"></i></p>
       <h6>No Notifications Here! </h6>
       <br>
-      <p style="color: rgba(14, 0, 0, 0.38);">We'll let you know when we've got someting new for you!</p>
+      <p style="">We'll let you know when we've got someting new for you!</p>
       <br>
-      <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+      <%= link_to "Home", rides_path, style: "background-color: #00917C; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
 
     <div class='notifications-box'>
       <% @notifications.each do |n| %>
-        <% css_class = n.read ? 'read' : 'not-read' %>
+        <% css_class = n.read ? "read #{current_user.account.theme}" : 'not-read' %>
 
         <div class="chat">
           <div class="row chat-wrapper">
@@ -20,7 +20,7 @@
               <div class="compose-area">
                 <div class="chat-list-wrapper" style="overflow-y: auto; width: auto;">
                   <ul class="chat-list">
-                    <li class="new" style='padding-top: 8px; margin-bottom: 8px; background-color: #fbfbfb; border-radius: 8px; padding-right: 8px;'>
+                    <li class="new n-card <%= current_user.account.theme %>">
                       <span class="pic">
 
                         <% if n.action == "Message" || n.action == "Messages" %>
@@ -38,7 +38,7 @@
                           <span class="username" id="last-online" style="font-size: 15px;"><%= n.sender_name %></span>
                           <small class="timestamp" style="font-size: 10px !important; line-height: 23px !important;"><%= n.date_display %></small>
                         </div>
-                        <p class="<%= css_class %>"><%= link_to n.content, n.link, class: "#{css_class}" %></p>
+                        <p class=""><%= link_to n.content, n.link, class: "#{css_class}" %></p>
                       </div>
                     </li>
                   </ul>

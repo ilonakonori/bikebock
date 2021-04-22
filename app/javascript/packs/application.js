@@ -99,7 +99,8 @@ document.addEventListener('turbolinks:load', () => {
     title: "Are you sure?",
     text: "This action cannot be reversed",
     icon: "warning",
-    buttons: [true, "Do it!"]
+    buttons: [true, "Do it!"],
+    className: `${document.cookie.replace('theme=', '')}`
   }, (value) => {
     if (value) {
       const link = document.querySelector('#delete-link');

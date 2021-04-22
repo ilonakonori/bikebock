@@ -7,16 +7,16 @@
     <p style="font-size: 60px; color: #433520"><i class="fas fa-walking"></i><i class="fas fa-walking"></i></p>
     <h6>There is nothing here for you</h6>
     <br>
-    <p style="color: rgba(14, 0, 0, 0.38);">Please go </p> <!-- write smtng nice here-->
+    <p style="">Please go </p> <!-- write smtng nice here-->
     <br>
-    <%= link_to "Home", rides_path, style: "background-color: #433520; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
+    <%= link_to "Home", rides_path, style: "background-color: #00917C; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
   </div>
 <% else %>
   <div style='max-height: 95vh; overflow-y: scroll;'>
     <div class="my-card" id='user' data-online-id="<%= @user.id %>">
       <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
         <div style='padding-right: 16px; padding-top: 8px; padding-bottom: 16px;'>
-          <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, style: "margin-top: 16px; border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+          <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, class: 'user-photo',style: "margin-top: 16px;" %>
           <!-- block -->
           <% if @user != current_user %>
             <%= link_to user_blockings_path(@user), method: :post do %>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="card" style="border:none;">
+    <div class="card" style="border:none; background-color: transparent;">
       <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
     </div>
     <div class="my-container" style="padding: 20px 0;">

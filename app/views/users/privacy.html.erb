@@ -1,5 +1,22 @@
 <div>
-  <h5 style='text-align: center; padding: 24px 0px;'>Privacy</h5>
+  <h5 style='text-align: center; padding: 24px 0px;'>Settings</h5>
+
+  <p  class="nav-item m" style='padding-left: 16px; margin: 0;'>
+    Choose theme
+  </p>
+  <div style='padding: 8px;padding-left: 16px; margin: 0;'>
+    <%= form_for [@account], authenticity_token: true, remote: true do |f| %>
+      <label>
+        <%= f.radio_button :theme, "light-mode", :onclick => "this.form.submit();"%>
+        Light mode
+      </label>
+      <label>
+        <%= f.radio_button :theme, "dark-mode", :onclick => "this.form.submit();"%>
+        Dark mode
+      </label>
+    <% end %>
+  </div>
+
   <p class="nav-item m" id='blockedDropdown' style='padding-left: 16px; margin: 0;'>
     <i class="fas fa-ban" style='font-size: 16px; color: #00917C;'></i>
     Blocked users <!-- (<#%= pluralize @blocked.size, 'user' %>)-->
@@ -52,3 +69,9 @@
     display: inherit;
   }
 </style>
+
+<script>
+  function submitIt() {
+    document.getElementById('myS').click();
+  }
+</script>

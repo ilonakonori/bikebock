@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   def privacy
     @user = current_user
     @blocked = @user.blockings.order(created_at: :desc)
+    @account = current_user.account
     update_tracking
     authorize @user
   end

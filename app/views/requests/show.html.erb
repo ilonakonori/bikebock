@@ -39,7 +39,7 @@
 
   <%= render 'rides/ride', ride: @request.ride %>
 
-  <% if @request.accepted.nil? %>
+  <% if @request.accepted.nil? && @request.ride_date < Date.today %>
 
     <div style='display: flex; justify-content: center;'>
       <%= link_to 'Accept', request_conversations_path(@request), method: :post, class: "brown-btn", style: "padding: 4px 47px !important;" %>
@@ -51,7 +51,7 @@
   <% elsif @request.accepted %>
     <!-- links here -->
     <div style='display: flex; justify-content: center'>
-      <% if @check_book.nil? && @all_bookings %>
+      <% if @check_book.nil? && @all_bookings && @request.ride_date < Date.today %>
         <%= link_to 'Book', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
       <% end %>
       <% if @chat.messages.present? %>
@@ -73,7 +73,7 @@
 
   <div style='display:flex; justify-content: center;'>
     <% @participants.each do |p| %>
-      <% if User.where(id: participant).present? %>
+      <% if User.where(id: p).present? %>
         <%= link_to user_path(p) do %>
           <%= cl_image_tag p.profile_photo.key, height: 50, width: 50, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
         <% end %>
@@ -98,8 +98,8 @@
         <% if @check_book.ride_date > Date.today %>
           <a id='review-btn' style="font-size: 12px; font-family: monospace;">Leave review</a>
           <!-- review pop-up -->
-          <div id='myReviewForm' style=''>
-            <button id='closeReviewBtn'><span aria-hidden="true">&times;</span></button>
+          <div id='myReviewForm' class="myReviewForm <%= current_user.account.theme %>">
+            <button id='closeReviewBtn' class="closeReviewBtn <%= current_user.account.theme %>"><span aria-hidden="true">&times;</span></button>
             <%= render 'reviews/form', booking: @check_book, review: @review %>
           </div>
         <% else %>
@@ -109,8 +109,8 @@
         <!-- view your review -->
         <a style="font-size: 12px; font-family: monospace;" id='my-review-btn'>Show my review</a>
 
-        <div id='myReview' style='display: none;'>
-          <button id='closeReview'><span aria-hidden="true">&times;</span></button>
+        <div id='myReview' class="myReview <%= current_user.account.theme %>" style='display: none;'>
+          <button id='closeReview' class="closeReview <%= current_user.account.theme %>"><span aria-hidden="true">&times;</span></button>
           <div style="padding: 16px; width: 300px; font-size: 12px; margin-top: 12px;">
             <div style="display: flex; justify-content: flex-start;">
                 <%= cl_image_tag current_user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>

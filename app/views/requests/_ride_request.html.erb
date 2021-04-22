@@ -1,13 +1,13 @@
 <div class="card" style="border-radius: 16px; border: 0;">
-  <%= cl_image_tag request.ride.photos.second.key, style: "border-radius: 16px; height: 40vw;"%>
+  <%= cl_image_tag request.ride.photos.first.key, style: "border-radius: 16px; height: 40vw;"%>
 </div>
 <br>
 <div style="display: flex; justify-content: start;">
   <div style="display: flex; justify-content: start; color: #00917C; font-size: 12px;">
-    <h5 style="font-size: 4vw; padding-left: 4px; padding-right: 8px; color: #333333;"><%= request.ride.title[0..25] %></h5>
+    <h5 class="r-h5 <%= current_user.account.theme %>"><%= request.ride.title[0..25] %></h5>
     <% if request.ride.reviews.present? %>
       <p class=""><%= request.ride.avg_rating %> (<%= pluralize request.ride.reviews.size, "review" %>)</p>
     <% end %>
   </div>
 </div>
-<p style="font-size: 3vw; padding-left: 4px; color: #333333;"><%= request.ride.short_description[0..200] %>...</p>
+<p class="rp <%= current_user.account.theme %>"><%= request.ride.short_description[0..200] %>...</p>

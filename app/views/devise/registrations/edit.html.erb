@@ -1,4 +1,4 @@
-<div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
+<div class="container edit-container <%= current_user.account.theme %>">
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
@@ -9,44 +9,44 @@
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
 
-      <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
+      <div class='user-box <%= current_user.account.theme %>'>
         <h3 style="padding-bottom: 4px;">Edit Profile!</h3>
           <div id='currentUserPhoto' >
-            <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);" %>
+            <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, class: 'user-photo' %>
           </div>
           <div id="previewAvatar"></div>
-          <i id="photo-btn" class="fas fa-plus-circle" style="font-size: 21px; position: absolute; left: 61%; top: 11.5%; border-radius: 50%;background-color: #d2d2d2; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></i>
+          <i id="photo-btn" class="fas fa-plus-circle <%= current_user.account.theme %>"></i>
           <%= f.input :profile_photo, as: :file, label: false, input_html: { hidden: true } %>
       </div>
 
       <%= f.input :name,
                   required: false,
                   label: false,
-                  input_html: { autocomplete: "new-name" } %>
+                  input_html: { autocomplete: "new-name", class: "#{current_user.account.theme}" } %>
 
       <%= f.input :email,
                   required: false,
                   label: false,
-                  input_html: { autocomplete: "email" } %>
+                  input_html: { autocomplete: "email", class: "#{current_user.account.theme}"  } %>
 
       <%= f.input :about_me,
                   required: false,
                   label: 'About Me:',
-                  input_html: { autocomplete: "new-about-me" } %>
+                  input_html: { autocomplete: "new-about-me", class: "#{current_user.account.theme}" } %>
 
       <%= f.input :interests,
                   required: false,
                   label: 'My Interests:',
                   hint: 'Express yourself in #hashtags',
-                  input_html: { autocomplete: "new-interests" } %>
+                  input_html: { autocomplete: "new-interests", class: "#{current_user.account.theme}"  } %>
 
       <%= f.input :bike_photo,
                   as: :file,
                   required: false,
                   autofocus: true,
-                  input_html: { class: 'custom-file-input'},
-                  label_html: { class: 'custom-file-label' },
-                  wrapper_html: { class: 'custom-file' } %>
+                  input_html: { class: "custom-file-input" },
+                  label_html: { class: "custom-file-label" },
+                  wrapper_html: { class: "custom-file" } %>
 
       <div id='currentBikePhoto' class='my-3'>
         <%= cl_image_tag current_user.bike_photo.key, height: 140, width: 280, crop: :fill, style: "border-radius: 16px;" %>
@@ -58,17 +58,17 @@
                   hint: "Leave it blank if you don't want to change",
                   label: 'Password:',
                   required: false,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class: "#{current_user.account.theme}" } %>
 
       <%= f.input :password_confirmation,
                   label: 'Password  Confirmation:',
                   required: false,
-                  input_html: { autocomplete: "new-password" } %>
+                  input_html: { autocomplete: "new-password", class: "#{current_user.account.theme}" } %>
 
       <%= f.input :current_password,
                   required: true,
                   label: 'Current Password:',
-                  input_html: { autocomplete: "current-password" } %>
+                  input_html: { autocomplete: "current-password", class: "#{current_user.account.theme}" } %>
       <%= f.hidden_field :last_seen,
                   :value => DateTime.now %>
     </div>
@@ -81,4 +81,9 @@
   <p style="text-align: center; color: #fff !important; margin-bottom: 0 !important;">Unhappy?
     <a id="sweet-alert-demo" class="">Cancel my account</a>
     <%= link_to "", registration_path(resource_name), id: "delete-link", class: "hidden", method: :delete %></p><br />
+</div>
+
+<div id='load-pop' class="load-pop-ride <%= current_user.account.theme %>">
+  <div id='load-box' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
+  <br><p class="rpl <%= current_user.account.theme %>">Hold tight, you are almost there!</p><br>
 </div>

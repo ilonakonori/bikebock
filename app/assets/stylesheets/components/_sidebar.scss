@@ -26,8 +26,17 @@
   right: 1.8%;
   font-size: 14px;
   top: 0.3%;
-  color: #433520; //rgba(0, 145, 124, 1);
   z-index: 1000;
+}
+
+.not-box.light-mode {
+  color: #433520; //rgba(0, 145, 124, 1);
+  background-color: transparent;
+}
+
+.not-box.dark-mode {
+  color: #fff;
+  background-color: transparent;
 }
 
 .sidebar-nav.active {
@@ -119,3 +128,14 @@ span.circle2 {
   .mb-o {
     margin-bottom: 0px;
   }
+
+.sidenav-link.light-mode, .s-el.light-mode, .rl.light-mode,, .nav-item.mb.light-mode, .nav-item.mb-o.light-mode   {
+  color: #fff;
+  background-color: transparent;
+}
+
+.sidenav-link.dark-mode, .s-el.dark-mode, .rl.dark-mode, .nav-item.mb.dark-mode, .nav-item.mb-o.dark-mode   {
+  color: #101010;
+  background-color: transparent;
+  font-weight: bold;
+}

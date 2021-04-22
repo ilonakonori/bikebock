@@ -1,5 +1,4 @@
-#myForm {
-  background-color: #f4f4f4;
+.myF {
   z-index: 800;
   justify-content: center;
   position: absolute;
@@ -13,16 +12,31 @@
   box-shadow: 0px 20px 50px 300px rgba(0,0,0,0.4);
 }
 
+.myF.light-mode {
+  background-color: #f4f4f4;
+}
 
-#closeBtn {
+.myF.dark-mode {
+  background-color: #363636;
+}
+
+.closeB {
   position: absolute;
   top: -4%;
   left: 92%;
   border: none;
-  background-color: transparent;
-  color: #433520;
   font-weight: 900;
   font-size: 24px;
+}
+
+.closeB.light-mode {
+  color: #433520;
+  background-color: transparent;
+}
+
+.closeB.dark-mode {
+  color: #f4f4f4;
+  background-color: transparent;
 }
 
 .brown-btn2 {
@@ -41,9 +55,16 @@
 }
 
 /* requests && notifications */
+.requests-box {
+  height: 96vh;
+}
+
 .requests-box, .pending-box, .notifications-box {
   padding: 12px 8px;
   overflow-y: scroll;
+}
+
+.pending-box {
   height: 86vh;
 }
 

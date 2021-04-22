@@ -18,11 +18,14 @@ class User < ApplicationRecord
   has_many :blockings, dependent: :destroy
 
   has_one :tracking, dependent: :destroy
+  has_one :account, dependent: :destroy
 
   acts_as_taggable_on :tags
   before_save :set_tags
 
   after_create :create_tracking
+  after_create :create_account
+
   after_destroy :photos_destroy
   after_destroy :destroy_where_sender
   after_destroy :destroy_tags
@@ -42,6 +45,10 @@ class User < ApplicationRecord
 
   def self.create_tracking
     self.tracking.create!(location: 'http://localhost:3000/rides', location_time: Time.now)
+  end
+
+  def self.create_account
+    self.account.create!
   end
 
   def online?
