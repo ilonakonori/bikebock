@@ -104,28 +104,28 @@ input[type="file"] {
   margin-bottom: -1.5em;
 }
 
-#edit_user > div.form-inputs > div.form-group.string.optional.user_about_me.form-group-valid > label {
-  padding-left: 8px;
-}
-
-#edit_user > div.form-inputs > div.form-group.string.optional.user_interests.form-group-valid > label {
-  padding-left: 8px;
-}
-
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password > label{
   padding-left: 8px;
+}
+
+#edit_user > div.form-inputs > div.form-group.password.required.user_current_password > label {
+  padding-left: 8px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password_confirmation > label {
   padding-left: 8px;
 }
 
-#edit_user > div.form-inputs > div.form-group.password.required.user_current_password > label {
-  padding-left: 8px;
+#edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid > label {
+  padding-left: 8px !important;
 }
 
-#edit_user > div.form-inputs > div.form-group.string.optional.user_interests.form-group-valid > small {
-  padding-left: 8px;
+#edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > small {
+  padding-left: 8px !important;
+}
+
+#edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > label {
+  padding-left: 8px !important;
 }
 
 // new_user
