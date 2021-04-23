@@ -51,6 +51,8 @@ import { initAnchorScroll } from '../components/init_anchor_scroll';
 import { initBlockingsDropdown } from '../components/init_blockings_dropdown';
 import { initSweetalert } from '../plugins/init_sweetalert';
 import { initLoadPopup } from '../components/init_load_popup';
+import { styleSelect2 } from '../components/style_select2';
+
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -71,6 +73,8 @@ document.addEventListener('turbolinks:load', () => {
   showAllReviews();
 
   initConversationCable();
+
+  styleSelect2();
 
   initAnchorScroll();
 

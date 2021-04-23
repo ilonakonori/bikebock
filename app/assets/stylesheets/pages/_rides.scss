@@ -399,6 +399,11 @@ body > span > span > span.select2-search.select2-search--dropdown > input {
   border-width: 0 7px 8px 7px;
 }
 
+.select2-selection--single.open {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
 #select2-select-results li {
   padding-left: 16px;
 }
