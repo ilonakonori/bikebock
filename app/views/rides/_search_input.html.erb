@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: center; width: 313px; position: absolute; top: 5%; left: 50%; transform: translateX(-50%);">
-  <%= form_tag rides_path, class: "", method: :get do %>
+  <%= form_tag rides_path, id: "select-this", method: :get do %>
     <%= select_tag(:select, options_for_select([
       ["Sort by earliest date", 2],
       ['Sort by group size', 1],
