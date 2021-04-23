@@ -1,23 +1,28 @@
+<div class="navbar fixed-top navbar-expand-sm navbar-light">
+  <%= link_to '<<', rides_path, class: 'back-link' %>
+</div>
+
 <div>
-  <h5 style='text-align: center; padding: 24px 0px;'>Settings</h5>
+  <h6 style='text-align: center; padding: 24px 0px;'>Settings</h6>
 
   <p  class="nav-item m" style='padding-left: 16px; margin: 0;'>
-    Choose theme
+    <i class="fas fa-moon" style="font-size: 16px; color: #00917C"></i> Choose theme
   </p>
   <div style='padding: 8px;padding-left: 16px; margin: 0;'>
+  <ul>
     <%= form_for [@account], authenticity_token: true, remote: true do |f| %>
-      <label>
+      <li style="padding-left: 8px;"><label>
         <%= f.radio_button :theme, "light-mode", :onclick => "this.form.submit();"%>
         Light mode
-      </label>
-      <label>
+      </label></li>
+      <li style="padding-left: 8px;"><label>
         <%= f.radio_button :theme, "dark-mode", :onclick => "this.form.submit();"%>
         Dark mode
-      </label>
+      </label></li>
     <% end %>
-  </div>
+  <ul>
 
-  <p class="nav-item m" id='blockedDropdown' style='padding-left: 16px; margin: 0;'>
+  <p class="nav-item m" id='blockedDropdown' style='margin: 0;'>
     <i class="fas fa-ban" style='font-size: 16px; color: #00917C;'></i>
     Blocked users <!-- (<#%= pluralize @blocked.size, 'user' %>)-->
   </p>
