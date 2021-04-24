@@ -51,7 +51,7 @@
   <% elsif @request.accepted %>
     <!-- links here -->
     <div style='display: flex; justify-content: center'>
-      <% if @check_book.nil? && @all_bookings && @request.ride_date < Date.today %>
+      <% if @check_book.nil? && @all_bookings && @request.ride_date.to_date < Date.today %>
         <%= link_to 'Book', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
       <% end %>
       <% if @chat.messages.present? %>

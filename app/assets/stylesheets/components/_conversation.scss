@@ -257,18 +257,19 @@ a.myLink {
   transform:translate(-50%, 0);
 }
 
-// Ilona  check this pls :)
 .loadDiv {
   //display: flex;
   justify-content: center;
   position:absolute;
   top:42%;
-  left:50%;
-  padding: 24px;
+  left:56%;
   transform:translate(-50%, 0);
   border-radius: 12px;
   box-shadow: 0px 1px 12px 1px rgba(0,0,0,0.2);
-  padding: 24px 56px 8px 40px;
+  padding: 28px 28px 31px 66px;
+  border: 1px solid #efefef;
+  width: 36vh;
+  height: 13vh;
 }
 
 .loadDiv.light-mode {
@@ -316,6 +317,15 @@ a.myLink {
   float: left;
   margin-top: -2px;
   margin-right: -12px;
+  border: 1px solid #00917C;
+  padding: 4px 0;
+  border-radius: 8px;
+  border-top-right-radius: 0px;
+  font-size: 12px;
+}
+
+.navbar-nav .dropdown-menu .light-mode {
+  //background-color: #fff;
 }
 
 .fixed-top {
@@ -328,7 +338,16 @@ a.myLink {
 
 #navbarSupportedContent {
   float: right;
-  color: #aaa;
+}
+
+a.dropdown-item .light-mode  {
+    color: #666;
+    background: transparent;
+}
+
+a.dropdown-item .dark-mode  {
+  color: #fff;
+  background: transparent;
 }
 
 #navbarSupportedContent > ul > div > div {

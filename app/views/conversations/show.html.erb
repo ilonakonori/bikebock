@@ -16,18 +16,18 @@
   <div class="navbar fixed-top navbar-expand-sm navbar-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style=''>
       <ul class="navbar-nav mr-auto">
-        <div class="nav-item dropdown">
-          <a id="navbarDropdown", data-toggle="dropdown", aria-haspopup='true', aria-expanded='false'  >
+        <div class="nav-item dropdown <%= current_user.account.theme %>">
+          <a id="navbarDropdown", class="<%= current_user.account.theme %>" data-toggle="dropdown", aria-haspopup='true', aria-expanded='false'  >
             <i class="fas fa-ellipsis-v back-link"></i>
           </a>
           <!-- @Iva, can we add Media, links and docs? re: ofc :) -->
-          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu dropdown-menu-left <%= current_user.account.theme %>" aria-labelledby="navbarDropdown">
             <% if @conversation.user_present(current_user) %>
-              <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item" %>
+              <%= link_to "View profile", user_path(@conversation.opposed_user(current_user)), class: "dropdown-item #{current_user.account.theme}" %>
             <% end %>
-            <%= link_to "Media & docs", media_conversation_path(@conversation.id), class: "dropdown-item" %>
+            <%= link_to "Media & docs", media_conversation_path(@conversation.id), class: "dropdown-item #{current_user.account.theme}" %>
             <% my_link = @conversation.messages.present? ? search_messages_conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : search_messages_conversation_path(@conversation.id) %>
-            <%= link_to search_messages_conversation_path(@conversation.id), class: "dropdown-item" do %>
+            <%= link_to search_messages_conversation_path(@conversation.id), class: "dropdown-item #{current_user.account.theme}" do %>
               <span>Search <i style='color: #666; font-size: 11px;' class="fas fa-search"></i></span>
             <% end %>
           </div>
@@ -100,8 +100,8 @@
 
       <div id='loadDiv' class="loadDiv <%= current_user.account.theme %>"style='display: none;'>
         <div class='line-load'></div>
-        <div class='progress-load'></div>
-        <p style='padding-top: 12px;'>Uploading</p>
+        <div class='progress-load' style="display: flex; justify-content: space-evenly; padding-top: 4px; line-height: 4vh;">
+        <i class="fas fa-cloud-upload-alt" style="padding-top: 3px; font-weight: 700;"> </i> Uploading...</div>
       </div>
 
 
@@ -119,7 +119,7 @@
 <% if @conversation.user_present(current_user) %>
     <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
       <div class='msg-input-container'>
-        <%= f.text_area :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }", class: "#{current_user.account.theme}" %>
+        <%= f.text_area :content, label: false, placeholder: "Write a message to #{@conversation.opposed_user(current_user).name }", class: "#{current_user.account.theme}", style: 'font-size: 15px;' %>
         <i id="upload-btn" class="fas fa-paperclip"></i>
         <%= f.input :attachment, as: :file, label: false, input_html: { hidden: true } %>
       </div>
