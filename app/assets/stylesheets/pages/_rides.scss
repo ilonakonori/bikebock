@@ -117,11 +117,17 @@
 #edit_ride > div.form-group.string.optional.ride_end_location.form-group-valid > label,
 #edit_ride > div.form-group.time.optional.ride_start_time.form-group-valid > label,
 #edit_ride > div.form-group.time.optional.ride_end_time.form-group-valid > label,
-#edit_ride > div.form-group.string.required.ride_available_dates.form-group-valid > label {
+#edit_ride > div.form-group.string.required.ride_available_dates.form-group-valid > label,
+#new_ride > div.form-group.string.required.ride_end_location > label,
+#new_ride > div.form-group.time.required.ride_start_time > label,
+#new_ride > div.form-group.time.required.ride_end_time > label,
+#new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty > legend,
+#new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > legend,
+#new_ride > div.form-group.string.required.ride_available_dates > label
+ {
   padding-left: 8px;
 }
-
-
+ 
 #ride_short_description, #user_about_me, #user_interests {
   min-height: 12vh;
 }
@@ -142,6 +148,11 @@ div.form-group.text.required.ride_short_description {
   background-color: #fff;
 }
 
+#new_ride > div.form-group.string.required.ride_title > label,
+#new_ride > div.form-group.text.required.ride_short_description > label,
+#new_ride > div.form-group.string.required.ride_start_location > label, {
+  padding-left: 8px;
+}
 
 /* custom radio btns */
 input[type="radio" i] {
@@ -233,7 +244,7 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people.form-group-vali
 fieldset.form-group.radio_buttons.required.ride_difficulty,
 fieldset.form-group.radio_buttons.required.ride_number_of_people {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 /* btn 'I want to go' */
@@ -521,6 +532,8 @@ a:hover {
 /* photos forms + preview */
 #photo_1 > div > label, #photo_2 > div > label, #photo_3 > div > label {
   border-radius: 16px;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
 }
 
 #photo_1 > div, #photo_2 > div, #photo_3 > div {
