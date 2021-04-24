@@ -111,7 +111,7 @@
   z-index: 2;
 }
 
-/* edit ride */
+/* edit and new ride */
 
 #edit_ride > div.form-group.string.optional.ride_start_location.form-group-valid > label,
 #edit_ride > div.form-group.string.optional.ride_end_location.form-group-valid > label,
@@ -123,7 +123,7 @@
 #new_ride > div.form-group.time.required.ride_end_time > label,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty > legend,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > legend,
-#new_ride > div.form-group.string.required.ride_available_dates > label
+#new_ride > div.form-group.string.required.ride_available_dates > label,
  {
   padding-left: 8px;
 }
@@ -148,11 +148,6 @@ div.form-group.text.required.ride_short_description {
   background-color: #fff;
 }
 
-#new_ride > div.form-group.string.required.ride_title > label,
-#new_ride > div.form-group.text.required.ride_short_description > label,
-#new_ride > div.form-group.string.required.ride_start_location > label, {
-  padding-left: 8px;
-}
 
 /* custom radio btns */
 input[type="radio" i] {
