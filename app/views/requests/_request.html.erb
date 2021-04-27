@@ -15,7 +15,7 @@
     <% elsif r[:request].accepted && r[:check_book].nil? %>
       <p style="font-size: 12px; font-family: monospace;">Accepted: <span style='color:#00917C; font-weight: 600;'> <%= user.name %></span></p>
     <% elsif r[:check_book].present? %>
-      <p style="font-size: 12px; font-family: monospace;">Booked: <span style='color:#00917C; font-weight: 600;'> <%= user.name %></span>
+      <p style="font-size: 12px; font-family: monospace;">Confirmed <span style='color:#00917C; font-weight: 600;'> <%= user.name %></span>
       </p>
     <% else %>
       <p style="font-size: 12px; font-family: monospace;">Declined: <span style='color:#00917C; font-weight: 600;'> <%= user.name %></span>

@@ -52,7 +52,7 @@
     <!-- links here -->
     <div style='display: flex; justify-content: center'>
       <% if @check_book.nil? && @all_bookings && @request.ride_date.to_date < Date.today %>
-        <%= link_to 'Book', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
+        <%= link_to 'Confirm', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
       <% end %>
       <% if @chat.messages.present? %>
         <%= link_to 'Chat', conversation_path(@chat, anchor: "message-#{@chat.messages.last.id}"), class: 'brown-btn' %>
