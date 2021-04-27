@@ -127,7 +127,7 @@
  {
   padding-left: 8px;
 }
- 
+
 #ride_short_description, #user_about_me, #user_interests {
   min-height: 12vh;
 }
@@ -555,4 +555,8 @@ i.fas.fa-times-circle.pr {
   width: 95px;
   height: 70px;
   padding-left: 0px;
+}
+
+.current-photos.new {
+  display: none;
 }

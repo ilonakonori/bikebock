@@ -38,6 +38,7 @@ const fileInputPreviewBike = () => {
 const fileInputPreviewRidePhotos = () => {
   // 1.photo
   // edit i.e. photo present
+  const photos = document.querySelector('.current-photos.new');
   const photoInput = document.getElementById('ride_photo_1');
   const ph_1 = document.getElementById('ph_1');
   if(ph_1) {
@@ -55,6 +56,7 @@ const fileInputPreviewRidePhotos = () => {
       const uploadedImage = event.currentTarget.files[0];
       const imageUrl = window.URL.createObjectURL(uploadedImage);
       previewDiv.innerHTML = `<img src='${imageUrl}' width='95' height='70' style='border-radius: 8px;'><i id="upload_photo_1" class="fas fa-times-circle pr"></i>`;
+      photos.style.display = 'flex';
 
       const phot_1 = document.getElementById('photo_1');
       // not present i.e. new ride
