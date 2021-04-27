@@ -68,13 +68,13 @@
       <% if @user.rides.empty? %>
         <% if @user == current_user %>
           <p class="text-secondary"> You still don't have any bike rides, go and
-          <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
-          <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>          </p>
+          <p style="font-size: 4.3vw; position: relative; color: #00917C; font-weight: bold; left: 21%; background-color: #fff; line-height: 3vh; padding: 1vh 4vh; border-radius: 16px; width: 60%; border: solid 1px #efefef; box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);" >
+          <%= link_to '', new_ride_path %>Add New Ride <i class="fas fa-biking"></i></p>
         <% end %>
       <% else %>
         <% if @user == current_user %>
-          <%= link_to '', new_ride_path, class: "fas fa-bicycle", style: "font-size: 34px; position: relative; color: #00917C; font-weight: 600; left: 39%; border-radius: 50%; background-color: #fff; padding: 8px;" %>
-          <%= link_to 'Add ride', new_ride_path, class: "fas fa-plus-circle", style: "font-size: 10px; position: relative; left: 35%; color: #00917C; font-weight: 600; margin-bottom: 8%;" %>
+          <p style="font-size: 4.3vw; position: relative; color: #00917C; font-weight: bold; left: 21%; background-color: #fff; line-height: 3vh; padding: 1vh 4vh; border-radius: 16px; width: 60%; border: solid 1px #efefef; box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);" >
+          <%= link_to '', new_ride_path %>Add New Ride <i class="fas fa-biking"></i></p>
         <% end %>
         <% @user.rides.each do |ride| %>
           <%= render 'rides/ride', ride: ride %>
