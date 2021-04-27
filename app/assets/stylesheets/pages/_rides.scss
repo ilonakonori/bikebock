@@ -628,3 +628,27 @@ i.fas.fa-times-circle.pr {
 .current-photos.new {
   display: none;
 }
+
+
+// add new ride button
+.new-ride-btn {
+  font-size: 4.3vw;
+  position: relative;
+  color: #00917C;
+  font-weight: bold;
+  left: 21%;
+  line-height: 3vh;
+  padding: 1vh 4vh;
+  border-radius: 16px;
+  width: 60%;
+  border: solid 1px #efefef;
+  box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);
+}
+
+.new-ride-btn.light-mode {
+  background-color: #fff;
+}
+
+.new-ride-btn.dark-mode {
+  background-color: #363636;
+}
