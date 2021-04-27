@@ -123,11 +123,11 @@
 #new_ride > div.form-group.time.required.ride_end_time > label,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty > legend,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > legend,
-#new_ride > div.form-group.string.required.ride_available_dates > label,
+#new_ride > div.form-group.string.required.ride_available_dates > label
  {
   padding-left: 8px;
 }
- 
+
 #ride_short_description, #user_about_me, #user_interests {
   min-height: 12vh;
 }
@@ -257,6 +257,8 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
   background-color: #433520;
   text-decoration: none;
 }
+
+
 
 /* bookmarks */
 
@@ -529,10 +531,76 @@ a:hover {
   border-radius: 16px;
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
+  background-color: transparent;
+  border: none;
 }
 
 #photo_1 > div, #photo_2 > div, #photo_3 > div {
   margin-bottom: 8px;
+}
+
+
+.custom-file-label::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: block;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  content: "Browse";
+  border-left: inherit;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.custom-file-label.light-mode::after {
+  color: #495057;
+  background-color: #e9ecef;
+  height: calc(1.5em + 0.90rem);
+}
+
+.custom-file-label.dark-mode::after {
+  color: #fff;
+  background-color: #666;
+  height: calc(1.5em + 0.90rem);
+}
+
+label.file.required.custom-file-label {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border: none;
+}
+
+div.form-group.file.required.ride_photo_1.custom-file.dark-mode {
+  background-color: #4d4d4d;
+  border-radius: 16px;
+}
+
+div.form-group.file.required.ride_photo_1.custom-file.light-mode {
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+div.form-group.file.required.ride_photo_2.custom-file.dark-mode {
+  background-color: #4d4d4d;
+  border-radius: 16px;
+}
+
+div.form-group.file.required.ride_photo_2.custom-file.light-mode {
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+div.form-group.file.required.ride_photo_3.custom-file.dark-mode {
+  background-color: #4d4d4d;
+  border-radius: 16px;
+}
+
+div.form-group.file.required.ride_photo_3.custom-file.light-mode {
+  background-color: #fff;
+  border-radius: 16px;
 }
 
 i.fas.fa-times-circle.pr {
@@ -555,4 +623,8 @@ i.fas.fa-times-circle.pr {
   width: 95px;
   height: 70px;
   padding-left: 0px;
+}
+
+.current-photos.new {
+  display: none;
 }

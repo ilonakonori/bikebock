@@ -147,6 +147,61 @@ input[type="file"] {
   font-weight: normal;
 }
 
+//photo input
+.custom-file-label::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: block;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  content: "Browse";
+  border-left: inherit;
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.custom-file-label.light-mode::after {
+  color: #495057;
+  background-color: #e9ecef;
+  height: calc(1.5em + 0.91rem);
+}
+
+.custom-file-label.dark-mode::after {
+  color: #fff;
+  background-color: #666;
+  height: calc(1.5em + 0.91rem);
+}
+
+label.file.optional.custom-file-label {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border: none;
+}
+
+label.file.optional.custom-file-label.light-mode {
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+label.file.optional.custom-file-label.dark-mode {
+  background-color: #4d4d4d;
+  border-radius: 16px;
+}
+
+div.form-group.file.optional.user_bike_photo.custom-file.dark-mode {
+  background-color: #4d4d4d;
+  border-radius: 16px;
+}
+
+div.form-group.file.optional.user_bike_photo.custom-file.light-mode {
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+
 /* load popup*/
 /*
 #load-pop {
