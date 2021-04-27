@@ -547,7 +547,6 @@ a:hover {
   bottom: 0;
   z-index: 3;
   display: block;
-  height: calc(1.5em + 0.85rem);
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   content: "Browse";
@@ -559,14 +558,16 @@ a:hover {
 .custom-file-label.light-mode::after {
   color: #495057;
   background-color: #e9ecef;
+  height: calc(1.5em + 0.90rem);
 }
 
 .custom-file-label.dark-mode::after {
   color: #fff;
   background-color: #666;
+  height: calc(1.5em + 0.90rem);
 }
 
-label.file.require.custom-file-label {
+label.file.required.custom-file-label {
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
   border: none;

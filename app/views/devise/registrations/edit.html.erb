@@ -44,9 +44,9 @@
                   as: :file,
                   required: false,
                   autofocus: true,
-                  input_html: { class: "custom-file-input" },
-                  label_html: { class: "custom-file-label" },
-                  wrapper_html: { class: "custom-file" } %>
+                  input_html: { class: "custom-file-input #{current_user.account.theme}" },
+                  label_html: { class: "custom-file-label #{current_user.account.theme}" },
+                  wrapper_html: { class: "custom-file #{current_user.account.theme}" } %>
 
       <div id='currentBikePhoto' class='my-3'>
         <%= cl_image_tag current_user.bike_photo.key, height: 140, width: 280, crop: :fill, style: "border-radius: 16px;" %>
