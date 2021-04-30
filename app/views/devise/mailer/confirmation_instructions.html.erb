@@ -1,5 +1,10 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<div style="">
+  <h5 style="font-weight:bold">Confirm your email address!</h5>
+  <br>
+  <p>There’s one quick step you need to complete before creating your Bike Bock account. 
+  Let’s make sure this is the right email address for you — 
+  please confirm this is the right address to use for your new account.</p>
+  <br>
+  <p><%= link_to 'Please confirm your account to get started on Bike Bock', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <p>Thanks,<span>Bike Bock</span></p>
+</div>

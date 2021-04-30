@@ -39,8 +39,7 @@
 
   <%= render 'rides/ride', ride: @request.ride %>
 
-  <% if @request.accepted.nil? && @request.ride_date.to_date < Date.today %>
-
+  <% if @request.accepted.nil? %>
     <div style='display: flex; justify-content: center;'>
       <%= link_to 'Accept', request_conversations_path(@request), method: :post, class: "brown-btn", style: "padding: 4px 47px !important;" %>
       <% if policy(@request).update? %>
