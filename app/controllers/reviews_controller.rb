@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
         action_time: Time.now,
         read: false,
         link: "/rides/#{r.booking.ride.id}",
-        content: "Wrote a review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%e %B %Y')}"
+        content: "Wrote a review: #{r.booking.ride.title}, #{r.booking.ride_date.strftime('%d-%m-%Y')}"
       )
 
       redirect_to request_path(@booking.action_id), notice: 'Thank you for your review!'

@@ -648,7 +648,12 @@ i.fas.fa-times-circle.pr {
 .new-ride-btn.light-mode {
   background-color: #fff;
 }
-
+.new-ride-btn.light-mode a {
+  color: #000;
+}
 .new-ride-btn.dark-mode {
   background-color: #363636;
+}
+.new-ride-btn.dark-mode a {
+  color: #fff;
 }

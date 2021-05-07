@@ -1,4 +1,4 @@
-<div class="navbar fixed-top navbar-expand-sm navbar-light">
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
   <%= link_to '<<', :back, class: 'back-link' %>
 </div>
 
@@ -27,11 +27,10 @@
         </div>
 
         <div class="my-card-body" style="padding: 0 16px;">
-          <h6 style="font-size: 4vw;"><%= @user.name %></h6>
+          <h6 style="font-size: 4vw; margin-top: 8px;"><%= @user.name %>
           <!-- render part -->
-          <div id='online-<%= @user.id %>'>
-            <p id='user' data-online-id="<%= @user.id %>" style="font-size: 11px; font-weight: 300; margin-bottom: 0 !important;">
-              Online
+          <span id='online-<%= @user.id %>'>
+            <span id='user' data-online-id="<%= @user.id %>" style="font-size: 11px; font-weight: 300; margin-bottom: 0 !important;">
               <%
                 if @user.online?
                   present_color = '#00917C;'
@@ -39,14 +38,16 @@
                   present_color = '#aaa;'
                 end
               %>
-              <span>
+
                 <i class='fas fa-circle' style="color: <%= present_color %>"></i>
-              </span>
-              <% if !@user.online? %>
-                <span style="font-size: 11px;"> <%= @user.last_online %></span>
-              <% end %>
-            </p>
-          </div>
+
+              <!--
+              <#% if !@user.online? %>
+                <span style="font-size: 11px;"> <#%= @user.last_online %></span>
+              <#% end %> -->
+            </span>
+          </span>
+          </h6>
           <!-- end of render part -->
           <hr style="width: 95%; text-align: left; margin-left: 0;">
           <p style="font-size: 3vw;"><%= @user.about_me %></p>
@@ -54,9 +55,12 @@
       </div>
     </div>
 
-    <div class="card" style="border:none; background-color: transparent;">
-      <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
-    </div>
+    <% if @user.bike_photo.present? %>
+      <div class="card" style="border:none; background-color: transparent;">
+        <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
+      </div>
+    <% end %>
+
     <div class="my-container" style="padding: 20px 0;">
       <div style="display: flex; flex-wrap: wrap;">
         <% @user.tags.each do |tag| %>

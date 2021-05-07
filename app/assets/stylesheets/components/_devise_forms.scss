@@ -44,11 +44,8 @@ input[type="checkbox"]:checked:after {
   margin-left: -1em;
 }
 
-.new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo {
-  border-radius: 16px;
-}
-
-#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo > label, #user_bike_photo {
+.new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo,
+#new_user > div.form-inputs > div.form-group.file.optional.user_bike_photo > label, #user_bike_photo {
   border-radius: 16px;
 }
 
@@ -77,18 +74,26 @@ input[type="file"] {
   cursor: pointer;
 }
 
-// update profile
-
-#edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file > label {
-  border-radius: 16px;
+// new_user
+#new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
+#new_user > div.form-inputs > div.form-group.file.optional.user_bike_photo.custom-file {
+  margin-bottom: -1.5em;
 }
 
+#new_user > div > div.form-group.file.required.user_profile_photo.custom-file > label,
+#new_user > div > div.form-group.file.optional.user_bike_photo.custom-file > label {
+  height: calc(1.5em + 0.67rem + 2px);
+}
+
+#new_user > div > div.form-group.email.optional.user_email {
+  padding-bottom: 2px;
+}
+
+// update profile
+// photo inputs
+#edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file > label,
 #edit_user > div.form-inputs > div.form-group.file.optional.user_bike_photo.form-group-valid.custom-file > label {
   border-radius: 16px;
-}
-
-#edit_user > div.form-inputs > div.form-group.password.optional.user_password > small {
-  padding-left: 8px;
 }
 
 #edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file {
@@ -102,6 +107,11 @@ input[type="file"] {
 #edit_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
   margin-top: -5em;
   margin-bottom: -1.5em;
+}
+// end of photo inputs
+
+#edit_user > div.form-inputs > div.form-group.password.optional.user_password > small {
+  padding-left: 8px;
 }
 
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password > label{
@@ -126,16 +136,6 @@ input[type="file"] {
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > label {
   padding-left: 8px !important;
-}
-
-// new_user
-#new_user > div.form-inputs > div.form-group.file.required.user_profile_photo.custom-file,
-#new_user > div.form-inputs > div.form-group.file.required.user_bike_photo.custom-file {
-  margin-bottom: -1.5em;
-}
-
-#new_user > div > div.form-group.email.optional.user_email {
-  padding-bottom: 2px;
 }
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid,

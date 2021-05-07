@@ -1,4 +1,4 @@
-<div class="navbar fixed-top navbar-expand-sm navbar-light">
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
   <!-- anchor-->
   <% my_link = @conversation.messages.present? ? conversation_path(@conversation.id, anchor: "message-#{@conversation.messages.last.id}") : conversation_path(@conversation.id) %>
   <%= link_to '<<', my_link, class: 'back-link' %>

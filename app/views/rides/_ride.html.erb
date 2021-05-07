@@ -42,7 +42,7 @@
           <div style="display: flex; flex-wrap: wrap;">
             <% ride.valid_dates.each do |d| %>
               <p style="border-style: solid; border-width: 0; border-radius: 16px; font-size: 3vw; padding: 1vh 2vh; margin-left: 4px; color: white; background-color: #00917C; font-weight: bolder; box-shadow: 0px 4px 4px rgba(8, 13, 60, 0.09);">
-                <%= d.strftime('%e %B %Y') %>
+                <%=  d.strftime('%d-%m-%Y')  %>
               </p>
             <% end %>
           </div>

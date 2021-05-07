@@ -1,4 +1,4 @@
-<div class="navbar fixed-top navbar-expand-sm navbar-light">
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
   <% my_requests = @request.recipient_id == current_user.id ? received_requests_path : sent_requests_path %>
   <%= link_to '<<', my_requests, class: 'back-link' %>
 </div>
@@ -17,7 +17,7 @@
   </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
-    <p style="font-size: 75%;"><%= @request.created_at.to_date %> | </p>
+    <p style="font-size: 75%;"><%= @request.created_at.strftime('%d-%m-%Y')  %> | </p>
     <% user = User.find(@request.user_id) %>
     <% if @request.accepted.nil? %>
       <p style="font-size: 12px; font-family: monospace;">Add <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %></p>
@@ -32,7 +32,7 @@
     </p>
     <% end %>
     <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
-      <%= @request.ride_date %>
+      <%= @request.ride_date.to_date.strftime('%d-%m-%Y')  %>
     </p>
   </div>
 
@@ -85,7 +85,7 @@
   </div>
 
   <div style="display: flex; justify-content: space-between; padding-top: 32px; padding-left: 8px;">
-    <p style="font-size: 75%;"><%= @request.created_at.to_date %> | </p>
+    <p style="font-size: 75%;"><%= @request.created_at.strftime('%d-%m-%Y') %> | </p>
     <% if @request.accepted.nil? %>
       <p style="font-size: 12px; font-family: monospace;">Pending request</p>
     <% elsif @request.accepted && @check_book.nil? %>
@@ -113,7 +113,7 @@
           <div style="padding: 16px; width: 300px; font-size: 12px; margin-top: 12px;">
             <div style="display: flex; justify-content: flex-start;">
                 <%= cl_image_tag current_user.profile_photo.key, height: 25, width: 25, crop: :fill, style: "border-radius: 50%; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); margin: 0px 2px;" %>
-              <p style="font-size: 75%; margin: 8px;"><%= @check_book.review.created_at.strftime('%e %B %Y') %>
+              <p style="font-size: 75%; margin: 8px;"><%= @check_book.review.created_at.strftime('%d-%m-%Y') %>
               <% @check_book.review.rating.times do %>
                 <i style='color: #00917c;' class="fas fa-star"></i>
               <% end %></p>
@@ -128,7 +128,7 @@
       <p style="font-size: 14px;">Request is declined</p>
     <% end %>
     <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
-      <%= @request.ride_date %>
+      <%= @request.ride_date.to_date.strftime('%d-%m-%Y') %>
     </p>
   </div>
 
