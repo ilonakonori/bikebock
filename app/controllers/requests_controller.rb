@@ -74,7 +74,7 @@ class RequestsController < ApplicationController
       )
 
       flash[:notice] = 'Request successfully sent'
-      redirect_to ride_path(@request.ride_id, anchor: "request")
+      redirect_to sent_requests_path # or show page? request_path(@request)
     end
     update_tracking
   end
