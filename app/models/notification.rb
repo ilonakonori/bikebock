@@ -2,7 +2,7 @@ class Notification < ApplicationRecord
   belongs_to :user
 
   def date_display # localtime
-    updated_at.localtime.year == Time.now.year ? no_year : updated_at.localtime.strftime("%Y, %b %e at %l:%M %p")
+    updated_at.localtime.year == Time.now.year ? no_year : updated_at.localtime.strftime("%d %b %Y, at %l:%M %p")
   end
 
   def no_year
@@ -11,7 +11,7 @@ class Notification < ApplicationRecord
     elsif updated_at.localtime.day == Time.now.day - 1
       updated_at.localtime.strftime("Yesterday at %l:%M %p")
     else
-      updated_at.localtime.strftime("%b %e at %l:%M %p")
+      updated_at.localtime.strftime("%d %b at %l:%M %p")
     end
   end
 end

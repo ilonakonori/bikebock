@@ -104,7 +104,7 @@ class ConversationsController < ApplicationController
       action_id: @request.id,
       action_time: Time.now,
       read: false,
-      content: "Accepted your request: #{@request.ride_date}, #{@request.ride.title}",
+      content: "Accepted your request: #{@request.ride_date.strftime('%d-%m-%Y')}, #{@request.ride.title}",
       link: "/requests/#{@request.id}"
     )
 
