@@ -14,9 +14,13 @@ const initSidebar = () => {
           sidebar.classList.remove('active');
           box.classList.remove('active');
           footerBox.classList.remove('active');
+          toggle.classList.remove('fa-times');
+          toggle.classList.add('fa-bars');
       } else {
         sidebar.classList.add('active');
         box.classList.add('active');
+        toggle.classList.remove('fa-bars');
+        toggle.classList.add('fa-times');
         footerBox.classList.add('active');
       }
     });
