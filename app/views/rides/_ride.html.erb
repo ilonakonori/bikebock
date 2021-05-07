@@ -1,6 +1,6 @@
 
 <div id='ride-<%= ride.id %>' class="rides <%= current_user.account.theme %>">
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 8px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; position: relative; top: 168px; z-index: 1; width: 94%; right: -9px;">
     <div>
       <% if policy(ride).fav? %>
         <% if current_user.favorited?(ride) %>
