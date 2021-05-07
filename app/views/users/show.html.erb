@@ -55,9 +55,12 @@
       </div>
     </div>
 
-    <div class="card" style="border:none; background-color: transparent;">
-      <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
-    </div>
+    <% if @user.bike_photo.present? %>
+      <div class="card" style="border:none; background-color: transparent;">
+        <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
+      </div>
+    <% end %>
+
     <div class="my-container" style="padding: 20px 0;">
       <div style="display: flex; flex-wrap: wrap;">
         <% @user.tags.each do |tag| %>

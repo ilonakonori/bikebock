@@ -1,3 +1,6 @@
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
+  <%= link_to '<<', :back, class: 'back-link' %>
+</div>
 <div class="container ride-form-box <%= current_user.account.theme %>">
   <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
     <% if ride.persisted? %>
