@@ -36,6 +36,8 @@ const initSidebar = () => {
         sidebar.classList.remove('active');
         box.classList.remove('active');
         footerBox.classList.remove('active');
+        toggle.classList.remove('fa-times');
+        toggle.classList.add('fa-bars');
       }
     })
   }

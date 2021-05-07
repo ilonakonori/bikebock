@@ -1,5 +1,5 @@
 
-<div class="navbar fixed-top navbar-expand-sm navbar-light">
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
   <!-- anchor-->
   <% if @conversation.messages.present? %>
     <%= link_to '<<', conversation_path(@conversation, anchor: "message-#{@conversation.messages.last.id}"), class: 'back-link' %>
@@ -21,7 +21,7 @@
       <%= link_to "Chat", conversation_path(@conversation), class: 'back-link', style: "background-color: #00917C; padding: 8px 55px; box-shadow: 3px 4px 5px 0px rgb(0 0 0 / 38%); border-radius: 16px; color: #fff; font-weight: 400;" %>
     </div>
   <% else %>
-    <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0;'>
+    <div class='scroll-box' style='padding: 12px 0 0 0; margin: 0; max-height: 90vh;'>
       <% @media.each do |m| %>
         <div class="m-box <%= current_user.account.theme %>">
           <p class="m-p <%= current_user.account.theme %>">

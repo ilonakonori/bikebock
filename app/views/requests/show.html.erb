@@ -1,4 +1,4 @@
-<div class="navbar fixed-top navbar-expand-sm navbar-light">
+<div class="navbar fixed-top navbar-expand-sm navbar-light" style='padding: 0 22px; right: -2%;'>
   <% my_requests = @request.recipient_id == current_user.id ? received_requests_path : sent_requests_path %>
   <%= link_to '<<', my_requests, class: 'back-link' %>
 </div>
