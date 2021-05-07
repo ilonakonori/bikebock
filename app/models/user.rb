@@ -31,11 +31,11 @@ class User < ApplicationRecord
   after_destroy :destroy_tags
 
   # validations
-  validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /\A[a-zA-Z]+\z/ }
+  validates :name, presence: true, uniqueness: true, length: { in: 2..20 }, format: { with: /[a-zA-Z0-9_]/ }
   # validates :about_me, presence: true, length: { in: 90..190 }
   validates :interests, presence: true, length: { in: 10..200 }
   validates :profile_photo, presence: true
-  validates :bike_photo, presence: true
+  # validates :bike_photo, presence: true
 
   acts_as_favoritor
 

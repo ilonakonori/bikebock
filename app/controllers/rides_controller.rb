@@ -26,7 +26,7 @@ class RidesController < ApplicationController
     ride_dates = @ride.valid_dates
     my_dates = (ride_dates + all_dates)
 
-    @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }
+    @av_dates = my_dates.select { |d| my_dates.count(d) == 1 }.map { |d| d.strftime('%d-%m-%Y') }
     # remove reviews from blocked
     if @ride.reviews.present?
       @reviews = filter_blocked(@ride.reviews.order(created_at: :desc), 'participant')
