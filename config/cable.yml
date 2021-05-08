@@ -6,7 +6,9 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDISCLOUD_URL") { "redis://localhost:6379/1" } %>
+  url: <%= ENV.fetch("REDISCLOUD_URL") %>
   channel_prefix: bikebock_production
 
+# heroku addons:add rediscloud
+# heroku config | grep REDIS
 # heroku addons:create rediscloud:30
