@@ -17,6 +17,12 @@
       <div class="my-row" style="display: flex; justify-content: space-around; padding-bottom: 16px;">
         <div style='padding-right: 16px; padding-top: 8px; padding-bottom: 16px;'>
           <%= cl_image_tag @user.profile_photo.key, height: 127, width: 127, crop: :fill, class: 'user-photo',style: "margin-top: 16px;" %>
+
+          <!-- edit profile -->
+          <% if policy(@user).edit? %>
+            <p class="fas fa-pencil-alt" style="font-size: 10px;position: relative; color: #444; font-weight: 600; left: 82%; top: -23%; border-radius: 50%; background-color: #fff; padding: 6px; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"><%= link_to "", edit_user_registration_path(@user) %></p>
+          <% end %>
+
           <!-- block -->
           <% if @user != current_user %>
             <%= link_to user_blockings_path(@user), method: :post do %>
@@ -88,12 +94,6 @@
           <%= render 'rides/ride', ride: ride %>
         <% end %>
       <% end %>
-      <div style="padding-top: 32px;">
-        <% if policy(@user).edit? %>
-          <%= link_to "Edit Profile", edit_user_registration_path(@user), style: "background-color: #433520; padding: 8px 55px; margin-left: 60px; box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38); border-radius: 16px; color: #fff; font-weight: 400;" %>
-        <% end %>
-      </div>
-      <br>
     </div>
   </div>
 <% end %>
