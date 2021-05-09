@@ -55,18 +55,20 @@
       </div>
     </div>
 
-    <% if @user.bike_photo.present? %>
-      <div class="card" style="border:none; background-color: transparent;">
-        <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
-      </div>
-    <% end %>
-
-    <div class="my-container" style="padding: 20px 0;">
+    <div class="my-container">
       <div style="display: flex; flex-wrap: wrap;">
         <% @user.tags.each do |tag| %>
           <p class="interests"><%= link_to tag.name, tag_path(tag) %></p>
         <% end %>
       </div>
+    </div>
+
+    <% if @user.bike_photo.present? %>
+      <div class="card" style="border:none; background-color: transparent; padding-bottom: 20px;">
+        <%= cl_image_tag @user.bike_photo.key, class: "d-block w-100", style: "border-radius: 16px; height: 45vw;"%>
+      </div>
+    <% end %>
+
     </div>
     <div>
       <% if @user.rides.empty? %>
