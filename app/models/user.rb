@@ -40,7 +40,7 @@ class User < ApplicationRecord
   acts_as_favoritor
 
   def after_confirmation #send_welcome
-    BikeBockMailer.welcome_email(self).deliver_now!
+    BikeBockMailer.with(user: self).welcome_email.deliver_now!
   end
 
   def self.create_tracking
