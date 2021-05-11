@@ -4,5 +4,5 @@ class BikeBockMailerPreview < ActionMailer::Preview
   end
 end
 
-# http://localhost:3000/rails/mailers => list of previews # ??
+# http://localhost:3000/rails/mailers => list of previews
 # preview: http://localhost:3000/rails/mailers/bike_bock_mailer/welcome_email
