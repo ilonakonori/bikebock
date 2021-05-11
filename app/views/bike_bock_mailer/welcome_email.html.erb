@@ -3,9 +3,19 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>Hey <%= @user.name %>!</h1>
-    <p> Welcome to Bike Bock! </p>
-    <!-- write smtng -->
+  <body >
+    <div style='background-color: #f4f4f4; text-align: center; margin: 24px; padding: 48px; padding-bottom: 88px; border-radius: 8px;'>
+      <a href='http://www.bikebock.de' target='_blank' style='text-align: center; color: #666;'>Visit BikeBock</a>
+      <div style='display: flex; justify-content: center; margin-top: 8px;'>
+        <div style='text-align: center; width: 300px; background-color: #00917C; color: #fff; border-radius: 16px; padding: 16px; border: 1px solid #ccc;'>
+          <h1 style=''>Hey <%= params[:user].name %>!</h1>
+            <div style='text-align: left; width: 240px; position: relative; margin: 0 auto;'>
+            <p> Welcome to Bike Bock! </p>
+            <!-- write smtng -->
+            <p> blah blah</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,10 +1,24 @@
-<div style="">
-  <h5 style="font-weight:bold">Confirm your email address!</h5>
-  <br>
-  <p>There’s one quick step you need to complete before creating your Bike Bock account. 
-  Let’s make sure this is the right email address for you — 
-  please confirm this is the right address to use for your new account.</p>
-  <br>
-  <p><%= link_to 'Please confirm your account to get started on Bike Bock', confirmation_url(@resource, confirmation_token: @token) %></p>
-  <p>Thanks,<span>Bike Bock</span></p>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body >
+    <div style='background-color: #f4f4f4; text-align: center; margin: 24px; padding: 48px; padding-bottom: 88px; border-radius: 8px;'>
+      <a href='http://www.bikebock.de' target='_blank' style='text-align: center; text-decoration: none; color: #666;'>Visit BikeBock</a>
+      <div style='display: flex; justify-content: center; margin-top: 8px;'>
+        <div style='text-align: center; width: 300px; background-color: #00917C; color: #fff; border-radius: 16px; padding: 16px; border: 1px solid #ccc;'>
+          <h1 style=''>Hey <%= @user.name %>!</h1>
+            <div style='text-align: left; width: 240px; position: relative; margin: 0 auto;'>
+            <p style="">Please confirm your email address!</p>
+            <p>There’s one quick step you need to complete before creating your Bike Bock account.
+               Let’s make sure this is the right email address for you —
+               please confirm this is the right address to use for your new account.</p>
+            <p><%= link_to 'Please confirm your account to get started on Bike Bock', confirmation_url(@resource, confirmation_token: @token), style: 'text-align: center; font-weight:bold; color: #fff;' %></p>
+            <p>Thanks,<span> Bike Bock</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
