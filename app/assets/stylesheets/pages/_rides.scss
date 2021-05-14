@@ -264,7 +264,7 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 .far.fa-bookmark.r, .fas.fa-bookmark.r {
   color: rgba(0, 145, 125, 0.8);
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 16px;
   margin-left: 4px;
 }
@@ -643,6 +643,13 @@ i.fas.fa-times-circle.pr {
   width: 60%;
   border: solid 1px #efefef;
   box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);
+}
+
+.add-ride {
+  color: #000;
+  text-align: center;
+  padding: 8px;
+  margin-left: 4px;
 }
 
 .new-ride-btn.light-mode {

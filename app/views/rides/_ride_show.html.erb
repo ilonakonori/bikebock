@@ -29,6 +29,7 @@
   <p class="rp <%= current_user.account.theme %>"><%= ride.short_description %></p>
   <div class="card card-ride">
     <!-- location -->
+    <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Journey:</p>
     <div class='box'>
       <div class='line <%= current_user.account.theme %>' style='top: 40%;'></div>
       <div class='row'>
@@ -45,6 +46,7 @@
       </div>
     </div>
     <!-- time box -->
+    <p style='margin: 0; padding: 0; font-size: 12px; padding-left: 4px; font-weight: 600;'>Time:</p>
     <div class='box'>
       <div class='line <%= current_user.account.theme %>' style='top: 40%;'></div>
       <div class='row'>
@@ -124,14 +126,14 @@
 </div>
 
 <div id='myForm' class="myF <%= current_user.account.theme %>" style='display: none;'>
-  <br>
+  <p style="padding: 24px 0px 0px 41px; font-size: 16px; font-weight: 500; margin: 0;">Which day do you want to go?</p>
   <button id='closeBtn' class="closeB <%= current_user.account.theme %>"><span aria-hidden="true">&times;</span></button>
   <div id='f-box' style="display:flex;justify-content: center; height: 156px; padding-top: 16px; width: 300px;">
     <%= simple_form_for(@request) do |f| %>
       <%= f.input :ride_date, label: false, collection: @av_dates, selected: @av_dates.first, input_html: { class: "select2 re" } %>
       <%= f.hidden_field :recipient_id, :value => ride.user_id %>
       <%= f.hidden_field :ride_id, :value => ride.id %>
-      <%= f.submit value="Send", class: "brown-btn2" %>
+      <%= f.submit value="Request", class: "brown-btn2" %>
     <% end %>
   </div>
 </div>
