@@ -20,7 +20,9 @@
 
           <!-- edit profile -->
           <% if policy(@user).edit? %>
-            <p class="fas fa-pencil-alt" style="font-size: 10px;position: relative; color: #444; font-weight: 600; left: 82%; top: -23%; border-radius: 50%; background-color: #fff; padding: 6px; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"><%= link_to "", edit_user_registration_path(@user) %></p>
+            <%= link_to edit_user_registration_path(@user) do %>
+              <p class="fas fa-pencil-alt" style="border: 3px solid #00917C; font-size: 10px; position: relative; color: #444; font-weight: 600; left: 82%; top: -23%; border-radius: 50%; background-color: #fff; padding: 5px; box-shadow: 0px 0px 5px 3px rgb(0, 0, 0, 38%);"></p>
+            <% end %>
           <% end %>
 
           <!-- block -->
