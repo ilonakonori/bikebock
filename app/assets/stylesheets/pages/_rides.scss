@@ -645,11 +645,35 @@ i.fas.fa-times-circle.pr {
   box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);
 }
 
-.add-ride {
+.add-ride.light-mode {
   color: #000;
   text-align: center;
   padding: 8px;
   margin-left: 4px;
+}
+
+.add-ride.dark-mode {
+  color: #f4f4f4;
+  text-align: center;
+  padding: 8px;
+  margin-left: 4px;
+}
+
+i.fas.fa-plus.add {
+  border: 3px solid #00917C;
+  font-size: 10px;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, .24);
+}
+
+.add-ride.light-mode i.fas.fa-plus.add {
+  background: #fff;
+}
+
+.add-ride.dark-mode i.fas.fa-plus.add {
+  background: #363636;
+  color: #f4f4f4;
 }
 
 .new-ride-btn.light-mode {
