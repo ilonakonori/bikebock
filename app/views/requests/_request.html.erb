@@ -41,12 +41,12 @@
     <% elsif r[:request].accepted && r[:check_book].nil? %>
       <p style="font-size: 12px; font-family: monospace;">Status: accepted</p>
     <% elsif r[:check_book].present? %>
-      <p style="font-size: 12px; font-family: monospace;">Status: booked</p>
+      <p style="font-size: 12px; font-family: monospace;">Status: confirmed</p>
     <% else %>
       <p style="font-size: 12px; font-family: monospace;">Status: declined</p>
     <% end %>
     <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
-      <%= r[:request].ride_date.to_date.strftime('%d-%m-%Y')  %>
+      <%= r[:request].ride_date %>
     </p>
   </div>
 
