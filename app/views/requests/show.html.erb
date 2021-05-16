@@ -23,16 +23,16 @@
       <p style="font-size: 12px; font-family: monospace;">Add <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %></p>
     <% elsif @request.accepted && @check_book.nil? %>
       <p style="font-size: 12px; font-family: monospace;"><%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
-    joined</p>
+    joined</p> <!-- accepted -->
     <% elsif @check_book.present? %>
-      <p style="font-size: 12px; font-family: monospace;">Booked for <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
+      <p style="font-size: 12px; font-family: monospace;">Confirmed for <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
       </p>
     <% else %>
       <p style="font-size: 12px; font-family: monospace;">You declined <%= link_to user.name, user_path(user.id), style: 'color: #00917C; font-weight: 600;' %>
     </p>
     <% end %>
     <p style='color: #fff; font-size: 8px; background-color: #00917C; font-weight: 600; border-radius: 16px; padding: 1px 10px;'>
-      <%= @request.ride_date.to_date.strftime('%d-%m-%Y')  %>
+      <%= @request.ride_date %>
     </p>
   </div>
 
@@ -50,7 +50,7 @@
   <% elsif @request.accepted %>
     <!-- links here -->
     <div style='display: flex; justify-content: center'>
-      <% if @check_book.nil? && @all_bookings && @request.ride_date.to_date < Date.today %>
+      <% if @check_book.nil? && @all_bookings && @request.ride_date.to_date > Date.today %>
         <%= link_to 'Confirm', request_bookings_path(@request), method: :post, class: 'brown-btn' %>
       <% end %>
       <% if @chat.messages.present? %>
