@@ -1,5 +1,5 @@
 .form-control {
-  border-radius: 16px !important;
+  border-radius: 8px !important;
   border-style: none;
   border-color: #fff !important;
   // make it smaller & center it
@@ -46,7 +46,7 @@ input[type="checkbox"]:checked:after {
 
 .new_user > div.form-inputs > div.form-group.file.required.user_profile_photo > label, #user_profile_photo,
 #new_user > div.form-inputs > div.form-group.file.optional.user_bike_photo > label, #user_bike_photo {
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 #new_user > div.form-inputs > div.form-group.password.required.user_password > small {
@@ -93,7 +93,7 @@ input[type="file"] {
 // photo inputs
 #edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file > label,
 #edit_user > div.form-inputs > div.form-group.file.optional.user_bike_photo.form-group-valid.custom-file > label {
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 #edit_user > div.form-inputs > div.form-group.file.optional.user_profile_photo.form-group-valid.custom-file {
@@ -183,22 +183,22 @@ label.file.optional.custom-file-label {
 
 label.file.optional.custom-file-label.light-mode {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 label.file.optional.custom-file-label.dark-mode {
   background-color: #4d4d4d;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.optional.user_bike_photo.custom-file.dark-mode {
   background-color: #4d4d4d;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.optional.user_bike_photo.custom-file.light-mode {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 

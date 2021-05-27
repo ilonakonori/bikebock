@@ -1,7 +1,7 @@
 #carouselExampleIndicators,
 #carouselExampleIndicators > div > div.carousel-item > img.d-block.w-100.rounded,
 #content-wrap > div.container > div {
-  border-radius: 16px !important;
+  border-radius: 8px !important;
 }
 
 #carouselExampleIndicators > a.carousel-control-prev > span.carousel-control-prev-icon,
@@ -14,7 +14,7 @@
 .rides {
   margin-bottom: 24px;
   padding: 8px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid #efefef;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
@@ -72,7 +72,7 @@
 .card.card-ride {
   background-color: transparent;
   border: 0px transparent;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 
@@ -372,14 +372,14 @@ body > span > span > span.select2-search.select2-search--dropdown > input {
 .select2-container--light-mode .select2-selection--single {
   background-color: #fff;
   border: 1px solid #ccc;
-  border-radius: 16px;
+  border-radius: 8px;
   line-height: 2em;
 }
 
 .select2-container--dark-mode .select2-selection--single {
   background-color: #4d4d4d;
   border: 1px solid #ccc;
-  border-radius: 16px;
+  border-radius: 8px;
   line-height: 2em;
 }
 
@@ -428,7 +428,7 @@ a:hover {
 .swal-button {
   background-color: #433520;
   color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 .swal-modal.dark-mode {
@@ -478,7 +478,7 @@ a:hover {
 
 .swal-modal {
   transform: scale(0.9);
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 /* load popup */
@@ -528,7 +528,7 @@ a:hover {
 
 /* photos forms + preview */
 #photo_1 > div > label, #photo_2 > div > label, #photo_3 > div > label {
-  border-radius: 16px;
+  border-radius: 8px;
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
   background-color: transparent;
@@ -575,32 +575,32 @@ label.file.required.custom-file-label {
 
 div.form-group.file.required.ride_photo_1.custom-file.dark-mode {
   background-color: #4d4d4d;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.required.ride_photo_1.custom-file.light-mode {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.required.ride_photo_2.custom-file.dark-mode {
   background-color: #4d4d4d;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.required.ride_photo_2.custom-file.light-mode {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.required.ride_photo_3.custom-file.dark-mode {
   background-color: #4d4d4d;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 div.form-group.file.required.ride_photo_3.custom-file.light-mode {
   background-color: #fff;
-  border-radius: 16px;
+  border-radius: 8px;
 }
 
 i.fas.fa-times-circle.pr {
@@ -634,12 +634,12 @@ i.fas.fa-times-circle.pr {
 .new-ride-btn {
   font-size: 4.3vw;
   position: relative;
-  color: #00917C;
+  color: #222;
   font-weight: bold;
   left: 21%;
   line-height: 3vh;
   padding: 1vh 4vh;
-  border-radius: 16px;
+  border-radius: 8px;
   width: 60%;
   border: solid 1px #efefef;
   box-shadow: 3px 5px 6px rgba(4, 7, 17, 0.13);
