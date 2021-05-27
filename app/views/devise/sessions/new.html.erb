@@ -2,8 +2,8 @@
   <div id='animationDiv'>
     <img id="animationWheel" alt="wheel" src="http://pluspng.com/img-png/bike-tire-png-please-note-400.png" width="80" height="auto">
   </div>
-  <h2 style="text-align: center; color: #fff;">Bike Bock!</h2>
-    <p style="text-align: center; color: #fff; font-weight: 600; line-height: 1.5;">You shall never cycle alone.</p>
+  <h2 style="text-align: center; color: #222;">Bike Bock!</h2>
+    <p style="text-align: center; color: #222; font-weight: 600; line-height: 1.5;">You shall never cycle alone.</p>
     <br>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
@@ -21,10 +21,10 @@
                     input_html: { autocomplete: "current-password" } %>
 
         <!-- one line -->
-        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #fff;">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: #222;">
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <p style="font-size: 12px; color: #fff !important;"><%= link_to " Forgot password?", new_password_path(resource_name), style:"font-weight: 600;" %><br /></p>
+            <p style="font-size: 12px; color: #222 !important;"><%= link_to " Forgot password?", new_password_path(resource_name), style:"font-weight: 600; color: #222 !important;" %><br /></p>
           <% end %>
 
         <!-- two lines
@@ -36,11 +36,11 @@
         </div>
 
         <div class="form-actions" style="text-align: center; padding-top: 24px; margin-bottom: 56px;">
-          <%= f.button :submit, "Log me in!", class: "brown-btn", style: "font-weight: 600;" %>
+          <%= f.button :submit, "LOG ME IN!", class: "brown-btn", style: "font-weight: 600;" %>
         </div>
 
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <p style="text-align: center; color: #fff !important; padding-bottom: 24px;">Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name), style:"font-weight: 600;" %><br />
+          <p style="text-align: center; color: #222 !important; padding-bottom: 24px;">Don't have an account? <%= link_to "Sign up", new_registration_path(resource_name), style:"font-weight: 600; color: #222 !important;" %><br />
         <% end %>
 
       <% end %>
