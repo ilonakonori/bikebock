@@ -244,12 +244,12 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 
 /* btn 'I want to go' */
 #content-wrap > div.container > div:nth-child(4) > div > div.btn-box > a, #request-btn, input.brown-btn, a.brown-btn {
-  background-color: #433520;
+  background-color: #222;
   padding: 8px 55px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
-  border-radius: 16px;
+  border-radius: 8px;
   color: #fff;
-  font-weight: 400;
+  font-weight: 500;
   margin: 4px;
 }
 
@@ -361,7 +361,7 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people {
 .select2-container--light-mode .select2-results__option--highlighted.select2-results__option--selectable,
 .select2-container--dark-mode .select2-results__option--highlighted.select2-results__option--selectable {
   background-color: #00917c;
-  color: white;
+  color: #222;
 }
 
 
