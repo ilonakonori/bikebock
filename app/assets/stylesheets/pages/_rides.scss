@@ -125,8 +125,10 @@
 #new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > legend,
 #new_ride > div.form-group.string.required.ride_available_dates > label
  {
-  padding-left: 8px;
+  padding-left: 2px;
 }
+
+
 
 #ride_short_description, #user_about_me, #user_interests {
   min-height: 12vh;
@@ -216,7 +218,7 @@ fieldset.form-group.radio_buttons.required.ride_difficulty.form-group-valid > di
 fieldset.form-group.radio_buttons.required.ride_number_of_people.form-group-valid > div > label,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty > div > label,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > div > label  {
-  padding-left: 8px;
+  padding-left: 2px;
 }
 
 fieldset.form-group.radio_buttons.required.ride_difficulty.form-group-valid > div,
@@ -224,6 +226,11 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people.form-group-vali
 #new_ride > fieldset.form-group.radio_buttons.required.ride_difficulty > div,
 #new_ride > fieldset.form-group.radio_buttons.required.ride_number_of_people > div {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: normal;
+  justify-content: space-between;
+  align-items: normal;
 }
 
 /* ride index */
@@ -239,7 +246,11 @@ fieldset.form-group.radio_buttons.required.ride_number_of_people.form-group-vali
 fieldset.form-group.radio_buttons.required.ride_difficulty,
 fieldset.form-group.radio_buttons.required.ride_number_of_people {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: normal;
+  justify-content: space-between;
+  align-items: normal;
 }
 
 /* btn 'I want to go' */

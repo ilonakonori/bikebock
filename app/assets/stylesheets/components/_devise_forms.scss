@@ -50,13 +50,13 @@ input[type="checkbox"]:checked:after {
 }
 
 #new_user > div.form-inputs > div.form-group.password.required.user_password > small {
-  padding-left: 8px;
+  padding-left: 2px;
   border:0;
   outline:0;
 }
 
 #new_user > div > div.form-group.string.required.user_interests > small {
-  padding-left: 8px;
+  padding-left: 2px;
 }
 
 #content-wrap > div > div > p > a {
@@ -111,31 +111,31 @@ input[type="file"] {
 // end of photo inputs
 
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password > small {
-  padding-left: 8px;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password > label{
-  padding-left: 8px;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.password.required.user_current_password > label {
-  padding-left: 8px !important;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.password.optional.user_password_confirmation > label {
-  padding-left: 8px;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid > label {
-  padding-left: 8px !important;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > small {
-  padding-left: 8px !important;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_interests.form-group-valid > label {
-  padding-left: 8px !important;
+  padding-left: 2px !important;
 }
 
 #edit_user > div.form-inputs > div.form-group.text.optional.user_about_me.form-group-valid,
