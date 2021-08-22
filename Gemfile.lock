@@ -117,6 +117,11 @@ GEM
       railties (>= 3.2)
     erubi (1.9.0)
     execjs (2.7.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.13.1)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
@@ -247,6 +252,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -312,6 +319,7 @@ DEPENDENCIES
   cloudinary (~> 1.16.0)
   devise
   dotenv-rails
+  factory_bot_rails (~> 6.2)
   font-awesome-sass
   jbuilder (~> 2.7)
   listen (~> 3.2)
@@ -328,6 +336,7 @@ DEPENDENCIES
   rspec-rails (~> 5.0.0)
   sass-rails (>= 6)
   selenium-webdriver
+  shoulda-matchers (~> 5.0)
   simple_form
   spring
   spring-commands-rspec
