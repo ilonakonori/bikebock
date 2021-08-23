@@ -38,6 +38,8 @@ gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 gem 'lockbox', '~> 0.6.4'
 gem 'blind_index'
 
+# gem 'paperclip'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
