@@ -5,6 +5,10 @@ FactoryBot.define do
     password { '12345678' }
     profile_photo { Rack::Test::UploadedFile.new("#{Rails.root}/spec/test_uploads/mande.jpg") }
     bike_photo { Rack::Test::UploadedFile.new("#{Rails.root}/spec/test_uploads/mande.jpg") }
-    interests {'#birdwatching #sushi #sleep #eat' }
+    sequence(:interests) { |n| "#birdwatching #sushi_#{n} #sleep #eat" }
+
+    # bc of devise confirmable
+    after(:build) { |u| u.skip_confirmation_notification! }
+    after(:create) { |u| u.confirm }
   end
 end

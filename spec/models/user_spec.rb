@@ -1,12 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { FactoryBot.create(:user) }
 
-  it "is valid" do
-    expect(FactoryBot.build(:user)).to be_valid
+  it "is valid with name, email, password, photos.." do
+    expect(user).to be_valid
   end
 
-  let(:user) { FactoryBot.create(:user) }
+  it 'creates account after sign up' do
+    expect(user.account).to_not be_nil
+  end
+
+  it 'creates tracking after sign up' do
+    expect(user.tracking).to_not be_nil
+  end
+
+  it 'creates tags after sign up' do
+    expect(user.tag_list).to_not be_nil
+  end
+
   # relations
   it { is_expected.to have_many :rides }
   it { is_expected.to have_many :notifications }
