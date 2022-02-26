@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_192753) do
     t.integer "action_id"
     t.string "sender_name"
     t.string "content"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "read_at"
     t.datetime "action_time"
     t.datetime "created_at", precision: 6, null: false
@@ -118,13 +118,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_192753) do
     t.string "link"
     t.integer "sender_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
-  end
-
-  create_table "photos", force: :cascade do |t|
-    t.bigint "ride_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ride_id"], name: "index_photos_on_ride_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -240,7 +233,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_192753) do
   add_foreign_key "bookings", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "notifications", "users"
-  add_foreign_key "photos", "rides"
   add_foreign_key "requests", "rides"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "bookings"

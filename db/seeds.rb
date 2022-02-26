@@ -85,9 +85,7 @@ end
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_2.jpeg'), filename: 'bike_2.jpeg', content_type: 'image/jpeg')
     new_user.save!
   puts "User 2 saved!"
-end
 
-=begin
   1.times do
     new_ride = Ride.new(
       title: "Nikolassee Route",
@@ -104,22 +102,20 @@ end
     puts "New ride not saved!"
 
     # photos
-    # image1 = File.open('app/assets/images/nikolassee_route.png')
-    image2 = URI.open('https://images.unsplash.com/photo-1490909076160-9a3687c8e965?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
-
+    image1 = File.open('app/assets/images/nikolassee_route.png')
+    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_Wannsee_0367_c_visitBerlin_Foto_Thomas_Kierok_web.jpg.webp?itok=LOteDloL')
+    
     new_ride.photo_2.attach(io: image2, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    #image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
-    new_ride.photo_3.attach(io: image2, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    new_ride.photo_1.attach(io: image1, filename: "#{new_ride.title}_2", content_type: 'image/png')
+    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Ausflug_MG_0384_c_visitBerlin_Foto_Thomas_Kierok_web.jpg.webp?h=1c9b88c9&itok=Orl632TS')
+    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
   puts "Added 3 images!"
 
   end
-=end
-
-#end
+end
 
 # user_3
 
@@ -248,7 +244,6 @@ end
     new_user.save!
   puts "User 5 saved!"
 
-=begin
   1.times do
     new_ride = Ride.new(
       title: "Wannsee Cycle Route",
@@ -268,9 +263,9 @@ end
     # photos
     image1 = File.open('app/assets/images/wansee_cycle_route.png')
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0353_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_0.jpg.webp?itok=Ssjcvgmi')
+    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Pfaueninsel_c_BA_SteglitzZehlendf_Foto_Steven_Ritzer%20%286%29_0.jpg.webp?h=b2774bcf&itok=uZklHBJ7')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
+    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Liebermann_Villa_c_Scholvien%20%2824%29_OCV_web.jpg.webp?itok=1ZJhUVEx')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
@@ -278,7 +273,6 @@ end
   puts "Added 3 images!"
 
   end
-=end
 end
 
 # user_6
@@ -335,7 +329,6 @@ end
 
 # user_7
 
-=begin
 1.times do
   new_user = User.new(
     name: "JC",
@@ -374,9 +367,9 @@ end
     # photos
     image1 = File.open('app/assets/images/cycling_tour_at_tiegarten.png')
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
+    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Siegess%C3%A4ule_iStock_c_SHansche_DL_PPT_0.jpg.webp?h=31459d7b&itok=WmKgJ-cp')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
+    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Haus%20der%20Kulturen_c_Scholvien_DL_PPT_0.jpg.webp?h=96abc80e&itok=TgJtwhrp')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
@@ -702,4 +695,3 @@ end
 
   end
 end
-=end
