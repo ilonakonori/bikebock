@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 require "open-uri"
 
 User.destroy_all
@@ -29,7 +30,7 @@ User.destroy_all
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_1.jpeg'), filename: 'bike_1.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 1 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -45,7 +46,7 @@ User.destroy_all
       start_location: "Deutsches Technik museum",
       end_location: "Kraftwerk Berlin",
       difficulty: '2',
-      available_dates: "13.03.2021, 14.03.2021, 18.04.2021, 25.04.2021, 09.05.2021, 23.05.2021, 13.06.2021, 26.06.2021, 18.07.2021, 16.07.2021, 13.08.2021, 29.08.2021")
+      available_dates: "13.04.2022, 14.03.2022, 18.04.2022, 25.04.2022, 09.05.2022, 23.05.2022, 13.06.2022, 26.06.2022, 18.07.2022, 16.07.2022, 13.08.2022, 29.08.2022")
   puts "New ride not saved!"
 
     # photos
@@ -83,8 +84,10 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_2.jpeg'), filename: 'bike_2.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 2 saved!"
+end
 
+=begin
   1.times do
     new_ride = Ride.new(
       title: "Nikolassee Route",
@@ -97,23 +100,26 @@ end
       start_location: "Wannsee S-Bahn",
       end_location: "Wannsee S-Bahn",
       difficulty: "1",
-      available_dates: "27.04.2021, 28.04.2021, 15.04.2021, 17.04.2021, 14.05.2021, 29.05.2021, 26.06.2021, 27.06.2021, 24.07.2021, 29.07.2021, 11.08.2021, 15.08.2021")
+      available_dates: "27.04.2022, 28.04.2022, 15.04.2022, 17.04.2022, 14.05.2022, 29.05.2022, 26.06.2022, 27.06.2022, 24.07.2022, 29.07.2022, 11.08.2022, 15.08.2022")
     puts "New ride not saved!"
 
     # photos
-    image1 = File.open('app/assets/images/nikolassee_route.png')
-    new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
+    # image1 = File.open('app/assets/images/nikolassee_route.png')
+    image2 = URI.open('https://images.unsplash.com/photo-1490909076160-9a3687c8e965?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
+
+    new_ride.photo_2.attach(io: image2, filename: "#{new_ride.title}_1", content_type: 'image/png')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Museumsdorf%20D%C3%BCppel_DL_PPT_2.jpg.webp?itok=8HCQ9TQf')
-    new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
+    #image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
+    new_ride.photo_3.attach(io: image2, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
     new_ride.save!
   puts "Added 3 images!"
 
   end
-end
+=end
+
+#end
 
 # user_3
 
@@ -135,7 +141,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_3.jpeg'), filename: 'bike_3.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 3 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -149,7 +155,7 @@ end
       start_location: "Flottwell Berlin Hotel & Residenz am Park",
       end_location: "Kulturforum",
       difficulty: "1",
-      available_dates: "28.04.2021, 15.05.2021, 29.05.2021, 12.06.2021, 19.06.2021, 10.07.2021, 17.07.2021, 15.08.2021, 22.08.2021")
+      available_dates: "28.04.2022, 15.05.2022, 29.05.2022, 12.06.2022, 19.06.2022, 10.07.2022, 17.07.2022, 15.08.2022, 22.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -187,7 +193,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_4.jpeg'), filename: 'bike_4.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 4 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -202,7 +208,7 @@ end
       start_location: "Akademie Berlin-Schmöckwitz",
       end_location: "Akademie Berlin-Schmöckwitz",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021, 24.04.2021, 15.05.2021, 30.05.2021, 12.06.2021, 20.06.2021, 17.07.2021, 31.07.2021, 21.08.2021")
+      available_dates: "17.04.2022, 18.04.2022, 24.04.2022, 15.05.2022, 30.05.2022, 12.06.2022, 20.06.2022, 17.07.2022, 31.07.2022, 21.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -210,7 +216,7 @@ end
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Mueggelturm_2018_Sonnenterrasse_c_Berliner_Mueggelturm_UG_Foto_Swen_Bernitz_DL_PPT_0.jpg.webp?itok=2TnIotUO')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Mueggelturm_c_visitBerlin_Foto_Kneiske%20%283%29_DL_PPT_0.jpg.webp?h=d1f6bb1a&itok=4sERW_54')
+    image3 = URI.open('https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
@@ -240,8 +246,9 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_5.jpeg'), filename: 'bike_5.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 5 saved!"
 
+=begin
   1.times do
     new_ride = Ride.new(
       title: "Wannsee Cycle Route",
@@ -255,7 +262,7 @@ end
       start_location: "Schlossplatz",
       end_location: "Glienicker Bridge",
       difficulty: "1",
-      available_dates: "17.04.2021, 18.04.2021, 10.04.2021, 11.04.2021, 13.05.2021, 19.05.2021, 18.06.2021, 14.06.2021, 27.07.2021, 28.07.2021, 15.08.2021, 10.08.2021")
+      available_dates: "17.04.2022, 18.04.2022, 10.04.2022, 11.04.2022, 13.05.2022, 19.05.2022, 18.06.2022, 14.06.2022, 27.07.2022, 28.07.2022, 15.08.2022, 10.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -263,7 +270,7 @@ end
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
     image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0353_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_0.jpg.webp?itok=Ssjcvgmi')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Schloss_Pfaueninsel_c_SPSG_Foto_Michael_L%C3%BCder_F0019018_DL_PPT_0.jpg.webp?h=ab7dd816&itok=sQ3bv-Qz')
+    image3 = URI.open('https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
@@ -271,6 +278,7 @@ end
   puts "Added 3 images!"
 
   end
+=end
 end
 
 # user_6
@@ -293,7 +301,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_6.jpeg'), filename: 'bike_6.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 6 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -307,7 +315,7 @@ end
       start_location: "U-Bahnhof Borsigwerke",
       end_location: "U-Bahnhof Wittenau",
       difficulty: "3",
-      available_dates: "11.04.2021, 29.04.2021, 15.05.2021, 16.05.2021, 27.06.2021, 30.06.2021, 14.07.2021, 26.07.2021, 14.08.2021, 16.08.2021")
+      available_dates: "11.04.2022, 29.04.2022, 15.05.2022, 16.05.2022, 27.06.2022, 30.06.2022, 14.07.2022, 26.07.2022, 14.08.2022, 16.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -327,6 +335,7 @@ end
 
 # user_7
 
+=begin
 1.times do
   new_user = User.new(
     name: "JC",
@@ -345,7 +354,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_7.jpeg'), filename: 'bike_7.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 7 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -359,15 +368,15 @@ end
       start_location: "Nürnberger Straße 65, 10787",
       end_location: "Café am neuen See",
       difficulty: "4",
-      available_dates: "20.03.2021, 17.04.2021, 29.04.2021, 12.05.2021, 15.05.2021, 16.06.2021, 17.06.2021, 11.07.2021, 14.07.2021, 17.08.2021, 21.08.2021")
+      available_dates: "20.03.2022, 17.04.2022, 29.04.2022, 12.05.2022, 15.05.2022, 16.06.2022, 17.06.2022, 11.07.2022, 14.07.2022, 17.08.2022, 21.08.2022")
     puts "New ride not saved!"
 
     # photos
     image1 = File.open('app/assets/images/cycling_tour_at_tiegarten.png')
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Tiergarten_c_Maxi-Lena_Schuleit%20%289%29_DL_PPT_0.jpg.webp?itok=JmuOXJ-V')
+    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
-    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_bleed_header_visitberlin_desktop_2x/private/image/Siegess%C3%A4ule_iStock_c_SHansche_DL_PPT_0.jpg.webp?h=31459d7b&itok=WmKgJ-cp')
+    image3 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_desktop_2x/private/image/Ausflug_MG_0367_c_visitBerlin_Foto_Thomas_Kierok_DL_PPT_1.jpg.webp?itok=hfnxjjWE')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
 
     new_ride.user = new_user
@@ -397,7 +406,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_8.jpeg'), filename: 'bike_8.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 8 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -414,7 +423,7 @@ end
       start_location: "Treptower Park",
       end_location: "S-Bahn Erkner",
       difficulty: "1",
-      available_dates: "19.05.2021, 22.05.2021, 14.06.2021, 24.06.2021, 17.07.2021, 15.07.2021, 11.08.2021, 30.08.2021")
+      available_dates: "19.05.2022, 22.05.2022, 14.06.2022, 24.06.2022, 17.07.2022, 15.07.2022, 11.08.2022, 30.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -452,7 +461,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_9.jpeg'), filename: 'bike_9.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 9 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -468,7 +477,7 @@ end
       start_location: "Schlossgut Altlandsberg",
       end_location: "Buckow",
       difficulty: "3",
-      available_dates: "14.05.2021, 12.05.2021, 24.06.2021, 29.06.2021, 19.07.2021, 25.07.2021, 11.08.2021, 29.08.2021")
+      available_dates: "14.05.2022, 12.05.2022, 24.06.2022, 29.06.2022, 19.07.2022, 25.07.2022, 11.08.2022, 29.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -498,7 +507,7 @@ end
     last_seen: DateTime.now
     )
   puts "User not saved!"
-    image = URI.open("https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80")
+    image = URI.open("https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
 
   puts "User photo added!"
@@ -506,7 +515,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_10.jpeg'), filename: 'bike_10.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 10 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -520,7 +529,7 @@ end
       start_location: "Potsdam Hauptbahnhof",
       end_location: "Potsdam Hauptbahnhof",
       difficulty: "3",
-      available_dates: "12.05.2021, 22.05.2021, 24.06.2021, 19.06.2021, 10.07.2021, 23.07.2021, 09.08.2021, 20.08.2021")
+      available_dates: "12.05.2022, 22.05.2022, 24.06.2022, 19.06.2022, 10.07.2022, 23.07.2022, 09.08.2022, 20.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -550,7 +559,7 @@ end
     last_seen: DateTime.now
     )
   puts "User not saved!"
-    image = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2850&q=80")
+    image = URI.open("https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
 
   puts "User photo added!"
@@ -558,7 +567,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_11.jpeg'), filename: 'bike_11.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 11 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -573,7 +582,7 @@ end
       start_location: "Spandau Hauptbahnhof",
       end_location: "Havelberg",
       difficulty: "5",
-      available_dates: "13.05.2021, 27.05.2021, 14.06.2021, 24.06.2021, 17.07.2021, 25.07.2021, 11.08.2021, 30.08.2021")
+      available_dates: "13.05.2022, 27.05.2022, 14.06.2022, 24.06.2022, 17.07.2022, 25.07.2022, 11.08.2022, 30.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -603,7 +612,7 @@ end
     last_seen: DateTime.now
     )
   puts "User not saved!"
-    image = URI.open("https://images.unsplash.com/photo-1492447216082-4726bf04d1d1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80")
+    image = URI.open("https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
 
   puts "User photo added!"
@@ -611,7 +620,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_12.jpeg'), filename: 'bike_12.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 12 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -624,7 +633,7 @@ end
       start_location: " East Side Gallery",
       end_location: "Potsdamer Platz",
       difficulty: "1",
-      available_dates: "10.05.2021, 12.05.2021, 14.06.2021, 24.06.2021, 20.07.2021, 15.07.2021, 21.08.2021, 30.08.2021")
+      available_dates: "10.05.2022, 12.05.2022, 14.06.2022, 24.06.2022, 20.07.2022, 15.07.2022, 21.08.2022, 30.08.2022")
     puts "New ride not saved!"
 
     # photos
@@ -654,7 +663,7 @@ end
     last_seen: DateTime.now
     )
   puts "User not saved!"
-    image = URI.open("https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2850&q=80")
+    image = URI.open("https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80")
     new_user.profile_photo.attach(io: image, filename: "#{new_user.name}", content_type: "image/png")
 
   puts "User photo added!"
@@ -662,7 +671,7 @@ end
   # bike
     new_user.bike_photo.attach(io: File.open('app/assets/images/bike_13.jpeg'), filename: 'bike_13.jpeg', content_type: 'image/jpeg')
     new_user.save!
-  puts "User saved!"
+  puts "User 13 saved!"
 
   1.times do
     new_ride = Ride.new(
@@ -676,13 +685,13 @@ end
       start_location: "Sonnenallee S-bahn",
       end_location: "Potsdamer Platz",
       difficulty: "1",
-      available_dates: "14.05.2021, 19.05.2021, 14.06.2021, 24.06.2021, 10.07.2021, 25.07.2021, 21.08.2021, 30.08.2021")
+      available_dates: "14.05.2022, 19.05.2022, 14.06.2022, 24.06.2022, 10.07.2022, 25.07.2022, 21.08.2022, 30.08.2022")
     puts "New ride not saved!"
 
     # photos
-    image1 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/TegelerSee_Fruehling_c_visitBerlin_Foto_DagmarSchwelle%20%289%29_DL_PPT_1.jpg.webp?itok=myhbD-iZ')
+    image1 = URI.open('https://images.unsplash.com/photo-1441095119381-ce8d1e079f24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
     new_ride.photo_2.attach(io: image1, filename: "#{new_ride.title}_1", content_type: 'image/png')
-    image2 = URI.open('https://www.visitberlin.de/system/files/styles/visitberlin_content_image_medium_visitberlin_tablet_landscape_2x/private/image/Lichterfelde%20am%20Teltowkanal_c_visumate_DL_PPT_0.jpg.webp?itok=cIsagarc')
+    image2 = URI.open('https://images.unsplash.com/photo-1475452524438-d6a4a3f6fdc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')
     new_ride.photo_1.attach(io: image2, filename: "#{new_ride.title}_2", content_type: 'image/png')
     image3 = URI.open('https://www.lichtenrade-berlin.de/images/lichtenrade-berlin-maelzerei.jpg')
     new_ride.photo_3.attach(io: image3, filename: "#{new_ride.title}_3", content_type: 'image/png')
@@ -693,3 +702,4 @@ end
 
   end
 end
+=end
