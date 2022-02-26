@@ -335,6 +335,7 @@ end
 
 # user_7
 
+=begin
 1.times do
   new_user = User.new(
     name: "JC",
@@ -701,3 +702,4 @@ end
 
   end
 end
+=end
