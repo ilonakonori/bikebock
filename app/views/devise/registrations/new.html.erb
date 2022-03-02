@@ -1,6 +1,6 @@
 <div class="container" style="background-color: #E5E5E5; padding-top: 16px !important;">
   <div style="margin: 16px; text-align: center; color: #fff; font-weight: 600;">
-    <h3>Create Account!</h3>
+    <h3>Create Account</h3>
     <p style="color: #000;">Create a new account</p>
     <hr style="width: 95%; text-align: left; margin-left: 0;">
   </div>
@@ -69,13 +69,14 @@
       <div class="form-actions" style="text-align: center; margin-bottom: 48px;">
         <%= f.button :submit, "Create account", id: 'new-profile', class: "brown-btn" %>
         <br>
-        <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' BikeBock! Terms of service' %></small>
+        <small class='form-text text-muted'>By clicking "Create account" I agree to <br> <%= link_to ' Bike Bock Terms of service' %></small>
+     
+      <br>
+      <small><p style="text-align: center; color: #fff;"> Already have an account? <%= render "devise/shared/links"%><br /><small>
       </div>
     </div>
-  <% end %>
-
-  <p style="text-align: center; color: #fff !important;"> Already have an account? <%= render "devise/shared/links"%><br />
 </div>
+  <% end %>
 
 <div id='load-pop' class="load-pop-ride light-mode">
   <div id='load-box' style='font-size: 48px; font-weight:bold;color: #00917c;'><i class="fas fa-spinner"></i></div>
