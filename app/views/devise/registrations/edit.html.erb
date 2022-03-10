@@ -14,7 +14,7 @@
       <% end %>
 
       <div class='user-box <%= current_user.account.theme %>'>
-        <h3 style="padding-bottom: 4px;">Edit Profile!</h3>
+        <h3 style="padding-bottom: 4px;">Edit Profile</h3>
           <div id='currentUserPhoto' >
             <%= cl_image_tag current_user.profile_photo.key, height: 100, width: 100, crop: :fill, class: 'user-photo' %>
           </div>
